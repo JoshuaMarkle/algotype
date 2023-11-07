@@ -29,7 +29,6 @@ body, html {
 }
 
 #container {
-  text-align: left;
   width: 60rem;
   max-width: 90vw;
   align-items: center;
@@ -63,7 +62,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0.5rem 1rem;
+  padding: 1rem 3rem;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -148,4 +147,25 @@ h1 {
 /* Style for the results display */
 #result {
   margin-top: 20px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--background);
+  text-align: center;
+  padding: 10px 0;
+  padding-bottom: 20px;
+  font-size: smaller;
+}
+
+footer .footer-content a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+footer .footer-content a:hover {
+  text-decoration: underline;
 }
