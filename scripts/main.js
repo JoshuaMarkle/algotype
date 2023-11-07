@@ -75,3 +75,5 @@ resetButton.addEventListener('click', resetTest);
 document.addEventListener('DOMContentLoaded', () => {
   resetTest();
 });
+
+export { timerInterval };

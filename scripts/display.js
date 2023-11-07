@@ -1,22 +1,9 @@
-import { getCurrentText } from './main.js';
+import { getCurrentText, timerInterval } from './main.js';
 
 const typingArea = document.getElementById('input-area');
 const wpmDisplay = document.getElementById('wpm');
 const accuracyDisplay = document.getElementById('accuracy');
 const textDisplay = document.getElementById('text-display');
-
-export function calculateWPM(timeRemaining) {
-  const textEntered = typingArea.innerText;
-  const wordCount = textEntered.trim().split(/\s+/).length;
-  const timeSpent = (testDuration - timeRemaining) / 60;
-  const wpm = timeSpent > 0 ? (wordCount / timeSpent).toFixed(2) : "0.00";
-  wpmDisplay.textContent = wpm;
-
-  // Update accuracy
-  const errors = textDisplay.querySelectorAll('.incorrect').length;
-  const accuracy = ((textEntered.length - errors) / textEntered.length) * 100;
-  accuracyDisplay.textContent = isNaN(accuracy) ? '0.00' : accuracy.toFixed(2);
-}
 
 const temp = 1;
 
@@ -88,6 +75,10 @@ export function updateTextDisplay() {
     // Display the character
     if ((i - (currentText.slice(0, i).match(/\t/g)?.length || 0)) === textEntered.length) { // Is the current character the current cursor position?
       updatedHTML += `<span class="current">${displayedChar}</span>`;
+    } else if (currentText.slice(0, i).replace(/\t/g, '').length === textEntered.length) { // Is the current character the current cursor position?
+      // console.log(currentText.slice(0, i).replace(/\t/g, '').replace(/\n/g, '/n'), "\n\n", textEntered.replace(/\n/g, '/n'), "\n\n", i);
+      console.log(enteredIndex, i);
+      updatedHTML += `<span class="current">${displayedChar}</span>`;
     } else if (charCorrect === "neutral") {
       updatedHTML += `<span>${displayedChar}</span>`;
     } else {
@@ -97,6 +88,7 @@ export function updateTextDisplay() {
 
     // Skip duplicate newline character in entered text
     while (enteredChar === '\n' && textEntered[enteredIndex] === '\n') {
+      console.log("skipping duplicate newline");
       enteredIndex++;
     }
   }
@@ -104,7 +96,7 @@ export function updateTextDisplay() {
   textDisplay.innerHTML = updatedHTML;
 
   // Stop the test if the text is fully and correctly entered
-  if (wordsEntered.length === words.length) {
+  if (wordsEntered.length === words.length && wordsEntered[wordsEntered.length - 1] === words[words.length - 1]) {
     clearInterval(timerInterval);
     typingArea.contentEditable = 'false'; // Disable further typing
   }
@@ -113,17 +105,25 @@ export function updateTextDisplay() {
 export function setTextDisplay() {
   const currentText = getCurrentText();
   textDisplay.innerHTML = '';
+  let isFirstCharacter = true; // Flag to check if it's the first character
+
   currentText.split('').forEach(character => {
     const charSpan = document.createElement('span');
+
+    if (isFirstCharacter) {
+      charSpan.classList.add('current'); // Apply the cursor style to the first character
+      isFirstCharacter = false; // Unset the flag after the first character
+    }
+
     if (character === '\n') {
       charSpan.innerHTML = '↵\n';
-    } else
-    if (character === '\t') {
-      charSpan.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;'; // or '→'
+    } else if (character === '\t') {
+      charSpan.innerHTML = '    '; // or '→'
       charSpan.classList.add('tab');
     } else {
       charSpan.innerText = character;
     }
+
     textDisplay.appendChild(charSpan);
   });
 }

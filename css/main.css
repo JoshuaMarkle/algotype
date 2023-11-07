@@ -30,7 +30,7 @@ body, html {
 
 #container {
   text-align: left;
-  width: 30rem;
+  width: 60rem;
   max-width: 90vw;
   align-items: center;
 }
@@ -79,6 +79,8 @@ h1 {
 }
 
 #typing-test {
+  display: flex;
+  justify-content: center;
   width: 100%;
   transform: translateY(-5vh);
 }
