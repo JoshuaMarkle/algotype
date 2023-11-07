@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>KeyCode</h1>
+        </header>
+        <div id="result">
+          <p>Time: <span id="time">60</span>s</p>
+          <p>WPM: <span id="wpm">0</span></p>
+          <p>Accuracy: <span id="accuracy">100</span>%</p>
+        </div>
+        <div id="typing-test">
+            <div id="text-display" class="text-display"></div>
+            <div id="input-area" class="input-area" contenteditable></div>
+        </div>
+        <div id="reset-container">
+          <button id="reset-button">Restart Test <i class="fas fa-undo"></i></button>
+        </div>
+    </div>
+    <script type="module" src="scripts/timer.js"></script>
+    <script type="module" src="scripts/utils.js"></script>
+    <script type="module" src="scripts/display.js"></script>
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>

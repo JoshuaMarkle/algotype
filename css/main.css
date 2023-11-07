@@ -1,0 +1,135 @@
+:root {
+  --foreground: #d1d5da;
+  --background: #181a1f;
+  --text-color:	#464A51;
+  --accent-color: #ff5768;
+  --accent-alternative: #e35161;
+  --test-color: #55aaff;
+  --font-family: 'Roboto Mono', monospace;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  font-size: 18px;
+  background-color: var(--background);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1rem;
+  }
+}
+
+#container {
+  text-align: left;
+  width: 40rem;
+  max-width: 90vw;
+  align-items: center;
+}
+
+.text-display {
+  margin-bottom: 20px;
+  padding: 10px;
+  min-height: 50px;
+  white-space: pre-wrap;
+  text-align: left
+}
+
+.input-area {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: none;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  color: transparent; /* Ensuring the text is invisible */
+  caret-color: transparent; /* Making the caret/cursor invisible */
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1rem;
+}
+
+h1 {
+  font-size: 1rem;
+  color: var(--foreground);
+}
+
+#typing-test {
+  width: 100%;
+  transform: translateY(-5vh);
+}
+
+#result {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#reset-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#reset-button {
+  padding: 10px 20px;
+  background-color: var(--background);
+  font-family: 'Roboto Mono', monospace;
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#reset-button:hover {
+  color: var(--foreground);
+}
+
+#reset-button .fa-undo {
+  font-size: smaller;
+  transform: scaleX(-1);
+  display: inline-block;
+}
+
+.correct {
+  color: var(--foreground);
+}
+
+.incorrect {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.correct-word {
+  color: var(--foreground);
+  text-decoration: underline var(--accent-color);
+}
+
+.incorrect-word {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Style for the results display */
+#result {
+  margin-top: 20px;
+}
