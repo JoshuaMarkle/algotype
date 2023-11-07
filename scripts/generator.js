@@ -1,4 +1,4 @@
-import { words, python, cpp } from '/data/data.js';
+import { words, python, cpp } from '../data/data.js';
 
 // Function to randomly select a function to type
 export function getRandomFunction() {
@@ -6,4 +6,3 @@ export function getRandomFunction() {
   const randomIndex = Math.floor(Math.random() * textList.length);
   return textList[randomIndex];
 }
-  
