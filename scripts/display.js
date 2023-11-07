@@ -5,90 +5,61 @@ const wpmDisplay = document.getElementById('wpm');
 const accuracyDisplay = document.getElementById('accuracy');
 const textDisplay = document.getElementById('text-display');
 
-const temp = 1;
-
 export function updateTextDisplay() {
   const currentText = getCurrentText();
   const words = currentText.split(/\s+/);
-  let textEntered = typingArea.innerText;
+  let textEntered = typingArea.innerText.replace(/\n\n/g, '\n');
   let wordsEntered = textEntered.trim().split(/\s+/);
-  let updatedHTML = '';
-  let incorrectIndices = [];
-
+  
   let enteredIndex = 0;
-
-  // Logic to underline incorrect words
-  // for (let i = 0; i < wordsEntered.length - 1; i++) {
-  //   if (wordsEntered[i] !== words[i]) {
-  //     let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
-  //     for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
-  //       incorrectIndices.push(j);
-  //     }
-  //   }
-  //   enteredIndex += wordsEntered[i].length + 1; // Advance enteredIndex by the word length and a space
-  // }
+  let updatedHTML = '';
 
   enteredIndex = 0; // Reset for next loop
 
+  // For each display update output textEntered and currentText
+  //console.log(textEntered.replace(/\n/g, '/n'), "\n\n", currentText.slice(0, 30).replace(/\t/g, '').replace(/\n/g, '/n'));d
+
+  let skipNums = 0;
   for (let i = 0; i < currentText.length; i++) {
     const currentChar = currentText[i];
     const enteredChar = textEntered[enteredIndex] || '';
-    const ogEnteredIndex = enteredIndex;
 
+    // Display characters
     let displayedChar = currentChar;
-    let charCorrect = "neutral"; // "correct", "incorrect", or "neutral
-    let newLine = false;
+    if (currentChar === '\n') {
+      displayedChar = '↵\n';
+    } else if (currentChar === '\t') {
+      updatedHTML += `<span>    </span>`;
+      skipNums++;
+      continue;
+    }
 
-    if (currentChar === ' ' && enteredChar) { // Handle spaces
+    // Check if character is correct
+    let charCorrect = "neutral";
+    if (enteredChar === currentChar) {
+      charCorrect = "correct";
       enteredIndex++;
-    } else if (currentChar === '\n') { // Handle newlines
-      displayedChar = '↵';
-      newLine = true;
-      if (enteredChar === '\n') {
-        charCorrect = "correct";
-        enteredIndex++;
-      } else if (enteredChar) {
-        charCorrect = "incorrect";
-        enteredIndex++;
-      }
-    } else if (currentChar === '\t') { // Handle tabs
-      displayedChar = "    ";
-    } else { // Handle normal characters
-      if (enteredChar === currentChar) {
-        charCorrect = "correct";
-        enteredIndex++;
-      } else if (enteredChar) {
-        charCorrect = "incorrect";
-        enteredIndex++;
-      }
-    }
+    } else if (enteredChar) {
+      charCorrect = "incorrect";
+      enteredIndex++;
+    } // Else, we haven't typed this character yet
 
-    // Check if within incorrect word
-    let incorrectWord = "";
-    if (incorrectIndices.includes(i)) {
-      incorrectWord = "-word";
-    }
-
-    // if (currentText[enteredIndex-2] === '\n' && i < enteredIndex+1 && enteredIndex === textEntered.length) {
-    //   console.log("yeah the thing");
-    //   updatedHTML += `<span class="current">${displayedChar}</span>`;
-    // } else 
-    if (currentText.slice(0, i).replace(/\t/g, '').length === textEntered.length ) { // Is the current character the current cursor position?
-      console.log("current index", enteredIndex, "in entered text", i, "in current text");
+    // Style this character
+    if (textEntered.length === currentText.replace(/\t/g, '').slice(0, i-skipNums).length) { // Current cursor position
+      //console.log("cursor at", i);
       updatedHTML += `<span class="current">${displayedChar}</span>`;
     } else 
     if (charCorrect === "neutral") {
       updatedHTML += `<span>${displayedChar}</span>`;
     } else {
-      updatedHTML += `<span class="${charCorrect}${incorrectWord}">${displayedChar}</span>`;
+      updatedHTML += `<span class="${charCorrect}">${displayedChar}</span>`;
     }
-    newLine ? updatedHTML += `<br>` : "";
 
     // Skip duplicate newline character in entered text
-    while (enteredChar === '\n' && textEntered[enteredIndex] === '\n') {
-      console.log("skipping at", enteredIndex, "in entered text");
-      enteredIndex++;
-    }
+    // while (enteredChar === '\n' && textEntered[enteredIndex] === '\n') {
+    //   console.log("skipping at", enteredIndex, "in entered text");
+    //   enteredIndex++;
+    // }
   }
 
   textDisplay.innerHTML = updatedHTML;

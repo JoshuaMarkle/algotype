@@ -47,17 +47,6 @@ typingArea.addEventListener('input', () => {
   calculateWPM(elapsedTime, typingArea, textDisplay, wpmDisplay, accuracyDisplay);
 });
 
-typingArea.addEventListener('keydown', function(event) {
-  if (event.key === 'Tab') {
-    event.preventDefault(); // Prevent focusing away from typingArea
-    // Handle the tab input here
-    let currentText = typingArea.innerText;
-    typingArea.innerText = currentText + '    ';
-    updateTextDisplay();
-  }
-});
-
-
 // Keep the typing area always focused
 document.addEventListener('click', function() {
   typingArea.focus();
@@ -67,6 +56,12 @@ document.addEventListener('keydown', function(event) {
   // Check if the focus is not already on the typingArea
   if (document.activeElement !== typingArea) {
     typingArea.focus();
+  }
+});
+
+typingArea.addEventListener('keydown', function(event) {
+  if (event.key === 'Tab') {
+    event.preventDefault(); // Prevent focusing away from typingArea
   }
 });
 
