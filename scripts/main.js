@@ -1,5 +1,3 @@
-// main.js - The entry point for the typing test functionality
-
 import { setTextDisplay, updateTextDisplay } from './display.js';
 import { startTimer } from './timer.js';
 import { calculateWPM } from './utils.js';
@@ -8,8 +6,7 @@ import { getRandomFunction } from './generator.js';
 // Initial setup
 let startTime;
 let timerInterval;
-const testDuration = 60;
-let timeRemaining = { value: testDuration };
+let elapsedTime = { value: 0 };
 const typingArea = document.getElementById('input-area');
 const timeDisplay = document.getElementById('time');
 const wpmDisplay = document.getElementById('wpm');
@@ -26,27 +23,28 @@ export function getCurrentText() {
 function startTest() {
   if (startTime) return; // Prevent restarting the timer if it's already running
   startTime = new Date();
-  timerInterval = startTimer(timeRemaining, timeDisplay, typingArea, { interval: timerInterval });
+  timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, { interval: timerInterval });
 }
 
 function resetTest() {
   currentText = getRandomFunction();
   clearInterval(timerInterval);
+  timerInterval = null;
   startTime = null;
+  elapsedTime.value = 0;
   typingArea.contentEditable = 'true';
   typingArea.innerText = '';
-  timeDisplay.textContent = testDuration;
+  timeDisplay.textContent = '0';
   wpmDisplay.textContent = '0';
   accuracyDisplay.textContent = '100';
-  timeRemaining.value = testDuration;
   setTextDisplay(textDisplay, currentText); // Set the initial display text
   typingArea.focus();
 }
 
 typingArea.addEventListener('input', () => {
-  startTest();
+  if (!timerInterval) startTest();
   updateTextDisplay(typingArea, textDisplay, currentText, timerInterval);
-  calculateWPM(testDuration, timeRemaining.value, typingArea, textDisplay, wpmDisplay, accuracyDisplay);
+  calculateWPM(elapsedTime, typingArea, textDisplay, wpmDisplay, accuracyDisplay);
 });
 
 typingArea.addEventListener('keydown', function(event) {
@@ -54,8 +52,8 @@ typingArea.addEventListener('keydown', function(event) {
     event.preventDefault(); // Prevent focusing away from typingArea
     // Handle the tab input here
     let currentText = typingArea.innerText;
-    typingArea.innerText = currentText + '    '; // Adding four spaces
-    updateTextDisplay(); // Call your update function
+    typingArea.innerText = currentText + '    ';
+    updateTextDisplay();
   }
 });
 
@@ -75,5 +73,5 @@ document.addEventListener('keydown', function(event) {
 resetButton.addEventListener('click', resetTest);
 
 document.addEventListener('DOMContentLoaded', () => {
-  setTextDisplay(textDisplay, currentText);
+  resetTest();
 });

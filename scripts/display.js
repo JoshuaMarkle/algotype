@@ -30,11 +30,6 @@ export function updateTextDisplay() {
 
   let enteredIndex = 0;
 
-  // For each word in words and wordsEntered that do not equal each other, I want to underline those words red. 
-  // Exclude the last word in wordsEntered because that is the word that is currently being typed.
-  // To do this, you need to find every entered word that does not match words and for each character, add its index from currentText into an array. 
-  // I will handle underlining each incorrect character when I loop through each character.
-
   // Logic to underline incorrect words
   for (let i = 0; i < wordsEntered.length - 1; i++) {
     if (wordsEntered[i] !== words[i]) {
@@ -45,8 +40,6 @@ export function updateTextDisplay() {
     }
     enteredIndex += wordsEntered[i].length + 1; // Advance enteredIndex by the word length and a space
   }
-
-  console.log(incorrectIndices);
 
   enteredIndex = 0; // Reset for next loop
 
@@ -92,9 +85,11 @@ export function updateTextDisplay() {
       incorrectWord = "-word";
     }
 
-    // Display words
-    if (charCorrect === "neutral") {
-      updatedHTML += `<span>${displayedChar}${incorrectWord}</span>`;
+    // Display the character
+    if ((i - (currentText.slice(0, i).match(/\t/g)?.length || 0)) === textEntered.length) { // Is the current character the current cursor position?
+      updatedHTML += `<span class="current">${displayedChar}</span>`;
+    } else if (charCorrect === "neutral") {
+      updatedHTML += `<span>${displayedChar}</span>`;
     } else {
       updatedHTML += `<span class="${charCorrect}${incorrectWord}">${displayedChar}</span>`;
     }
@@ -109,7 +104,7 @@ export function updateTextDisplay() {
   textDisplay.innerHTML = updatedHTML;
 
   // Stop the test if the text is fully and correctly entered
-  if (textEntered === currentText) {
+  if (wordsEntered.length === words.length) {
     clearInterval(timerInterval);
     typingArea.contentEditable = 'false'; // Disable further typing
   }
