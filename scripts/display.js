@@ -36,7 +36,7 @@ export function updateTextDisplay() {
 
     // Check if character is correct
     let charCorrect = "neutral";
-    if (enteredChar === currentChar) {
+    if (enteredChar === currentChar || currentChar === ' ') {
       charCorrect = "correct";
       enteredIndex++;
     } else if (enteredChar) {
