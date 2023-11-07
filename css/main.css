@@ -4,7 +4,7 @@
   --text-color:	#464A51;
   --accent-color: #ff5768;
   --accent-alternative: #e35161;
-  --test-color: #55aaff;
+  --blue: #55aaff;
   --font-family: 'Roboto Mono', monospace;
 }
 
@@ -74,7 +74,7 @@ h1 {
 }
 
 .icon {
-  color: var(--test-color);
+  color: var(--blue);
 }
 
 #typing-test {
@@ -121,7 +121,7 @@ h1 {
 }
 
 .current {
-  color: var(--test-color);
+  color: var(--blue);
   text-decoration: underline;
 }
 

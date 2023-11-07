@@ -79,10 +79,10 @@ export function setTextDisplay() {
   currentText.split('').forEach(character => {
     const charSpan = document.createElement('span');
 
-    if (isFirstCharacter) {
-      charSpan.classList.add('current'); // Apply the cursor style to the first character
-      isFirstCharacter = false; // Unset the flag after the first character
-    }
+    // if (isFirstCharacter) {
+    //   charSpan.classList.add('current'); // Apply the cursor style to the first character
+    //   isFirstCharacter = false; // Unset the flag after the first character
+    // }
 
     if (character === '\n') {
       charSpan.innerHTML = '↵\n';
