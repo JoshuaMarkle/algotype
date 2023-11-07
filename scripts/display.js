@@ -18,21 +18,22 @@ export function updateTextDisplay() {
   let enteredIndex = 0;
 
   // Logic to underline incorrect words
-  for (let i = 0; i < wordsEntered.length - 1; i++) {
-    if (wordsEntered[i] !== words[i]) {
-      let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
-      for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
-        incorrectIndices.push(j);
-      }
-    }
-    enteredIndex += wordsEntered[i].length + 1; // Advance enteredIndex by the word length and a space
-  }
+  // for (let i = 0; i < wordsEntered.length - 1; i++) {
+  //   if (wordsEntered[i] !== words[i]) {
+  //     let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
+  //     for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
+  //       incorrectIndices.push(j);
+  //     }
+  //   }
+  //   enteredIndex += wordsEntered[i].length + 1; // Advance enteredIndex by the word length and a space
+  // }
 
   enteredIndex = 0; // Reset for next loop
 
   for (let i = 0; i < currentText.length; i++) {
     const currentChar = currentText[i];
     const enteredChar = textEntered[enteredIndex] || '';
+    const ogEnteredIndex = enteredIndex;
 
     let displayedChar = currentChar;
     let charCorrect = "neutral"; // "correct", "incorrect", or "neutral
@@ -51,11 +52,7 @@ export function updateTextDisplay() {
         enteredIndex++;
       }
     } else if (currentChar === '\t') { // Handle tabs
-      displayedChar = '    ';
-      // Render tabs but don't allow typing them
-      if (textEntered.substr(enteredIndex, 4) === "    ") {
-        enteredIndex += 4; // Skip all pasted tabs
-      }
+      displayedChar = "    ";
     } else { // Handle normal characters
       if (enteredChar === currentChar) {
         charCorrect = "correct";
@@ -72,14 +69,15 @@ export function updateTextDisplay() {
       incorrectWord = "-word";
     }
 
-    // Display the character
-    if ((i - (currentText.slice(0, i).match(/\t/g)?.length || 0)) === textEntered.length) { // Is the current character the current cursor position?
+    // if (currentText[enteredIndex-2] === '\n' && i < enteredIndex+1 && enteredIndex === textEntered.length) {
+    //   console.log("yeah the thing");
+    //   updatedHTML += `<span class="current">${displayedChar}</span>`;
+    // } else 
+    if (currentText.slice(0, i).replace(/\t/g, '').length === textEntered.length ) { // Is the current character the current cursor position?
+      console.log("current index", enteredIndex, "in entered text", i, "in current text");
       updatedHTML += `<span class="current">${displayedChar}</span>`;
-    } else if (currentText.slice(0, i).replace(/\t/g, '').length === textEntered.length) { // Is the current character the current cursor position?
-      // console.log(currentText.slice(0, i).replace(/\t/g, '').replace(/\n/g, '/n'), "\n\n", textEntered.replace(/\n/g, '/n'), "\n\n", i);
-      console.log(enteredIndex, i);
-      updatedHTML += `<span class="current">${displayedChar}</span>`;
-    } else if (charCorrect === "neutral") {
+    } else 
+    if (charCorrect === "neutral") {
       updatedHTML += `<span>${displayedChar}</span>`;
     } else {
       updatedHTML += `<span class="${charCorrect}${incorrectWord}">${displayedChar}</span>`;
@@ -88,7 +86,7 @@ export function updateTextDisplay() {
 
     // Skip duplicate newline character in entered text
     while (enteredChar === '\n' && textEntered[enteredIndex] === '\n') {
-      console.log("skipping duplicate newline");
+      console.log("skipping at", enteredIndex, "in entered text");
       enteredIndex++;
     }
   }

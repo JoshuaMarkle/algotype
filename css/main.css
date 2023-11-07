@@ -169,3 +169,13 @@ footer .footer-content a {
 footer .footer-content a:hover {
   text-decoration: underline;
 }
+
+.caret {
+  background-color: yellow; /* You can use any highlight color */
+  animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { background-color: transparent }
+  50% { background-color: yellow; }
+}
