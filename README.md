@@ -4,7 +4,7 @@
 ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat-square)
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat-square)
 
-[KeyCoder](https://joshuamarkle.github.io/keycoder/) is a specialized typing website **designed for programmers** who want to enhance their coding fluency. It offers a minimalistic experience to practicing the more difficult characters found when coding. 😎
+[KeyCoder](https://joshuamarkle.github.io/KeyCoder/) is a specialized typing website **designed for programmers** who want to enhance their coding fluency. It offers a minimalistic experience to practicing the more difficult characters found when coding. 😎
 
 ## Features
 
