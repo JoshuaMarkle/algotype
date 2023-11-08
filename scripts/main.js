@@ -1,6 +1,5 @@
 import { setTextDisplay, updateTextDisplay } from './display.js';
 import { startTimer } from './timer.js';
-import { calculateWPM } from './utils.js';
 import { getRandomFunction } from './generator.js';
 
 // Initial setup
@@ -11,10 +10,12 @@ const typingArea = document.getElementById('input-area');
 const timeDisplay = document.getElementById('time');
 const wpmDisplay = document.getElementById('wpm');
 const accuracyDisplay = document.getElementById('accuracy');
-const resetButton = document.getElementById('reset-button');
+const restartButton = document.getElementById('restart-button');
 const textDisplay = document.getElementById('text-display');
 
-let currentText = getRandomFunction();
+let currentGamemode = 'algorithms';
+let currentLanguage = 'python';
+let currentText = getRandomFunction(currentGamemode, currentLanguage);
 
 export function getCurrentText() {
   return currentText;
@@ -26,12 +27,13 @@ function startTest() {
   timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, { interval: timerInterval });
 }
 
-function resetTest() {
-  currentText = getRandomFunction();
+function restartTest() {
+  currentText = getRandomFunction(currentGamemode, currentLanguage);
   clearInterval(timerInterval);
   timerInterval = null;
   startTime = null;
   elapsedTime.value = 0;
+  timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, { interval: timerInterval })
   typingArea.contentEditable = 'true';
   typingArea.innerText = '';
   timeDisplay.textContent = '0';
@@ -41,10 +43,19 @@ function resetTest() {
   typingArea.focus();
 }
 
+function switchLanguage(language) {
+  currentLanguage = language;
+  restartTest();
+}
+
+function switchGamemode(gamemode) {
+  currentGamemode = gamemode;
+  restartTest();
+}
+
 typingArea.addEventListener('input', () => {
   if (!timerInterval) startTest();
   updateTextDisplay(typingArea, textDisplay, currentText, timerInterval);
-  calculateWPM(elapsedTime, typingArea, textDisplay, wpmDisplay, accuracyDisplay);
 });
 
 // Keep the typing area always focused
@@ -65,10 +76,31 @@ typingArea.addEventListener('keydown', function(event) {
   }
 });
 
-resetButton.addEventListener('click', resetTest);
+restartButton.addEventListener('click', () => switchLanguage(currentLanguage));
 
-document.addEventListener('DOMContentLoaded', () => {
-  resetTest();
-});
+// === Navigation Buttons === //
 
-export { timerInterval };
+const algorithmsGamemode = document.getElementById('algorithms-gamemode');
+const wordsGamemode = document.getElementById('words-gamemode');
+
+algorithmsGamemode.addEventListener('click', () => switchGamemode("algorithms"));
+wordsGamemode.addEventListener('click', () => switchGamemode("words"));
+
+const pythonButton = document.getElementById('python-language');
+const cppButton = document.getElementById('cpp-language');
+const javascriptButton = document.getElementById('javascript-language');
+const csharpButton = document.getElementById('csharp-language');
+const cButton = document.getElementById('c-language');
+
+pythonButton.addEventListener('click', () =>  switchLanguage("python"));
+cppButton.addEventListener('click', () => switchLanguage("cpp"));
+javascriptButton.addEventListener('click', () => switchLanguage("javascript"));
+csharpButton.addEventListener('click', () => switchLanguage("csharp"));
+cButton.addEventListener('click', () => switchLanguage("c"));
+
+
+
+// START WEBSITE
+switchLanguage(currentLanguage);
+
+export { timerInterval, elapsedTime };

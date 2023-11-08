@@ -11,11 +11,30 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <header>
+        <h1 class="icon">❯_</h1>
+        <h1 class="title">KeyCoder</h1>
+    </header>
+    <nav>
+        <ul class="cf">
+            <li><a class="dropdown">Test Type</a>
+                <ul>
+                    <li><button id="algorithms-gamemode" class="button">Algorithms</button></li>
+                    <li><button id="words-gamemode" class="button">Words</button></li>
+                </ul>
+            </li>
+            <li><a class="dropdown">Languages</a>
+                <ul>
+                    <li><button id="python-language" class="button">Python</button></li>
+                    <li><button id="c-language" class="button">C</button></li>
+                    <li><button id="cpp-language" class="button">C++</button></li>
+                    <li><button id="csharp-language" class="button">C#</button></li>
+                    <li><button id="javascript-language" class="button">JavaScript</button></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
     <div id="container">
-        <header>
-          <h1 class="icon">❯_</h1>
-          <h1 class="title">KeyCoder</h1>
-        </header>
         <div id="result">
           <p>Time: <span id="time">60</span>s</p>
           <p>WPM: <span id="wpm">0</span></p>
@@ -25,8 +44,8 @@
             <div id="text-display" class="text-display"></div>
             <div id="input-area" class="input-area" contenteditable></div>
         </div>
-        <div id="reset-container">
-          <button id="reset-button">Restart Test <i class="fas fa-undo"></i></button>
+        <div id="restart-container">
+          <button id="restart-button" class="button">Restart Test <i class="fas fa-undo"></i></button>
         </div>
         <footer>
             <div class="footer-content">
