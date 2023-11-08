@@ -4,8 +4,12 @@
 
 ## Features
 
-- **Programming-Specific Tests:** Exercises include a variety of code snippets in different programming languages
-- **Minimalistic Design:** A clutter-free environment that lets you focus on improving your typing skills.
+- **Algorithms:** Exercises include a variety of code snippets in different programming languages
+- **Words Gamemode:** A unique arrangement of words from the language of your choice
+- **Minimalistic Design:** A clutter-free environment that lets you focus on improving your typing skills
+- **5 Supported Languages:** Mainly python and c++ currently
+- **Live Stats:** WPM, Accuracy, and Time Passed
+- And many more in the making
 
 ![Screenshot](/doc/screenshot.png)
 
