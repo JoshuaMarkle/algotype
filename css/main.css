@@ -24,7 +24,7 @@ body, html {
 
 @media (min-width: 768px) {
   body {
-    font-size: 1rem;
+    font-size: 22px;
   }
 }
 
@@ -69,7 +69,7 @@ header {
 }
 
 h1 {
-  font-size: 1rem;
+  font-size: 20px;
   color: var(--foreground);
 }
 
