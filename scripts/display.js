@@ -1,4 +1,5 @@
 import { getCurrentText, timerInterval } from './main.js';
+import { calculateWPM } from './utils.js';
 
 const typingArea = document.getElementById('input-area');
 const wpmDisplay = document.getElementById('wpm');
@@ -14,15 +15,37 @@ export function updateTextDisplay() {
   let enteredIndex = 0;
   let updatedHTML = '';
 
+  enteredIndex = 0;
+
+  // Iterate through words and find incorrect letters within incorrect words
+  let incorrectIndices = [];
+  for (let i = 0; i < wordsEntered.length - 1; i++) {
+    if (wordsEntered[i] !== words[i]) {
+      let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
+      for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
+        incorrectIndices.push(j);
+      }
+    }
+  }
+
   enteredIndex = 0; // Reset for next loop
 
-  // For each display update output textEntered and currentText
-  //console.log(textEntered.replace(/\n/g, '/n'), "\n\n", currentText.slice(0, 30).replace(/\t/g, '').replace(/\n/g, '/n'));d
-
   let skipNums = 0;
+  let correctChars = 0;
   for (let i = 0; i < currentText.length; i++) {
     const currentChar = currentText[i];
     const enteredChar = textEntered[enteredIndex] || '';
+
+    // ! If we've reached the end of a word in currentText, check for extra characters in enteredText
+    // if (currentChar === ' ' || i === currentText.length - 1) {
+    //   let extraChars = '';
+    //   while (enteredIndex < textEntered.length && textEntered[enteredIndex] !== ' ' && textEntered[enteredIndex] !== '\n') {
+    //     extraChars += `<span class="incorrect">${textEntered[enteredIndex]}</span>`;
+    //     enteredIndex++;
+    //     skipNums--;
+    //   }
+    //   updatedHTML += extraChars; // Append any extra characters that were typed
+    // }
 
     // Display characters
     let displayedChar = currentChar;
@@ -39,10 +62,16 @@ export function updateTextDisplay() {
     if (enteredChar === currentChar || currentChar === ' ') {
       charCorrect = "correct";
       enteredIndex++;
+      correctChars++;
     } else if (enteredChar) {
       charCorrect = "incorrect";
       enteredIndex++;
     } // Else, we haven't typed this character yet
+
+    // Check if within incorrect word
+    if (incorrectIndices.includes(i)) {
+      charCorrect += "-word";
+    }
 
     // Style this character
     if (textEntered.length === currentText.replace(/\t/g, '').slice(0, i-skipNums).length) { // Current cursor position
@@ -54,35 +83,25 @@ export function updateTextDisplay() {
     } else {
       updatedHTML += `<span class="${charCorrect}">${displayedChar}</span>`;
     }
-
-    // Skip duplicate newline character in entered text
-    // while (enteredChar === '\n' && textEntered[enteredIndex] === '\n') {
-    //   console.log("skipping at", enteredIndex, "in entered text");
-    //   enteredIndex++;
-    // }
   }
 
   textDisplay.innerHTML = updatedHTML;
+  const diff = enteredIndex - textEntered.length;
+  calculateWPM(correctChars - diff, enteredIndex - diff);
 
   // Stop the test if the text is fully and correctly entered
-  if (wordsEntered.length === words.length && wordsEntered[wordsEntered.length - 1] === words[words.length - 1]) {
+  if (textEntered.length >= currentText.replace(/\t/g, '').slice(0, currentText.length-skipNums).length) {
     clearInterval(timerInterval);
     typingArea.contentEditable = 'false'; // Disable further typing
+    console.log("Test finished")
   }
 }
 
 export function setTextDisplay() {
   const currentText = getCurrentText();
   textDisplay.innerHTML = '';
-  let isFirstCharacter = true; // Flag to check if it's the first character
-
   currentText.split('').forEach(character => {
     const charSpan = document.createElement('span');
-
-    // if (isFirstCharacter) {
-    //   charSpan.classList.add('current'); // Apply the cursor style to the first character
-    //   isFirstCharacter = false; // Unset the flag after the first character
-    // }
 
     if (character === '\n') {
       charSpan.innerHTML = '↵\n';
