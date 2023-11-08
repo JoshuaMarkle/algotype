@@ -21,6 +21,10 @@ export function getCurrentText() {
   return currentText;
 }
 
+export function getElaspedTime() {
+  return elapsedTime.value;
+}
+
 function startTest() {
   if (startTime) return; // Prevent restarting the timer if it's already running
   startTime = new Date();
@@ -103,4 +107,4 @@ cButton.addEventListener('click', () => switchLanguage("c"));
 // START WEBSITE
 switchLanguage(currentLanguage);
 
-export { timerInterval, elapsedTime };
+export { timerInterval };

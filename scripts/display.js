@@ -75,7 +75,6 @@ export function updateTextDisplay() {
 
     // Style this character
     if (textEntered.length === currentText.replace(/\t/g, '').slice(0, i-skipNums).length) { // Current cursor position
-      //console.log("cursor at", i);
       updatedHTML += `<span class="current">${displayedChar}</span>`;
     } else 
     if (charCorrect === "neutral") {
