@@ -19,25 +19,45 @@ export function updateTextDisplay() {
 
   // Iterate through words and find incorrect letters within incorrect words
   let incorrectIndices = [];
-  // for (let i = 0; i < wordsEntered.length - 1; i++) {
-  //   if (wordsEntered[i] !== words[i]) {
-  //     let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
-  //     for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
-  //       incorrectIndices.push(j);
-  //     }
-  //   }
-  // }
+  let skippedWords = [];
+  for (let i = 0; i < wordsEntered.length - 1; i++) {
+    // if (wordsEntered[i] !== words[i]) {
+    //   let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
+    //   for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
+    //     incorrectIndices.push(j);
+    //   }
+    // }
+    // Find the skipped words, there is a space before the end of the word
+    // if (wordsEntered[i].length < words[i].length) {
+    //   skippedWords.push(i);
+    // }
+  }
 
   enteredIndex = 0; // Reset for next loop
 
   let skipNums = 0;
   let correctChars = 0;
+  let currentWordIndex = 0;
   for (let i = 0; i < currentText.length; i++) {
     const currentChar = currentText[i];
     const enteredChar = textEntered[enteredIndex] || '';
 
+    // // Check for early skips
+    // if (skippedWords.includes(currentWordIndex) && enteredChar === ' ' && currentChar !== ' ') {
+    //   updatedHTML += `<span class="neutral">${currentChar}</span>`;
+    //   skipNums++;
+    //   continue;
+    // }
+
     // If we've reached the end of a word in currentText, check for extra characters in enteredText
     if (currentChar === ' ' || i === currentText.length - 1) {
+      // if (skippedWords.includes(currentWordIndex)) {
+      //   // Skip the remaining characters of the current word
+      //   while (currentText[i] !== ' ' && i < currentText.length) {
+      //     updatedHTML += `<span class="neutral">${currentText[i]}</span>`;
+      //     i++;
+      //   }
+      // }
       let extraChars = '';
       while (enteredIndex < textEntered.length && !(/\s/.test(textEntered[enteredIndex]))) {
         extraChars += `<span class="incorrect">${textEntered[enteredIndex]}</span>`;
@@ -45,6 +65,7 @@ export function updateTextDisplay() {
         skipNums--;
       }
       updatedHTML += extraChars; // Append any extra characters that were typed
+      currentWordIndex++;
     }
 
     // Display characters
