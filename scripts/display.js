@@ -19,14 +19,14 @@ export function updateTextDisplay() {
 
   // Iterate through words and find incorrect letters within incorrect words
   let incorrectIndices = [];
-  for (let i = 0; i < wordsEntered.length - 1; i++) {
-    if (wordsEntered[i] !== words[i]) {
-      let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
-      for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
-        incorrectIndices.push(j);
-      }
-    }
-  }
+  // for (let i = 0; i < wordsEntered.length - 1; i++) {
+  //   if (wordsEntered[i] !== words[i]) {
+  //     let startIndexOfWord = currentText.indexOf(words[i], enteredIndex);
+  //     for (let j = startIndexOfWord; j < startIndexOfWord + words[i].length; j++) {
+  //       incorrectIndices.push(j);
+  //     }
+  //   }
+  // }
 
   enteredIndex = 0; // Reset for next loop
 
@@ -36,16 +36,16 @@ export function updateTextDisplay() {
     const currentChar = currentText[i];
     const enteredChar = textEntered[enteredIndex] || '';
 
-    // ! If we've reached the end of a word in currentText, check for extra characters in enteredText
-    // if (currentChar === ' ' || i === currentText.length - 1) {
-    //   let extraChars = '';
-    //   while (enteredIndex < textEntered.length && textEntered[enteredIndex] !== ' ' && textEntered[enteredIndex] !== '\n') {
-    //     extraChars += `<span class="incorrect">${textEntered[enteredIndex]}</span>`;
-    //     enteredIndex++;
-    //     skipNums--;
-    //   }
-    //   updatedHTML += extraChars; // Append any extra characters that were typed
-    // }
+    // If we've reached the end of a word in currentText, check for extra characters in enteredText
+    if (currentChar === ' ' || i === currentText.length - 1) {
+      let extraChars = '';
+      while (enteredIndex < textEntered.length && !(/\s/.test(textEntered[enteredIndex]))) {
+        extraChars += `<span class="incorrect">${textEntered[enteredIndex]}</span>`;
+        enteredIndex++;
+        skipNums--;
+      }
+      updatedHTML += extraChars; // Append any extra characters that were typed
+    }
 
     // Display characters
     let displayedChar = currentChar;

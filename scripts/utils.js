@@ -16,12 +16,14 @@ function calculateWPM() {
     const enteredChar = textEntered[enteredIndex] || '';
 
     // Add to the running sum
-    if (enteredChar === currentChar || currentChar === ' ') {
+    if (enteredChar === currentChar) {
       enteredIndex++;
       correctChars++;
     } else if (enteredChar) {
       enteredIndex++;
-    } // Else, we haven't typed this character yet
+    } else {
+      break;
+    }
   }
 
   // Why is there a diff here, idk but there is
