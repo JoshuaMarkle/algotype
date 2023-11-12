@@ -8,6 +8,12 @@ export async function getRandomFunction(gamemode, language) {
       textList = data.python.words;;
     } else if (language == "javascript") {
       textList = data.javascript.words;
+    } else if (language == "csharp") {
+      textList = data.csharp.words;
+    } else if (language == "java") {
+      textList = data.java.words;
+    } else if (language == "cpp") {
+      textList = data.cpp.words;
     }
 
     let result = "";
@@ -21,6 +27,12 @@ export async function getRandomFunction(gamemode, language) {
       textList = data.python.algorithms;
     } else if (language == "javascript") {
       textList = data.javascript.algorithms;
+    } else if (language == "csharp") {
+      textList = data.csharp.algorithms;
+    } else if (language == "java") {
+      textList = data.java.algorithms;
+    } else if (language == "cpp") {
+      textList = data.cpp.algorithms;
     }
 
     // Select a random function from the array
