@@ -15,7 +15,7 @@ const textDisplay = document.getElementById('text-display');
 
 let currentGamemode = 'algorithms';
 let currentLanguage = 'python';
-let currentText = getRandomFunction(currentGamemode, currentLanguage);
+let currentText = "hello there";
 
 export function getCurrentText() {
   return currentText;
@@ -31,8 +31,8 @@ function startTest() {
   timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, { interval: timerInterval });
 }
 
-function restartTest() {
-  currentText = getRandomFunction(currentGamemode, currentLanguage);
+async function restartTest() {
+  currentText = await getRandomFunction(currentGamemode, currentLanguage);
   clearInterval(timerInterval);
   timerInterval = null;
   startTime = null;
@@ -102,9 +102,6 @@ javascriptButton.addEventListener('click', () => switchLanguage("javascript"));
 csharpButton.addEventListener('click', () => switchLanguage("csharp"));
 cButton.addEventListener('click', () => switchLanguage("c"));
 
-
-
-// START WEBSITE
-switchLanguage(currentLanguage);
-
 export { timerInterval };
+
+restartTest();

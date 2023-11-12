@@ -1,11 +1,11 @@
 const words = [
     "if", "for", "delete", "push", "pop", "class", "new", "break", "constructor", "reduce", 
     "function", "document", "else", "continue", "true", "false", "while", "some", "bool", "string", 
-    "set", "filter", "File", "length", "split", "prompt", 
-    "console.log", "async", "await", "typeof", "console.log", "return", "element", "element", "addEventListener", 
-    "sort", "public", "private", "try", "catch", "setInterval", "setTimeout", "for", "setTimeout", "this", "pass", 
-    "select", "static", "get", "set", "prototype", "shift", "unshift", "slice", "splice", "join", "indexOf", "includes", 
-    "charAt", "concat", "match", "replace", "search", "substring", "trim", "eval"
+    "set", "filter", "length", "split", "prompt", 
+    "console", "async", "await", "typeof", "log", "return", "element", "element",
+    "sort", "public", "private", "try", "catch", "for", "this", "pass", 
+    "select", "static", "get", "set", "prototype", "shift", "unshift", "slice", "splice", "join", "includes", 
+    "concat", "match", "replace", "search", "substring", "trim", "eval"
   ];
   
 const algorithms = [

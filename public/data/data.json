@@ -1,0 +1,56 @@
+{
+    "javascript": {
+        "words": [
+            "if", "for", "delete", "push", "pop", "class", "new", "break", "constructor", "reduce", "function", "document", "else", 
+            "continue", "true", "false", "while", "some", "bool", "string", "set", "filter", "length", "split", "prompt", "console", 
+            "async", "await", "typeof", "log", "return", "element", "element", "sort", "public", "private", "try", "catch", "for", 
+            "this", "pass", "select", "static", "get", "set", "prototype", "shift", "unshift", "slice", "splice", "join", "includes", 
+            "concat", "match", "replace", "search", "substring", "trim", "eval"
+        ],
+        "algorithms": [
+            "function is_prime(n) {\n\tif (n <= 1) {\n\t\treturn false;\n\t}\n\tfor (let i = 2; i <= Math.sqrt(n); i++) {\n\t\tif (n % i === 0) {\n\t\t\treturn false;\n\t\t}\n\t}\n\treturn true;\n}",
+            "function factorial(n) {\n\tif (n === 0) {\n\t\treturn 1;\n\t} else {\n\t\treturn n * factorial(n - 1);\n\t}\n}",
+            "function reverse_string(s) {\n\tlet str_list = s.split('');\n\tlet start_index = 0;\n\tlet end_index = s.length - 1;\n\twhile (start_index < end_index) {\n\t\t[str_list[start_index], str_list[end_index]] = [str_list[end_index], str_list[start_index]];\n\t\tstart_index++;\n\t\tend_index--;\n\t}\n\treturn str_list.join('');\n}",
+            "function binary_search(arr, x) {\n\tlet low = 0;\n\tlet high = arr.length - 1;\n\tlet mid = 0;\n\twhile (low <= high) {\n\t\tmid = Math.floor((high + low) / 2);\n\t\tif (arr[mid] < x) {\n\t\t\tlow = mid + 1;\n\t\t} else if (arr[mid] > x) {\n\t\t\thigh = mid - 1;\n\t\t} else {\n\t\t\treturn mid;\n\t\t}\n\t}\n\treturn -1;\n}",
+            "function bubble_sort(arr) {\n\tlet n = arr.length;\n\tfor (let i = 0; i < n; i++) {\n\t\tfor (let j = 0; j < n - i - 1; j++) {\n\t\t\tif (arr[j] > arr[j + 1]) {\n\t\t\t\t[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];\n\t\t\t}\n\t\t}\n\t}\n}"
+        ]
+    },
+    "python": {
+        "words": [
+            "if", "for", "remove", "add", "push", "pop", "class", "new", "list", "array", "elif", "break", "init", "sum", "enumerate", 
+            "def", "function", "select", "from", "else", "continue", "True", "False", "while", "any", "abs", "bool", "str", "set", 
+            "dict", "filter", "file", "range", "count","round", "split", "input", "output", "comment", "comments", "syntax", "iteration",
+            "random", "datetime", "async","await", "map", "type", "object", "objects", "min", "max", "print", "console", "return",
+            "item", "items", "event", "sort", "public", "private", "try", "catch", "python", "start", "session", "time", "append",
+            "copy", "str", "loop", "timeout", "self", "not", "and", "pass"
+        ],
+        "algorithms": [
+            "def is_prime(n):\n\tif n <= 1:\n\t\treturn False\n\tfor i in range(2, int(n**0.5)+1):\n\t\tif n % i == 0:\n\t\t\treturn False\n\treturn True",
+            "def factorial(n):\n\tif n == 0:\n\t\treturn 1\n\telse:\n\t\treturn n * factorial(n-1)",
+            "def reverse_string(s):\n\tstr_list = list(s)\n\tstart_index = 0\n\tend_index = len(s) - 1\n\twhile start_index < end_index:\n\t\tstr_list[start_index] = str_list[end_index]\n\t\tstr_list[end_index] = str_list[start_index]\n\t\tstart_index += 1\n\t\tend_index -= 1\n\treturn ''.join(str_list)",
+            "def binary_search(arr, x):\n\tlow = 0\n\thigh = len(arr) - 1\n\tmid = 0\n\twhile low <= high:\n\t\tmid = (high + low) // 2\n\t\tif arr[mid] < x:\n\t\t\tlow = mid + 1\n\t\telif arr[mid] > x:\n\t\t\thigh = mid - 1\n\t\telse:\n\t\t\treturn mid\n\treturn -1",
+            "def bubble_sort(arr):\n\tn = len(arr)\n\tfor i in range(n):\n\t\tfor j in range(0, n-i-1):\n\t\t\tif arr[j] > arr[j+1] :\n\t\t\t\tarr[j], arr[j+1] = arr[j+1], arr[j]",
+            "def quick_sort(arr):\n\tif len(arr) <= 1:\n\t\treturn arr\n\tpivot = arr[len(arr)//2]\n\tleft = [x for x in arr if x < pivot]\n\tmiddle = [x for x in arr if x == pivot]\n\tright = [x for x in arr if x > pivot]\n\treturn quick_sort(left) + middle + quick_sort(right)",
+            "def binary_search(arr, x):\n\tlow = 0\n\thigh = len(arr) - 1\n\twhile low <= high:\n\t\tmid = (high + low) // 2\n\t\tif arr[mid] < x:\n\t\t\tlow = mid + 1\n\t\telif arr[mid] > x:\n\t\t\thigh = mid - 1\n\t\telse:\n\t\t\treturn mid\n\treturn -1",
+            "def longest_increasing_subsequence(arr):\n\tn = len(arr)\n\tlis = [1] * n\n\tfor i in range(1, n):\n\t\tfor j in range(0, i):\n\t\t\tif arr[i] > arr[j] and lis[i] < lis[j] + 1:\n\t\t\t\tlis[i] = lis[j] + 1\n\treturn max(lis)",
+            "def longest_common_subsequence(X, Y):\n\tm = len(X)\n\tn = len(Y)\n\tL = [[None]*(n+1) for i in range(m+1)]\n\tfor i in range(m+1):\n\t\tfor j in range(n+1):\n\t\t\tif i == 0 or j == 0:\n\t\t\t\tL[i][j] = 0\n\t\t\telif X[i-1] == Y[j-1]:\n\t\t\t\tL[i][j] = L[i-1][j-1] + 1\n\t\t\telse:\n\t\t\t\tL[i][j] = max(L[i-1][j], L[i][j-1])\n\treturn L[m][n]",
+            "def min_cost_path(cost, m, n):\n\tfor i in range(1, m+1):\n\t\tfor j in range(1, n+1):\n\t\t\tif i == 1 and j == 1:\n\t\t\t\tpass\n\t\t\telif i == 1:\n\t\t\t\tcost[i-1][j-1] += cost[i-1][j-2]\n\t\t\telif j == 1:\n\t\t\t\tcost[i-1][j-1] += cost[i-2][j-1]\n\t\t\telse:\n\t\t\t\tcost[i-1][j-1] += min(cost[i-2][j-1], cost[i-1][j-2])\n\treturn cost[m-1][n-1]",
+            "def coin_change(coins, amount):\n\tif amount == 0:\n\t\treturn 0\n\tif amount < 0:\n\t\treturn float('inf')\n\tres = float('inf')\n\tfor coin in coins:\n\t\tsub_res = coin_change(coins, amount-coin)\n\t\tif sub_res != float('inf'):\n\t\t\tres = min(res, sub_res+1)\n\treturn res",
+            "def knapSack(W, wt, val, n):\n\tif n == 0 or W == 0:\n\t\treturn 0\n\tif (wt[n-1] > W):\n\t\treturn knapSack(W, wt, val, n-1)\n\telse:\n\t\treturn max(val[n-1] + knapSack(W-wt[n-1], wt, val, n-1), \n\t\t\tknapSack(W, wt, val, n-1))",
+            "def lps(str):\n\tn = len(str)\n\tL = [[0 for x in range(n)] for x in range(n)]\n\tfor i in range(n):\n\t\tL[i][i] = 1\n\tfor cl in range(2, n+1):\n\t\tfor i in range(n-cl+1):\n\t\t\tj = i+cl-1\n\t\t\tif (str[i] == str[j] and cl == 2):\n\t\t\t\tL[i][j] = 2\n\t\t\telif (str[i] == str[j]):\n\t\t\t\tL[i][j] = L[i+1][j-1] + 2\n\t\t\telse:\n\t\t\t\tL[i][j] = max(L[i][j-1], L[i+1][j])\n\treturn L[0][n-1]",
+            "def is_multiple_of_three(n):\n\todd_count = 0\n\teven_count = 0\n\tif n < 0:\n\t\tn = -n\n\tif n == 0:\n\t\treturn True\n\tif n == 1:\n\t\treturn False\n\twhile n:\n\t\tif n & 1:\n\t\t\todd_count += 1\n\t\telse:\n\t\t\teven_count += 1\n\t\tn = n >> 1\n\treturn is_multiple_of_three(abs(odd_count - even_count))",
+            "def fibonacci(n):\n\tif n == 0:\n\t\treturn 0\n\telif n == 1 or n == 2:\n\t\treturn 1\n\telse:\n\t\treturn fibonacci(n-1) + fibonacci(n-2)",
+            "def multiply(a, b):\n\tif a == 0 or b == 0:\n\t\treturn 0\n\tif b > 0:\n\t\treturn a + multiply(a, b-1)\n\tif b < 0:\n\t\treturn -multiply(a, -b)\n",
+            "def square_root(n):\n\tprecision = 0.00001\n\tx = n\n\twhile (x - n / x) > precision:\n\t\tx = (x + n / x) / 2\n\treturn x",
+            "def sieve_of_eratosthenes(n):\n\tprime = [True for i in range(n+1)]\n\tp = 2\n\twhile (p * p <= n):\n\t\tif (prime[p] == True):\n\t\t\tfor i in range(p * p, n+1, p):\n\t\t\t\tprime[i] = False\n\t\tp += 1\n\treturn [p for p in range(2, n+1) if prime[p]]",
+            "def pascal_triangle(n):\n\ttriangle = []\n\tfor i in range(n):\n\t\trow = [None for _ in range(i+1)]\n\t\trow[0], row[-1] = 1, 1\n\t\tfor j in range(1, len(row)-1):\n\t\t\trow[j] = triangle[i-1][j-1] + triangle[i-1][j]\n\t\ttriangle.append(row)\n\treturn triangle",
+            "def next_palindrome(n):\n\tdef is_palindrome(n):\n\t\treturn str(n) == str(n)[::-1]\n\twhile not is_palindrome(n):\n\t\tn += 1\n\treturn n",
+            "def multiply_polynomials(a, b):\n\tm, n = len(a), len(b)\n\tres = [0] * (m+n-1)\n\tfor i in range(m):\n\t\tfor j in range(n):\n\t\t\tres[i+j] += a[i] * b[j]\n\treturn res",
+            "def count_trailing_zeroes(n):\n\tcount = 0\n\ti = 5\n\twhile (n / i >= 1):\n\t\tcount += int(n / i)\n\t\ti *= 5\n\treturn count",
+            "def bogo_sort(arr):\n\tdef is_sorted(arr):\n\t\tfor i in range(0, len(arr)-1):\n\t\t\tif arr[i] > arr[i+1]:\n\t\t\t\treturn False\n\t\treturn True\n\twhile not is_sorted(arr):\n\t\trand.shuffle(arr)\n\treturn arr",
+            "def gcd(a, b):\n\twhile b:\n\t\ta, b = b, a % b\n\treturn a",
+            "def rotate_matrix_90(matrix):\n\tn = len(matrix)\n\tfor layer in range(n // 2):\n\t\tfirst = layer\n\t\tlast = n - 1 - layer\n\t\tfor i in range(first, last):\n\t\t\toffset = i - first\n\t\t\ttop = matrix[first][i]\n\t\t\tmatrix[first][i] = matrix[last-offset][first]\n\t\t\tmatrix[last-offset][first] = matrix[last][last-offset]\n\t\t\tmatrix[last][last-offset] = matrix[i][last]\n\t\t\tmatrix[i][last] = top\n\treturn matrix",
+            "def kadane_algorithm(nums):\n\tmax_current = max_global = nums[0]\n\tfor i in range(1, len(nums)):\n\t\tmax_current = max(nums[i], max_current + nums[i])\n\t\tif max_current > max_global:\n\t\t\tmax_global = max_current\n\treturn max_global"
+          ]
+    }
+}

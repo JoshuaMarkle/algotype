@@ -7,6 +7,7 @@ const accuracyDisplay = document.getElementById('accuracy');
 const textDisplay = document.getElementById('text-display');
 
 export function updateTextDisplay() {
+  console.log(getCurrentText());
   const currentText = getCurrentText();
   const words = currentText.split(/\s+/);
   let textEntered = typingArea.innerText.replace(/\n\n/g, '\n');
