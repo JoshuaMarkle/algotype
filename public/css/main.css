@@ -1,10 +1,16 @@
 :root {
   --foreground: #d1d5da;
   --background: #181a1f;
+  --background-1: #1E2026;
+  --background-2: #24262C;
+  --shadow: #101215;
   --text-color:	#464A51;
-  --accent-color: #ff5768;
-  --accent-alternative: #e35161;
+  --red: #ff5768;
+  --orange: #ffb347;
+  --green: #23d18b;
+  --cyan: #00cef1;
   --blue: #55aaff;
+  --purple: #a29bfe;
   --font-family: 'Roboto Mono', monospace;
 }
 
@@ -61,7 +67,7 @@ body, html {
 header {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -30px;
   padding: 1rem 3rem;
   display: flex;
   align-items: center;
@@ -130,17 +136,17 @@ h1 {
 }
 
 .incorrect {
-  color: var(--accent-color);
+  color: var(--red);
   text-decoration: underline;
 }
 
 .correct-word {
   color: var(--foreground);
-  text-decoration: underline var(--accent-color);
+  text-decoration: underline var(--red);
 }
 
 .incorrect-word {
-  color: var(--accent-color);
+  color: var(--red);
   text-decoration: underline;
 }
 
@@ -174,27 +180,31 @@ footer .footer-content a:hover {
 nav {
   position: fixed;
   top: 0;
-  right: 0;
-  padding: 1rem 3rem;
+  width: 100%;
+  padding: 0;
   color: var(--text-color);
   z-index: 1;
+  background-color: var(--background-1);
 }
 
 nav ul {
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding: 5px;
 	width: 100%;
 }
 nav li {
 	float: left;
 	margin: 0;
-	padding: 15px;
+	padding: 5px 20px;
 	position: relative;
 }
 
 nav ul li ul li {
   padding: 0px;
+  display: block;
+  text-align: left;
+  width: 100%;
 }
 
 nav a {
@@ -217,24 +227,26 @@ nav li:hover a {
 
 nav li ul {
 	float: left;
-	left: 0;
 	width:100%;
 	opacity: 0;
 	position: absolute;
-	top: 50px;
-  left: -5px;
+	top: 40px;
+  left: 15px;
+  padding: 5px 50px 5px 20px;
 	visibility: hidden;
 	z-index: 2;
-	-webkit-transition: all .25s ease;
-	-moz-transition: all .25s ease;
-	-ms-transition: all .25s ease;
-	-o-transition: all .25s ease;
-	transition: all .25s ease;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-ms-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+  box-shadow: 0px 0px 10px 2px var(--shadow);
+  background-color: var(--background);
 }
 
 nav li:hover ul {
 	opacity: 1;
-	top: 50px;
+	top: 35px;
 	visibility: visible;
 }
 
@@ -245,4 +257,27 @@ nav li:hover ul {
 }
 .cf:after {
 	clear: both;
+}
+
+.nav-button {
+  display: block;
+  padding: 5px 0px;
+  background-color: var(--background);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-button:hover {
+  color: var(--foreground);
+}
+
+.nav-button i {
+  font-size: smaller;
+  transform: scaleX(-1);
+  display: inline-block;
 }
