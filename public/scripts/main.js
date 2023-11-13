@@ -94,13 +94,13 @@ const pythonButton = document.getElementById('python-language');
 const cppButton = document.getElementById('cpp-language');
 const javascriptButton = document.getElementById('javascript-language');
 const csharpButton = document.getElementById('csharp-language');
-const cButton = document.getElementById('c-language');
+const javaButton = document.getElementById('java-language');
 
 pythonButton.addEventListener('click', () =>  switchLanguage("python"));
 cppButton.addEventListener('click', () => switchLanguage("cpp"));
-javascriptButton.addEventListener('click', () => switchLanguage("javascript"));
 csharpButton.addEventListener('click', () => switchLanguage("csharp"));
-cButton.addEventListener('click', () => switchLanguage("c"));
+javaButton.addEventListener('click', () => switchLanguage("java"));
+javascriptButton.addEventListener('click', () => switchLanguage("javascript"));
 
 export { timerInterval };
 
