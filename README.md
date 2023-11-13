@@ -6,8 +6,6 @@
 
 [AlgoType](https://algotype.net/) is a specialized typing website **designed for programmers** who want to enhance their coding fluency. It offers a minimalistic experience to practice typing the difficult symbols when coding. 😎
 
-![Screenshot](doc/screenshot.png)
-
 ## Features
 
 - **Algorithms Gamemode:** Exercises include a variety of code snippets in different programming languages
@@ -27,6 +25,6 @@
 
 This website was largely inspired by [monkeytype.com](https://github.com/monkeytypegame/monkeytype) with its minimal theme and natural typing experience.
 
----
+![Screenshot](doc/screenshot.png)
 
 Happy Coding & Typing! 😄
