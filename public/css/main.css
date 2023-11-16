@@ -175,8 +175,6 @@ footer .footer-content a:hover {
   text-decoration: underline;
 }
 
-/* TESTING STUFF */
-
 nav {
   position: fixed;
   top: 0;
@@ -254,7 +252,7 @@ nav li:hover ul {
 .nav-button {
   display: block;
   padding: 5px 100px 5px 5px;
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font);
   font-size: 16px;
   color: var(--text-color);
   background-color: var(--background);
@@ -272,4 +270,30 @@ nav li:hover ul {
   font-size: smaller;
   transform: scaleX(-1);
   display: inline-block;
+}
+
+.command-prompt {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 5px;
+  z-index: 2;
+}
+
+.command-prompt input {
+  font-family: var(--font-family);
+  font-size: 16px;
+  color: var(--text-color);
+  background-color: var(--background-2);
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  padding: 4px 10px 5px 10px;
+  width: 30%;
+}
+
+.command-prompt input::placeholder {
+  color: var(--text-color);
 }
