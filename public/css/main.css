@@ -297,3 +297,27 @@ nav li:hover ul {
 .command-prompt input::placeholder {
   color: var(--text-color);
 }
+
+.command-prompt-open {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  padding: 5px 0 5px 0;
+  z-index: 3;
+  background-color: var(--background);
+  box-shadow: 0px 0px 10px 2px var(--shadow);
+}
+
+.command-prompt-open input {
+  font-family: var(--font-family);
+  font-size: 16px;
+  color: var(--text-color);
+  background-color: var(--background-2);
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  padding: 4px 10px 5px 10px;
+  width: 95%;
+}
