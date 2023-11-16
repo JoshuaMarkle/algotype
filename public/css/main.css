@@ -214,10 +214,6 @@ nav a {
 	padding: 20 25px;
 	text-align: center;
 	text-decoration: none;
-	-webkit-transition: all .25s ease;
-	-moz-transition: all .25s ease;
-	-ms-transition: all .25s ease;
-	-o-transition: all .25s ease;
 	transition: all .25s ease;
 }
 
@@ -235,10 +231,6 @@ nav li ul {
   padding: 5px 50px 5px 20px;
 	visibility: hidden;
 	z-index: 2;
-	-webkit-transition: all .2s ease;
-	-moz-transition: all .2s ease;
-	-ms-transition: all .2s ease;
-	-o-transition: all .2s ease;
 	transition: all .2s ease;
   box-shadow: 0px 0px 10px 2px var(--shadow);
   background-color: var(--background);
@@ -261,11 +253,11 @@ nav li:hover ul {
 
 .nav-button {
   display: block;
-  padding: 5px 0px;
-  background-color: var(--background);
+  padding: 5px 100px 5px 5px;
   font-family: 'Roboto Mono', monospace;
   font-size: 16px;
   color: var(--text-color);
+  background-color: var(--background);
   border: none;
   cursor: pointer;
   width: 100%;
