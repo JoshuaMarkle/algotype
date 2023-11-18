@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Typing Test</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v6.4.2/css/all.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//use.fontawesome.com/releases/v6.4.2/css/all.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
     <nav>
-        <div id="navbar-container"></div>
-        <div id="command-prompt-container"></div>
+      <div id="navbar-container"></div>
+      <div id="command-prompt-container"></div>
     </nav>
     <div id="container">
-        <div id="result">
-          <p>Time: <span id="time">60</span>s</p>
-          <p>WPM: <span id="wpm">0</span></p>
-          <p>Accuracy: <span id="accuracy">100</span>%</p>
+      <div id="result">
+        <p>Time: <span id="time">60</span>s</p>
+        <p>WPM: <span id="wpm">0</span></p>
+        <p>Accuracy: <span id="accuracy">100</span>%</p>
+      </div>
+      <div id="typing-test">
+        <div id="text-display" class="text-display"></div>
+        <div id="input-area" class="input-area" contenteditable></div>
+      </div>
+      <div id="restart-container">
+        <button id="restart-button" class="button">
+          Restart Test <i class="fas fa-undo"></i>
+        </button>
+      </div>
+      <footer>
+        <div class="footer-content">
+          <a href="https://github.com/JoshuaMarkle/AlgoType" target="_blank">
+            <i class="fab fa-github"></i> JoshuaMarkle/AlgoType
+          </a>
         </div>
-        <div id="typing-test">
-            <div id="text-display" class="text-display"></div>
-            <div id="input-area" class="input-area" contenteditable></div>
-        </div>
-        <div id="restart-container">
-          <button id="restart-button" class="button">Restart Test <i class="fas fa-undo"></i></button>
-        </div>
-        <footer>
-            <div class="footer-content">
-                <a href="https://github.com/JoshuaMarkle/AlgoType" target="_blank">
-                    <i class="fab fa-github"></i> JoshuaMarkle/AlgoType
-                </a>
-            </div>
-        </footer>
+      </footer>
     </div>
     <script type="module" src="scripts/timer.js"></script>
     <script type="module" src="scripts/utils.js"></script>
     <script type="module" src="scripts/display.js"></script>
     <script type="module" src="scripts/main.js"></script>
-    <script src="scripts/command.js"></script>
     <script src="scripts/loadPartial.js"></script>
-</body>
+  </body>
 </html>

@@ -84,23 +84,23 @@ restartButton.addEventListener('click', () => switchLanguage(currentLanguage));
 
 // === Navigation Buttons === //
 
-const algorithmsGamemode = document.getElementById('algorithms-gamemode');
-const wordsGamemode = document.getElementById('words-gamemode');
+// const algorithmsGamemode = document.getElementById('algorithms-gamemode');
+// const wordsGamemode = document.getElementById('words-gamemode');
 
-algorithmsGamemode.addEventListener('click', () => switchGamemode("algorithms"));
-wordsGamemode.addEventListener('click', () => switchGamemode("words"));
+// algorithmsGamemode.addEventListener('click', () => switchGamemode("algorithms"));
+// wordsGamemode.addEventListener('click', () => switchGamemode("words"));
 
-const pythonButton = document.getElementById('python-language');
-const cppButton = document.getElementById('cpp-language');
-const javascriptButton = document.getElementById('javascript-language');
-const csharpButton = document.getElementById('csharp-language');
-const cButton = document.getElementById('c-language');
+// const pythonButton = document.getElementById('python-language');
+// const cppButton = document.getElementById('cpp-language');
+// const javascriptButton = document.getElementById('javascript-language');
+// const csharpButton = document.getElementById('csharp-language');
+// const cButton = document.getElementById('c-language');
 
-pythonButton.addEventListener('click', () =>  switchLanguage("python"));
-cppButton.addEventListener('click', () => switchLanguage("cpp"));
-javascriptButton.addEventListener('click', () => switchLanguage("javascript"));
-csharpButton.addEventListener('click', () => switchLanguage("csharp"));
-cButton.addEventListener('click', () => switchLanguage("c"));
+// pythonButton.addEventListener('click', () =>  switchLanguage("python"));
+// cppButton.addEventListener('click', () => switchLanguage("cpp"));
+// javascriptButton.addEventListener('click', () => switchLanguage("javascript"));
+// csharpButton.addEventListener('click', () => switchLanguage("csharp"));
+// cButton.addEventListener('click', () => switchLanguage("c"));
 
 export { timerInterval };
 

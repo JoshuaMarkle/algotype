@@ -1,11 +1,11 @@
 // Function to randomly select array of words to type
 export async function getRandomFunction(gamemode, language) {
-  const response = await fetch('../data/data.json');
+  const response = await fetch("../data/data.json");
   const data = await response.json();
   let textList = [];
   if (gamemode == "words") {
     if (language == "python") {
-      textList = data.python.words;;
+      textList = data.python.words;
     } else if (language == "javascript") {
       textList = data.javascript.words;
     } else if (language == "csharp") {

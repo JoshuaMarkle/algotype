@@ -1,20 +1,20 @@
-import { getCurrentText, timerInterval } from './main.js';
-import { calculateWPM } from './utils.js';
+import { getCurrentText, timerInterval } from "./main.js";
+import { calculateWPM } from "./utils.js";
 
-const typingArea = document.getElementById('input-area');
-const wpmDisplay = document.getElementById('wpm');
-const accuracyDisplay = document.getElementById('accuracy');
-const textDisplay = document.getElementById('text-display');
+const typingArea = document.getElementById("input-area");
+const wpmDisplay = document.getElementById("wpm");
+const accuracyDisplay = document.getElementById("accuracy");
+const textDisplay = document.getElementById("text-display");
 
 export function updateTextDisplay() {
   console.log(getCurrentText());
   const currentText = getCurrentText();
   const words = currentText.split(/\s+/);
-  let textEntered = typingArea.innerText.replace(/\n\n/g, '\n');
+  let textEntered = typingArea.innerText.replace(/\n\n/g, "\n");
   let wordsEntered = textEntered.trim().split(/\s+/);
-  
+
   let enteredIndex = 0;
-  let updatedHTML = '';
+  let updatedHTML = "";
 
   enteredIndex = 0;
 
@@ -41,7 +41,7 @@ export function updateTextDisplay() {
   let currentWordIndex = 0;
   for (let i = 0; i < currentText.length; i++) {
     const currentChar = currentText[i];
-    const enteredChar = textEntered[enteredIndex] || '';
+    const enteredChar = textEntered[enteredIndex] || "";
 
     // // Check for early skips
     // if (skippedWords.includes(currentWordIndex) && enteredChar === ' ' && currentChar !== ' ') {
@@ -51,7 +51,7 @@ export function updateTextDisplay() {
     // }
 
     // If we've reached the end of a word in currentText, check for extra characters in enteredText
-    if (currentChar === ' ' || i === currentText.length - 1) {
+    if (currentChar === " " || i === currentText.length - 1) {
       // if (skippedWords.includes(currentWordIndex)) {
       //   // Skip the remaining characters of the current word
       //   while (currentText[i] !== ' ' && i < currentText.length) {
@@ -59,8 +59,11 @@ export function updateTextDisplay() {
       //     i++;
       //   }
       // }
-      let extraChars = '';
-      while (enteredIndex < textEntered.length && !(/\s/.test(textEntered[enteredIndex]))) {
+      let extraChars = "";
+      while (
+        enteredIndex < textEntered.length &&
+        !/\s/.test(textEntered[enteredIndex])
+      ) {
         extraChars += `<span class="incorrect">${textEntered[enteredIndex]}</span>`;
         enteredIndex++;
         skipNums--;
@@ -71,9 +74,9 @@ export function updateTextDisplay() {
 
     // Display characters
     let displayedChar = currentChar;
-    if (currentChar === '\n') {
-      displayedChar = '↵\n';
-    } else if (currentChar === '\t') {
+    if (currentChar === "\n") {
+      displayedChar = "↵\n";
+    } else if (currentChar === "\t") {
       updatedHTML += `<span>    </span>`;
       skipNums++;
       continue;
@@ -81,7 +84,7 @@ export function updateTextDisplay() {
 
     // Check if character is correct
     let charCorrect = "neutral";
-    if (enteredChar === currentChar || currentChar === ' ') {
+    if (enteredChar === currentChar || currentChar === " ") {
       charCorrect = "correct";
       enteredIndex++;
       correctChars++;
@@ -96,10 +99,13 @@ export function updateTextDisplay() {
     }
 
     // Style this character
-    if (textEntered.length === currentText.replace(/\t/g, '').slice(0, i-skipNums).length) { // Current cursor position
+    if (
+      textEntered.length ===
+      currentText.replace(/\t/g, "").slice(0, i - skipNums).length
+    ) {
+      // Current cursor position
       updatedHTML += `<span class="current">${displayedChar}</span>`;
-    } else 
-    if (charCorrect === "neutral") {
+    } else if (charCorrect === "neutral") {
       updatedHTML += `<span>${displayedChar}</span>`;
     } else {
       updatedHTML += `<span class="${charCorrect}">${displayedChar}</span>`;
@@ -111,24 +117,28 @@ export function updateTextDisplay() {
   calculateWPM(correctChars - diff, enteredIndex - diff);
 
   // Stop the test if the text is fully and correctly entered
-  if (textEntered.length >= currentText.replace(/\t/g, '').slice(0, currentText.length-skipNums).length) {
+  if (
+    textEntered.length >=
+    currentText.replace(/\t/g, "").slice(0, currentText.length - skipNums)
+      .length
+  ) {
     clearInterval(timerInterval);
-    typingArea.contentEditable = 'false'; // Disable further typing
-    console.log("Test finished")
+    typingArea.contentEditable = "false"; // Disable further typing
+    console.log("Test finished");
   }
 }
 
 export function setTextDisplay() {
   const currentText = getCurrentText();
-  textDisplay.innerHTML = '';
-  currentText.split('').forEach(character => {
-    const charSpan = document.createElement('span');
+  textDisplay.innerHTML = "";
+  currentText.split("").forEach((character) => {
+    const charSpan = document.createElement("span");
 
-    if (character === '\n') {
-      charSpan.innerHTML = '↵\n';
-    } else if (character === '\t') {
-      charSpan.innerHTML = '    '; // or '→'
-      charSpan.classList.add('tab');
+    if (character === "\n") {
+      charSpan.innerHTML = "↵\n";
+    } else if (character === "\t") {
+      charSpan.innerHTML = "    "; // or '→'
+      charSpan.classList.add("tab");
     } else {
       charSpan.innerText = character;
     }
@@ -138,6 +148,6 @@ export function setTextDisplay() {
 }
 
 export function initDisplays() {
-  wpmDisplay.textContent = '0';
-  accuracyDisplay.textContent = '100';
+  wpmDisplay.textContent = "0";
+  accuracyDisplay.textContent = "100";
 }

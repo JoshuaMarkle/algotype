@@ -1,20 +1,21 @@
 :root {
   --foreground: #d1d5da;
   --background: #181a1f;
-  --background-1: #1E2026;
-  --background-2: #24262C;
+  --background-1: #1e2026;
+  --background-2: #24262c;
   --shadow: #101215;
-  --text-color:	#464A51;
+  --text-color: #464a51;
   --red: #ff5768;
   --orange: #ffb347;
   --green: #23d18b;
   --cyan: #00cef1;
   --blue: #55aaff;
   --purple: #a29bfe;
-  --font-family: 'Roboto Mono', monospace;
+  --font-family: "Roboto Mono", monospace;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -45,7 +46,7 @@ body, html {
   padding: 10px;
   min-height: 50px;
   white-space: pre-wrap;
-  text-align: left
+  text-align: left;
 }
 
 .input-area {
@@ -108,7 +109,7 @@ h1 {
 .button {
   padding: 10px 20px;
   background-color: var(--background);
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   font-size: 16px;
   color: var(--text-color);
   border: none;
@@ -186,16 +187,16 @@ nav {
 }
 
 nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 5px;
-	width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
 }
 nav li {
-	float: left;
-	margin: 0;
-	padding: 5px 20px;
-	position: relative;
+  float: left;
+  margin: 0;
+  padding: 5px 20px;
+  position: relative;
 }
 
 nav ul li ul li {
@@ -208,45 +209,46 @@ nav ul li ul li {
 nav a {
   font-size: medium;
   color: var(--text-color);
-	display: block;
-	padding: 20 25px;
-	text-align: center;
-	text-decoration: none;
-	transition: all .25s ease;
+  display: block;
+  padding: 20 25px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
 nav li:hover a {
-	color: var(--foreground);
+  color: var(--foreground);
 }
 
 nav li ul {
-	float: left;
-	width:100%;
-	opacity: 0;
-	position: absolute;
-	top: 40px;
+  float: left;
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 40px;
   left: 15px;
   padding: 5px 50px 5px 20px;
-	visibility: hidden;
-	z-index: 2;
-	transition: all .2s ease;
+  visibility: hidden;
+  z-index: 2;
+  transition: all 0.2s ease;
   box-shadow: 0px 0px 10px 2px var(--shadow);
   background-color: var(--background);
 }
 
 nav li:hover ul {
-	opacity: 1;
-	top: 35px;
-	visibility: visible;
+  opacity: 1;
+  top: 35px;
+  visibility: visible;
 }
 
 /* Clearfix */
-.cf:after, .cf:before {
-	content: "";
-	display: table;
+.cf:after,
+.cf:before {
+  content: "";
+  display: table;
 }
 .cf:after {
-	clear: both;
+  clear: both;
 }
 
 .nav-button {
@@ -319,7 +321,7 @@ nav li:hover ul {
   background-color: var(--background-1);
   border: 2px solid var(--background-2);
   padding: 4px 10px 5px 10px;
-  margin: 0px 10px 0px 10px;
+  margin: 0px 20px 0px 20px;
   width: 95%;
 }
 
