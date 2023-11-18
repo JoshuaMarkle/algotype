@@ -62,23 +62,23 @@ typingArea.addEventListener('input', () => {
   updateTextDisplay(typingArea, textDisplay, currentText, timerInterval);
 });
 
-// Keep the typing area always focused
-document.addEventListener('click', function() {
-  typingArea.focus();
-});
+// // Keep the typing area always focused
+// document.addEventListener('click', function() {
+//   typingArea.focus();
+// });
 
-document.addEventListener('keydown', function(event) {
-  // Check if the focus is not already on the typingArea
-  if (document.activeElement !== typingArea) {
-    typingArea.focus();
-  }
-});
+// document.addEventListener('keydown', function(event) {
+//   // Check if the focus is not already on the typingArea
+//   if (document.activeElement !== typingArea) {
+//     typingArea.focus();
+//   }
+// });
 
-typingArea.addEventListener('keydown', function(event) {
-  if (event.key === 'Tab') {
-    event.preventDefault(); // Prevent focusing away from typingArea
-  }
-});
+// typingArea.addEventListener('keydown', function(event) {
+//   if (event.key === 'Tab') {
+//     event.preventDefault(); // Prevent focusing away from typingArea
+//   }
+// });
 
 restartButton.addEventListener('click', () => switchLanguage(currentLanguage));
 

@@ -12,42 +12,9 @@
 </head>
 <body>
     <nav>
-        <ul class="cf">
-            <li><a class="icon">❯_</a></li>
-            <li><a class="dropdown">File</a>
-                <ul>
-                    <li><button id="algorithms-gamemode" class="nav-button">Algorithms</button></li>
-                    <li><button id="words-gamemode" class="nav-button">Words</button></li>
-                </ul>
-            </li>
-            <li><a class="dropdown">Edit</a>
-                <ul>
-                    <li><button id="python-language" class="nav-button">Python</button></li>
-                    <li><button id="c-language" class="nav-button">C</button></li>
-                    <li><button id="cpp-language" class="nav-button">C++</button></li>
-                    <li><button id="csharp-language" class="nav-button">C#</button></li>
-                    <li><button id="javascript-language" class="nav-button">JavaScript</button></li>
-                </ul>
-            </li>
-            <li><a class="dropdown">View</a>
-                <ul>
-                    <li><button id="command-prompt" class="nav-button">Command Prompt</button></li>
-                </ul>
-            </li>
-            <li><a class="dropdown">Help</a></li>
-        </ul>
+        <div id="navbar-container"></div>
+        <div id="command-prompt-container"></div>
     </nav>
-    <div class="command-prompt">
-        <input type="text" placeholder="Type a command...">
-        <div class="command-prompt-open">
-            <input type="text" placeholder="Type a command...">
-            <button>Gamemode</button>
-            <button>Language</button>
-            <button>Time</button>
-            <button></button>
-
-        </div>
-    </div>
     <div id="container">
         <div id="result">
           <p>Time: <span id="time">60</span>s</p>
@@ -63,8 +30,8 @@
         </div>
         <footer>
             <div class="footer-content">
-                <a href="https://github.com/JoshuaMarkle/keycoder" target="_blank">
-                    <i class="fab fa-github"></i> JoshuaMarkle/keycoder
+                <a href="https://github.com/JoshuaMarkle/AlgoType" target="_blank">
+                    <i class="fab fa-github"></i> JoshuaMarkle/AlgoType
                 </a>
             </div>
         </footer>
@@ -73,5 +40,7 @@
     <script type="module" src="scripts/utils.js"></script>
     <script type="module" src="scripts/display.js"></script>
     <script type="module" src="scripts/main.js"></script>
+    <script src="scripts/command.js"></script>
+    <script src="scripts/loadPartial.js"></script>
 </body>
 </html>
