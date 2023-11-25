@@ -1,21 +1,41 @@
-import { setTextDisplay, updateTextDisplay } from './display.js';
-import { startTimer } from './timer.js';
-import { getRandomFunction } from './generator.js';
+import { setTextDisplay, updateTextDisplay } from "./display.js";
+import { startTimer } from "./timer.js";
+import { getRandomFunction } from "./generator.js";
 
-// Initial setup
+// Typing test variables
+const typingArea = document.getElementById("input-area");
+const timeDisplay = document.getElementById("time");
+const wpmDisplay = document.getElementById("wpm");
+const accuracyDisplay = document.getElementById("accuracy");
+const restartButton = document.getElementById("restart-button");
+const textDisplay = document.getElementById("text-display");
+
+// Timer variables
 let startTime;
 let timerInterval;
 let elapsedTime = { value: 0 };
-const typingArea = document.getElementById('input-area');
-const timeDisplay = document.getElementById('time');
-const wpmDisplay = document.getElementById('wpm');
-const accuracyDisplay = document.getElementById('accuracy');
-const restartButton = document.getElementById('restart-button');
-const textDisplay = document.getElementById('text-display');
 
-let currentGamemode = 'algorithms';
-let currentLanguage = 'python';
-let currentText = "hello there";
+// Command prompt variables
+const commandArea = document.getElementById("command-area");
+const commandInput = document.querySelector(".command-prompt-open input");
+const commandPromptOpen = document.querySelector(".command-prompt-open");
+const commandPromptButton = document.getElementById("open-command-prompt");
+
+// Focused inputbox state system
+const States = {
+  TYPING_TEST: "typingTest",
+  COMMAND_PROMPT: "commandPrompt",
+};
+let currentState = States.TYPING_TEST;
+
+// Default gamemode and language
+let currentGamemode = "algorithms";
+let currentLanguage = "python";
+let currentText = "Loading...";
+
+// Buttons
+restartButton.addEventListener("click", () => switchLanguage(currentLanguage));
+commandPromptButton.addEventListener("click", () => focusOnCommandPrompt());
 
 export function getCurrentText() {
   return currentText;
@@ -26,25 +46,36 @@ export function getElaspedTime() {
 }
 
 function startTest() {
-  if (startTime) return; // Prevent restarting the timer if it's already running
+  if (startTime) return; // If the test has started, don't start again
   startTime = new Date();
-  timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, { interval: timerInterval });
+  timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, {
+    interval: timerInterval,
+  });
 }
 
 async function restartTest() {
+  // Search database for random text
   currentText = await getRandomFunction(currentGamemode, currentLanguage);
+
+  // Reset timer
   clearInterval(timerInterval);
   timerInterval = null;
   startTime = null;
   elapsedTime.value = 0;
-  timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, { interval: timerInterval })
-  typingArea.contentEditable = 'true';
-  typingArea.innerText = '';
-  timeDisplay.textContent = '0';
-  wpmDisplay.textContent = '0';
-  accuracyDisplay.textContent = '100';
-  setTextDisplay(textDisplay, currentText); // Set the initial display text
+  timerInterval = startTimer(elapsedTime, timeDisplay, typingArea, {
+    interval: timerInterval,
+  });
+
+  // Reset typing area
+  typingArea.contentEditable = "true";
+  typingArea.innerText = "";
   typingArea.focus();
+
+  // Reset live displays
+  timeDisplay.textContent = "0";
+  wpmDisplay.textContent = "0";
+  accuracyDisplay.textContent = "100";
+  setTextDisplay(textDisplay, currentText); // Set the initial display text
 }
 
 function switchLanguage(language) {
@@ -57,51 +88,52 @@ function switchGamemode(gamemode) {
   restartTest();
 }
 
-typingArea.addEventListener('input', () => {
+// For every entered character, update the text display
+typingArea.addEventListener("input", () => {
   if (!timerInterval) startTest();
   updateTextDisplay(typingArea, textDisplay, currentText, timerInterval);
 });
 
-// // Keep the typing area always focused
-// document.addEventListener('click', function() {
-//   typingArea.focus();
-// });
+// If the user clicks outside of the command prompt, focus on the typing test
+document.addEventListener("click", function (event) {
+  if (
+    !commandInput.contains(event.target) &&
+    !commandPromptOpen.contains(event.target) &&
+    !commandPromptButton.contains(event.target)
+  ) {
+    commandPromptOpen.style.display = "none";
+    focusOnTypingTest();
+  }
+});
 
-// document.addEventListener('keydown', function(event) {
-//   // Check if the focus is not already on the typingArea
-//   if (document.activeElement !== typingArea) {
-//     typingArea.focus();
-//   }
-// });
+// Focus on typing test and command prompt using tab and escape respectively
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    focusOnCommandPrompt();
+  } else if (event.key === "Tab") {
+    focusOnTypingTest();
+    switchLanguage(currentLanguage);
+  }
+});
 
-// typingArea.addEventListener('keydown', function(event) {
-//   if (event.key === 'Tab') {
-//     event.preventDefault(); // Prevent focusing away from typingArea
-//   }
-// });
+// Function to switch focus onto the main textbox
+function focusOnTypingTest() {
+  var commandPromptOpen = document.querySelector(".command-prompt-open");
+  commandPromptOpen.style.display = "none";
+  var commandInput = document.querySelector(".command-prompt-open input");
+  commandInput.value = "";
+  currentState = States.TYPING_TEST;
+  typingArea.focus();
+}
 
-restartButton.addEventListener('click', () => switchLanguage(currentLanguage));
+// Function to switch focus onto the command prompt
+function focusOnCommandPrompt() {
+  var commandPromptOpen = document.querySelector(".command-prompt-open");
+  commandPromptOpen.style.display = "flex";
+  currentState = States.COMMAND_PROMPT;
+  commandArea.focus();
+}
 
-// === Navigation Buttons === //
-
-// const algorithmsGamemode = document.getElementById('algorithms-gamemode');
-// const wordsGamemode = document.getElementById('words-gamemode');
-
-// algorithmsGamemode.addEventListener('click', () => switchGamemode("algorithms"));
-// wordsGamemode.addEventListener('click', () => switchGamemode("words"));
-
-// const pythonButton = document.getElementById('python-language');
-// const cppButton = document.getElementById('cpp-language');
-// const javascriptButton = document.getElementById('javascript-language');
-// const csharpButton = document.getElementById('csharp-language');
-// const cButton = document.getElementById('c-language');
-
-// pythonButton.addEventListener('click', () =>  switchLanguage("python"));
-// cppButton.addEventListener('click', () => switchLanguage("cpp"));
-// javascriptButton.addEventListener('click', () => switchLanguage("javascript"));
-// csharpButton.addEventListener('click', () => switchLanguage("csharp"));
-// cButton.addEventListener('click', () => switchLanguage("c"));
-
-export { timerInterval };
+export { timerInterval, focusOnTypingTest };
 
 restartTest();

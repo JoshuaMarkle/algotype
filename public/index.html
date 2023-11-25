@@ -18,8 +18,69 @@
   </head>
   <body>
     <nav>
-      <div id="navbar-container"></div>
-      <div id="command-prompt-container"></div>
+      <!-- <div id="navbar-container"></div>
+      <div id="command-prompt-container"></div> -->
+      <ul class="cf">
+        <li><a class="icon">❯_</a></li>
+        <li>
+          <a class="dropdown">File</a>
+          <ul>
+            <li>
+              <button id="algorithms-gamemode" class="nav-button">
+                Algorithms
+              </button>
+            </li>
+            <li>
+              <button id="words-gamemode" class="nav-button">Words</button>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">Edit</a>
+          <ul>
+            <li>
+              <button id="python-language" class="nav-button">Python</button>
+            </li>
+            <li><button id="c-language" class="nav-button">C</button></li>
+            <li><button id="cpp-language" class="nav-button">C++</button></li>
+            <li><button id="csharp-language" class="nav-button">C#</button></li>
+            <li>
+              <button id="javascript-language" class="nav-button">
+                JavaScript
+              </button>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">View</a>
+          <ul>
+            <li>
+              <button id="command-prompt" class="nav-button">
+                Command Prompt
+              </button>
+            </li>
+          </ul>
+        </li>
+        <li><a class="dropdown">Help</a></li>
+      </ul>
+      <div class="command-prompt">
+        <!-- <input type="text" placeholder="Type a command..." /> -->
+        <button id="open-command-prompt">Type a command...</button>
+        <div class="command-prompt-open">
+          <input
+            id="command-area"
+            type="text"
+            placeholder="Your wish is my command"
+            autocomplete="off"
+          />
+          <button class="command-button">Sample 1</button>
+          <button class="command-button">Sample 2</button>
+          <button class="command-button">Sample 3</button>
+          <button class="command-button">Sample 4</button>
+          <button class="command-button">Sample 5</button>
+          <button class="command-button">Sample 6</button>
+        </div>
+      </div>
     </nav>
     <div id="container">
       <div id="result">
@@ -48,6 +109,6 @@
     <script type="module" src="scripts/utils.js"></script>
     <script type="module" src="scripts/display.js"></script>
     <script type="module" src="scripts/main.js"></script>
-    <script src="scripts/loadPartial.js"></script>
+    <script type="module" src="scripts/command.js"></script>
   </body>
 </html>
