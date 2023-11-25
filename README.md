@@ -8,18 +8,19 @@
 
 ## Features
 
-- **Algorithms Gamemode:** Exercises include a variety of code snippets in different programming languages
-- **Words Gamemode:** A unique arrangement of words from the language of your choice
-- **Minimalistic Design:** A clutter-free environment that lets you focus on improving your typing skills
-- **5 Supported Languages** and counting!
-- **Complied Stats:** WPM, Accuracy, and Time Passed
+-   **Algorithms Gamemode:** Exercises include a variety of code snippets in different programming languages
+-   **Words Gamemode:** A unique arrangement of words from the language of your choice
+-   **Minimalistic Design:** A clutter-free environment that lets you focus on improving your typing skills
+-   **5 Supported Languages** and counting!
+-   **Live Stats:** WPM, Accuracy, and Time Passed
+-   **Command Prompt:** Quick and efficient way of tweaking settings and gamemodes
 
 ## Future Goals
 
-- Support for more programming languages
-- Comprehensive set of algorithms, with an explaination and use case after the typing test. Also a link to learn more about that algorithm
-- Account system for saving stats
-- Something similar to [vim-be-good](https://github.com/ThePrimeagen/vim-be-good). A way for programmers to practice vim movements and commands
+-   Support for more programming languages
+-   Comprehensive set of algorithms, with an explaination and use case after the typing test. Also a link to learn more about that algorithm
+-   Account system for saving stats
+-   Something similar to [vim-be-good](https://github.com/ThePrimeagen/vim-be-good). A way for programmers to practice vim movements and commands
 
 ## Credits
 
