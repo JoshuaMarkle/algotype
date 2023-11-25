@@ -143,6 +143,7 @@ const cppButton = document.getElementById("cpp-language");
 const javascriptButton = document.getElementById("javascript-language");
 const csharpButton = document.getElementById("csharp-language");
 
+
 pythonButton.addEventListener("click", () => switchLanguage("python"));
 cppButton.addEventListener("click", () => switchLanguage("cpp"));
 csharpButton.addEventListener("click", () => switchLanguage("csharp"));
