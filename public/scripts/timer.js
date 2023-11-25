@@ -1,4 +1,4 @@
-import { calculateWPM } from './utils.js';
+import { calculateWPM } from "./utils.js";
 
 export function startTimer(elapsedTime, timeDisplay) {
   return setInterval(() => {
@@ -13,7 +13,5 @@ export function startTimer(elapsedTime, timeDisplay) {
     //   clearInterval(updateCallback.interval);
     //   typingArea.contentEditable = 'false'; // Disable editing when time is up
     // }
-
   }, 1000);
 }
-  

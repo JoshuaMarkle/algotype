@@ -1,19 +1,19 @@
-import { getCurrentText, getElaspedTime } from './main.js';
+import { getCurrentText, getElaspedTime } from "./main.js";
 
-const typingArea = document.getElementById('input-area');
-const wpmDisplay = document.getElementById('wpm');
-const accuracyDisplay = document.getElementById('accuracy');
+const typingArea = document.getElementById("input-area");
+const wpmDisplay = document.getElementById("wpm");
+const accuracyDisplay = document.getElementById("accuracy");
 
 function calculateWPM() {
   const currentText = getCurrentText();
-  let textEntered = typingArea.innerText.replace(/\n\n/g, '\n');
+  let textEntered = typingArea.innerText.replace(/\n\n/g, "\n");
   let enteredIndex = 0;
 
   // Find correct characters and total characters
   let correctChars = 0;
   for (let i = 0; i < currentText.length; i++) {
     const currentChar = currentText[i];
-    const enteredChar = textEntered[enteredIndex] || '';
+    const enteredChar = textEntered[enteredIndex] || "";
 
     // Add to the running sum
     if (enteredChar === currentChar) {
@@ -33,12 +33,13 @@ function calculateWPM() {
 
   // Calculate WPM based on correct characters per second
   const timeSpent = getElaspedTime();
-  const wpm = timeSpent > 0 ? (correctChars / timeSpent * 12).toFixed(0) : '0';
+  const wpm =
+    timeSpent > 0 ? ((correctChars / timeSpent) * 12).toFixed(0) : "0";
   wpmDisplay.textContent = wpm;
 
   // Calculate accuracy
   const accuracy = (correctChars / totalChars) * 100;
-  accuracyDisplay.textContent = isNaN(accuracy) ? '0.0' : accuracy.toFixed(0);
+  accuracyDisplay.textContent = isNaN(accuracy) ? "0.0" : accuracy.toFixed(0);
 }
 
 export { calculateWPM };
