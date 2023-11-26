@@ -18,9 +18,11 @@
 ## Future Goals
 
 -   Support for more programming languages
+-   Syntax highlighting on all coding languages
 -   Comprehensive set of algorithms, with an explaination and use case after the typing test. Also a link to learn more about that algorithm
--   Account system for saving stats
--   Something similar to [vim-be-good](https://github.com/ThePrimeagen/vim-be-good). A way for programmers to practice vim movements and commands
+-   Whole projects like websites, applications, or tools with multiple files
+-   Account system for saving stats and other things
+-   A way to practice vim movements. Something similar to [vim-be-good](https://github.com/ThePrimeagen/vim-be-good)
 
 ## Credits
 

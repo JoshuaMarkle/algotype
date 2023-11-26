@@ -34,7 +34,7 @@ let currentGamemode = "algorithms";
 let currentLanguage = "python";
 let currentNumOfWords = 25;
 let currentTimeAmount = 60;
-let currentTheme = "tokyo night";
+let currentTheme = "default";
 let currentText = "Loading...";
 
 // Buttons
