@@ -1,0 +1,106 @@
+{
+    "default": {
+        "--background": "#181a1f",
+        "--background-1": "#1e2026",
+        "--text-color": "#464a51",
+        "--accent": "#55aaff",
+        "--red": "#ff5768",
+        "--orange": "#ffb347",
+        "--yellow": "#ffd866",
+        "--green": "#23d18b",
+        "--blue": "#55aaff",
+        "--purple": "#a29bfe"
+    },
+    "gruvbox dark": {
+        "--foreground": "#ebdbb2",
+        "--background": "#282828",
+        "--background-1": "#1d2021",
+        "--text-color": "#665c54",
+        "--accent": "#d79921",
+        "--red": "#cc241d",
+        "--orange": "#d65d0e",
+        "--yellow": "#d79921",
+        "--green": "#98971a",
+        "--blue": "#458588",
+        "--purple": "#b16286"
+    },
+    "gruvbox light": {
+        "--foreground": "#3c3836",
+        "--background": "#fbf1c7",
+        "--background-1": "#d5c4a1",
+        "--text-color": "#a89984",
+        "--accent": "#d79921",
+        "--red": "#cc241d"
+    },
+    "catppuccin": {
+        "--foreground": "#cdd6f4",
+        "--background": "#1e1e2e",
+        "--background-1": "#181825",
+        "--text-color": "#585b70",
+        "--accent": "#a6e3a1",
+        "--red": "#f38ba8"
+    },
+    "nord": {
+        "--foreground": "#d8dee9",
+        "--background": "#242933",
+        "--background-1": "#2e3440",
+        "--text-color": "#4c566a",
+        "--accent": "#88c0d0",
+        "--red": "#bf616a"
+    },
+    "nord light": {
+        "--foreground": "#2e3440",
+        "--background": "#eceff4",
+        "--background-1": "#d8dee9",
+        "--text-color": "#6a7791",
+        "--accent": "#88c0d0",
+        "--red": "#bf616a"
+    },
+    "dracula": {
+        "--foreground": "#f8f8f2",
+        "--background": "#282a36",
+        "--background-1": "#21222c",
+        "--text-color": "#6272a4",
+        "--accent": "#50fa7b",
+        "--red": "#ff5555"
+    },
+    "sonokai": {
+        "--foreground": "#e2e2e2",
+        "--background": "#2c2e34",
+        "--background-1": "#222327",
+        "--text-color": "#595f6f",
+        "--accent": "#9ed072",
+        "--red": "#fc5d7c",
+        "--orange": "#f39660",
+        "--yellow": "#e7c664",
+        "--green": "#9ed072",
+        "--blue": "#76cce0",
+        "--purple": "#b39df3"
+    },
+    "onedark": {
+        "--foreground": "#abb2bf",
+        "--background": "#282c34",
+        "--background-1": "#21252b",
+        "--text-color": "#5c6370",
+        "--accent": "#61afef",
+        "--red": "#e86671",
+        "--orange": "#d19a66",
+        "--yellow": "#e5c07b",
+        "--green": "#98c379",
+        "--blue": "#61afef",
+        "--purple": "#c678dd"
+    },
+    "tokyo night": {
+        "--foreground": "#c0caf5",
+        "--background": "#24283b",
+        "--background-1": "#1f2335",
+        "--text-color": "#565f89",
+        "--accent": "#7aa2f7",
+        "--red": "#f7768e",
+        "--orange": "#ff9e64",
+        "--yellow": "#e0af68",
+        "--green": "#9ece6a",
+        "--blue": "#7aa2f7",
+        "--purple": "#9d7cd8"
+    }
+}

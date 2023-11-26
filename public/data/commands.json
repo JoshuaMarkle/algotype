@@ -21,6 +21,17 @@
     },
     {
         "command": "Themes",
-        "subcommands": ["Dark", "Light", "Colorful"]
+        "subcommands": [
+            "default",
+            "onedark",
+            "catppuccin",
+            "gruvbox dark",
+            "gruvbox light",
+            "sonokai",
+            "nord dark",
+            "nord light",
+            "onedark",
+            "tokyo night"
+        ]
     }
 ]

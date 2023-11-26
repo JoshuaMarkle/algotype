@@ -1,4 +1,5 @@
 import { switchGamemode, switchLanguage, updateTimeAmount, updateWordCount } from "./main.js";
+import { applyTheme } from "./theme.js";
 
 let allCommandsData = []; // Global variable to store command data
 let currentCommand = null; // Variable to store the selected main command
@@ -21,7 +22,7 @@ const commandHandlers = {
         console.log("Difficulty selected:", subcommand);
     },
     Themes: function (subcommand) {
-        console.log("Themes selected:", subcommand);
+        applyTheme(subcommand.toLowerCase());
     },
 };
 
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
             allCommandsData = data; // Store the data in the global variable
             updateCommandButtons(); // Initial update
         })
-        .catch((error) => console.error("Error fetching the commands:", error));
+        .catch((error) => console.error("Error fetching commands:", error));
 
     var commandInput = document.querySelector(".command-prompt-open input");
     var commandPromptOpen = document.querySelector(".command-prompt-open");

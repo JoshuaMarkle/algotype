@@ -2,19 +2,15 @@
     --foreground: #d1d5da;
     --background: #181a1f;
     --background-1: #1e2026;
-    --background-2: #24262c;
-    --shadow: #101215;
     --text-color: #464a51;
+    --accent: #55aaff;
     --red: #ff5768;
-    --orange: #ffb347;
-    --green: #23d18b;
-    --cyan: #00cef1;
-    --blue: #55aaff;
-    --purple: #a29bfe;
+    --transparent: rgba(0, 0, 0, 0);
+    --shadow: rgba(0, 0, 0, 0.3);
     --font-family: "Roboto Mono", monospace;
+    transition: all 0.5s ease;
 }
 
-body,
 html {
     height: 100%;
     margin: 0;
@@ -23,6 +19,19 @@ html {
     font-family: var(--font-family);
     font-size: 20px;
     background-color: var(--background);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    font-size: 20px;
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -81,7 +90,7 @@ h1 {
 }
 
 .icon {
-    color: var(--blue);
+    color: var(--accent);
 }
 
 #typing-test {
@@ -108,7 +117,7 @@ h1 {
 
 .button {
     padding: 10px 20px;
-    background-color: var(--background);
+    background-color: var(--transparent);
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
     color: var(--text-color);
@@ -128,7 +137,7 @@ h1 {
 }
 
 .current {
-    color: var(--blue);
+    color: var(--accent);
     text-decoration: underline;
 }
 
@@ -161,7 +170,6 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background: var(--background);
     text-align: center;
     padding-bottom: 20px;
     font-size: smaller;
@@ -181,9 +189,11 @@ nav {
     top: 0;
     width: 100%;
     padding: 0;
+    padding-bottom: 4px;
     color: var(--text-color);
     z-index: 1;
     background-color: var(--background-1);
+    transition: all 0.5s ease;
 }
 
 nav ul {
@@ -284,74 +294,15 @@ nav li:hover ul {
     margin-top: 5px;
     z-index: 2;
     pointer-events: none;
-}
-
-.command-prompt input {
-    font-family: var(--font-family);
-    font-size: 16px;
-    color: var(--text-color);
-    background-color: var(--background-2);
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    padding: 4px 10px 5px 10px;
-    width: 30%;
-}
-
-.command-prompt input::placeholder {
-    color: var(--text-color);
-}
-
-.command-prompt-open {
-    position: absolute;
-    top: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 35%;
-    padding: 5px 0 5px 0;
-    z-index: 3;
-    background-color: var(--background);
-    box-shadow: 0px 0px 10px 2px var(--shadow);
-    flex-direction: column;
-}
-
-.command-prompt-open input {
-    font-family: var(--font-family);
-    font-size: 16px;
-    color: var(--text-color);
-    background-color: var(--background-1);
-    border: 2px solid var(--background-2);
-    padding: 4px 10px 5px 10px;
-    margin: 0px 20px 0px 20px;
-    width: 95%;
-}
-
-.command-prompt-open button {
-    font-family: var(--font-family);
-    font-size: 16px;
-    color: var(--text-color);
-    background-color: var(--background-3);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-top: 1px;
-    width: 95%;
-    text-align: left;
-    cursor: pointer;
-    display: block;
-}
-
-.command-prompt-open button:hover {
-    background-color: var(--background-1);
-    color: var(--foreground);
+    transition: all 0.5s ease;
 }
 
 #open-command-prompt {
     font-family: var(--font-family);
     font-size: 16px;
     color: var(--text-color);
-    background-color: var(--background-2);
-    border: 1px solid var(--text-color);
+    background-color: var(--background-1);
+    border: 2px solid var(--text-color);
     border-radius: 8px;
     padding: 4px 10px 5px 10px;
     width: 30%;
@@ -367,4 +318,48 @@ nav li:hover ul {
     font-size: smaller;
     transform: scaleX(-1);
     display: inline-block;
+}
+.command-prompt-open {
+    position: absolute;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    padding: 5px 0 5px 0;
+    z-index: 3;
+    background-color: var(--background-1);
+    box-shadow: 0px 0px 10px 2px var(--shadow);
+    flex-direction: column;
+}
+
+.command-prompt-open input {
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--foreground);
+    background-color: var(--background);
+    border: 2px solid var(--accent);
+    padding: 4px 10px 5px 10px;
+    margin: 0px 20px 0px 20px;
+    width: 95%;
+}
+
+.command-prompt-open button {
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--text-color);
+    background-color: var(--background-1);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 10px;
+    margin-top: 1px;
+    width: 95%;
+    text-align: left;
+    cursor: pointer;
+    display: block;
+}
+
+.command-prompt-open button:hover {
+    background-color: var(--background);
+    color: var(--foreground);
 }

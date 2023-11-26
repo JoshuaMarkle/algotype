@@ -1,6 +1,7 @@
 import { setTextDisplay, updateTextDisplay } from "./display.js";
 import { startTimer } from "./timer.js";
 import { getRandomFunction } from "./generator.js";
+import { applyTheme } from "./theme.js";
 
 // Typing test variables
 const typingArea = document.getElementById("input-area");
@@ -33,6 +34,7 @@ let currentGamemode = "algorithms";
 let currentLanguage = "python";
 let currentNumOfWords = 25;
 let currentTimeAmount = 60;
+let currentTheme = "tokyo night";
 let currentText = "Loading...";
 
 // Buttons
@@ -143,7 +145,6 @@ const cppButton = document.getElementById("cpp-language");
 const javascriptButton = document.getElementById("javascript-language");
 const csharpButton = document.getElementById("csharp-language");
 
-
 pythonButton.addEventListener("click", () => switchLanguage("python"));
 cppButton.addEventListener("click", () => switchLanguage("cpp"));
 csharpButton.addEventListener("click", () => switchLanguage("csharp"));
@@ -176,3 +177,4 @@ export function updateWordCount(numOfWords) {
 export { timerInterval, focusOnTypingTest };
 
 restartTest();
+applyTheme(currentTheme);
