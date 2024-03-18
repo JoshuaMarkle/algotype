@@ -50,12 +50,26 @@ function updateDisplayArea() {
                 } else {
                     charSpan.id = 'neutral';  // Not yet typed
                 }
+
+				// Add a cursor
+				if (charIndex === typedText.length) {
+					let cursorSpan = document.createElement('span');
+					cursorSpan.classList.add('cursor');
+					wordSpan.appendChild(cursorSpan);
+				}
             } else {
                 charSpan.id = 'neutral';  // Future words
             }
 
             wordSpan.appendChild(charSpan);
         });
+
+		// Add a cursor
+        if (wordIndex === currentWordIndex && typedText.length === word.length) {
+			let cursorSpan = document.createElement('span');
+			cursorSpan.classList.add('cursor');
+			wordSpan.appendChild(cursorSpan);
+		}
 
         // Handle extra characters
         if (wordIndex === currentWordIndex && typedText.length > word.length) {
@@ -65,6 +79,11 @@ function updateDisplayArea() {
                 extraCharSpan.id = 'incorrect-extra';  // Lighter red for extra characters
                 wordSpan.appendChild(extraCharSpan);
             }
+
+			// Add a cursor
+			let cursorSpan = document.createElement('span');
+			cursorSpan.classList.add('cursor');
+			wordSpan.appendChild(cursorSpan);
         }
 
         if (wordIndex !== 0) {

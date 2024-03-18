@@ -44,6 +44,19 @@ body {
 	display: none;
 }
 
+.cursor {
+    border-right: 2px solid var(--foreground);
+	overflow: visible;
+	margin-right: -2px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
 /* Colors */
 
 #correct {
