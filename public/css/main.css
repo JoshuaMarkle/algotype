@@ -1,15 +1,19 @@
 :root {
-    --foreground: #d1d5da;
-    --background: #181a1f;
-    --background-1: #1e2026;
-    --text-color: #464a51;
-    --accent: #55aaff;
-    --red: #ff5768;
+    --foreground: #121212;
+    --background: #ffffff;
+    --background-1: #e5e5e5;
+    --text-color: #525d66;
+	--correct: #121212;
+    --incorrect: #c62828;
+    --incorrect-extra: #ff5768;
+    --accent: #14213d;
     --transparent: rgba(0, 0, 0, 0);
     --shadow: rgba(0, 0, 0, 0.3);
     --font-family: "Roboto Mono", monospace;
     transition: all 0.5s ease;
 }
+
+/* Main Display */
 
 body {
     font-family: 'Roboto Mono', monospace;
@@ -18,51 +22,77 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+	background-color: var(--background);
 }
 
 #stats, #typing {
     margin: 10px;
-    text-align: center;
+	text-align: left;
 }
 
 #display {
     margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    color: #333;
+    padding: 30px;
+	background-color: var(--background-1);
+	border-radius: 10px;
+    color: var(--text-color);
     white-space: pre-wrap;
     min-height: 50px;
 }
 
 #input {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    min-height: 50px;
-    outline: none;
+	display: none;
 }
 
+/* Colors */
+
+#correct {
+    color: var(--correct);
+}
+
+#incorrect {
+    color: var(--incorrect);
+}
+
+#incorrect-extra {
+    color: var(--incorrect-extra);
+}
+
+#neutral {
+    color: var(--text-color);
+}
+
+/* Buttons */
+
 button#restart {
+	font-family: 'Roboto Mono', monospace;
     cursor: pointer;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--accent);
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
 }
+
+/* Footer */
 
 footer {
     margin-top: 20px;
+	padding: 10px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
 }
 
 footer a {
-    color: #333;
+    color: var(--foreground);
     text-decoration: none;
 }
 
 footer i {
     margin-right: 5px;
 }
+
