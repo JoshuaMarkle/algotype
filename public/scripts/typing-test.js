@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let words = textToType.split(' ');
     let currentWordIndex = 0;
     let typedText = '';
-    let allTypedCharacters = []; // To keep track of all typed characters
+	let totalCharacterCount = 0;
+	let totalCorrectCharacterCount = 0;
 
     function updateDisplayArea() {
         displayArea.innerHTML = '';
@@ -56,20 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateDebuggingArea() {
-        debuggingArea.innerHTML = '';
-        allTypedCharacters.forEach((charInfo) => {
-            let span = document.createElement('span');
-            span.textContent = charInfo.char;
-            span.style.color = charInfo.isCorrect ? 'black' : 'red';
-            debuggingArea.appendChild(span);
-        });
+        debuggingArea.innerHTML = totalCorrectCharacterCount.toString() + " / " + totalCharacterCount.toString() + " / " + textToType.length;
     }
 
     function updateStats() {
-        const correctCharacters = allTypedCharacters.filter(charInfo => charInfo.isCorrect).length;
         const elapsedTime = 60 - timer;
-        const wpm = (correctCharacters / 5) / (elapsedTime / 60);
-        const accuracy = (correctCharacters / allTypedCharacters.length) * 100;
+        const wpm = (totalCorrectCharacterCount / 5) / (elapsedTime / 60);
+        const accuracy = (totalCorrectCharacterCount / totalCharacterCount) * 100;
 
         wpmDisplay.textContent = Math.round(wpm);
         accuracyDisplay.textContent = Math.round(accuracy);
@@ -78,14 +72,18 @@ document.addEventListener('DOMContentLoaded', function () {
     function startTest() {
         typedText = '';
         currentWordIndex = 0;
-        allTypedCharacters = [];
+		totalCharacterCount = 0;
+		totalCorrectCharacterCount = 0;
         timer = 60;
         timeDisplay.textContent = timer;
         wpmDisplay.textContent = 0;
         accuracyDisplay.textContent = 100;
 
+		document.getElementById('input').textContent = ''
+
         updateDisplayArea();
         updateDebuggingArea();
+		updateStats();
 
         document.addEventListener('keydown', handleTyping);
 
@@ -134,10 +132,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		updateStats();
 
 		// Add to allTypedCharacters for accuracy calculation, including spaces as incorrect
-		allTypedCharacters.push({
-			char: key,
-			isCorrect: typedText.trimEnd() === currentWord || (typedText.trimEnd() + ' ' === currentWord && key === ' ')
-		});
+		if (key !== 'Backspace' && key !== 'Control' && key !== 'Enter' && key != 'Shift' && key != ' ') {
+			totalCharacterCount += 1;
+
+			// If the current character is correct, increment
+			if (currentWord.length >= typedText.length && currentWord[typedText.length - 1] === key) {
+				totalCorrectCharacterCount += 1;
+			}
+		}
 	}
 
 
@@ -146,6 +148,23 @@ document.addEventListener('DOMContentLoaded', function () {
         document.removeEventListener('keydown', handleTyping);
         startTest();
     });
+
+	// Always focus onto the input box
+	document.addEventListener('keydown', function(event) {
+		// Quick restarts with TAB
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			clearInterval(interval);
+			document.removeEventListener('keydown', handleTyping);
+			startTest();
+		}
+
+		// Focus onto the input box
+		if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
+			const inputArea = document.getElementById('input');
+			inputArea.focus();
+		}
+	});
 
     startTest();
 });
