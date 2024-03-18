@@ -2,7 +2,7 @@
     --foreground: #121212;
     --background: #ffffff;
     --background-1: #e5e5e5;
-    --text-color: #525d66;
+    --neutral: #525d66;
 	--correct: #121212;
     --incorrect: #c62828;
     --incorrect-extra: #ff5768;
@@ -30,12 +30,19 @@ body {
 	text-align: left;
 }
 
+#stats {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 30px
+}
+
 #display {
     margin-bottom: 20px;
     padding: 30px;
 	background-color: var(--background-1);
 	border-radius: 10px;
-    color: var(--text-color);
+    color: var(--neutral);
     white-space: pre-wrap;
     min-height: 50px;
 }
@@ -65,27 +72,30 @@ body {
 
 #incorrect {
     color: var(--incorrect);
+	text-decoration: underline solid var(--incorrect-extra) 2px;
 }
 
 #incorrect-extra {
     color: var(--incorrect-extra);
+	text-decoration: underline solid var(--incorrect-extra) 2px;
 }
 
 #neutral {
-    color: var(--text-color);
+    color: var(--neutral);
 }
 
 /* Buttons */
 
 button#restart {
 	font-family: 'Roboto Mono', monospace;
+	font-weight: bold;
+	font-size: 14px;
     cursor: pointer;
     padding: 10px 20px;
     background-color: var(--accent);
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 14px;
 }
 
 /* Footer */

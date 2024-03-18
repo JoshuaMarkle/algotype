@@ -2,7 +2,6 @@ import { getRandomFunction } from "./generator.js";
 
 // Contents
 const displayArea = document.getElementById('display');
-const debuggingArea = document.getElementById('debugging');
 const timeDisplay = document.getElementById('time');
 const wpmDisplay = document.getElementById('wpm');
 const accuracyDisplay = document.getElementById('accuracy');
@@ -93,14 +92,16 @@ function updateDisplayArea() {
     });
 }
 
-function updateDebuggingArea() {
-	debuggingArea.innerHTML = totalCorrectCharacterCount.toString() + " / " + totalCharacterCount.toString() + " / " + currentText.length;
-}
-
 function updateStats() {
-	const elapsedTime = timer;
-	const wpm = (totalCorrectCharacterCount / 5) / (elapsedTime / 60);
-	const accuracy = (totalCorrectCharacterCount / totalCharacterCount) * 100;
+	let wpm = 0;
+	if (timer !== 0) {
+		wpm = (totalCorrectCharacterCount / 5) / (timer / 60);
+	}
+
+	let accuracy = 100
+	if (totalCharacterCount !== 0) {
+		accuracy = (totalCorrectCharacterCount / totalCharacterCount) * 100;
+	}
 
 	wpmDisplay.textContent = Math.round(wpm);
 	accuracyDisplay.textContent = Math.round(accuracy);
@@ -111,7 +112,6 @@ async function startTest() {
 	currentText = currentText.replace(/\n/g, '↵\n').replace(/\t/g, '→');
 	words = currentText.split(/[\n ]+/);
 	wordsClean = currentText.replace(/→/g, '').split(/[\n ]+/);
-	console.log(words)
 
 	typedText = '';
 	currentWordIndex = 0;
@@ -125,7 +125,6 @@ async function startTest() {
 	document.getElementById('input').textContent = ''
 
 	updateDisplayArea();
-	updateDebuggingArea();
 	updateStats();
 
 	document.addEventListener('keydown', handleTyping);
@@ -153,7 +152,6 @@ function handleTyping(event) {
 		// Remove the last character from the typed text
 		typedText = typedText.slice(0, -1);
 	} else if (key === 'Enter') {
-		console.log('↵ pressed')
 		key = '↵';
 		typedText += key;
 		if (typedText.trim() !== currentWord) {
@@ -182,9 +180,8 @@ function handleTyping(event) {
 		event.preventDefault();
 	}
 
-	// Update the display and debugging areas
+	// Update the display
 	updateDisplayArea();
-	updateDebuggingArea();
 
 	// Add to allTypedCharacters for accuracy calculation, including spaces as incorrect
 	if (key !== 'Backspace' && key !== 'Control' && key !== 'Enter' && key != 'Shift' && key != ' ') {
