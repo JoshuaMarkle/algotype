@@ -130,16 +130,19 @@ async function startTest() {
 	document.addEventListener('keydown', handleTyping);
 
 	interval = setInterval(function () {
-        timer++;
-        timeDisplay.textContent = timer;
+		// Only start the timer if the user started typing
+		if (totalCharacterCount !== 0) {
+			timer++;
+			timeDisplay.textContent = timer;
 
-        // Stop the timer when the user reaches the end of the text
-        if (currentWordIndex >= words.length - 1 && typedText === wordsClean[currentWordIndex]) {
-            clearInterval(interval);
-            document.removeEventListener('keydown', handleTyping);
-        }
+			// Stop the timer when the user reaches the end of the text
+			if (currentWordIndex >= words.length - 1 && typedText === wordsClean[currentWordIndex]) {
+				clearInterval(interval);
+				document.removeEventListener('keydown', handleTyping);
+			}
 
-		updateStats();
+			updateStats();
+		}
     }, 1000);
 }
 
@@ -148,24 +151,37 @@ function handleTyping(event) {
 	const currentWord = wordsClean[currentWordIndex];
 	let preventDefault = false;
 
-	if (key === 'Backspace' && typedText.length > 0) {
-		// Remove the last character from the typed text
-		typedText = typedText.slice(0, -1);
-	} else if (key === 'Enter') {
-		key = '↵';
-		typedText += key;
-		if (typedText.trim() !== currentWord) {
-			preventDefault = true;
-		}
-	} else if (key.length === 1) {
-		// Add the typed character to the typed text, including spaces as incorrect characters
-		typedText += key;
-		if (key === ' ' && typedText.trim() !== currentWord) {
-			// Space and Enter are considered incorrect if it does not follow the correctly typed word
-			preventDefault = true;
-		}
+	// Disable firefox quick search
+	if (key === "'" || key === '/') {
+		event.preventDefault();
 	}
+	
 
+	if (key === 'Backspace' && typedText.length > 0) { // Add backspace functionality
+		typedText = typedText.slice(0, -1);
+	} else if (typedText.length < currentWord.length + 10) { // Limit extra characters to 10
+		if (key === 'Enter') { // Enter key pressed!
+			key = '↵';
+			typedText += key;
+			if (typedText.trim() !== currentWord) {
+				preventDefault = true;
+			}
+		} else if (key.length === 1) { // Add the typed character to the typed text
+			typedText += key;
+			if (key === ' ' && typedText.trim() !== currentWord) { // If the word is typed wrong, don't move to next word
+				preventDefault = true;
+			}
+		}
+
+		// Disable space key while requiring an enter key (edge case causes problems)
+		let currentWordWithEnters = (words[currentWordIndex]).replace(/\t/g, '→')
+		if (typedText.length === currentWordWithEnters.length 
+			&& currentWordWithEnters[currentWordWithEnters.length - 1] === '↵' 
+			&& key === ' ') {
+			preventDefault = true;
+			typedText = typedText.slice(0, -1); // Delete pressed space
+		}
+	} 
 	// Move to the next word only if the current word is correctly typed followed by a space
 	if (typedText.trim() === currentWord && key === ' ') {
 		currentWordIndex++;
