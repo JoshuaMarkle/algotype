@@ -25,6 +25,8 @@ body {
 	background-color: var(--background);
 }
 
+/* Main Typing Page */
+
 #stats, #typing {
     margin: 10px;
 	text-align: left;
@@ -64,7 +66,7 @@ body {
     }
 }
 
-/* Colors */
+/* Typing Colors */
 
 #correct {
     color: var(--correct);
@@ -84,8 +86,6 @@ body {
     color: var(--neutral);
 }
 
-/* Buttons */
-
 button#restart {
 	font-family: 'Roboto Mono', monospace;
 	font-weight: bold;
@@ -98,21 +98,87 @@ button#restart {
     border-radius: 5px;
 }
 
+/* Completion Page */
+
+#completion-page {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: row;
+	align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: var(--background);
+    transition: opacity 0.25s ease;
+    z-index: 100;
+}
+
+#stats-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#stats-column div {
+    margin: 0;
+	margin-bottom: 20px;
+    padding: 30px;
+	background-color: var(--background-1);
+	border-radius: 10px;
+    color: var(--foreground);
+    white-space: pre-wrap;
+}
+
+#stats-column div h2 {
+	font-size: 40px;
+	margin: 0;
+}
+
+#stats-column div p {
+	font-size: 20px;
+	font-weight: bold;
+	color: var(--neutral);
+	margin: 0;
+}
+
+#graph-column {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#progress-graph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #666;
+}
+
 /* Footer */
 
 footer {
+	position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     margin-top: 20px;
 	padding: 10px;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
 	text-align: center;
+	z-index: 1000;
 }
 
 footer a {
     color: var(--foreground);
     text-decoration: none;
+	transition: all 0.5s ease-in-out;
+}
+
+footer a:hover {
+    color: var(--accent);
 }
 
 footer i {

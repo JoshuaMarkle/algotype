@@ -1,4 +1,5 @@
 import { getRandomFunction } from "./generator.js";
+import { showCompletionPage, hideCompletionPage } from "./main.js"
 
 // Contents
 const displayArea = document.getElementById('display');
@@ -16,6 +17,8 @@ let currentTheme = "default";
 let currentText = "Loading...";
 
 // General
+let wpm = 0;
+let accuracy = 100
 let timer = 0;
 let interval;
 let words = currentText.split(' ');
@@ -31,17 +34,23 @@ function updateDisplayArea() {
         let wordSpan = document.createElement('span');
         let characters = word.split('');
         characters.forEach((char, charIndex) => {
+			let wasTab = false;
             if (char === '↵') {
                 char = '\n';  // Representing line breaks visually
             } else if (char === '→') {
-                char = '    ';  // Representing tabs visually
+				wasTab = true;
+				if (words[wordIndex][charIndex-1] === '→') {
+					char = '    ';  // Representing tabs visually (2nd+ tab)
+				} else {
+					char = '   ';  // Representing tabs visually (1st tab)
+				}
             }
 
             let charSpan = document.createElement('span');
             charSpan.textContent = char;
 
             // Assign IDs based on the character state
-            if (wordIndex < currentWordIndex) {
+            if (wordIndex < currentWordIndex || wasTab) {
                 charSpan.id = 'correct';  // Correctly typed in previous words
             } else if (wordIndex === currentWordIndex) {
                 if (charIndex < typedText.length) {
@@ -93,18 +102,21 @@ function updateDisplayArea() {
 }
 
 function updateStats() {
-	let wpm = 0;
+	wpm = 0;
 	if (timer !== 0) {
 		wpm = (totalCorrectCharacterCount / 5) / (timer / 60);
 	}
+	wpm = Math.round(wpm);
 
-	let accuracy = 100
+	accuracy = 100
 	if (totalCharacterCount !== 0) {
 		accuracy = (totalCorrectCharacterCount / totalCharacterCount) * 100;
 	}
+	accuracy = Math.round(accuracy);
 
-	wpmDisplay.textContent = Math.round(wpm);
-	accuracyDisplay.textContent = Math.round(accuracy);
+
+	wpmDisplay.textContent = wpm;
+	accuracyDisplay.textContent = accuracy;
 }
 
 async function startTest() {
@@ -139,6 +151,9 @@ async function startTest() {
 			if (currentWordIndex >= words.length - 1 && typedText === wordsClean[currentWordIndex]) {
 				clearInterval(interval);
 				document.removeEventListener('keydown', handleTyping);
+
+				// Show the completion screen
+				showCompletionPage(wpm, accuracy, timer)
 			}
 
 			updateStats();
@@ -155,7 +170,6 @@ function handleTyping(event) {
 	if (key === "'" || key === '/') {
 		event.preventDefault();
 	}
-	
 
 	if (key === 'Backspace' && typedText.length > 0) { // Add backspace functionality
 		typedText = typedText.slice(0, -1);
@@ -174,14 +188,23 @@ function handleTyping(event) {
 		}
 
 		// Disable space key while requiring an enter key (edge case causes problems)
-		let currentWordWithEnters = (words[currentWordIndex]).replace(/\t/g, '→')
+		const currentWordWithEnters = (words[currentWordIndex]).replace(/\t/g, '→')
 		if (typedText.length === currentWordWithEnters.length 
 			&& currentWordWithEnters[currentWordWithEnters.length - 1] === '↵' 
 			&& key === ' ') {
 			preventDefault = true;
 			typedText = typedText.slice(0, -1); // Delete pressed space
 		}
+
 	} 
+
+	// Disable deletion of tabbed spaces (edge case causes problems)
+	const tabCount = words[currentWordIndex].split('→').length - 1
+	if (key === 'Backspace' && tabCount > 0 && typedText.length + 1 == tabCount) {
+		preventDefault = true;
+		typedText += ' ' // Add back deleted tab
+	}
+
 	// Move to the next word only if the current word is correctly typed followed by a space
 	if (typedText.trim() === currentWord && key === ' ') {
 		currentWordIndex++;
@@ -224,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			event.preventDefault();
 			clearInterval(interval);
 			document.removeEventListener('keydown', handleTyping);
+			hideCompletionPage();
 			startTest();
 		}
 
