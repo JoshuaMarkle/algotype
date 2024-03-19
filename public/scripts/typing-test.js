@@ -33,10 +33,12 @@ function updateDisplayArea() {
     words.forEach((word, wordIndex) => {
         let wordSpan = document.createElement('span');
         let characters = word.split('');
+		let wasEnter = false;
         characters.forEach((char, charIndex) => {
 			let wasTab = false;
             if (char === '↵') {
-                char = '\n';  // Representing line breaks visually
+                char = '';  // Later add a /n after checking for extra characters
+				wasEnter = true;
             } else if (char === '→') {
 				wasTab = true;
 				if (words[wordIndex][charIndex-1] === '→') {
@@ -93,6 +95,15 @@ function updateDisplayArea() {
 			cursorSpan.classList.add('cursor');
 			wordSpan.appendChild(cursorSpan);
         }
+
+		// Account for any ↵ Enters
+		// This needs to be done after adding extra characters
+		if (wasEnter) {
+			let charSpan = document.createElement('span');
+			charSpan.id = 'neutral';
+			charSpan.textContent = '\n'
+			wordSpan.appendChild(charSpan)
+		}
 
         if (wordIndex !== 0) {
             displayArea.appendChild(document.createTextNode(' '));  // Add spaces between words
