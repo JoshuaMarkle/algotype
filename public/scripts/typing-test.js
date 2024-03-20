@@ -1,5 +1,6 @@
 import { getRandomFunction } from "./generator.js";
 import { showCompletionPage, hideCompletionPage } from "./main.js"
+import { applyTheme } from "./theme.js"
 
 // Contents
 const displayArea = document.getElementById('display');
@@ -13,7 +14,7 @@ let currentGamemode = "algorithms";
 let currentLanguage = "python";
 let currentNumOfWords = 25;
 let currentTimeAmount = 60;
-let currentTheme = "default";
+let currentTheme = "tokyonight dark";
 let currentText = "Loading...";
 
 // General
@@ -28,6 +29,9 @@ let currentWordIndex = 0;
 let typedText = '';
 let totalCharacterCount = 0;
 let totalCorrectCharacterCount = 0;
+
+// Apply default theme
+applyTheme(currentTheme);
 
 function updateDisplayArea() {
     displayArea.innerHTML = '';
