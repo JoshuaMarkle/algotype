@@ -1,3 +1,4 @@
+import { getColor } from "./theme.js"
 const testingPage = document.getElementById('testing-page');
 const completionPage = document.getElementById('completion-page');
 const wpmDisplay = document.getElementById('wpm-final');
@@ -41,6 +42,10 @@ function updateWpmGraph(wpmOverTime) {
 		wpmChartInstance.destroy();
 	}
 
+	// Get the theme colors
+	const colorAccent = getColor("accent");
+	const colorNeutral = getColor("neutral");
+
 	wpmChartInstance = new Chart("myChart", {
 		type: "line",
 		data: {
@@ -49,9 +54,9 @@ function updateWpmGraph(wpmOverTime) {
 				data: wpmOverTime,
 				label: "WPM",
 				tension: 0.5,
-				backgroundColor: "rgba(0,0,0,0.2)",
-				pointBackgroundColor: "black",
-				borderColor: "black",
+				backgroundColor: "rgba(0,0,0,0.15)",
+				pointBackgroundColor: colorAccent,
+				borderColor: colorAccent,
 				fill: "origin",
 				hitRadius: 25,
 			}]
@@ -85,17 +90,29 @@ function updateWpmGraph(wpmOverTime) {
 				}
 			},
             scales: {
+				x: { 
+					color: colorNeutral,
+					font: { family: "Roboto Mono" },
+					ticks: {
+						color: colorNeutral,
+						font: { family: "Roboto Mono" }
+					}
+				},
                 y: {
 					beginAtZero: true,
                     title: {
+						color: colorNeutral,
 						display: true,
                         text: 'Words per Minute',
-                    }
+						font: { family: "Roboto Mono" },
+                    },
+					font: { family: "Roboto Mono" },
+					ticks: {
+						color: colorNeutral,
+						font: { family: "Roboto Mono" }
+					}
                 }
             },
-			font: {
-				family: "Roboto Mono"
-			},
 			animation: {
 				x: {
 					duration: 0,

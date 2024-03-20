@@ -4,8 +4,8 @@
     --background-1: #e5e5e5;
     --neutral: #525d66;
 	--correct: #121212;
-    --incorrect: #c62828;
-    --incorrect-extra: #ff5768;
+    --red: #c62828;
+    --red-extra: #ff5768;
     --accent: #14213d;
     --transparent: rgba(0, 0, 0, 0);
     --shadow: rgba(0, 0, 0, 0.3);
@@ -33,6 +33,7 @@ body {
 }
 
 #stats {
+	color: var(--foreground);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -69,17 +70,17 @@ body {
 /* Typing Colors */
 
 #correct {
-    color: var(--correct);
+    color: var(--foreground);
 }
 
 #incorrect {
-    color: var(--incorrect);
-	text-decoration: underline solid var(--incorrect-extra) 2px;
+    color: var(--red);
+	text-decoration: underline solid var(--red-extra) 2px;
 }
 
 #incorrect-extra {
-    color: var(--incorrect-extra);
-	text-decoration: underline solid var(--incorrect-extra) 2px;
+    color: var(--red-extra);
+	text-decoration: underline solid var(--red-extra) 2px;
 }
 
 #neutral {
@@ -93,7 +94,7 @@ button#restart {
     cursor: pointer;
     padding: 10px 20px;
     background-color: var(--accent);
-    color: white;
+    color: var(--background-1);
     border: none;
     border-radius: 5px;
 }
