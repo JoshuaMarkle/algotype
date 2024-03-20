@@ -18,6 +18,7 @@ let currentText = "Loading...";
 
 // General
 let wpm = 0;
+let wpmOverTime = [];
 let accuracy = 100
 let timer = 0;
 let interval;
@@ -118,6 +119,7 @@ function updateStats() {
 		wpm = (totalCorrectCharacterCount / 5) / (timer / 60);
 	}
 	wpm = Math.round(wpm);
+	wpmOverTime.push(wpm);
 
 	accuracy = 100
 	if (totalCharacterCount !== 0) {
@@ -141,6 +143,7 @@ async function startTest() {
 	totalCharacterCount = 0;
 	totalCorrectCharacterCount = 0;
 	timer = 0;
+	wpmOverTime = []
 	timeDisplay.textContent = timer;
 	wpmDisplay.textContent = 0;
 	accuracyDisplay.textContent = 100;
@@ -148,7 +151,7 @@ async function startTest() {
 	document.getElementById('input').textContent = ''
 
 	updateDisplayArea();
-	updateStats();
+	// updateStats();
 
 	document.addEventListener('keydown', handleTyping);
 
@@ -164,7 +167,7 @@ async function startTest() {
 				document.removeEventListener('keydown', handleTyping);
 
 				// Show the completion screen
-				showCompletionPage(wpm, accuracy, timer)
+				showCompletionPage(wpm, accuracy, timer, wpmOverTime);
 			}
 
 			updateStats();
@@ -260,6 +263,20 @@ document.addEventListener('DOMContentLoaded', function () {
 			document.removeEventListener('keydown', handleTyping);
 			hideCompletionPage();
 			startTest();
+		}
+
+		// Add INSTANT COMPLETE for testing 
+		if (event.key === 'Escape') {
+			event.preventDefault();
+			clearInterval(interval)
+			document.removeEventListener('keydown', handleTyping);
+
+			// Create fake data
+			wpm = 120
+			accuracy = 100
+			timer = 60
+			wpmOverTime = [110, 120, 124, 128, 124, 127, 114, 131]
+			showCompletionPage(wpm, accuracy, timer, wpmOverTime)
 		}
 
 		// Focus onto the input box

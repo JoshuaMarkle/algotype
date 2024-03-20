@@ -107,30 +107,40 @@ button#restart {
     width: 100%;
     height: 100%;
     display: none;
-    flex-direction: column;
-	align-items: center;
-    justify-content: center;
-    gap: 20px;
     background: var(--background);
     transition: opacity 0.25s ease;
     z-index: 100;
+	align-items: center;
+    justify-content: center;
+}
+
+#completion-page-container {
+	display: flex;
+    flex-direction: row;
+	width: 80%;
+	max-width: 800px;
+	margin: 0 auto;
+	height: auto;
+    gap: 20px;
 }
 
 #stats-column {
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
 	justify-content: center;
 	align-items: center;
     gap: 10px;
+	flex: 0 1 auto;
 }
 
 #stats-column div {
+	width: 75%;
     margin: 0;
-	margin-bottom: 20px;
-    padding: 30px;
-	background-color: var(--background-1);
+	margin-bottom: 10px;
+    padding: 20px;
 	border-radius: 10px;
     color: var(--foreground);
+	background-color: var(--background-1);
     white-space: pre-wrap;
 }
 
@@ -146,17 +156,22 @@ button#restart {
 	margin: 0;
 }
 
-/* #graph-column { */
-/*     display: none; */
-/*     align-items: center; */
-/*     justify-content: center; */
-/* } */
-/**/
-/* #progress-graph { */
-/*     display: flex; */
-/*     align-items: center; */
-/*     justify-content: center; */
-/* } */
+#graph-column {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+	background-color: var(--background-1);
+	border-radius: 10px;
+	padding: 20px;
+	overflow: hidden;
+}
+
+#myChart {
+	flex: 1;
+	margin: 0;
+	padding: 0;
+}
 
 /* Footer */
 
