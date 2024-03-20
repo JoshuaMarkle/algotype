@@ -5,10 +5,12 @@ const accuracyDisplay = document.getElementById('accuracy-final');
 const timeDisplay = document.getElementById('time-final');
 const restartButton = document.getElementById('restart');
 
-export function showCompletionPage(wpm, accuracy, time) {
+export function showCompletionPage(wpm, accuracy, time, wpmOverTime) {
     wpmDisplay.textContent = wpm;
     accuracyDisplay.textContent = `${accuracy}%`;
     timeDisplay.textContent = `${time}s`;
+
+	updateWpmGraph(wpmOverTime);
 
     completionPage.style.display = 'flex';
     completionPage.style.opacity = '0';
@@ -28,4 +30,83 @@ export function hideCompletionPage() {
     }, 300);
 
     testingPage.style.pointerEvents = 'all';
+}
+
+let wpmChartInstance = null;
+function updateWpmGraph(wpmOverTime) {
+	const xValues = Array.from(Array(wpmOverTime.length).keys());
+
+	// Destroy old chart for a new one
+	if (wpmChartInstance) {
+		wpmChartInstance.destroy();
+	}
+
+	wpmChartInstance = new Chart("myChart", {
+		type: "line",
+		data: {
+			labels: xValues,
+			datasets: [{
+				data: wpmOverTime,
+				label: "WPM",
+				tension: 0.5,
+				backgroundColor: "rgba(0,0,0,0.2)",
+				pointBackgroundColor: "black",
+				borderColor: "black",
+				fill: "origin",
+				hitRadius: 25,
+			}]
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			plugins: {
+				legend: { display: false },
+				hover: {
+					mode: 'nearest',
+					intersect: false
+				},
+				tooltip: {
+					displayColors: false,
+					yAlign: "top",
+					padding: 8,
+					callbacks: {
+						labelColor: function(context) {
+							return {
+								borderColor: 'rgba(0, 0, 0, 0)',
+								backgroundColor: "rgb(0,0,0)",
+								borderWidth: 0,
+								borderRadius: 2,
+							}
+						},
+						title: function(tooltipItems, data) {
+							return '';
+						},
+					}
+				}
+			},
+            scales: {
+                y: {
+					beginAtZero: true,
+                    title: {
+						display: true,
+                        text: 'Words per Minute',
+                    }
+                }
+            },
+			font: {
+				family: "Roboto Mono"
+			},
+			animation: {
+				x: {
+					duration: 0,
+					from: 0
+				},
+				y: {
+					duration: 800,
+					from: 200
+				}
+			}
+        }
+
+	});
 }

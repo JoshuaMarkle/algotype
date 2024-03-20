@@ -12,6 +12,7 @@
         />
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v6.4.2/css/all.css" />
         <link rel="stylesheet" href="css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
 		<!-- The actual testing page -->
@@ -33,17 +34,19 @@
 
 		<!-- The completion screen -->
 		<div id="completion-page">
-			<div id="stats-column">
-				<div><p>WPM</p><h2 id="wpm-final">0</span></h2></div>
-				<div><p>Acc</p><h2 id="accuracy-final">100%</h2></div>
-			 	<div><p>Time</p><h2 id="time-final">60s</h2></div>
+			<div id="completion-page-container">
+				<div id="stats-column">
+					<div><p>WPM</p><h2 id="wpm-final">0</span></h2></div>
+					<div><p>Acc</p><h2 id="accuracy-final">100%</h2></div>
+					<div><p>Time</p><h2 id="time-final">60s</h2></div>
+				</div>
+				<div id="graph-column">
+					<canvas id="myChart"></canvas>
+				</div>
 			</div>
-			<!-- <div id="graph-column"> -->
-			<!-- 	<div id="progress-graph">Graph will be here</div> -->
-			<!-- </div> -->
-			<button id="restart">
-				Restart Test <i class="fas fa-undo"></i>
-			</button>
+			<!-- <button id="restart"> -->
+			<!-- 	Restart Test <i class="fas fa-undo"></i> -->
+			<!-- </button> -->
 
 		</div>
 
