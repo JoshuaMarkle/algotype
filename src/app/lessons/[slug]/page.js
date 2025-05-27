@@ -1,9 +1,8 @@
+import path from 'path';
+import fs from 'fs/promises';
 import { loadLessonBySlug } from '@/utils/loadLessonCode';
-import { getHighlightedTokens } from '@/utils/highlightCode';
 import Navbar from '@/components/Navbar';
 import TypingTest from '@/components/TypingTest';
-
-export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
 	const lessons = (await import('@/data/lessons')).default;
@@ -11,7 +10,7 @@ export async function generateStaticParams() {
 }
 
 export default async function LessonPage({ params }) {
-	const { error, lesson, code } = await loadLessonBySlug(params.slug);
+	const { error, lesson } = await loadLessonBySlug(params.slug);
 
 	if (error) {
 		return (
@@ -22,7 +21,9 @@ export default async function LessonPage({ params }) {
 		);
 	}
 
-	const tokenLines = await getHighlightedTokens(code, lesson.language.toLowerCase());
+	const tokenPath = path.join(process.cwd(), 'src/data/tokens', `${lesson.slug}.tokens.json`);
+	const tokenFile = await fs.readFile(tokenPath, 'utf-8');
+	const tokenLines = JSON.parse(tokenFile);
 
 	return (
 		<main className="font-[family-name:var(--font-geist-sans)]">
@@ -30,7 +31,7 @@ export default async function LessonPage({ params }) {
 			<div className="flex justify-center p-4">
 				<div className="w-full max-w-5xl">
 					<h1 className="text-4xl my-6">{lesson.title}</h1>
-					<TypingTest tokens={tokenLines}/>
+					<TypingTest tokens={tokenLines.tokens} />
 				</div>
 			</div>
 		</main>
