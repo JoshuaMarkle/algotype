@@ -13,6 +13,13 @@ const lessons = [
 		slug: "bfcompilier",
 		file: "bf.asm",
 	},
+	{
+		title: "DEBUG Python",
+		description: "Debugging the typing test using python syntax",
+		language: "python",
+		slug: "debug",
+		file: "debug.py"
+	},
 ];
 
 export default lessons;

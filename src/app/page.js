@@ -1,5 +1,6 @@
 import lessons from '@/data/lessons';
 import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
 import LessonCard from "@/components/LessonCard"
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
+			<Footer/>
 		</main>
 	);
 }

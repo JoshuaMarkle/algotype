@@ -10,11 +10,16 @@ export default function TypingTest({ tokens, onComplete }) {
 		const lines = Array.isArray(tokens[0]) ? tokens : tokens.tokens ?? tokens; // allow wrapped
 		if (!Array.isArray(lines[0])) return lines; // already flat
 
+		// Mark each line
 		const out = [];
 		lines.forEach((line, idx) => {
+			// push real tokens
 			out.push(...line);
+
+			// append newline token with autoSkip if line is empty/whitespace
 			if (idx !== lines.length - 1) {
-				out.push({ content: "\n", color: "#666", newline: true });
+				const blank = line.length === 0 || line.every(t => /^\\s*$/.test(t.content));
+				out.push({ content: "\\n", newline: true, autoSkip: blank, color: "#666" });
 			}
 		});
 		return out;
@@ -33,6 +38,12 @@ export default function TypingTest({ tokens, onComplete }) {
 	// Helpers
 	const currToken = flatTokens[tokenIdx] ?? { content: "", color: "#fff" };
 	const isNewlineTok = currToken.newline;
+
+	const skipLeadingWhitespace = (token) => {
+		if (!token || token.newline) return 0;
+		const m = token.content.match(/^[ \t]+/);
+		return m ? m[0].length : 0;
+	};
 
 	const resetForNext = () => {
 		setTokenIdx((i) => i + 1);
@@ -54,15 +65,30 @@ export default function TypingTest({ tokens, onComplete }) {
 		const key = e.key;
 		if (!started) setStarted(performance.now());
 
+		// Auto-skip blank lines
+		if (currToken.newline && currToken.autoSkip) {
+			console.log("SKIPPING LINE")
+			resetForNext();
+			return;
+		}
+
+		// Auto-skip leading space/tabs
+		if (
+			typed === 0 && wrong === "" && extras === "" && !isNewlineTok && // nothing typed / not a newline
+				/^\\s+$/.test(currToken.content) &&                          // token is ONLY whitespace
+				(tokenIdx === 0 || flatTokens[tokenIdx - 1].newline)         // it's first token of a physical line
+		) {
+			// mark the whole indent as already typed
+			setTyped(currToken.content.length);
+			stats.current.correct += currToken.content.length;
+			return;                      // wait for next key-press
+		}
+
 		// prevent default typing behaviour but still allow shortcuts (ctrl+c etc)
 		if (key.length === 1 || key === "Backspace" || key === "Enter")
 			e.preventDefault();
 
-		// auto‑skip leading indent tokens (spaces/tabs)
-		if (typed === 0 && wrong === "" && extras === "" && currToken.content.match(/^\s+$/) && !isNewlineTok) {
-			resetForNext();
-			return;
-		}
+		const expected = currToken.content; // current token
 
 		// BACKSPACE
 		if (key === "Backspace") {
@@ -91,8 +117,6 @@ export default function TypingTest({ tokens, onComplete }) {
 
 		// non‑printables ignored
 		if (key.length !== 1) return;
-
-		const expected = currToken.content;
 
 		// Within token body
 		if (typed < expected.length) {
@@ -126,7 +150,7 @@ export default function TypingTest({ tokens, onComplete }) {
 
 	// Cursor helpers
 	const nextChar = currToken.content[typed] ?? (isNewlineTok ? "\n" : extras ? extras[0] : "");
-	const cursorChar = nextChar === " " ? "\u00A0" : nextChar === "\n" ? "↵" : nextChar;
+	const cursorChar = nextChar === "\n" ? "↵" : nextChar;
 
 	// Render token stream
 	const textareaRef = useRef();
@@ -162,13 +186,13 @@ export default function TypingTest({ tokens, onComplete }) {
 								<span style={{ background: "rgba(200,200,255,0.25)" }}>{cursorChar}</span>
 
 								{/* wrong inside token */}
-								{wrong && <span style={{ color: "#f44" }}>{wrong.replace(/ /g, "·")}</span>}
+								{wrong && <span style={{ color: "#f44" }}>{wrong}</span>}
 
 								{/* remaining to type */}
 								{remaining && <span style={{ color: "#555" }}>{remaining}</span>}
 
 								{/* collateral extras */}
-								{extras && <span style={{ color: "#f5f" }}>{extras.replace(/ /g, "·")}</span>}
+								{extras && <span style={{ color: "#f5f" }}>{extras}</span>}
 							</span>
 						);
 					}

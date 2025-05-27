@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs/promises';
 import { loadLessonBySlug } from '@/utils/loadLessonCode';
 import Navbar from '@/components/Navbar';
+import Footer from "@/components/Footer"
 import TypingTest from '@/components/TypingTest';
 
 export async function generateStaticParams() {
@@ -34,6 +35,7 @@ export default async function LessonPage({ params }) {
 					<TypingTest tokens={tokenLines.tokens} />
 				</div>
 			</div>
+			<Footer/>
 		</main>
 	);
 }
