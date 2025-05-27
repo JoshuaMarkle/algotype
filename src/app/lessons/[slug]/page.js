@@ -1,6 +1,9 @@
 import { loadLessonBySlug } from '@/utils/loadLessonCode';
+import { getHighlightedTokens } from '@/utils/highlightCode';
 import Navbar from '@/components/Navbar';
 import TypingTest from '@/components/TypingTest';
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
 	const lessons = (await import('@/data/lessons')).default;
@@ -13,19 +16,21 @@ export default async function LessonPage({ params }) {
 	if (error) {
 		return (
 			<main className="p-6 text-red-500 font-mono">
-				<Navbar />
+				<Navbar/>
 				<div className="mt-6">{error}</div>
 			</main>
 		);
 	}
 
+	const tokenLines = await getHighlightedTokens(code, lesson.language.toLowerCase());
+
 	return (
 		<main className="font-[family-name:var(--font-geist-sans)]">
-			<Navbar />
+			<Navbar/>
 			<div className="flex justify-center p-4">
 				<div className="w-full max-w-5xl">
 					<h1 className="text-4xl my-6">{lesson.title}</h1>
-					<TypingTest code={code} language={lesson.language} />
+					<TypingTest tokens={tokenLines}/>
 				</div>
 			</div>
 		</main>
