@@ -79,6 +79,30 @@ export default function TypingTest({ tokens, onComplete }) {
 		onComplete?.({ durationMs: end - started, ...stats.current });
 	};
 
+	// How many characters from (tokenIdx, typed+wrong) until first " " or newline
+	const roomUntilBoundary = () => {
+		let i = tokenIdx;
+		let offsetInToken = typed + wrong.length;
+		let room = 0;
+
+		while (i < flatTokens.length) {
+			const tk = flatTokens[i];
+
+			// newline token → boundary
+			if (tk.newline) return room;
+
+			const start = i === tokenIdx ? offsetInToken : 0;
+			for (let j = start; j < tk.content.length; j++) {
+				const ch = tk.content[j];
+				if (ch === " " || ch === "\t") return room;
+				room++;
+			}
+			i++; // continue into next token
+			offsetInToken = 0;
+		}
+		return room;
+	};
+
 	// Key handling
 	const handleKey = (e) => {
 		if (done) return;
@@ -98,7 +122,7 @@ export default function TypingTest({ tokens, onComplete }) {
 		}
 
 		// Prevent default typing (except shortcuts)
-		if (key.length === 1 || key === "Backspace" || key === "Enter")
+		if (key.length === 1 || key === "Backspace" || key === "Enter" || key === "Tab")
 			e.preventDefault();
 
 		const expected = currToken.content;
@@ -111,34 +135,88 @@ export default function TypingTest({ tokens, onComplete }) {
 			return;
 		}
 
-		/* ENTER newline handled only if cursor is on newline token and wrong stack empty */
+		// Enter (newline)
 		if (key === "Enter" && isNewlineTok && !wrong) {
 			resetForNext(); 
 			stats.current.correct++;
 			return;
 		}
 
-		/* ignore non-printable */
+		// Ignore non-printabl
 		if (key.length !== 1) 
 			return;
 
-		/* ignore space if cursor char isn’t space OR wrong stack not empty */
-		if (key === " " && (expected[typed] !== " " || wrong)) 
+		// Ignore space
+		if (key === " " && (expected[typed] !== " " && expected[typed] !== "\t" || wrong))
 			return;
+
+		// Space
+		const isWhitespaceKey = key === " " || key === "Tab";
+		const atWhitespace    = expected[typed] === " " || expected[typed] === "\t";
+		if (isWhitespaceKey) {
+			// ignore if wrong-stack not empty or next expected char isn't whitespace
+			if (wrong || !atWhitespace) return;
+
+			let advance = 0;
+			let iTok  = tokenIdx;
+			let iPos  = typed;
+
+			while (iTok < flatTokens.length) {
+				const tk = flatTokens[iTok];
+
+				if (tk.newline) break;                   // stop at newline token
+
+				const text = tk.content;
+				for (let j = iTok === tokenIdx ? iPos : 0; j < text.length; j++) {
+					const ch = text[j];
+					if (ch !== " " && ch !== "\t") {       // first non-whitespace
+						break;
+					}
+					advance++;
+					iPos++;
+					if (iPos >= text.length) {             // move to next token
+						iTok++; iPos = 0;
+					}
+				}
+				if (iTok >= flatTokens.length) break;
+				// stop outer while if current position not whitespace
+				const nextTk = flatTokens[iTok];
+				if (nextTk.newline) break;
+				if (nextTk.content[iPos] !== " " && nextTk.content[iPos] !== "\t") break;
+			}
+
+			// apply the advance
+			setTyped(t => t + advance);
+			stats.current.correct += advance;
+			return;
+		}
 
 		// Typing logic
 		if (typed < expected.length) {
 			if (key === expected[typed] && !wrong) {
 				// correct char (if nothing in wrong stack)
-				setTyped(t => t + 1); stats.current.correct++;
+				setTyped(t => t + 1);
+				stats.current.correct++;
 				return;
 			}
 
 			// wrong char added only if expected[typed] is NOT space/newline
 			if (expected[typed] !== " " && expected[typed] !== "\n" && wrong.length < 10) {
-				setWrong(w => w + key); stats.current.incorrect++;
+				const capacity = roomUntilBoundary();
+				if (wrong.length < capacity) {
+					setWrong(w => w + key);
+					stats.current.incorrect++;
+				}
 			}
+
 			return;
+		}
+
+		// If the cursor is past the current token
+		const capacity = roomUntilBoundary(); // chars remaining to boundary
+		if (wrong.length < capacity && wrong.length < 10) {
+			setWrong(w => w + key);
+			stats.current.incorrect++;
 		}
 	};
 
@@ -156,6 +234,7 @@ export default function TypingTest({ tokens, onComplete }) {
 	}, [typed, wrong]);
 
 	let cursorChar = currToken.content[typed];
+	let wrongLeft = wrong.length; 
 
 	const textareaRef = useRef();
 	useEffect(() => textareaRef.current?.focus(), []);
@@ -192,8 +271,6 @@ export default function TypingTest({ tokens, onComplete }) {
 						const expected = currToken.content;
 						const tokenLen = expected.length;
 
-						console.log(`Token: ${expected} Wrong: ${wrong}`)
-
 						// Chars rendered up to tokenLen (will need to render up to the next space/newline not just token)
 						return (
 							<span key={idx}>
@@ -209,6 +286,7 @@ export default function TypingTest({ tokens, onComplete }) {
 									} else if (i - typed < wrong.length) {
 										// Wrong char typed (just paint existing char red)
 										color = "#f44";
+										wrongLeft--;
 									}
 
 									// Render cursor

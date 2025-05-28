@@ -1,81 +1,89 @@
 [
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; bf.asm: Copyright (C) 1999 Brian Raiter <breadbox@muppetlabs.com>:",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; Licensed under the terms of the GNU General Public License, either",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; version 2 or (at your option) any later version.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";;",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; To build:",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";;\tnasm -f bin -o bf bf.asm && chmod +x bf",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; To use:",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";;\tbf < foo.b > foo && chmod +x foo",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -103,12 +111,13 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; This is the size of the data area supplied to compiled programs.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -141,92 +150,101 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; For the compiler, the text segment is also the data segment. The",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; memory image of the compiler is inside the code buffer, and is",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; modified in place to become the memory image of the compiled",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; program. The area of memory that is the data segment for compiled",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; programs is not used by the compiler. The text and data segments of",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; compiled programs are really only different areas in a single",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; segment, from the system's point of view. Both the compiler and",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; compiled programs load the entire file contents into a single",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; memory segment which is both writeable and executable.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -299,12 +317,13 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; Here begins the file image.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -334,42 +353,46 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; At the beginning of the text segment is the ELF header and the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; program header table, the latter consisting of a single entry. The",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; two structures overlap for a space of eight bytes. Nearly all",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; unused fields in the structures are used to hold bits of code.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -378,12 +401,13 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The beginning of the ELF header.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -423,7 +447,8 @@
       {
         "content": "; ehdr.e_ident",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -432,72 +457,79 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The top(s) of the main compiling loop. The loop jumps back to",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; different positions, depending on how many bytes to copy into the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; code buffer. After doing that, esi is initialized to point to the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; epilog code chunk, a copy of edi (the pointer to the end of the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; code buffer) is saved in ebp, the high bytes of eax are reset to",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; zero (via the exchange with ebx), and then the next character of",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; input is retrieved.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -768,7 +800,8 @@
       {
         "content": "; ehdr.e_type    (0x0002)",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -784,7 +817,8 @@
       {
         "content": "; ehdr.e_machine (0x0003)",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -830,7 +864,8 @@
       {
         "content": "; ehdr.e_version",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -860,22 +895,24 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The entry point for the compiler (and compiled programs), and the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; location of the program header table.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -905,7 +942,8 @@
       {
         "content": "; ehdr.e_entry",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -931,7 +969,8 @@
       {
         "content": "; ehdr.e_phoff",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -940,82 +979,90 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The last routine of the compiler, called when there is no more",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; input. The epilog code chunk is copied into the code buffer. The",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; text origin is popped off the stack into ecx, and subtracted from",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; edi to determine the size of the compiled program. This value is",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; stored in the program header table, and then is moved into edx.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The program then jumps to the putchar routine, which sends the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; compiled program to stdout before falling through to the epilog",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; routine and exiting.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1049,7 +1096,8 @@
       {
         "content": "; ehdr.e_shoff",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1157,7 +1205,8 @@
       {
         "content": "; ehdr.e_flags",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1271,7 +1320,8 @@
       {
         "content": "; ehdr.e_ehsize",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1280,12 +1330,13 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; 0x20 == the size of one program header table entry.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1325,7 +1376,8 @@
       {
         "content": "; ehdr.e_phentsize",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1334,22 +1386,24 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The beginning of the program header table. 1 == PT_LOAD, indicating",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; that the segment is to be loaded into memory.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1393,7 +1447,8 @@
       {
         "content": "; ehdr.e_phnum & phdr.p_type",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1409,7 +1464,8 @@
       {
         "content": "; ehdr.e_shentsize",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1445,7 +1501,8 @@
       {
         "content": "; ehdr.e_shnum & phdr.p_offset",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1461,7 +1518,8 @@
       {
         "content": "; ehdr.e_shstrndx",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1470,32 +1528,35 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; (Note that the next four bytes, in addition to containing the first",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; two instructions of the bracket routine, also comprise the memory",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; address of the text origin.)",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1535,7 +1596,8 @@
       {
         "content": "; phdr.p_vaddr",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1544,52 +1606,57 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The bracket routine emits code for the \"[\" instruction. This",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; instruction translates to a simple \"jmp near\", but the target of",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; the jump will not be known until the matching \"]\" is seen. The",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; routine thus outputs a random target, and pushes the location of",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; the target in the code buffer onto the stack.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1695,7 +1762,8 @@
       {
         "content": "; phdr.p_paddr",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1741,62 +1809,68 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; This is where the size of the executable file is stored in the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; program header table. The compiler updates this value just before",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; it outputs the compiled program. This is the only field in the two",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; headers that differs between the compiler and its compiled",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; programs. (While the compiler is reading input, the first byte of",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; this field is also used as an input buffer.)",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1830,7 +1904,8 @@
       {
         "content": "; phdr.p_filesz",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1839,32 +1914,35 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The size of the program in memory. This entry creates an area of",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; bytes, arraysize in size, all initialized to zero, starting at",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; DATAORG.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1894,7 +1972,8 @@
       {
         "content": "; phdr.p_memsz",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -1903,82 +1982,90 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The code chunk for the \".\" instruction. eax is set to 4 to invoke",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; the write system call. ebx, the file handle to write to, is set to",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; 1 for stdout. ecx points to the buffer containing the bytes to",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; output, and edx equals the number of bytes to output. (Note that",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; the first byte of the first instruction, which is also the least",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; significant byte of the p_flags field, encodes to 0xB3. Having the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; 2-bit set marks the memory containing the compiler, and its",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; compiled programs, as writeable.)",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2032,7 +2119,8 @@
       {
         "content": "; phdr.p_flags",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2104,7 +2192,8 @@
       {
         "content": "; phdr.p_align",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2113,32 +2202,35 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The epilog code chunk. After restoring the initialized registers,",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; eax and ebx are both zero. eax is incremented to 1, so as to invoke",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; the exit system call. ebx specifies the process's return value.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2223,12 +2315,13 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The code chunks for the \">\", \"<\", \"+\", and \"-\" instructions.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2391,62 +2484,68 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The main loop of the compiler continues here, by obtaining the next",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; character of input. This is also the code chunk for the \",\"",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; instruction. eax is set to 3 to invoke the read system call. ebx,",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; the file handle to read from, is set to 0 for stdin. ecx points to",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; a buffer to receive the bytes that are read, and edx equals the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; number of bytes to read.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2561,22 +2660,24 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; If eax is zero or negative, then there is no more input, and the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; compiler proceeds to the eof routine.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2646,32 +2747,35 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; Otherwise, esi is advanced four bytes (from the epilog code chunk",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; to the incptr code chunk), and the character read from the input is",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; stored in al, with the high bytes of eax reset to zero.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2741,22 +2845,24 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The compiler compares the input character with \">\" and \"<\". esi is",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; advanced to the next code chunk with each failed test.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -2925,32 +3031,35 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The next four tests check for the characters \"+\", \",\", \"-\", and",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; \".\", respectively. These four characters are contiguous in ASCII,",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; and so are tested for by doing successive decrements of eax.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -3208,62 +3317,68 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The remaining instructions, \"[\" and \"]\", have special routines for",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; emitting the proper code. (Note that the jump back to the main loop",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; is at the edge of the short-jump range. Routines below here",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; therefore use this jump as a relay to return to the main loop;",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; however, in order to use it correctly, the routines must be sure",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; that the zero flag is cleared at the time.)",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -3384,72 +3499,79 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; The endbracket routine emits code for the \"]\" instruction, as well",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; as completing the code for the matching \"[\". The compiler first",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; emits \"cmp dh, [ecx]\" and the first two bytes of a \"jnz near\". The",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; location of the missing target in the code for the \"[\" instruction",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; is then retrieved from the stack, the correct target value is",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; computed and stored, and then the current instruction's jmp target",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; is computed and emitted.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -3750,52 +3872,57 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; This is the entry point, for both the compiler and its compiled",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; programs. The shared initialization code sets ecx to the beginning",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; of the array that is the compiled program's data area, and edx to",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; one. (This also clears the zero flag for the relay jump below.) The",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; registers are then saved on the stack, to be restored at the end.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -3891,92 +4018,101 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; At this point, the compiler and its compiled programs diverge.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; Although every compiled program includes all the code in this file",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; above this point, only the three instructions directly above are",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; actually used by both. This point is where the compiler begins",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; storing the generated code, so only the compiler sees the",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; instructions below. This routine first modifies ecx to contain",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; TEXTORG, which is stored on the stack, and then offsets it to point",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; to filesize. edi is set equal to codebuf, and then the compiler",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; enters the main loop.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -4174,12 +4310,13 @@
     "tokens": []
   },
   {
-    "skip": false,
+    "skip": true,
     "tokens": [
       {
         "content": ";; Here ends the file image.",
         "color": "#8B949E",
-        "fontStyle": 0
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },

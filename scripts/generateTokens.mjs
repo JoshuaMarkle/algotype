@@ -29,14 +29,14 @@ async function main() {
 		tokens = processTokenLines(tokens);
 
 		await fs.writeFile(outputPath, JSON.stringify(tokens, null, 2), 'utf-8');
-		console.log(`✅ Tokenized: ${lesson.slug}`);
+		console.log(`\x1b[32m[SUCCESS]\x1b[0m	Tokenized: ${lesson.slug}`);
 	}
 
-	console.log('✨ All tokens generated.');
+	console.log('\x1b[36m[COMPLETE]\x1b[0m');
 }
 
 main().catch((err) => {
-	console.error('❌ Token generation failed:', err);
+	console.error('\x1b[31m[FAILED]\x1b[0m	Token generation failed:', err);
 	process.exit(1);
 });
 
@@ -50,6 +50,7 @@ function processTokenLines(lines) {
 			fullLine.trim() === "" ||
 			fullLine.trimStart().startsWith("#") ||
 			fullLine.trimStart().startsWith("//") ||
+			fullLine.trimStart().startsWith(";;") ||
 			(fullLine.trim().startsWith('"""') && fullLine.trim().endsWith('"""')) ||
 			(fullLine.trim().startsWith("'''") && fullLine.trim().endsWith("'''"));
 
@@ -92,6 +93,20 @@ function processTokenLines(lines) {
 				// Strip offset from all tokens if not splitting
 				newTokens = lineTokens.map(({ offset, ...t }) => t);
 			}
+		}
+
+		// Detect inline comments
+		const commentIdx = newTokens.findIndex(t => {
+			const s = t.content.trimStart();
+			return s.startsWith("//") || s.startsWith("#") || s.startsWith(";");
+		});
+
+		if (commentIdx !== -1) {
+			// mark every token from the comment start to end-of-line as skippable
+			newTokens = [
+				...newTokens.slice(0, commentIdx),                         // code before comment
+				...newTokens.slice(commentIdx).map(tok => ({ ...tok, skip: true })) // comment tokens
+			];
 		}
 
 		return {

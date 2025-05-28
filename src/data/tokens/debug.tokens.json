@@ -50,6 +50,17 @@
         "content": "1",
         "color": "#79C0FF",
         "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "# first var",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },
@@ -75,6 +86,17 @@
         "content": "2",
         "color": "#79C0FF",
         "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "# second var",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
       }
     ]
   },

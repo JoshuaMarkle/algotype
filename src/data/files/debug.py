@@ -1,7 +1,7 @@
 from math import sin
 
-a = 1
-b = 2
+a = 1 # first var
+b = 2 # second var
 
 for i in range(b):
     print("hi")
