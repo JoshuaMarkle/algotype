@@ -37,11 +37,10 @@ export default function TypingTest({ tokens, onComplete }) {
 	const [tokenIdx, setTokenIdx] = useState(0);
 	const [typed, setTyped] = useState(0);       // correct chars in current token
 	const [wrong, setWrong] = useState("");      // wrong chars inside token (≤10)
-	const [extras, setExtras] = useState("");    // collateral extras after token (≤10)
 
 	const [started, setStarted] = useState(null);
 	const [done, setDone] = useState(false);
-	const stats = useRef({ correct: 0, incorrect: 0, extras: 0, backspace: 0 });
+	const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
 
 	// Helpers
 	const currToken = flatTokens[tokenIdx] ?? { content: "", color: "#fff" };
@@ -63,7 +62,6 @@ export default function TypingTest({ tokens, onComplete }) {
 			setTokenIdx(i);
 			setTyped(0);
 			setWrong("");
-			setExtras("");
 		}
 	};
 
@@ -71,7 +69,6 @@ export default function TypingTest({ tokens, onComplete }) {
 		setTokenIdx((i) => i + 1);
 		setTyped(0);
 		setWrong("");
-		setExtras("");
 		setTimeout(skipUntilNextTypable, 0);
 	};
 
@@ -88,93 +85,78 @@ export default function TypingTest({ tokens, onComplete }) {
 		const key = e.key;
 		if (!started) setStarted(performance.now());
 
-		// Auto-skip blank lines
+		// Auto-skip empty lines
 		if (currToken.newline && currToken.autoSkip) {
 			resetForNext();
 			return;
 		}
 
-		// Auto-skip leading space/tabs
+		// Auto-skip tagged tokens
 		if (currToken.skip) {
-			// mark the whole indent as already typed
 			setTyped(currToken.content.length);
-			stats.current.correct += currToken.content.length;
-			return;                      // wait for next key-press
+			return;
 		}
 
-		// prevent default typing behaviour but still allow shortcuts (ctrl+c etc)
+		// Prevent default typing (except shortcuts)
 		if (key.length === 1 || key === "Backspace" || key === "Enter")
 			e.preventDefault();
 
-		const expected = currToken.content; // current token
+		const expected = currToken.content;
 
-		// BACKSPACE
+		// Backspace
 		if (key === "Backspace") {
-			if (extras) {
-				setExtras((s) => s.slice(0, -1));
-			} else if (wrong) {
-				setWrong((s) => s.slice(0, -1));
-			} else if (typed > 0) {
-				setTyped((c) => c - 1);
-			}
+			if (wrong) setWrong(w => w.slice(0, -1));
+				else if (typed > 0) setTyped(t => t - 1);
 			stats.current.backspace++;
 			return;
 		}
 
-		// ENTER / Newline
-		if (key === "Enter") {
-			if (isNewlineTok) {
-				resetForNext();
-				stats.current.correct++;
-			} else if (wrong.length < 10) {
-				setWrong((s) => s + "↵");
-				stats.current.incorrect++;
-			}
+		/* ENTER newline handled only if cursor is on newline token and wrong stack empty */
+		if (key === "Enter" && isNewlineTok && !wrong) {
+			resetForNext(); 
+			stats.current.correct++;
 			return;
 		}
 
-		// non‑printables ignored
-		if (key.length !== 1) return;
+		/* ignore non-printable */
+		if (key.length !== 1) 
+			return;
 
-		// Within token body
+		/* ignore space if cursor char isn’t space OR wrong stack not empty */
+		if (key === " " && (expected[typed] !== " " || wrong)) 
+			return;
+
+		// Typing logic
 		if (typed < expected.length) {
-			if (key === expected[typed]) {
-				setTyped((c) => c + 1);
-				stats.current.correct++;
-			} else if (wrong.length < 10) {
-				setWrong((s) => s + key);
-				stats.current.incorrect++;
+			if (key === expected[typed] && !wrong) {
+				// correct char (if nothing in wrong stack)
+				setTyped(t => t + 1); stats.current.correct++;
+				return;
+			}
+
+			// wrong char added only if expected[typed] is NOT space/newline
+			if (expected[typed] !== " " && expected[typed] !== "\n" && wrong.length < 10) {
+				setWrong(w => w + key); stats.current.incorrect++;
 			}
 			return;
-		}
-
-		// Collateral extras
-		if (extras.length < 10) {
-			setExtras((s) => s + key);
-			stats.current.incorrect++;
-			stats.current.extras++;
 		}
 	};
 
-	// Skip until next typable token when tokenIdx changes
 	useEffect(() => {
 		skipUntilNextTypable();
 	}, [tokenIdx]);
 
-	// Detect token completion
 	useEffect(() => {
 		if (!currToken) return;
 		const tokenDone = typed === currToken.content.length && wrong === "";
-		if (tokenDone && extras === "") {
+		if (tokenDone) {
 			if (tokenIdx === flatTokens.length - 1) finish();
 				else resetForNext();
 		}
-	}, [typed, wrong, extras]);
+	}, [typed, wrong]);
 
-	// Cursor helpers
-	let cursorChar = currToken.content[typed] ?? (extras ? extras[0] : "");
+	let cursorChar = currToken.content[typed];
 
-	// Render token stream
 	const textareaRef = useRef();
 	useEffect(() => textareaRef.current?.focus(), []);
 
@@ -207,30 +189,45 @@ export default function TypingTest({ tokens, onComplete }) {
 					}
 
 					if (isCurrent) {
-						const correct = currToken.content.slice(0, typed);
-						const remaining = currToken.content.slice(typed + 1);
+						const expected = currToken.content;
+						const tokenLen = expected.length;
 
+						console.log(`Token: ${expected} Wrong: ${wrong}`)
+
+						// Chars rendered up to tokenLen (will need to render up to the next space/newline not just token)
 						return (
 							<span key={idx}>
-								{/* correct typed portion */}
-								{correct && <span style={{ color: "#fff" }}>{correct}</span>}
+								{expected.split("").map((ch, i) => {
+									const cursorHere = i === typed + wrong.length;
 
-								{/* cursor block */}
-								<span style={{ background: "rgba(200,200,255,0.25)" }}>{cursorChar}</span>
+									// Color and glyph
+									let visualChar = ch; // NEVER show the wrong keystroke
+									let color = "#555";  // future default
 
-								{/* wrong inside token */}
-								{wrong && <span style={{ color: "#f44" }}>{wrong}</span>}
+									if (i < typed) {     // typed correctly
+										color = "#fff";
+									} else if (i - typed < wrong.length) {
+										// Wrong char typed (just paint existing char red)
+										color = "#f44";
+									}
 
-								{/* remaining to type */}
-								{remaining && <span style={{ color: "#555" }}>{remaining}</span>}
-
-								{/* collateral extras */}
-								{extras && <span style={{ color: "#f5f" }}>{extras}</span>}
+									// Render cursor
+									return (
+										<span
+											key={i}
+											style={{
+												color: cursorHere ? "#fff" : color, // char white under cursor
+												background: cursorHere ? "rgba(200,200,255,.25)" : undefined,
+											}}
+										>
+											{visualChar}
+										</span>
+									);
+								})}
 							</span>
 						);
-					}
+						}
 
-					// future tokens
 					return (
 						<span key={idx} style={{ color: "#555" }}>{tok.content}</span>
 					);
