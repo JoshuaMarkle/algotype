@@ -5,69 +5,98 @@ import lessons from '../src/data/lessons.js';
 
 const OUTPUT_DIR = path.join(process.cwd(), 'src/data/tokens');
 
-function isSkippableLine(tokens) {
-	// If all tokens are empty or whitespace
-	if (tokens.length === 0) return true;
-	const lineText = tokens.map(t => t.content).join('').trim();
-
-	// Skip empty/whitespace lines
-	if (lineText === '') return true;
-
-	// Skip Python (#...), JS (//...), or docstring-style """comments"""
-	if (
-		lineText.startsWith('#') ||
-		lineText.startsWith('//') ||
-		(lineText.startsWith('"""') && lineText.endsWith('"""')) ||
-		(lineText.startsWith("'''") && lineText.endsWith("'''"))
-	) {
-		return true;
-	}
-
-	return false;
-}
-
 async function main() {
-	const uniqueLangs = [...new Set(lessons.map(l => l.language.toLowerCase()))];
-	const theme = "github-dark";
-
+	const theme = "github-dark-default"
 	const highlighter = await createHighlighter({
 		themes: [theme],
-		langs: uniqueLangs,
+		langs: ["python", "asm"],
 	});
 
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
 
 	for (const lesson of lessons) {
-		try {
-			const inputPath = path.join(process.cwd(), 'src/data/files', lesson.file);
-			const outputPath = path.join(OUTPUT_DIR, `${lesson.slug}.tokens.json`);
+		const inputPath = path.join(process.cwd(), 'src/data/files', lesson.file);
+		const outputPath = path.join(OUTPUT_DIR, `${lesson.slug}.tokens.json`);
 
-			const code = await fs.readFile(inputPath, 'utf-8');
-			let tokens = highlighter.codeToTokens(code, {
-				lang: lesson.language,
-				theme,
-			});
+		const code = await fs.readFile(inputPath, 'utf-8');
+		let tokens = highlighter.codeToTokens(code, {
+			lang: lesson.language,
+			theme: theme,
+		});
 
-			// Apply skippable check per line
-			tokens = tokens.map(line => {
-				const shouldSkip = isSkippableLine(line);
-				if (shouldSkip) {
-					return line.map(t => ({ ...t, skip: true }));
-				}
-				return line;
-			});
+		// Custom processing for typing
+		tokens = Array.isArray(tokens) ? tokens : tokens?.tokens;
+		tokens = processTokenLines(tokens);
 
-			await fs.writeFile(outputPath, JSON.stringify(tokens, null, 2), 'utf-8');
-			console.log(`✅ SUCCESS: Tokenized: ${lesson.slug}`);
-		} catch (err) {
-			console.error(`❌ ERROR processing ${lesson.slug}:`, err);
-		}
+		await fs.writeFile(outputPath, JSON.stringify(tokens, null, 2), 'utf-8');
+		console.log(`✅ Tokenized: ${lesson.slug}`);
 	}
 
-	console.log('✨ DONE: All tokens generated.');
+	console.log('✨ All tokens generated.');
 }
 
 main().catch((err) => {
-	console.error('❌ FAILED: Token generation failed:', err);
+	console.error('❌ Token generation failed:', err);
 	process.exit(1);
 });
+
+function processTokenLines(lines) {
+	return lines.map((lineTokens) => {
+		// Flatten line into full string
+		const fullLine = lineTokens.map(t => t.content).join("");
+
+		// Determine if this entire line should be skipped
+		const isFullLineSkippable =
+			fullLine.trim() === "" ||
+			fullLine.trimStart().startsWith("#") ||
+			fullLine.trimStart().startsWith("//") ||
+			(fullLine.trim().startsWith('"""') && fullLine.trim().endsWith('"""')) ||
+			(fullLine.trim().startsWith("'''") && fullLine.trim().endsWith("'''"));
+
+		if (isFullLineSkippable) {
+			return {
+				skip: true,
+				tokens: lineTokens.map(({ offset, ...t }) => ({ ...t, skip: true }))
+			};
+		}
+
+		// Detect and isolate leading whitespace from the first token
+		let newTokens = [...lineTokens];
+		if (lineTokens.length > 0) {
+			const first = lineTokens[0];
+			const match = first.content.match(/^(\s+)(\S.*)?$/);
+			if (match) {
+				const [ , leading, rest ] = match;
+
+				const leadingToken = {
+					...first,
+					content: leading,
+					skip: true
+				};
+				delete leadingToken.offset;
+
+				const tokens = [leadingToken];
+				if (rest) {
+					const restToken = {
+						...first,
+						content: rest,
+						skip: false
+					};
+					delete restToken.offset;
+					tokens.push(restToken);
+				}
+
+				// Replace first token with split
+				newTokens = [...tokens, ...lineTokens.slice(1).map(({ offset, ...t }) => t)];
+			} else {
+				// Strip offset from all tokens if not splitting
+				newTokens = lineTokens.map(({ offset, ...t }) => t);
+			}
+		}
+
+		return {
+			skip: false,
+			tokens: newTokens
+		};
+	});
+}

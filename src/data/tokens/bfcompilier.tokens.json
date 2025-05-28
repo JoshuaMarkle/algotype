@@ -1,3910 +1,4214 @@
-{
-  "tokens": [
-    [
+[
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; bf.asm: Copyright (C) 1999 Brian Raiter <breadbox@muppetlabs.com>:",
-        "offset": 0,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; Licensed under the terms of the GNU General Public License, either",
-        "offset": 70,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; version 2 or (at your option) any later version.",
-        "offset": 140,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";;",
-        "offset": 192,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; To build:",
-        "offset": 195,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";;\tnasm -f bin -o bf bf.asm && chmod +x bf",
-        "offset": 208,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; To use:",
-        "offset": 251,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";;\tbf < foo.b > foo && chmod +x foo",
-        "offset": 262,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "BITS ",
-        "offset": 299,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "32",
-        "offset": 304,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; This is the size of the data area supplied to compiled programs.",
-        "offset": 308,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "%",
-        "offset": 377,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "define",
-        "offset": 378,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": " arraysize\t30000",
-        "offset": 384,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; For the compiler, the text segment is also the data segment. The",
-        "offset": 402,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; memory image of the compiler is inside the code buffer, and is",
-        "offset": 470,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; modified in place to become the memory image of the compiled",
-        "offset": 536,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; program. The area of memory that is the data segment for compiled",
-        "offset": 600,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; programs is not used by the compiler. The text and data segments of",
-        "offset": 669,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; compiled programs are really only different areas in a single",
-        "offset": 740,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; segment, from the system's point of view. Both the compiler and",
-        "offset": 805,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; compiled programs load the entire file contents into a single",
-        "offset": 872,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; memory segment which is both writeable and executable.",
-        "offset": 937,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "%",
-        "offset": 996,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "define",
-        "offset": 997,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tTEXTORG\t\t0x45E9B000",
-        "offset": 1003,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "%",
-        "offset": 1024,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "define",
-        "offset": 1025,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tDATAOFFSET\t0x2000",
-        "offset": 1031,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "%",
-        "offset": 1050,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "define",
-        "offset": 1051,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tDATAORG\t\t(TEXTORG + DATAOFFSET)",
-        "offset": 1057,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; Here begins the file image.",
-        "offset": 1091,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
-      {
-        "content": "\t\torg\tTEXTORG",
-        "offset": 1123,
-        "color": "#E1E4E8",
-        "fontStyle": 0
-      }
-    ],
-    [],
-    [
-      {
-        "content": ";; At the beginning of the text segment is the ELF header and the",
-        "offset": 1138,
-        "color": "#6A737D",
-        "fontStyle": 0
-      }
-    ],
-    [
-      {
-        "content": ";; program header table, the latter consisting of a single entry. The",
-        "offset": 1204,
-        "color": "#6A737D",
-        "fontStyle": 0
-      }
-    ],
-    [
-      {
-        "content": ";; two structures overlap for a space of eight bytes. Nearly all",
-        "offset": 1274,
-        "color": "#6A737D",
-        "fontStyle": 0
-      }
-    ],
-    [
-      {
-        "content": ";; unused fields in the structures are used to hold bits of code.",
-        "offset": 1339,
-        "color": "#6A737D",
-        "fontStyle": 0
-      }
-    ],
-    [],
-    [
-      {
-        "content": ";; The beginning of the ELF header.",
-        "offset": 1406,
-        "color": "#6A737D",
-        "fontStyle": 0
-      }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 1443,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "org\tTEXTORG",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": ";; At the beginning of the text segment is the ELF header and the",
+        "color": "#8B949E",
         "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": ";; program header table, the latter consisting of a single entry. The",
+        "color": "#8B949E",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": ";; two structures overlap for a space of eight bytes. Nearly all",
+        "color": "#8B949E",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": ";; unused fields in the structures are used to hold bits of code.",
+        "color": "#8B949E",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": ";; The beginning of the ELF header.",
+        "color": "#8B949E",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "\t\t",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "db",
-        "offset": 1445,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 1447,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0x7F",
-        "offset": 1448,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", \"ELF\"\t\t",
-        "offset": 1452,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_ident",
-        "offset": 1461,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The top(s) of the main compiling loop. The loop jumps back to",
-        "offset": 1477,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; different positions, depending on how many bytes to copy into the",
-        "offset": 1542,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; code buffer. After doing that, esi is initialized to point to the",
-        "offset": 1611,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; epilog code chunk, a copy of edi (the pointer to the end of the",
-        "offset": 1680,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; code buffer) is saved in ebp, the high bytes of eax are reset to",
-        "offset": 1747,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; zero (via the exchange with ebx), and then the next character of",
-        "offset": 1815,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; input is retrieved.",
-        "offset": 1883,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "emitputchar:",
-        "offset": 1907,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 1919,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "add",
-        "offset": 1920,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 1923,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 1924,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 1927,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "byte",
-        "offset": 1929,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": " (putchar - decchar) - ",
-        "offset": 1933,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "4",
-        "offset": 1956,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "emitgetchar:",
-        "offset": 1958,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 1970,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "lodsd",
-        "offset": 1971,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "emit6bytes:",
-        "offset": 1977,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 1988,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "movsd",
-        "offset": 1989,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "emit2bytes:",
-        "offset": 1995,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2006,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "movsb",
-        "offset": 2007,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "emit1byte:",
-        "offset": 2013,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2023,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "movsb",
-        "offset": 2024,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "compile:",
-        "offset": 2030,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2038,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "lea",
-        "offset": 2039,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2042,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 2043,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", [",
-        "offset": 2046,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "byte",
-        "offset": 2049,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 2053,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 2054,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": " + epilog - filesize]",
-        "offset": 2057,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2079,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "xchg",
-        "offset": 2081,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2085,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 2086,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 2089,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ebx",
-        "offset": 2091,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2095,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "cmp",
-        "offset": 2097,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2100,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 2101,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 2104,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0x00030002",
-        "offset": 2106,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 2116,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_type    (0x0002)",
-        "offset": 2118,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t\t\t\t\t",
-        "offset": 2144,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "; ehdr.e_machine (0x0003)",
-        "offset": 2150,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2176,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "mov",
-        "offset": 2178,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2181,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ebp",
-        "offset": 2182,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 2185,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edi",
-        "offset": 2187,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 2190,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_version",
-        "offset": 2192,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2209,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jmp",
-        "offset": 2211,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tshort getchar",
-        "offset": 2214,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The entry point for the compiler (and compiled programs), and the",
-        "offset": 2230,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; location of the program header table.",
-        "offset": 2299,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2341,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dd",
-        "offset": 2343,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t_start\t\t\t",
-        "offset": 2345,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_entry",
-        "offset": 2355,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2370,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dd",
-        "offset": 2372,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tproghdr - $$\t\t",
-        "offset": 2374,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_phoff",
-        "offset": 2389,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The last routine of the compiler, called when there is no more",
-        "offset": 2405,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; input. The epilog code chunk is copied into the code buffer. The",
-        "offset": 2471,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; text origin is popped off the stack into ecx, and subtracted from",
-        "offset": 2539,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; edi to determine the size of the compiled program. This value is",
-        "offset": 2608,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; stored in the program header table, and then is moved into edx.",
-        "offset": 2676,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The program then jumps to the putchar routine, which sends the",
-        "offset": 2743,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; compiled program to stdout before falling through to the epilog",
-        "offset": 2809,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; routine and exiting.",
-        "offset": 2876,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "eof:",
-        "offset": 2901,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 2905,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "movsd",
-        "offset": 2907,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t\t",
-        "offset": 2912,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_shoff",
-        "offset": 2916,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2931,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "xchg",
-        "offset": 2933,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2937,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 2938,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 2941,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 2943,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2947,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "pop",
-        "offset": 2949,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2952,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 2953,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2957,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "sub",
-        "offset": 2959,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2962,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edi",
-        "offset": 2963,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 2966,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 2968,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 2971,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_flags",
-        "offset": 2973,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 2988,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "xchg",
-        "offset": 2990,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 2994,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 2995,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 2998,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edi",
-        "offset": 3000,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3004,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "stosd",
-        "offset": 3006,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3012,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "xchg",
-        "offset": 3014,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3018,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 3019,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 3022,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edx",
-        "offset": 3024,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3028,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jmp",
-        "offset": 3030,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tshort putchar\t\t",
-        "offset": 3033,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_ehsize",
-        "offset": 3049,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; 0x20 == the size of one program header table entry.",
-        "offset": 3066,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3122,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dw",
-        "offset": 3124,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3126,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0x20",
-        "offset": 3127,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t",
-        "offset": 3131,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_phentsize",
-        "offset": 3134,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The beginning of the program header table. 1 == PT_LOAD, indicating",
-        "offset": 3154,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; that the segment is to be loaded into memory.",
-        "offset": 3225,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "proghdr:",
-        "offset": 3275,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3283,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "dd",
-        "offset": 3284,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3286,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "1",
-        "offset": 3287,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t",
-        "offset": 3288,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_phnum & phdr.p_type",
-        "offset": 3291,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t\t\t\t\t",
-        "offset": 3320,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "; ehdr.e_shentsize",
-        "offset": 3326,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3345,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dd",
-        "offset": 3347,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3349,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0",
-        "offset": 3350,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t",
-        "offset": 3351,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; ehdr.e_shnum & phdr.p_offset",
-        "offset": 3354,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t\t\t\t\t",
-        "offset": 3385,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "; ehdr.e_shstrndx",
-        "offset": 3391,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; (Note that the next four bytes, in addition to containing the first",
-        "offset": 3410,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; two instructions of the bracket routine, also comprise the memory",
-        "offset": 3481,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; address of the text origin.)",
-        "offset": 3550,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3583,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "db",
-        "offset": 3585,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3587,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0",
-        "offset": 3588,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t",
-        "offset": 3589,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; phdr.p_vaddr",
-        "offset": 3592,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The bracket routine emits code for the \"[\" instruction. This",
-        "offset": 3608,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; instruction translates to a simple \"jmp near\", but the target of",
-        "offset": 3672,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; the jump will not be known until the matching \"]\" is seen. The",
-        "offset": 3740,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; routine thus outputs a random target, and pushes the location of",
-        "offset": 3806,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; the target in the code buffer onto the stack.",
-        "offset": 3874,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "bracket:",
-        "offset": 3924,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3932,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "mov",
-        "offset": 3933,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3936,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 3937,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 3939,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0xE9",
-        "offset": 3941,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3946,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "inc",
-        "offset": 3948,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3951,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ebp",
-        "offset": 3952,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3956,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "push",
-        "offset": 3958,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 3962,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ebp",
-        "offset": 3963,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t",
-        "offset": 3966,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; phdr.p_paddr",
-        "offset": 3969,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3984,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "stosd",
-        "offset": 3986,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 3992,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jmp",
-        "offset": 3994,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tshort emit1byte",
-        "offset": 3997,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; This is where the size of the executable file is stored in the",
-        "offset": 4015,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; program header table. The compiler updates this value just before",
-        "offset": 4081,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; it outputs the compiled program. This is the only field in the two",
-        "offset": 4150,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; headers that differs between the compiler and its compiled",
-        "offset": 4220,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; programs. (While the compiler is reading input, the first byte of",
-        "offset": 4282,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; this field is also used as an input buffer.)",
-        "offset": 4351,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "filesize:",
-        "offset": 4400,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 4409,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "dd",
-        "offset": 4410,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tcompilersize\t\t",
-        "offset": 4412,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; phdr.p_filesz",
-        "offset": 4427,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The size of the program in memory. This entry creates an area of",
-        "offset": 4444,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; bytes, arraysize in size, all initialized to zero, starting at",
-        "offset": 4512,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; DATAORG.",
-        "offset": 4578,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 4591,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dd",
-        "offset": 4593,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tDATAOFFSET + arraysize\t",
-        "offset": 4595,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; phdr.p_memsz",
-        "offset": 4619,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The code chunk for the \".\" instruction. eax is set to 4 to invoke",
-        "offset": 4635,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; the write system call. ebx, the file handle to write to, is set to",
-        "offset": 4704,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; 1 for stdout. ecx points to the buffer containing the bytes to",
-        "offset": 4774,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; output, and edx equals the number of bytes to output. (Note that",
-        "offset": 4840,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; the first byte of the first instruction, which is also the least",
-        "offset": 4908,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; significant byte of the p_flags field, encodes to 0xB3. Having the",
-        "offset": 4976,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; 2-bit set marks the memory containing the compiler, and its",
-        "offset": 5046,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; compiled programs, as writeable.)",
-        "offset": 5109,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "putchar:",
-        "offset": 5147,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5155,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "mov",
-        "offset": 5156,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5159,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "bl",
-        "offset": 5160,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 5162,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "1",
-        "offset": 5164,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t",
-        "offset": 5165,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; phdr.p_flags",
-        "offset": 5168,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 5183,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "mov",
-        "offset": 5185,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5188,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 5189,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 5191,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "4",
-        "offset": 5193,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 5195,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "int",
-        "offset": 5197,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5200,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0x80",
-        "offset": 5201,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t\t",
-        "offset": 5205,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "; phdr.p_align",
-        "offset": 5208,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The epilog code chunk. After restoring the initialized registers,",
-        "offset": 5224,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; eax and ebx are both zero. eax is incremented to 1, so as to invoke",
-        "offset": 5293,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; the exit system call. ebx specifies the process's return value.",
-        "offset": 5364,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "epilog:",
-        "offset": 5432,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 5439,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "popa",
-        "offset": 5441,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 5446,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "inc",
-        "offset": 5448,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5451,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 5452,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 5456,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "int",
-        "offset": 5458,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5461,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0x80",
-        "offset": 5462,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The code chunks for the \">\", \"<\", \"+\", and \"-\" instructions.",
-        "offset": 5468,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "incptr:",
-        "offset": 5533,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 5540,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "inc",
-        "offset": 5542,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5545,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 5546,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "decptr:",
-        "offset": 5550,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 5557,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "dec",
-        "offset": 5559,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5562,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 5563,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "incchar:",
-        "offset": 5567,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5575,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "inc",
-        "offset": 5576,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5579,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "byte",
-        "offset": 5580,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": " [",
-        "offset": 5584,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 5586,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "]",
-        "offset": 5589,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "decchar:",
-        "offset": 5591,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5599,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "dec",
-        "offset": 5600,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5603,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "byte",
-        "offset": 5604,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": " [",
-        "offset": 5608,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 5610,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "]",
-        "offset": 5613,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The main loop of the compiler continues here, by obtaining the next",
-        "offset": 5616,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; character of input. This is also the code chunk for the \",\"",
-        "offset": 5687,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; instruction. eax is set to 3 to invoke the read system call. ebx,",
-        "offset": 5750,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; the file handle to read from, is set to 0 for stdin. ecx points to",
-        "offset": 5819,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; a buffer to receive the bytes that are read, and edx equals the",
-        "offset": 5889,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; number of bytes to read.",
-        "offset": 5956,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "getchar:",
-        "offset": 5985,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5993,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "mov",
-        "offset": 5994,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 5997,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 5998,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 6000,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "3",
-        "offset": 6002,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6004,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "xor",
-        "offset": 6006,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6009,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ebx",
-        "offset": 6010,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 6013,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ebx",
-        "offset": 6015,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6019,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "int",
-        "offset": 6021,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6024,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0x80",
-        "offset": 6025,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; If eax is zero or negative, then there is no more input, and the",
-        "offset": 6031,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; compiler proceeds to the eof routine.",
-        "offset": 6099,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6141,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "or",
-        "offset": 6143,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6145,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 6146,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 6149,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 6151,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6155,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jle",
-        "offset": 6157,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\teof",
-        "offset": 6160,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; Otherwise, esi is advanced four bytes (from the epilog code chunk",
-        "offset": 6166,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; to the incptr code chunk), and the character read from the input is",
-        "offset": 6235,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; stored in al, with the high bytes of eax reset to zero.",
-        "offset": 6306,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6366,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "lodsd",
-        "offset": 6368,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6374,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "mov",
-        "offset": 6376,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6379,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 6380,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", [",
-        "offset": 6383,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 6386,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "]",
-        "offset": 6389,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The compiler compares the input character with \">\" and \"<\". esi is",
-        "offset": 6392,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; advanced to the next code chunk with each failed test.",
-        "offset": 6462,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6521,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "cmp",
-        "offset": 6523,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6526,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 6527,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", '>'",
-        "offset": 6529,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6535,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jz",
-        "offset": 6537,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\temit1byte",
-        "offset": 6539,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6550,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "inc",
-        "offset": 6552,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6555,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 6556,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6560,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "cmp",
-        "offset": 6562,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6565,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 6566,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", '<'",
-        "offset": 6568,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6574,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jz",
-        "offset": 6576,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\temit1byte",
-        "offset": 6578,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6589,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "inc",
-        "offset": 6591,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6594,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 6595,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The next four tests check for the characters \"+\", \",\", \"-\", and",
-        "offset": 6600,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; \".\", respectively. These four characters are contiguous in ASCII,",
-        "offset": 6667,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; and so are tested for by doing successive decrements of eax.",
-        "offset": 6736,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6801,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "sub",
-        "offset": 6803,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6806,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 6807,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", '+'",
-        "offset": 6809,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6815,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jz",
-        "offset": 6817,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\temit2bytes",
-        "offset": 6819,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6831,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dec",
-        "offset": 6833,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6836,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 6837,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6841,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jz",
-        "offset": 6843,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\temitgetchar",
-        "offset": 6845,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6858,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "inc",
-        "offset": 6860,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6863,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 6864,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6868,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "inc",
-        "offset": 6870,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6873,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 6874,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6878,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dec",
-        "offset": 6880,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6883,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 6884,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6888,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jz",
-        "offset": 6890,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\temit2bytes",
-        "offset": 6892,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6904,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "dec",
-        "offset": 6906,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 6909,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 6910,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 6914,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jz",
-        "offset": 6916,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\temitputchar",
-        "offset": 6918,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The remaining instructions, \"[\" and \"]\", have special routines for",
-        "offset": 6932,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; emitting the proper code. (Note that the jump back to the main loop",
-        "offset": 7002,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; is at the edge of the short-jump range. Routines below here",
-        "offset": 7073,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; therefore use this jump as a relay to return to the main loop;",
-        "offset": 7136,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; however, in order to use it correctly, the routines must be sure",
-        "offset": 7202,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; that the zero flag is cleared at the time.)",
-        "offset": 7270,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7318,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "cmp",
-        "offset": 7320,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7323,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 7324,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", '[' - '.'",
-        "offset": 7326,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7338,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jz",
-        "offset": 7340,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tbracket",
-        "offset": 7342,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7351,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "cmp",
-        "offset": 7353,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7356,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "al",
-        "offset": 7357,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ']' - '.'",
-        "offset": 7359,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "relay:",
-        "offset": 7371,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t\t",
-        "offset": 7377,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "jnz",
-        "offset": 7379,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tcompile",
-        "offset": 7382,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; The endbracket routine emits code for the \"]\" instruction, as well",
-        "offset": 7392,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; as completing the code for the matching \"[\". The compiler first",
-        "offset": 7462,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; emits \"cmp dh, [ecx]\" and the first two bytes of a \"jnz near\". The",
-        "offset": 7529,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; location of the missing target in the code for the \"[\" instruction",
-        "offset": 7599,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; is then retrieved from the stack, the correct target value is",
-        "offset": 7669,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; computed and stored, and then the current instruction's jmp target",
-        "offset": 7734,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; is computed and emitted.",
-        "offset": 7804,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "endbracket:",
-        "offset": 7833,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7844,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "mov",
-        "offset": 7845,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7848,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 7849,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 7852,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0x850F313A",
-        "offset": 7854,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7865,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "stosd",
-        "offset": 7867,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7873,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "lea",
-        "offset": 7875,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7878,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 7879,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", [",
-        "offset": 7882,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "byte",
-        "offset": 7885,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 7889,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edi",
-        "offset": 7890,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": " - ",
-        "offset": 7893,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "8",
-        "offset": 7896,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "]",
-        "offset": 7897,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7899,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "pop",
-        "offset": 7901,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7904,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 7905,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7909,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "sub",
-        "offset": 7911,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7914,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 7915,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 7918,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 7920,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7924,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "mov",
-        "offset": 7926,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t[",
-        "offset": 7929,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 7931,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "], ",
-        "offset": 7934,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "esi",
-        "offset": 7937,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7941,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "sub",
-        "offset": 7943,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 7946,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "eax",
-        "offset": 7947,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", ",
-        "offset": 7950,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edi",
-        "offset": 7952,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7956,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "stosd",
-        "offset": 7958,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 7964,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jmp",
-        "offset": 7966,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tshort relay",
-        "offset": 7969,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; This is the entry point, for both the compiler and its compiled",
-        "offset": 7983,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; programs. The shared initialization code sets ecx to the beginning",
-        "offset": 8050,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; of the array that is the compiled program's data area, and edx to",
-        "offset": 8120,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; one. (This also clears the zero flag for the relay jump below.) The",
-        "offset": 8189,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; registers are then saved on the stack, to be restored at the end.",
-        "offset": 8260,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "_start:",
-        "offset": 8330,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 8338,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "mov",
-        "offset": 8340,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 8343,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 8344,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", DATAORG",
-        "offset": 8347,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 8357,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "inc",
-        "offset": 8359,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 8362,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edx",
-        "offset": 8363,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 8367,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "pusha",
-        "offset": 8369,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; At this point, the compiler and its compiled programs diverge.",
-        "offset": 8376,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; Although every compiled program includes all the code in this file",
-        "offset": 8442,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; above this point, only the three instructions directly above are",
-        "offset": 8512,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; actually used by both. This point is where the compiler begins",
-        "offset": 8580,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; storing the generated code, so only the compiler sees the",
-        "offset": 8646,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; instructions below. This routine first modifies ecx to contain",
-        "offset": 8707,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; TEXTORG, which is stored on the stack, and then offsets it to point",
-        "offset": 8773,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; to filesize. edi is set equal to codebuf, and then the compiler",
-        "offset": 8844,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; enters the main loop.",
-        "offset": 8911,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "codebuf:",
-        "offset": 8937,
-        "color": "#B392F0",
+        "color": "#D2A8FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 8946,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "mov",
-        "offset": 8948,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 8951,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ch",
-        "offset": 8952,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", (TEXTORG >> ",
-        "offset": 8954,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "8",
-        "offset": 8968,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ") & ",
-        "offset": 8969,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "0xFF",
-        "offset": 8973,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 8978,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "push",
-        "offset": 8980,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 8984,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 8985,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 8989,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "mov",
-        "offset": 8991,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 8994,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "cl",
-        "offset": 8995,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", filesize - $$",
-        "offset": 8997,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 9013,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "lea",
-        "offset": 9015,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\t",
-        "offset": 9018,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "edi",
-        "offset": 9019,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": ", [",
-        "offset": 9022,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "byte",
-        "offset": 9025,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 9029,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "ecx",
-        "offset": 9030,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": " + codebuf - filesize]",
-        "offset": 9033,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "\t\t",
-        "offset": 9056,
-        "color": "#E1E4E8",
-        "fontStyle": 0
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
       },
       {
         "content": "jmp",
-        "offset": 9058,
-        "color": "#F97583",
+        "color": "#FF7B72",
         "fontStyle": 0
       },
       {
         "content": "\tshort relay",
-        "offset": 9061,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": ";; Here ends the file image.",
-        "offset": 9075,
-        "color": "#6A737D",
+        "color": "#8B949E",
         "fontStyle": 0
       }
-    ],
-    [],
-    [
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
       {
         "content": "compilersize\t",
-        "offset": 9105,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       },
       {
         "content": "equ",
-        "offset": 9118,
-        "color": "#79B8FF",
+        "color": "#79C0FF",
         "fontStyle": 0
       },
       {
         "content": "\t$ - $$",
-        "offset": 9121,
-        "color": "#E1E4E8",
+        "color": "#E6EDF3",
         "fontStyle": 0
       }
-    ],
-    []
-  ],
-  "fg": "#e1e4e8",
-  "bg": "#24292e",
-  "themeName": "github-dark",
-  "grammarState": {
-    "lang": "asm",
-    "theme": "github-dark",
-    "themes": [
-      "github-dark"
-    ],
-    "scopes": [
-      "source.asm.x86_64"
     ]
+  },
+  {
+    "skip": true,
+    "tokens": []
   }
-}
+]

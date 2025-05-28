@@ -7,21 +7,29 @@ export default function TypingTest({ tokens, onComplete }) {
 	// Normalize token list
 	const flatTokens = useMemo(() => {
 		if (!Array.isArray(tokens)) return [];
-		const lines = Array.isArray(tokens[0]) ? tokens : tokens.tokens ?? tokens; // allow wrapped
-		if (!Array.isArray(lines[0])) return lines; // already flat
 
-		// Mark each line
+		const lines = tokens.tokens ?? tokens;
 		const out = [];
-		lines.forEach((line, idx) => {
-			// push real tokens
-			out.push(...line);
 
-			// append newline token with autoSkip if line is empty/whitespace
+		lines.forEach((line, idx) => {
+			// Flatten tokens but carry line-level skip
+			if (!line.tokens || line.tokens.length === 0) {
+				// blank line
+				out.push({ content: "\n", newline: true, autoSkip: true, color: "#666" });
+				return;
+			}
+
+			// Add each token, including its skip flag
+			line.tokens.forEach((token, tokIdx) => {
+				out.push({ ...token, newline: false });
+			});
+
+			// Add newline token unless it's the last line
 			if (idx !== lines.length - 1) {
-				const blank = line.length === 0 || line.every(t => /^\\s*$/.test(t.content));
-				out.push({ content: "\\n", newline: true, autoSkip: blank, color: "#666" });
+				out.push({ content: "\n", newline: true, autoSkip: line.skip, color: "#666" });
 			}
 		});
+
 		return out;
 	}, [tokens]);
 
@@ -39,10 +47,24 @@ export default function TypingTest({ tokens, onComplete }) {
 	const currToken = flatTokens[tokenIdx] ?? { content: "", color: "#fff" };
 	const isNewlineTok = currToken.newline;
 
-	const skipLeadingWhitespace = (token) => {
-		if (!token || token.newline) return 0;
-		const m = token.content.match(/^[ \t]+/);
-		return m ? m[0].length : 0;
+	const shouldShowCursor = (tok, idx) => idx === tokenIdx && !tok.skip && !tok.autoSkip;
+
+	const skipUntilNextTypable = () => {
+		let i = tokenIdx;
+		while (
+			i < flatTokens.length &&
+				(flatTokens[i]?.skip || flatTokens[i]?.autoSkip)
+		) {
+			const skipLength = flatTokens[i].content?.length || 0;
+			stats.current.correct += skipLength;
+			i++;
+		}
+		if (i !== tokenIdx) {
+			setTokenIdx(i);
+			setTyped(0);
+			setWrong("");
+			setExtras("");
+		}
 	};
 
 	const resetForNext = () => {
@@ -50,6 +72,7 @@ export default function TypingTest({ tokens, onComplete }) {
 		setTyped(0);
 		setWrong("");
 		setExtras("");
+		setTimeout(skipUntilNextTypable, 0);
 	};
 
 	const finish = () => {
@@ -67,17 +90,12 @@ export default function TypingTest({ tokens, onComplete }) {
 
 		// Auto-skip blank lines
 		if (currToken.newline && currToken.autoSkip) {
-			console.log("SKIPPING LINE")
 			resetForNext();
 			return;
 		}
 
 		// Auto-skip leading space/tabs
-		if (
-			typed === 0 && wrong === "" && extras === "" && !isNewlineTok && // nothing typed / not a newline
-				/^\\s+$/.test(currToken.content) &&                          // token is ONLY whitespace
-				(tokenIdx === 0 || flatTokens[tokenIdx - 1].newline)         // it's first token of a physical line
-		) {
+		if (currToken.skip) {
 			// mark the whole indent as already typed
 			setTyped(currToken.content.length);
 			stats.current.correct += currToken.content.length;
@@ -138,6 +156,11 @@ export default function TypingTest({ tokens, onComplete }) {
 		}
 	};
 
+	// Skip until next typable token when tokenIdx changes
+	useEffect(() => {
+		skipUntilNextTypable();
+	}, [tokenIdx]);
+
 	// Detect token completion
 	useEffect(() => {
 		if (!currToken) return;
@@ -149,8 +172,7 @@ export default function TypingTest({ tokens, onComplete }) {
 	}, [typed, wrong, extras]);
 
 	// Cursor helpers
-	const nextChar = currToken.content[typed] ?? (isNewlineTok ? "\n" : extras ? extras[0] : "");
-	const cursorChar = nextChar === "\n" ? "↵" : nextChar;
+	let cursorChar = currToken.content[typed] ?? (extras ? extras[0] : "");
 
 	// Render token stream
 	const textareaRef = useRef();
@@ -162,10 +184,21 @@ export default function TypingTest({ tokens, onComplete }) {
 
 			<pre className="whitespace-pre-wrap font-mono text-sm leading-relaxed">
 				{flatTokens.map((tok, idx) => {
-					if (tok.newline) return <br key={idx} />;
+					if (tok.newline) {
+						const showCursor = shouldShowCursor(tok, idx);
+						if (showCursor) {
+							return (
+								<span key={idx}>
+									<span style={{ background: "rgba(200,200,255,0.25)" }}>↵</span>
+									<br />
+								</span>
+							);
+						}
+						return <br key={idx} />;
+					}
 
 					const isPast = idx < tokenIdx;
-					const isCurrent = idx === tokenIdx;
+					const isCurrent = shouldShowCursor(tok, idx);
 
 					if (isPast) {
 						return (
@@ -174,8 +207,8 @@ export default function TypingTest({ tokens, onComplete }) {
 					}
 
 					if (isCurrent) {
-						const correct = tok.content.slice(0, typed);
-						const remaining = tok.content.slice(typed+1);
+						const correct = currToken.content.slice(0, typed);
+						const remaining = currToken.content.slice(typed + 1);
 
 						return (
 							<span key={idx}>
