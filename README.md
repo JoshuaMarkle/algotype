@@ -6,8 +6,8 @@
 ![Static Badge](https://img.shields.io/badge/Vercel-black?style=flat-square&logo=vercel&logoColor=%23ffffff)
 ![Static Badge](https://img.shields.io/badge/Three.js-black?style=flat-square&logo=threedotjs&logoColor=%23ffffff)
 
-[AlgoType](https://algotype.net/) is a specialized typing website **designed for programmers** who want to enhance their coding fluency. It offers a minimalistic experience to practice typing the tricky symbols when coding. 😎
+AlgoType is a versatile [typing test](https://algotype.net/) **designed for programmers** who want to take their programming speed to the next level. It offers a minimalistic experience to practice typing symbols that don't get enough practice.
 
 ![Screenshot](.github/screenshot.png)
 
-Happy coding && typing 😄
+Happy coding && typing

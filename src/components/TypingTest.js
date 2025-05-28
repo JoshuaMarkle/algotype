@@ -14,7 +14,7 @@ export default function TypingTest({ tokens, onComplete }) {
 		lines.forEach((line, idx) => {
 			// Flatten tokens but carry line-level skip
 			if (!line.tokens || line.tokens.length === 0) {
-				// blank line
+				// Blank line
 				out.push({ content: "\n", newline: true, autoSkip: true, color: "#666" });
 				return;
 			}
@@ -35,8 +35,8 @@ export default function TypingTest({ tokens, onComplete }) {
 
 	// State
 	const [tokenIdx, setTokenIdx] = useState(0);
-	const [typed, setTyped] = useState(0);       // correct chars in current token
-	const [wrong, setWrong] = useState("");      // wrong chars inside token (≤10)
+	const [typed, setTyped] = useState(0);			// correct chars in current token
+	const [wrong, setWrong] = useState("");			// wrong chars inside token (≤10)
 
 	const [started, setStarted] = useState(null);
 	const [done, setDone] = useState(false);
@@ -46,7 +46,8 @@ export default function TypingTest({ tokens, onComplete }) {
 	const currToken = flatTokens[tokenIdx] ?? { content: "", color: "#fff" };
 	const isNewlineTok = currToken.newline;
 
-	const shouldShowCursor = (tok, idx) => idx === tokenIdx && !tok.skip && !tok.autoSkip;
+	const shouldShowCursor = (tok, idx) =>
+		cursorTokenIndices.has(idx) && !tok.skip && !tok.autoSkip;
 
 	const skipUntilNextTypable = () => {
 		let i = tokenIdx;
@@ -85,21 +86,28 @@ export default function TypingTest({ tokens, onComplete }) {
 		let offsetInToken = typed + wrong.length;
 		let room = 0;
 
+		// Loop over tokens
 		while (i < flatTokens.length) {
 			const tk = flatTokens[i];
 
-			// newline token → boundary
-			if (tk.newline) return room;
+			// Newline token -> boundary
+			if (tk.newline)
+				return room;
 
+			// Loop over chars in token until space/tab/newline
 			const start = i === tokenIdx ? offsetInToken : 0;
 			for (let j = start; j < tk.content.length; j++) {
 				const ch = tk.content[j];
-				if (ch === " " || ch === "\t") return room;
+				if (ch === " " || ch === "\t")
+					return room;
+
 				room++;
 			}
-			i++; // continue into next token
+
+			i++;
 			offsetInToken = 0;
 		}
+
 		return room;
 	};
 
@@ -129,8 +137,11 @@ export default function TypingTest({ tokens, onComplete }) {
 
 		// Backspace
 		if (key === "Backspace") {
-			if (wrong) setWrong(w => w.slice(0, -1));
-				else if (typed > 0) setTyped(t => t - 1);
+			if (wrong)
+				setWrong(w => w.slice(0, -1));
+			else if (typed > 0)
+				setTyped(t => t - 1);
+
 			stats.current.backspace++;
 			return;
 		}
@@ -154,8 +165,9 @@ export default function TypingTest({ tokens, onComplete }) {
 		const isWhitespaceKey = key === " " || key === "Tab";
 		const atWhitespace    = expected[typed] === " " || expected[typed] === "\t";
 		if (isWhitespaceKey) {
-			// ignore if wrong-stack not empty or next expected char isn't whitespace
-			if (wrong || !atWhitespace) return;
+			// Ignore if wrong-stack is not empty or next char is not whitespace
+			if (wrong || !atWhitespace)
+				return;
 
 			let advance = 0;
 			let iTok  = tokenIdx;
@@ -164,59 +176,60 @@ export default function TypingTest({ tokens, onComplete }) {
 			while (iTok < flatTokens.length) {
 				const tk = flatTokens[iTok];
 
-				if (tk.newline) break;                   // stop at newline token
+				// Stop at newline token
+				if (tk.newline)
+					break;
 
 				const text = tk.content;
 				for (let j = iTok === tokenIdx ? iPos : 0; j < text.length; j++) {
 					const ch = text[j];
-					if (ch !== " " && ch !== "\t") {       // first non-whitespace
+
+					// First non-whitespace
+					if (ch !== " " && ch !== "\t") 
 						break;
-					}
+
 					advance++;
 					iPos++;
-					if (iPos >= text.length) {             // move to next token
-						iTok++; iPos = 0;
+
+					// Move to next token
+					if (iPos >= text.length) {
+						iTok++;
+						iPos = 0;
 					}
 				}
-				if (iTok >= flatTokens.length) break;
-				// stop outer while if current position not whitespace
+
+				if (iTok >= flatTokens.length) 
+					break;
+
+				// Stop outer while if current position not whitespace
 				const nextTk = flatTokens[iTok];
-				if (nextTk.newline) break;
-				if (nextTk.content[iPos] !== " " && nextTk.content[iPos] !== "\t") break;
+				if (nextTk.newline)
+					break;
+				if (nextTk.content[iPos] !== " " && nextTk.content[iPos] !== "\t")
+					break;
 			}
 
-			// apply the advance
+			// Apply the advance
 			setTyped(t => t + advance);
 			stats.current.correct += advance;
 			return;
 		}
 
 		// Typing logic
-		if (typed < expected.length) {
-			if (key === expected[typed] && !wrong) {
-				// correct char (if nothing in wrong stack)
-				setTyped(t => t + 1);
-				stats.current.correct++;
-				return;
-			}
+		const capacity = roomUntilBoundary();
 
-			// wrong char added only if expected[typed] is NOT space/newline
-			if (expected[typed] !== " " && expected[typed] !== "\n" && wrong.length < 10) {
-				const capacity = roomUntilBoundary();
-				if (wrong.length < capacity) {
-					setWrong(w => w + key);
-					stats.current.incorrect++;
-				}
-			}
-
+		// Correct char (nothing is wrong stack)
+		if (capacity > 0 && key === expected[typed] && !wrong) {
+			setTyped(t => t + 1);
+			stats.current.correct++;
 			return;
 		}
 
-		// If the cursor is past the current token
-		const capacity = roomUntilBoundary(); // chars remaining to boundary
-		if (wrong.length < capacity && wrong.length < 10) {
+		// Track wrong characters
+		if (expected[typed] !== " " && expected[typed] != "\n" && wrong.length < 10) {
 			setWrong(w => w + key);
 			stats.current.incorrect++;
+			return;
 		}
 	};
 
@@ -228,87 +241,151 @@ export default function TypingTest({ tokens, onComplete }) {
 		if (!currToken) return;
 		const tokenDone = typed === currToken.content.length && wrong === "";
 		if (tokenDone) {
-			if (tokenIdx === flatTokens.length - 1) finish();
-				else resetForNext();
+			if (tokenIdx === flatTokens.length - 1)
+				finish();
+			else
+				resetForNext();
 		}
 	}, [typed, wrong]);
 
-	let cursorChar = currToken.content[typed];
-	let wrongLeft = wrong.length; 
 
+	// Compute token indices that belong to the current word
+	const cursorTokenIndices = useMemo(() => {
+		const indices = new Set();
+		let i = tokenIdx;
+		let offsetInToken = typed + wrong.length;
+
+		while (i < flatTokens.length) {
+			const tk = flatTokens[i];
+			if (tk.newline) break;
+
+			indices.add(i);
+
+			const start = i === tokenIdx ? offsetInToken : 0;
+			for (let j = start; j < tk.content.length; j++) {
+				const ch = tk.content[j];
+				if (ch === " " || ch === "\t") return indices;
+			}
+
+			i++;
+			offsetInToken = 0;
+		}
+
+		return indices;
+	}, [tokenIdx, typed, wrong, flatTokens]);
+
+	// Find the index of the last token that belongs to the active word
+	const lastWordIdx = useMemo(() => {
+		if (cursorTokenIndices.size === 0) return -1;
+		return Math.max(...cursorTokenIndices);
+	}, [cursorTokenIndices]);
+
+	let cursorChar = currToken.content[typed];
 	const textareaRef = useRef();
 	useEffect(() => textareaRef.current?.focus(), []);
 
+	// Render
+	const cursorPosGlobal = typed + wrong.length; // offset in the word
+	let wordOffset = 0; // running offset while walking tokens
+	let wrongLeft = wrong.length; // wrong chars still to paint red
 	return (
-		<div className="relative select-none" onClick={() => textareaRef.current?.focus()}>
-			<textarea ref={textareaRef} onKeyDown={handleKey} className="absolute w-0 h-0 opacity-0" />
+		<div
+			className="relative select-none"
+			onClick={() => textareaRef.current?.focus()}
+		>
+			<textarea
+				ref={textareaRef}
+				onKeyDown={handleKey}
+				className="absolute w-0 h-0 opacity-0"
+			/>
 
 			<pre className="whitespace-pre-wrap font-mono text-sm leading-relaxed">
 				{flatTokens.map((tok, idx) => {
+					// Newline tokens
 					if (tok.newline) {
 						const showCursor = shouldShowCursor(tok, idx);
-						if (showCursor) {
-							return (
-								<span key={idx}>
-									<span style={{ background: "rgba(200,200,255,0.25)" }}>↵</span>
-									<br />
-								</span>
+						return showCursor ? (
+							<span key={idx}>
+								<span style={{ background: "rgba(200,200,255,0.25)" }}>↵</span>
+								<br />
+							</span>
+						) : (
+								<br key={idx} />
 							);
-						}
-						return <br key={idx} />;
 					}
 
+					// Zone flags
 					const isPast = idx < tokenIdx;
-					const isCurrent = shouldShowCursor(tok, idx);
+					const inWord = cursorTokenIndices.has(idx);
 
+					// Past tokens - highlight
 					if (isPast) {
 						return (
-							<span key={idx} style={{ color: tok.color }}>{tok.content}</span>
+							<span key={idx} style={{ color: tok.color }}>
+								{tok.content}
+							</span>
 						);
 					}
 
-					if (isCurrent) {
-						const expected = currToken.content;
-						const tokenLen = expected.length;
-
-						// Chars rendered up to tokenLen (will need to render up to the next space/newline not just token)
+					// Future tokens - gray out
+					if (!inWord) {
 						return (
-							<span key={idx}>
-								{expected.split("").map((ch, i) => {
-									const cursorHere = i === typed + wrong.length;
-
-									// Color and glyph
-									let visualChar = ch; // NEVER show the wrong keystroke
-									let color = "#555";  // future default
-
-									if (i < typed) {     // typed correctly
-										color = "#fff";
-									} else if (i - typed < wrong.length) {
-										// Wrong char typed (just paint existing char red)
-										color = "#f44";
-										wrongLeft--;
-									}
-
-									// Render cursor
-									return (
-										<span
-											key={i}
-											style={{
-												color: cursorHere ? "#fff" : color, // char white under cursor
-												background: cursorHere ? "rgba(200,200,255,.25)" : undefined,
-											}}
-										>
-											{visualChar}
-										</span>
-									);
-								})}
+							<span key={idx} style={{ color: "#555" }}>
+								{tok.content}
 							</span>
 						);
+					}
+
+					// Current word logic
+					const chars = tok.content.split("");
+					const rendered = chars.map((ch, charIdx) => {
+						const globalPos = wordOffset + charIdx; // position in the word
+						const cursorHere = globalPos === cursorPosGlobal;
+
+						// Colors
+						let color = "#555"; // default future token color
+
+						// Part already typed in tokenIdx
+						if (idx === tokenIdx && charIdx < typed)
+							color = "#fff";
+
+						// Wrong-stack overflow across tokens
+						else if (wrongLeft > 0 && globalPos >= typed && ch !== " " && ch !== "\t") {
+							color = "#f44";
+							wrongLeft--;
 						}
 
-					return (
-						<span key={idx} style={{ color: "#555" }}>{tok.content}</span>
-					);
+						return (
+							<span
+								key={charIdx}
+								style={{
+									color: cursorHere ? "#fff" : color,
+									background: cursorHere ? "rgba(200,200,255,.25)" : undefined,
+								}}
+							>
+								{ch}
+							</span>
+						);
+					});
+
+					wordOffset += chars.length; // advance running offset
+
+					// Overflow wrong chars (at end of word)
+					let overflowSpan = null;
+					let overflowText = ""
+					if (idx === lastWordIdx && wrongLeft > 0) {
+						overflowText = wrong.slice(-wrongLeft);
+						overflowSpan = (
+							<span style={{ color: "#f44" }} key="ovf">
+								{overflowText}
+								<span style={{background: "rgba(200,200,255,.25)"}}> </span>
+							</span>
+						);
+					}
+
+					console.log("wrong:", wrong, "overflow:", overflowText, "token:", currToken.content);
+
+					return <span key={idx}>{rendered}{overflowSpan}</span>;
 				})}
 			</pre>
 		</div>

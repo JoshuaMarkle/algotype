@@ -11,7 +11,8 @@ export async function generateStaticParams() {
 }
 
 export default async function LessonPage({ params }) {
-	const { error, lesson } = await loadLessonBySlug(params.slug);
+	const resolvedParams = await params;
+	const { error, lesson } = await loadLessonBySlug(resolvedParams.slug);
 
 	if (error) {
 		return (
@@ -28,14 +29,12 @@ export default async function LessonPage({ params }) {
 
 	return (
 		<main className="font-[family-name:var(--font-geist-sans)]">
-			<Navbar/>
 			<div className="flex justify-center p-4">
 				<div className="w-full max-w-5xl">
-					<h1 className="text-4xl my-6">{lesson.title}</h1>
+					<h1 className="text-2xl my-6">{lesson.title}</h1>
 					<TypingTest tokens={tokenLines} />
 				</div>
 			</div>
-			<Footer/>
 		</main>
 	);
 }

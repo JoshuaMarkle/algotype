@@ -203,7 +203,7 @@ const LetterGlitch = ({
 	}, [glitchSpeed, smooth]);
 
 	return (
-		<div className="relative w-full h-full bg-black overflow-hidden">
+		<div className="relative w-full h-full overflow-hidden">
 		<canvas ref={canvasRef} className="block w-full h-full" />
 		{outerVignette && (
 			<div
