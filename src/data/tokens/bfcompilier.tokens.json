@@ -447,8 +447,7 @@
       {
         "content": "; ehdr.e_ident",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -800,8 +799,7 @@
       {
         "content": "; ehdr.e_type    (0x0002)",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -817,8 +815,7 @@
       {
         "content": "; ehdr.e_machine (0x0003)",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -864,8 +861,7 @@
       {
         "content": "; ehdr.e_version",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -942,8 +938,7 @@
       {
         "content": "; ehdr.e_entry",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -969,8 +964,7 @@
       {
         "content": "; ehdr.e_phoff",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1096,8 +1090,7 @@
       {
         "content": "; ehdr.e_shoff",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1205,8 +1198,7 @@
       {
         "content": "; ehdr.e_flags",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1320,8 +1312,7 @@
       {
         "content": "; ehdr.e_ehsize",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1376,8 +1367,7 @@
       {
         "content": "; ehdr.e_phentsize",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1447,8 +1437,7 @@
       {
         "content": "; ehdr.e_phnum & phdr.p_type",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1464,8 +1453,7 @@
       {
         "content": "; ehdr.e_shentsize",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1501,8 +1489,7 @@
       {
         "content": "; ehdr.e_shnum & phdr.p_offset",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1518,8 +1505,7 @@
       {
         "content": "; ehdr.e_shstrndx",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1596,8 +1582,7 @@
       {
         "content": "; phdr.p_vaddr",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1762,8 +1747,7 @@
       {
         "content": "; phdr.p_paddr",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1904,8 +1888,7 @@
       {
         "content": "; phdr.p_filesz",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -1972,8 +1955,7 @@
       {
         "content": "; phdr.p_memsz",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -2119,8 +2101,7 @@
       {
         "content": "; phdr.p_flags",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },
@@ -2192,8 +2173,7 @@
       {
         "content": "; phdr.p_align",
         "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
+        "fontStyle": 0
       }
     ]
   },

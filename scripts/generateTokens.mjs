@@ -9,7 +9,7 @@ async function main() {
 	const theme = "github-dark-default"
 	const highlighter = await createHighlighter({
 		themes: [theme],
-		langs: ["python", "asm"],
+		langs: ["python", "cpp", "asm"],
 	});
 
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -98,7 +98,7 @@ function processTokenLines(lines) {
 		// Detect inline comments
 		const commentIdx = newTokens.findIndex(t => {
 			const s = t.content.trimStart();
-			return s.startsWith("//") || s.startsWith("#") || s.startsWith(";");
+			return s.startsWith("//") || s.startsWith("#");
 		});
 
 		if (commentIdx !== -1) {

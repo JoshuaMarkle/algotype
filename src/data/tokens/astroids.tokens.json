@@ -1,0 +1,7337 @@
+[
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "#include",
+        "color": "#FF7B72",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "<iostream>",
+        "color": "#A5D6FF",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "#include",
+        "color": "#FF7B72",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "<vector>",
+        "color": "#A5D6FF",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "#include",
+        "color": "#FF7B72",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "<cmath>",
+        "color": "#A5D6FF",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "#include",
+        "color": "#FF7B72",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "<ctime>",
+        "color": "#A5D6FF",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "#include",
+        "color": "#FF7B72",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "<conio.h>",
+        "color": "#A5D6FF",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "#include",
+        "color": "#FF7B72",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "<windows.h>",
+        "color": "#A5D6FF",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "using",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "namespace",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "std",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "const",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " PI ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "3.14",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "const",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "60",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "const",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "30",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "const",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " MAX_ASTEROIDS ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "10",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "const",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " MAX_BULLETS ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "20",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "struct",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "Point",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": " {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " x, y;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "};",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "struct",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "Object",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": " {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "Point pos;",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "Point vel;",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " angle;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bool",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " active;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "};",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "class",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "AsteroidsGame",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": " {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "private:",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "Object ship;",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "vector",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "Object",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": ">",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroids;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "vector",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "Object",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": ">",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " bullets;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "void",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "initShip",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2.0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2.0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.active ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "true",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "void",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "createAsteroid",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "x",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ", ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "y",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (asteroids.",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "size",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " MAX_ASTEROIDS) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "Object asteroid;",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " x;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " y;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.vel.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ")(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "rand",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "%",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "200",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "100",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "50.0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.vel.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ")(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "rand",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "%",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "200",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "100",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "50.0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.active ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "true",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroids.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "push_back",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroid);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "void",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "wrapAround",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "Point",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": "&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "pos",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "1",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": ">=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH) pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "1",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": ">=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT) pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "char",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "getCharAt",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "x",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ", ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "y",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " xi ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0.5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ");",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " yi ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0.5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ");",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (xi ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": ">=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "&&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " xi ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "&&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " yi ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": ">=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "&&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " yi ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "return",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " display[yi][xi];",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "return",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "' '",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "char",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " display[HEIGHT][WIDTH];",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "public:",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "AsteroidsGame",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "srand",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "time",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "nullptr",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "));",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "initShip",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "();",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " i ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "; i ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "; i",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "++",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "createAsteroid",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "rand",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "%",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH, ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "rand",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "%",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "void",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "clearScreen",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "system",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "\"cls\"",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ");",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "void",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "updateDisplay",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Clear screen",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "; y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT; y",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "++",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "; x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH; x",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "++",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "display[y][x] ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "' '",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Draw ship",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (ship.active) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " noseX ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "cos",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " noseY ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "sin",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " wing1X ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "cos",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " PI ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "3",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "1.5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " wing1Y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "sin",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " PI ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "3",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "1.5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " wing2X ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "cos",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " PI ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "3",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "1.5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " wing2Y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "sin",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " PI ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "3",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "1.5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "display[",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(noseY)][",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(noseX)] ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'^'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "display[",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(wing1Y)][",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(wing1X)] ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'<'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "display[",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(wing2Y)][",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(wing2X)] ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'>'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Draw asteroids",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "auto&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroid : asteroids) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (asteroid.active) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "display[",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroid.pos.y)][",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroid.pos.x)] ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'*'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Draw bullets",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "auto&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " bullet : bullets) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (bullet.active) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "display[",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(bullet.pos.y)][",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "static_cast<int>",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(bullet.pos.x)] ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'.'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Print display",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "; y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " HEIGHT; y",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "++",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "; x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " WIDTH; x",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "++",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "cout ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "<<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " display[y][x];",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "cout ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "<<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " endl;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "void",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "update",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "float",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "deltaTime",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Update ship",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (ship.active) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.vel.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " deltaTime;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.vel.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " deltaTime;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "wrapAround",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.pos);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Update asteroids",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "auto&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroid : asteroids) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (asteroid.active) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroid.vel.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " deltaTime;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroid.vel.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " deltaTime;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "wrapAround",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroid.pos);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Update bullets",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "auto&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " bullet : bullets) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (bullet.active) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " bullet.vel.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " deltaTime;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " bullet.vel.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " deltaTime;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "wrapAround",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(bullet.pos);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "                // Check collisions with asteroids",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "for",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "auto&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroid : asteroids) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (asteroid.active) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " dx ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " bullet.pos.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroid.pos.x;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " dy ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " bullet.pos.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " asteroid.pos.y;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "double",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " distance ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "sqrt",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(dx",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "dx ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " dy",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "dy);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "                        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (distance ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "1.0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.active ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "false",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroid.active ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "false",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "                            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "                            // Split large asteroids",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "abs",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroid.vel.x) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "2.0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "createAsteroid",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroid.pos.x, asteroid.pos.y);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "createAsteroid",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroid.pos.x, asteroid.pos.y);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Remove inactive objects",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullets.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "erase",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "remove_if",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(bullets.",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "begin",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(), bullets.",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "end",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(),",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                              ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "[](",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "Object",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": "&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "obj",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": "){ ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "!",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "obj.active; }),",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                     ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullets.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "end",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "());",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroids.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "erase",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "remove_if",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(asteroids.",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "begin",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(), asteroids.",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "end",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(),",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "[](",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "Object",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": "&",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "obj",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": "){ ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "!",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "obj.active; }),",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                       ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "asteroids.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "end",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "());",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "void",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "handleInput",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "char",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "key",
+        "color": "#FFA657",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "switch",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(key) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "case",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'w'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ":",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": " // Thrust",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.vel.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "cos",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0.1",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.vel.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "sin",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0.1",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "break",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "case",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'a'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ":",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": " // Rotate left",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "-=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0.1",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "break",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "case",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'d'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ":",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": " // Rotate right",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "ship.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "+=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0.1",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "break",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "case",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "' '",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ":",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": " // Shoot",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (bullets.",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "size",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " MAX_BULLETS) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "Object bullet;",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.pos ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.pos;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.vel.x ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "cos",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.vel.y ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "sin",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(ship.angle) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "*",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "5",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.angle ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ship.angle;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullet.active ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "true",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "bullets.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "push_back",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(bullet);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "                ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "break",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "};",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "int",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "main",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "() {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "AsteroidsGame game;",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "clock_t",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " lastTime ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "clock",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "();",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "while",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "true",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Handle input",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "_kbhit",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "()) {",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "char",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " key ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "_getch",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "();",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "if",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " (key ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "==",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "'q'",
+        "color": "#A5D6FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "break",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "            ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "game.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "handleInput",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(key);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Calculate delta time",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "clock_t",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " currentTime ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "clock",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "();",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "float",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " deltaTime ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "float",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": "(currentTime ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " lastTime) ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " CLOCKS_PER_SEC;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "lastTime ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "=",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " currentTime;",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        // Update and render",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "game.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "update",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(deltaTime);",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "game.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "clearScreen",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "();",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "game.",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      },
+      {
+        "content": "updateDisplay",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "();",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "        ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "Sleep",
+        "color": "#D2A8FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "50",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ");",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": " // Cap framerate",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": false
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "    ",
+        "color": "#E6EDF3",
+        "fontStyle": 0,
+        "skip": true
+      },
+      {
+        "content": "return",
+        "color": "#FF7B72",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": false,
+    "tokens": [
+      {
+        "content": "}",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      }
+    ]
+  },
+  {
+    "skip": true,
+    "tokens": []
+  }
+]

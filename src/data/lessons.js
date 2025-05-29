@@ -20,6 +20,13 @@ const lessons = [
 		slug: "debug",
 		file: "debug.py"
 	},
+	{
+		title: "C++ Astroids",
+		description: "Mini-game around a ship with astroids",
+		language: "cpp",
+		slug: "astroids",
+		file: "astroids.cpp"
+	},
 ];
 
 export default lessons;

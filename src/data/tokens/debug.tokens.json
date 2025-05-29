@@ -29,80 +29,15 @@
     "tokens": []
   },
   {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "a ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "=",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "1",
-        "color": "#79C0FF",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "# first var",
-        "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
-      }
-    ]
-  },
-  {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "b ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "=",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "2",
-        "color": "#79C0FF",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "# second var",
-        "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
-      }
-    ]
-  },
-  {
     "skip": true,
-    "tokens": []
+    "tokens": [
+      {
+        "content": "# Short loop",
+        "color": "#8B949E",
+        "fontStyle": 0,
+        "skip": true
+      }
+    ]
   },
   {
     "skip": false,
@@ -133,7 +68,17 @@
         "fontStyle": 0
       },
       {
-        "content": "(b):",
+        "content": "(",
+        "color": "#E6EDF3",
+        "fontStyle": 0
+      },
+      {
+        "content": "10",
+        "color": "#79C0FF",
+        "fontStyle": 0
+      },
+      {
+        "content": "):",
         "color": "#E6EDF3",
         "fontStyle": 0
       }
@@ -165,246 +110,6 @@
       },
       {
         "content": ")",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      }
-    ]
-  },
-  {
-    "skip": true,
-    "tokens": []
-  },
-  {
-    "skip": true,
-    "tokens": [
-      {
-        "content": "    ",
-        "color": "#E6EDF3",
-        "fontStyle": 0,
-        "skip": true
-      },
-      {
-        "content": "# Addition",
-        "color": "#8B949E",
-        "fontStyle": 0,
-        "skip": true
-      }
-    ]
-  },
-  {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "    ",
-        "color": "#E6EDF3",
-        "fontStyle": 0,
-        "skip": true
-      },
-      {
-        "content": "print",
-        "color": "#79C0FF",
-        "fontStyle": 0
-      },
-      {
-        "content": "(a ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "+",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " b)",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      }
-    ]
-  },
-  {
-    "skip": true,
-    "tokens": []
-  },
-  {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "def",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "add",
-        "color": "#D2A8FF",
-        "fontStyle": 0
-      },
-      {
-        "content": "(a, b):",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      }
-    ]
-  },
-  {
-    "skip": true,
-    "tokens": [
-      {
-        "content": "    ",
-        "color": "#E6EDF3",
-        "fontStyle": 0,
-        "skip": true
-      },
-      {
-        "content": "\"\"\"Function definition\"\"\"",
-        "color": "#A5D6FF",
-        "fontStyle": 0,
-        "skip": true
-      }
-    ]
-  },
-  {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "    ",
-        "color": "#E6EDF3",
-        "fontStyle": 0,
-        "skip": true
-      },
-      {
-        "content": "return",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " a ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "+",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " b",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      }
-    ]
-  },
-  {
-    "skip": true,
-    "tokens": []
-  },
-  {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "for",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " i ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "in",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "range",
-        "color": "#79C0FF",
-        "fontStyle": 0
-      },
-      {
-        "content": "(a):",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      }
-    ]
-  },
-  {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "    ",
-        "color": "#E6EDF3",
-        "fontStyle": 0,
-        "skip": true
-      },
-      {
-        "content": "for",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " j ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "in",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "range",
-        "color": "#79C0FF",
-        "fontStyle": 0
-      },
-      {
-        "content": "(b):",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      }
-    ]
-  },
-  {
-    "skip": false,
-    "tokens": [
-      {
-        "content": "        ",
-        "color": "#E6EDF3",
-        "fontStyle": 0,
-        "skip": true
-      },
-      {
-        "content": "print",
-        "color": "#79C0FF",
-        "fontStyle": 0
-      },
-      {
-        "content": "(i ",
-        "color": "#E6EDF3",
-        "fontStyle": 0
-      },
-      {
-        "content": "+",
-        "color": "#FF7B72",
-        "fontStyle": 0
-      },
-      {
-        "content": " j)",
         "color": "#E6EDF3",
         "fontStyle": 0
       }
