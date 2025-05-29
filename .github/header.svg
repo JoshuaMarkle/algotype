@@ -82,7 +82,7 @@
 				height: 10%;
 				left: 0;
 				top: 30%;
-				animation: 	type-text .5s linear .5s,
+				animation: 	type-text .5s linear 1.5s,
 							underline-blink 1.5s steps(1) infinite 1s;
 				animation-fill-mode: forwards;
 			}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
+import StatPanel from "@/components/StatPanel"
 
 // The typing test given tokens
 export default function TypingTest({ tokens, onComplete }) {
@@ -42,6 +43,13 @@ export default function TypingTest({ tokens, onComplete }) {
 	const [done, setDone] = useState(false);
 	const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
 
+	const [wpm, setWpm] = useState(0);
+	const [acc, setAcc] = useState(100);
+
+	const currentLineRef = useRef(null);
+	const scrollTargetY = useRef(0);
+	const scrollRaf = useRef(null);
+
 	// Helpers
 	const currToken = flatTokens[tokenIdx] ?? { content: "", color: "#fff" };
 	const isNewlineTok = currToken.newline;
@@ -56,9 +64,15 @@ export default function TypingTest({ tokens, onComplete }) {
 				(flatTokens[i]?.skip || flatTokens[i]?.autoSkip)
 		) {
 			const skipLength = flatTokens[i].content?.length || 0;
-			stats.current.correct += skipLength;
 			i++;
 		}
+		
+		// Check finish
+		if (i > lastTypableTokenIndex) {
+			finish();
+			return;
+		}
+
 		if (i !== tokenIdx) {
 			setTokenIdx(i);
 			setTyped(0);
@@ -71,6 +85,13 @@ export default function TypingTest({ tokens, onComplete }) {
 		setTyped(0);
 		setWrong("");
 		setTimeout(skipUntilNextTypable, 0);
+
+		// Scroll
+		if (currentLineRef.current) {
+			const rect = currentLineRef.current.getBoundingClientRect();
+			const middleY = window.scrollY + rect.top - (window.innerHeight / 2) + rect.height / 2;
+			scrollTargetY.current = middleY;
+		}
 	};
 
 	const finish = () => {
@@ -237,17 +258,91 @@ export default function TypingTest({ tokens, onComplete }) {
 		skipUntilNextTypable();
 	}, [tokenIdx]);
 
+	// Smooth scroll when focused line changes
+	useEffect(() => {
+		if (!started || done)
+			return;
+
+		const frame = requestAnimationFrame(() => {
+			if (!currentLineRef.current) return;
+
+			const rect = currentLineRef.current.getBoundingClientRect();
+			const middleY = window.scrollY + rect.top - window.innerHeight / 2 + rect.height / 2;
+			scrollTargetY.current = middleY;
+
+			const scrollStep = () => {
+				const currentScroll = window.scrollY;
+				const diff = scrollTargetY.current - currentScroll;
+				const delta = diff * 0.15;
+
+				if (Math.abs(diff) > 1) {
+					window.scrollTo(0, currentScroll + delta);
+					scrollRaf.current = requestAnimationFrame(scrollStep);
+				} else {
+					cancelAnimationFrame(scrollRaf.current);
+				}
+			};
+
+			cancelAnimationFrame(scrollRaf.current);
+			scrollRaf.current = requestAnimationFrame(scrollStep);
+		});
+
+		return () => cancelAnimationFrame(frame);
+	}, [tokenIdx, typed]);
+
+	// Disable scrolling when playing
+	useEffect(() => {
+		if (started && !done) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+
+		// Clean up in case component unmounts
+		return () => {
+			document.body.style.overflow = "";
+		};
+	}, [started, done]);
+
 	useEffect(() => {
 		if (!currToken) return;
 		const tokenDone = typed === currToken.content.length && wrong === "";
 		if (tokenDone) {
-			if (tokenIdx === flatTokens.length - 1)
+			if (tokenIdx === lastTypableTokenIndex) {
 				finish();
-			else
+			} else {
 				resetForNext();
+			}
 		}
 	}, [typed, wrong]);
 
+	// Real-time WPM + Accuracy updates
+	useEffect(() => {
+		if (!started || done) return;
+
+		const interval = setInterval(() => {
+			const now = performance.now();
+			const minutes = (now - started) / 1000 / 60;
+			const correct = stats.current.correct;
+			const incorrect = stats.current.incorrect;
+
+			// WPM: words per minute = correct chars / 5 / minutes
+			const grossWpm = correct / 5 / minutes;
+
+			// Accuracy: correct / (correct + incorrect)
+			const totalTyped = correct + incorrect;
+			const accPct = totalTyped > 0 ? (correct / totalTyped) * 100 : 100;
+
+			setWpm(Math.round(grossWpm));
+			setAcc(Math.round(accPct));
+		}, 250); // update every 250ms
+
+		return () => clearInterval(interval);
+	}, [started, done]);
+
+	const lastTypableTokenIndex = useMemo(() => {
+		return flatTokens.findLastIndex(tok => !tok.skip && !tok.autoSkip && !tok.newline);
+	}, [flatTokens]);
 
 	// Compute token indices that belong to the current word
 	const cursorTokenIndices = useMemo(() => {
@@ -301,12 +396,14 @@ export default function TypingTest({ tokens, onComplete }) {
 
 			<pre className="whitespace-pre-wrap font-mono text-sm leading-relaxed">
 				{flatTokens.map((tok, idx) => {
+					const showCursor = shouldShowCursor(tok, idx);
+
 					// Newline tokens
 					if (tok.newline) {
-						const showCursor = shouldShowCursor(tok, idx);
+						const ref = showCursor ? currentLineRef : undefined;
 						return showCursor ? (
 							<span key={idx}>
-								<span style={{ background: "rgba(200,200,255,0.25)" }}>↵</span>
+								<span ref={ref} style={{ background: "rgba(200,200,255,0.25)" }}>↵</span>
 								<br />
 							</span>
 						) : (
@@ -340,7 +437,7 @@ export default function TypingTest({ tokens, onComplete }) {
 					const chars = tok.content.split("");
 					const rendered = chars.map((ch, charIdx) => {
 						const globalPos = wordOffset + charIdx; // position in the word
-						const cursorHere = globalPos === cursorPosGlobal;
+						const cursorHere = showCursor && globalPos === cursorPosGlobal;
 
 						// Colors
 						let color = "#555"; // default future token color
@@ -355,8 +452,12 @@ export default function TypingTest({ tokens, onComplete }) {
 							wrongLeft--;
 						}
 
+						// Ref (scroll)
+						const ref = cursorHere ? currentLineRef : undefined;
+
 						return (
 							<span
+								ref={ref}
 								key={charIdx}
 								style={{
 									color: cursorHere ? "#fff" : color,
@@ -383,11 +484,17 @@ export default function TypingTest({ tokens, onComplete }) {
 						);
 					}
 
-					console.log("wrong:", wrong, "overflow:", overflowText, "token:", currToken.content);
-
 					return <span key={idx}>{rendered}{overflowSpan}</span>;
 				})}
 			</pre>
+			<StatPanel
+				wpm={wpm}
+				acc={acc}
+				correct={stats.current.correct}
+				incorrect={stats.current.incorrect}
+				backspace={stats.current.backspace}
+				visible={!done}
+			/>
 		</div>
 	);
 }
