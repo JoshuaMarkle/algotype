@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Code } from "lucide-react";
 import clsx from "clsx";
 
 export default function Navbar() {
@@ -43,11 +44,14 @@ export default function Navbar() {
 			>
 				<div className="flex justify-center h-full border-b border-neutral-800 px-4">
 					<div className="w-full flex items-center justify-between max-w-5xl">
-						<div>AlgoType</div>
-						<ul className="flex gap-4">
-							<li><a href="/" className="hover:text-blue-400 transition">Home</a></li>
-							<li><a href="/about" className="hover:text-blue-400 transition">About</a></li>
-							<li><a href="/contact" className="hover:text-blue-400 transition">Contact</a></li>
+						<div className="flex flex-row gap-2 items-center">
+							<Code className="h-6 w-6 text-blue-400"/>
+							<div className="font-semibold">AlgoType</div>
+						</div>
+						<ul className="flex gap-8">
+							<li><a href="/" className="hover:text-red-400 transition">About</a></li>
+							<li><a href="/lessons" className="hover:text-red-400 transition">Lessons</a></li>
+							<li><a href="/signin" className="hover:text-red-400 transition">Sign In</a></li>
 						</ul>
 					</div>
 				</div>
