@@ -30,17 +30,29 @@ export default function useTypingState(tokens) {
 
 	const shouldShowCursor = true;
 
-	// Move to next token or line
-	const moveForwardLine = () => {
-		skipUntilTypable(lineIdx, tokenIdx + 1);
+	// Skip tokens until the next typable one
+	const moveForward = () => {
+		let li = lineIdx;
+		let ti = tokenIdx;
+		let pos = typed + 1;
+
+		const token = lines[li]?.[ti];
+
+		// Still inside current token
+		if (token && token.content && pos < token.content.length) {
+			setTyped(pos);
+			return;
+		}
+
+		// Otherwise, skip to the next valid token
+		skipUntilTypable(li, ti + 1);
 	};
 
 	// Skip to next valid token
 	const skipUntilTypable = (startLine = 0, startToken = 0) => {
-		setTyped(0);
-		setWrong("");
 		let li = startLine;
 		let ti = startToken;
+
 		while (li < lines.length) {
 			while (ti < lines[li].length) {
 				const token = lines[li][ti];
@@ -51,14 +63,33 @@ export default function useTypingState(tokens) {
 					continue;
 				}
 
-				// Valid token
-				if (token.type === "newline" ||
-					token.type === "space" ||
-					token.content && token.content.length > 0) {
+				// Newline token
+				if (token.type === "newline") {
 					setLineIdx(li);
 					setTokenIdx(ti);
+					setTyped(0);
+					setWrong("");
 					return;
 				}
+
+				// Space token
+				if (token.type === "space") {
+					setLineIdx(li);
+					setTokenIdx(ti);
+					setTyped(0);
+					setWrong("");
+					return;
+				}
+
+				// Typable content token
+				if (token.content && token.content.length > 0) {
+					setLineIdx(li);
+					setTokenIdx(ti);
+					setTyped(0);
+					setWrong("");
+					return;
+				}
+
 				ti++;
 			}
 			li++;
@@ -73,6 +104,14 @@ export default function useTypingState(tokens) {
 	useEffect(() => {
 		skipUntilTypable();
 	}, []);
+
+	// Move to next token or line
+	const resetForNext = () => {
+		console.log("RESET")
+		setTyped(0);
+		setWrong("");
+		moveForward();
+	};
 
 	// Mark the session as finished
 	const finish = () => {
@@ -90,7 +129,7 @@ export default function useTypingState(tokens) {
 		for (let ti = tokenIdx; ti <= wordEnd; ti++) {
 			const t   = line[ti];
 			const off = ti === tokenIdx ? typed + wrong.length : 0;
-			room += (t.content?.length ?? 0) - off;
+			room += t.content.length - off;
 		}
 
 		return room;
@@ -113,6 +152,7 @@ export default function useTypingState(tokens) {
 		const key = e.key;
 		if (!started) setStarted(performance.now());
 
+		// Prevent default key behavior
 		if (key.length === 1 || key === "Backspace" || key === "Enter" || key === "Tab")
 			e.preventDefault();
 
@@ -131,39 +171,34 @@ export default function useTypingState(tokens) {
 
 		// Enter
 		if (key === "Enter" && currToken.type === "newline" && !wrong) {
+			resetForNext();
 			stats.current.correct++;
-			moveForwardLine();
 			return;
 		}
 
 		// Space
 		if ((key === " " || key === "Tab") && currToken.type === "space" && !wrong) {
+			resetForNext();
 			stats.current.correct++;
-			moveForwardLine();
 			return;
 		}
 
-		// Ignore other non-character keys
+		// Ignore other control keys
 		if (key.length !== 1) return;
 
-		// Correct
+		// Correct char
 		const capacity = roomUntilBoundary();
 		if (capacity > 0 && key === expected[typed] && !wrong) {
+			setTyped(t => t + 1);
 			stats.current.correct++;
-
-			// Last character of line? Move to next line
-			if (typed + 1 >= expected.length) {
-				moveForwardLine();
-			} else {
-				setTyped(t => t + 1);
-			}
 			return;
 		}
 
-		// Incorrect
-		if (wrong.length < 10) {
+		// Incorrect char
+		if (expected[typed] !== " " && expected[typed] != "\n" && wrong.length < 10) {
 			setWrong(w => w + key);
 			stats.current.incorrect++;
+			return;
 		}
 	};
 
@@ -179,7 +214,7 @@ export default function useTypingState(tokens) {
 		lastWordIdx,
 		textareaRef,
 		handleKey,
-		moveForwardLine,
+		resetForNext,
 		finish,
 		shouldShowCursor
 	};

@@ -147,7 +147,7 @@ function insertNewlineToken(tokens) {
 		}
 	}
 
-	const newlineToken = { type: 'newline' };
+	const newlineToken = { type: 'newline', content: "↵" };
 	tokens.splice(insertAt, 0, newlineToken);
 	return tokens;
 }
