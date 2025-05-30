@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import { loadLessonBySlug } from "@/utils/loadLessonCode";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer"
-import TypingTest from "@/components/TypingTest";
+import TypingTest from "@/components/typingtest/TypingTest";
 
 export async function generateStaticParams() {
 	const lessons = (await import("@/data/lessons")).default;

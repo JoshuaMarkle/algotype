@@ -9,7 +9,7 @@ const lessons = [
 	{
 		title: "Assembly",
 		description: "BrainF*ck Compilier written by Brian Raiter (1999)",
-		language: "asm",
+		language: "nasm",
 		slug: "bfcompilier",
 		file: "bf.asm",
 	},
