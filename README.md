@@ -9,5 +9,6 @@
 AlgoType is a versatile [typing test](https://algotype.net/) **designed for programmers** who want to take their programming speed to the next level. It offers a minimalistic experience to practice typing symbols that don't get enough practice.
 
 ![Screenshot](.github/screenshot.png)
+![Screenshot](.github/screenshot2.png)
 
 Happy coding && typing
