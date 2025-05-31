@@ -4,32 +4,28 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import StatPanel from "@/components/StatPanel";
 import useTypingState from "./useTypingState";
 import useAutoScroll from "./useAutoScroll";
-import useTypingStats from "./useTypingStats";
 import TypingRenderer from "./TypingRenderer";
+import TypingResults from "./TypingResults";
 
 export default function TypingTest({ tokens }) {
+	// Stats reference
+	const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
+
 	const {
-		lineIdx, setLineIdx,
-		tokenIdx, setTokenIdx,
-		typed, setTyped,
-		wrong, setWrong,
-		started, setStarted,
-		done, setDone,
+		lineIdx,
+		tokenIdx,
+		typed,
+		wrong,
+		started,
+		done,
 		currToken,
 		cursorTokenIndices,
 		lastTypableTokenIndex,
 		lastWordIdx,
 		textareaRef,
 		handleKey,
-		moveForward,
-		resetForNext,
-		finish,
 		shouldShowCursor
-	} = useTypingState(tokens);
-
-	// Main stats
-	const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
-	const { wpm, acc } = useTypingStats(started, done, stats);
+	} = useTypingState(tokens, stats);
 
 	// Scrolling
 	const currentLineRef = useRef(null);
@@ -58,26 +54,32 @@ export default function TypingTest({ tokens }) {
 				onKeyDown={handleKey}
 				className="absolute w-0 h-0 opacity-0"
 			/>
-			<TypingRenderer
-				tokens={tokens}
-				lineIdx={lineIdx}
-				tokenIdx={tokenIdx}
-				currToken={currToken}
-				typed={typed}
-				wrong={wrong}
-				currentLineRef={currentLineRef}
-				shouldShowCursor={shouldShowCursor}
-				cursorTokenIndices={cursorTokenIndices}
-				lastWordIdx={lastWordIdx}
-			/>
-			<StatPanel
-				wpm={wpm}
-				acc={acc}
-				correct={stats.current.correct}
-				incorrect={stats.current.incorrect}
-				backspace={stats.current.backspace}
-				visible={!done}
-			/>
+			{!done ? ( // If not done, show the typing test; otherwise, the results
+				<>
+					<TypingRenderer
+						tokens={tokens}
+						lineIdx={lineIdx}
+						tokenIdx={tokenIdx}
+						currToken={currToken}
+						typed={typed}
+						wrong={wrong}
+						currentLineRef={currentLineRef}
+						shouldShowCursor={shouldShowCursor}
+						cursorTokenIndices={cursorTokenIndices}
+						lastWordIdx={lastWordIdx}
+					/>
+					<StatPanel
+						started={started}
+						done={done}
+						stats={stats}
+					/>
+				</>
+			) : (
+				<TypingResults
+					started={started}
+					stats={stats}
+				/>
+			)}
 		</div>
 	);
 } 

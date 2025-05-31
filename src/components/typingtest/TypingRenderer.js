@@ -18,30 +18,22 @@ export default function TypingRenderer({
 				let wrongLeft = li === lineIdx ? wrong.length : 0;
 
 				return (
-					<div key={`line-${li}`}>
+					<div key={`line-${li}`} className="flex flex-row">
+						<div className="text-fg-3 mr-4">{li}</div>
 						{line.map((token, ti) => {
 							const showCursor = true;
 							const isPast = li < lineIdx || (li === lineIdx && ti < tokenIdx);
 							const isFuture = !(cursorTokenIndices.has(ti) && li === lineIdx);
 							const tokenTypeClass = `token-${token.type ?? "plain"}`;
 
+							// Hide newline if in past/future
 							if (token.type === "newline" && (isPast || isFuture)) {
-								const isCursorHere =
-									li === lineIdx && ti === tokenIdx && typed === 0 && wrong.length === 0;
-
-								if (!isCursorHere) return null; // Skip rendering
-
-								const ref = currentLineRef;
-								const className = `token token-newline cursor`;
-
-								return (
-									<span key={`${li}-${ti}`} ref={ref} className={className}>
-										{token.content}
-									</span>
-								);
+								const isCursorHere = (li === lineIdx && ti === tokenIdx);
+								if (!isCursorHere) 
+									return null; // Skip rendering
 							}
 
-							// Fully typed (past) tokens
+							// Past tokens
 							if (isPast) {
 								return (
 									<span key={`${li}-${ti}`} className={`token ${tokenTypeClass}`}>
@@ -50,7 +42,7 @@ export default function TypingRenderer({
 								);
 							}
 
-							// Not in word? Then future token
+							// Future tokens (past current word)
 							if (isFuture) {
 								return (
 									<span key={`${li}-${ti}`} className="token token-future">
@@ -59,7 +51,7 @@ export default function TypingRenderer({
 								);
 							}
 
-							// Current token — render each character
+							// Current token (render each character)
 							const chars = token.content.split("");
 							const rendered = chars.map((ch, charIdx) => {
 								const globalPos = wordOffset + charIdx;

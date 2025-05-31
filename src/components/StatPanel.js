@@ -1,17 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import calculateStats from "@/components/typingtest/calculateStats";
 import clsx from "clsx";
 
 const NAV_HEIGHT = 48;
 const GAP_BELOW_NAV = 16;
 
 export default function StatPanel({
-	wpm,
-	acc,
-	correct,
-	incorrect,
-	backspace,
+	started,
+	done,
+	stats,
 	visible = true
 }) {
 	const [navVisible, setNavVisible] = useState(true);
@@ -21,7 +20,14 @@ export default function StatPanel({
 	const offsetRef = useRef(0);
 	const raf = useRef(null);
 
-	// Combined scroll logic: direction detection + inertia delta
+	// Schedule re-renders
+	const timeoutRef = useRef(null);
+	const [, forceUpdate] = useState(0);
+
+	const {wpm, acc, time, timeTillWpmDrop } = calculateStats(started, stats);
+	console.log("render", timeTillWpmDrop);
+
+	// Scroll logic: direction detection + inertia delta
 	useEffect(() => {
 		lastScrollY.current = window.scrollY;
 
@@ -61,6 +67,29 @@ export default function StatPanel({
 		return () => cancelAnimationFrame(raf.current);
 	}, []);
 
+	// Re-render after the time it will take for 1 wpm drop
+	useEffect(() => {
+		// Clear any existing scheduled re-render
+		if (timeoutRef.current) {
+			clearTimeout(timeoutRef.current);
+			timeoutRef.current = null;
+		}
+
+		// Schedule
+		if (!done && Number.isFinite(timeTillWpmDrop) && timeTillWpmDrop > 0) {
+			timeoutRef.current = setTimeout(() => {
+				forceUpdate(n => n + 1); // Force re-render
+			}, timeTillWpmDrop * 1000 + 20); // +20ms to make sure it hits
+		}
+
+		return () => {
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current);
+				timeoutRef.current = null;
+			}
+		};
+	}, [timeTillWpmDrop, done]);
+
 	const anchorTop = navVisible ? NAV_HEIGHT + GAP_BELOW_NAV : GAP_BELOW_NAV;
 
 	return (
@@ -94,15 +123,18 @@ export default function StatPanel({
 					<div>
 						<h3 className="text-neutral-600">DEBUG</h3>
 						<div className="flex row gap-2">
-							<p className="text-red-400">COR:</p><p>{correct}</p>
+							<p className="text-red-400">COR:</p><p>{stats.current.correct}</p>
 						</div>
 						<div className="flex row gap-2">
-							<p className="text-red-400">INC:</p><p>{incorrect}</p>
+							<p className="text-red-400">INC:</p><p>{stats.current.incorrect}</p>
 						</div>
 						<div className="flex row gap-2">
-							<p className="text-red-400">BAC:</p><p>{backspace}</p>
+							<p className="text-red-400">BAC:</p><p>{stats.current.backspace}</p>
 						</div>
 					</div>
+				</div>
+				<div className="flex row gap-2">
+					<p className="text-blue-300">TIME:</p><p>{time}</p>
 				</div>
 			</div>
 		</div>

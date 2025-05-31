@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 
-export default function useTypingState(tokens) {
+export default function useTypingState(tokens, stats) {
 	// Current line/token pair
 	const [lineIdx, setLineIdx] = useState(0);
 	const [tokenIdx, setTokenIdx] = useState(0);
@@ -10,7 +10,6 @@ export default function useTypingState(tokens) {
 	const [wrong, setWrong] = useState("");
 	const [started, setStarted] = useState(null);
 	const [done, setDone] = useState(false);
-	const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
 
 	// Scrolling
 	const textareaRef = useRef();
@@ -168,19 +167,17 @@ export default function useTypingState(tokens) {
 	};
 
 	return {
-		lineIdx, setLineIdx,
-		tokenIdx, setTokenIdx,
-		typed, setTyped,
-		wrong, setWrong,
-		started, setStarted,
-		done, setDone,
+		lineIdx,
+		tokenIdx,
+		typed,
+		wrong,
+		started,
+		done,
 		currToken,
 		cursorTokenIndices,
 		lastWordIdx,
 		textareaRef,
 		handleKey,
-		moveForwardLine,
-		finish,
 		shouldShowCursor
 	};
 }
