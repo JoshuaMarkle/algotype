@@ -6,10 +6,12 @@ import useTypingState from "./useTypingState";
 import useAutoScroll from "./useAutoScroll";
 import TypingRenderer from "./TypingRenderer";
 import TypingResults from "./TypingResults";
+import calculateStats from "./calculateStats";
 
 export default function TypingTest({ tokens }) {
 	// Stats reference
 	const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
+	let wpmOverTime = useRef([])
 
 	const {
 		lineIdx,
@@ -47,6 +49,18 @@ export default function TypingTest({ tokens }) {
 	// Auto-focus the hidden textarea
 	useEffect(() => textareaRef.current?.focus(), []);
 
+	// Store wpm data every 1 seconds
+	useEffect(() => {
+		if (!started || done) return;
+
+		const interval = setInterval(() => {
+			const { wpm, acc, time} = calculateStats(started, stats);
+			wpmOverTime.current.push({ wpm, acc, time });
+		}, 1000);
+
+		return () => clearInterval(interval);
+	}, [started, done, stats]);
+
 	return (
 		<div className="relative select-none" onClick={() => textareaRef.current?.focus()}>
 			<textarea
@@ -68,16 +82,19 @@ export default function TypingTest({ tokens }) {
 						cursorTokenIndices={cursorTokenIndices}
 						lastWordIdx={lastWordIdx}
 					/>
+					{/*
 					<StatPanel
 						started={started}
 						done={done}
 						stats={stats}
 					/>
+					*/}
 				</>
 			) : (
 				<TypingResults
 					started={started}
 					stats={stats}
+					data={wpmOverTime.current}
 				/>
 			)}
 		</div>

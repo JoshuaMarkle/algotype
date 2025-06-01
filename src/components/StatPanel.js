@@ -115,6 +115,9 @@ export default function StatPanel({
 						<div className="flex row gap-2">
 							<p className="text-blue-300">ACC:</p><p>{acc}</p>
 						</div>
+						<div className="flex row gap-2">
+							<p className="text-blue-300">TIME:</p><p>{time}</p>
+						</div>
 					</div>
 
 					<div className="border-r border-neutral-800 mx-8" />
@@ -131,9 +134,6 @@ export default function StatPanel({
 							<p className="text-red-400">BAC:</p><p>{stats.current.backspace}</p>
 						</div>
 					</div>
-				</div>
-				<div className="flex row gap-2">
-					<p className="text-blue-300">TIME:</p><p>{time}</p>
 				</div>
 			</div>
 		</div>
