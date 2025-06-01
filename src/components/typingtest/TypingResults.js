@@ -1,5 +1,6 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Text, RefreshCcw, ChevronRight } from "lucide-react"
+import { IconButton } from "@/components/ui/Button"
 import calculateStats from "./calculateStats";
 
 export default function TypingResults({
@@ -12,6 +13,8 @@ export default function TypingResults({
 	const correct = stats.current.correct;
 	const incorrect = stats.current.incorrect;
 	const timeLost = Math.ceil(time * (1 - acc / 100))
+	const maxWPM = Math.max(...data.map(d => d.wpm));
+	const minWPM = Math.min(...data.map(d => d.wpm));
 
 	// Update + clean data
 	if (data[data.length - 1].wpm != wpm)
@@ -51,7 +54,7 @@ export default function TypingResults({
 				<div>
 					<h3 className="text-6xl">{wpm > 999 ? "Inf" : wpm}</h3>
 					<p className="font-mono text-lg font-bold">
-						WPM <span className="text-green">•</span>{"123"} <span className="text-red">•</span>{"23"}
+						WPM <span className="text-green">•</span>{maxWPM} <span className="text-red">•</span>{minWPM}
 					</p>
 				</div>
 				<div>
@@ -67,10 +70,11 @@ export default function TypingResults({
 					</p>
 				</div>
 			</div>
-			<div className="flex flex-row gap-16">
-				<Text className="h-6 w-6 text-fg"/>
-				<RefreshCcw className="h-6 w-6 text-fg"/>
-				<ChevronRight className="h-6 w-6 text-fg"/>
+			<div className="flex flex-row gap-16 text-fg-3">
+				<Text className="size-6"/>
+				<RefreshCcw className="size-6"/>
+				<ChevronRight className="size-6"/>
+				<IconButton><Text/></IconButton>
 			</div>
 		</div>
 	);
@@ -82,10 +86,9 @@ const CustomTooltip = ({ active, payload, label }) => {
 		const { wpm, acc, time } = payload[0].payload; // read from payload directly
 
 		return (
-			<div className="bg-black text-white text-sm rounded-lg shadow-lg px-4 py-2 space-y-1">
-				<p className="font-semibold">Time: {label}</p>
-				<p>WPM: <span className="font-medium">{wpm}</span></p>
-				<p>ACC: <span className="font-medium">{acc}%</span></p>
+			<div className="bg-black font-mono text-white text-sm rounded-lg shadow-lg px-4 py-2 space-y-1">
+				<p>wpm: <span className="font-medium">{wpm}</span></p>
+				<p>acc: <span className="font-medium">{acc}%</span></p>
 				{/* Optional: <p>Time: {formatTime(time)}</p> */}
 			</div>
 		);

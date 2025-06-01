@@ -47,7 +47,7 @@ export default function TypingTest({ tokens }) {
 	}, [started, done]);
 
 	// Auto-focus the hidden textarea
-	useEffect(() => textareaRef.current?.focus(), []);
+	useEffect(() => textareaRef.current?.focus(), [textareaRef]);
 
 	// Store wpm data every 1 seconds
 	useEffect(() => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 
 export default function useTypingState(tokens, stats) {
 	// Current line/token pair
@@ -34,8 +34,15 @@ export default function useTypingState(tokens, stats) {
 		skipUntilTypable(lineIdx, tokenIdx + 1);
 	};
 
+
+	// Mark the session as finished
+	const finish = useCallback(() => {
+		if (done) return;
+		setDone(true);
+	}, [done]);
+
 	// Skip to next valid token
-	const skipUntilTypable = (startLine = 0, startToken = 0) => {
+	const skipUntilTypable = useCallback((startLine = 0, startToken = 0) => {
 		setTyped(0);
 		setWrong("");
 		let li = startLine;
@@ -51,9 +58,7 @@ export default function useTypingState(tokens, stats) {
 				}
 
 				// Valid token
-				if (token.type === "newline" ||
-					token.type === "space" ||
-					token.content && token.content.length > 0) {
+				if (token.type === "newline" || token.type === "space" || (token.content && token.content.length > 0)) {
 					setLineIdx(li);
 					setTokenIdx(ti);
 					return;
@@ -66,19 +71,12 @@ export default function useTypingState(tokens, stats) {
 
 		// Reached end of content
 		finish();
-	};
+	}, [lines, finish]);
 
 	// Skip forward at the start
 	useEffect(() => {
 		skipUntilTypable();
-	}, []);
-
-	// Mark the session as finished
-	const finish = () => {
-		if (done) return;
-		setDone(true);
-		const end = performance.now();
-	};
+	}, [skipUntilTypable]);
 
 	// Count characters left in the word
 	const roomUntilBoundary = () => {
@@ -104,7 +102,7 @@ export default function useTypingState(tokens, stats) {
 		}
 
 		return set;
-	}, [lineIdx, tokenIdx, currToken.wlength]);
+	}, [tokenIdx, currToken.wlength]);
 
 	// Handle keyboard input
 	const handleKey = (e) => {

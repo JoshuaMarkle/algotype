@@ -32,5 +32,5 @@ export default function useAutoScroll(started, done, currentLineRef, tokenIdx, t
 		});
 
 		return () => cancelAnimationFrame(frame);
-	}, [tokenIdx, typed]);
+	}, [tokenIdx, typed, started, done, currentLineRef]);
 }

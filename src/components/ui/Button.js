@@ -28,3 +28,17 @@ export function PrimaryButton({ children, className, ...props }) {
 		</Button>
 	);
 }
+
+export function IconButton({ children, className, ...props }) {
+	return (
+		<Button
+			className={clsx(
+				"border-none rounded-full p-0 text-fg-3 hover:text-fg",
+				className
+			)}
+			{...props}
+		>
+			{children}
+		</Button>
+	);
+}
