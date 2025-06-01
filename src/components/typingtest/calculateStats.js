@@ -15,7 +15,7 @@ export default function calculateStats(started, stats) {
 	const accPercent = totalTyped > 0 ? (correct / totalTyped) * 100 : 100;
 
 	const wpm = Math.round(grossWpm);
-	const acc = Math.round(accPercent);
+	const acc = Math.floor(accPercent);
 	const time = Math.round(seconds);
 
 	// Time it takes to drop 1 WPM

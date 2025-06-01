@@ -32,7 +32,6 @@ export default async function LessonPage({ params }) {
 			<Navbar/>
 			<div className="flex justify-center p-4">
 				<div className="w-full max-w-5xl">
-					<h1 className="text-2xl my-6">{lesson.title}</h1>
 					<TypingTest tokens={tokenLines} />
 				</div>
 			</div>

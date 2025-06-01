@@ -25,7 +25,6 @@ export default function StatPanel({
 	const [, forceUpdate] = useState(0);
 
 	const {wpm, acc, time, timeTillWpmDrop } = calculateStats(started, stats);
-	console.log("render", timeTillWpmDrop);
 
 	// Scroll logic: direction detection + inertia delta
 	useEffect(() => {

@@ -6,37 +6,6 @@
       "skip": true
     }
   ],
-  [
-    {
-      "type": "keyword",
-      "content": "print",
-      "wlength": 4
-    },
-    {
-      "type": "punctuation",
-      "content": "(",
-      "wlength": 3
-    },
-    {
-      "type": "plain",
-      "content": "x",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
-      "content": ")",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    },
-    {
-      "type": "comment",
-      "content": "#comment",
-      "skip": true
-    }
-  ],
   [],
   [
     {
