@@ -4,13 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:tokens": "node scripts/generateTokens.mjs",
+    "generate:tokens": "node backend/scripts/generateTokens.js",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.9",
+    "chalk": "^5.4.1",
     "clsx": "^2.1.1",
     "geist": "^1.4.2",
     "lucide-react": "^0.511.0",
@@ -18,9 +20,7 @@
     "prismjs": "^1.30.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0",
-    "recharts": "^2.15.3",
-    "shiki": "^3.4.2"
+    "recharts": "^2.15.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

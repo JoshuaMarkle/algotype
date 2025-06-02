@@ -43,29 +43,31 @@ AlgoType.net is a versatile [typing test](https://algotype.net/) **designed for 
     - Scripts to generate tokens + upload tokens to database
 
 ```python
-src                 # frontend
-├── app             # entry point
-│   └── lessons     # lesson homepage
-│       └── [slug]  # dynamic typing test
-├── components      # reusable components
-│   ├── typingtest  # typing test stuff
-│   └── ui          # ui stuff
-├── utils           # utilities
-└── lib             # libraries
+src                             # frontend
+├── app                         # entry point
+│   └── lessons                 # lesson homepage
+│       └── [slug]              # dynamic typing test
+├── components                  # reusable components
+│   ├── ui                      # ui stuff
+│   └── typingtest              # typing test stuff
+├── utils                       # utilities
+└── lib                         # libraries (database stuff)
     └── supabaseClient.js
+```
 
-backend             # backend
-├── data            # data
-│   ├── files       # code files (group by language)
-│   │   ├── python
-│   │   ├── javascript
-│   │   └── cpp
-│   ├── algorithms  # code files (group by language)
-│   ├── syntax      # code files (group by language)
-│   └── tokens      # generated tokens (optional output)
-└── scripts         # generate + push tokens
-    ├── generateTokens.js
-    └── uploadToSupabase.js
+```python
+backend                         # backend
+├── data                        # data
+│   ├── files                   # large files   (group by language)
+│   ├── algorithms              # medium files  (group by language)
+│   └── syntax                  # snippet files (group by language)
+│       ├── python
+│       ├── javascript
+│       └── cpp
+├── data                        # data
+└── scripts                     # build scripts
+    ├── generateTokens.js       # generate tokens
+    └── uploadToSupabase.js     # upload tokens to db
 ```
 
 ---
