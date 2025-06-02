@@ -1,12 +1,28 @@
 [
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; bf.asm: Copyright (C) 1999 Brian Raiter <breadbox@muppetlabs.com>:",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; Licensed under the terms of the GNU General Public License, either",
@@ -15,19 +31,29 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; version 2 or (at your option) any later version.",
       "skip": true
     }
   ],
+  [],
   [
     {
-      "type": "comment",
-      "content": ";;",
-      "skip": true
-    }
-  ],
-  [
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; To build:",
@@ -36,12 +62,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
-      "content": ";;\tnasm -f bin -o bf bf.asm && chmod +x bf",
+      "content": ";; nasm -f bin -o bf bf.asm && chmod +x bf",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; To use:",
@@ -50,13 +92,26 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
-      "content": ";;\tbf < foo.b > foo && chmod +x foo",
+      "content": ";; bf < foo.b > foo && chmod +x foo",
       "skip": true
     }
   ],
   [],
   [
+    {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
     {
       "type": "keyword",
       "content": "BITS",
@@ -79,6 +134,14 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; This is the size of the data area supplied to compiled programs.",
       "skip": true
@@ -86,6 +149,11 @@
   ],
   [],
   [
+    {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
     {
       "type": "operator",
       "content": "%",
@@ -107,7 +175,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -122,12 +190,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; For the compiler, the text segment is also the data segment. The",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; memory image of the compiler is inside the code buffer, and is",
@@ -136,12 +220,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; modified in place to become the memory image of the compiled",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; program. The area of memory that is the data segment for compiled",
@@ -150,12 +250,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; programs is not used by the compiler. The text and data segments of",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; compiled programs are really only different areas in a single",
@@ -164,12 +280,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; segment, from the system's point of view. Both the compiler and",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; compiled programs load the entire file contents into a single",
@@ -178,6 +310,14 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; memory segment which is both writeable and executable.",
       "skip": true
@@ -185,6 +325,11 @@
   ],
   [],
   [
+    {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
     {
       "type": "operator",
       "content": "%",
@@ -197,7 +342,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -206,7 +351,7 @@
     },
     {
       "type": "space",
-      "content": "\t\t"
+      "content": "  "
     },
     {
       "type": "number",
@@ -220,6 +365,11 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
+    {
       "type": "operator",
       "content": "%",
       "wlength": 2
@@ -231,7 +381,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -240,7 +390,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -254,6 +404,11 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
+    {
       "type": "operator",
       "content": "%",
       "wlength": 2
@@ -265,7 +420,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -274,7 +429,7 @@
     },
     {
       "type": "space",
-      "content": "\t\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -307,6 +462,14 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; Here begins the file image.",
       "skip": true
@@ -316,7 +479,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -326,7 +489,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -341,12 +504,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; At the beginning of the text segment is the ELF header and the",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; program header table, the latter consisting of a single entry. The",
@@ -355,12 +534,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; two structures overlap for a space of eight bytes. Nearly all",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; unused fields in the structures are used to hold bits of code.",
@@ -369,6 +564,14 @@
   ],
   [],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; The beginning of the ELF header.",
@@ -379,7 +582,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -389,7 +592,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -415,11 +618,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_ident",
       "skip": true
@@ -428,12 +626,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The top(s) of the main compiling loop. The loop jumps back to",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; different positions, depending on how many bytes to copy into the",
@@ -442,12 +656,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; code buffer. After doing that, esi is initialized to point to the",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; epilog code chunk, a copy of edi (the pointer to the end of the",
@@ -456,6 +686,14 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; code buffer) is saved in ebp, the high bytes of eax are reset to",
       "skip": true
@@ -463,12 +701,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; zero (via the exchange with ebx), and then the next character of",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; input is retrieved.",
@@ -483,8 +737,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -493,7 +754,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -564,6 +825,7 @@
       "content": "↵"
     }
   ],
+  [],
   [
     {
       "type": "label",
@@ -571,8 +833,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -584,6 +853,7 @@
       "content": "↵"
     }
   ],
+  [],
   [
     {
       "type": "label",
@@ -591,8 +861,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -604,6 +881,7 @@
       "content": "↵"
     }
   ],
+  [],
   [
     {
       "type": "label",
@@ -611,8 +889,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -624,6 +909,7 @@
       "content": "↵"
     }
   ],
+  [],
   [
     {
       "type": "label",
@@ -631,8 +917,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -644,6 +937,7 @@
       "content": "↵"
     }
   ],
+  [],
   [
     {
       "type": "label",
@@ -651,8 +945,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -661,7 +962,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -745,7 +1046,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -755,7 +1056,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -784,7 +1085,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -794,7 +1095,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -820,11 +1121,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_type    (0x0002)",
       "skip": true
@@ -833,7 +1129,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t\t\t\t\t"
+      "content": "\t"
     },
     {
       "type": "newline",
@@ -841,14 +1137,14 @@
     },
     {
       "type": "comment",
-      "content": "; ehdr.e_machine (0x0003)",
+      "content": ";    ehdr.e_machine (0x0003)",
       "skip": true
     }
   ],
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -858,7 +1154,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -884,11 +1180,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_version",
       "skip": true
@@ -897,7 +1188,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -907,7 +1198,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -931,12 +1222,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The entry point for the compiler (and compiled programs), and the",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; location of the program header table.",
@@ -947,7 +1254,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -957,7 +1264,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -969,11 +1276,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_entry",
       "skip": true
@@ -982,7 +1284,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -992,7 +1294,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -1027,11 +1329,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_phoff",
       "skip": true
@@ -1040,12 +1337,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The last routine of the compiler, called when there is no more",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; input. The epilog code chunk is copied into the code buffer. The",
@@ -1054,12 +1367,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; text origin is popped off the stack into ecx, and subtracted from",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; edi to determine the size of the compiled program. This value is",
@@ -1068,12 +1397,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; stored in the program header table, and then is moved into edx.",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; The program then jumps to the putchar routine, which sends the",
@@ -1082,12 +1427,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; compiled program to stdout before falling through to the epilog",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; routine and exiting.",
@@ -1102,8 +1463,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -1116,7 +1484,7 @@
     },
     {
       "type": "space",
-      "content": "\t\t\t\t",
+      "content": " ",
       "skip": true
     },
     {
@@ -1128,7 +1496,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1138,7 +1506,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -1167,7 +1535,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1177,7 +1545,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "   "
     },
     {
       "type": "register",
@@ -1192,7 +1560,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1202,7 +1570,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "   "
     },
     {
       "type": "register",
@@ -1226,11 +1594,6 @@
     {
       "type": "newline",
       "content": "↵"
-    },
-    {
-      "type": "space",
-      "content": "\t\t",
-      "skip": true
     },
     {
       "type": "comment",
@@ -1241,7 +1604,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1251,7 +1614,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -1280,7 +1643,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1296,7 +1659,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1306,7 +1669,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -1335,7 +1698,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1345,7 +1708,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "   "
     },
     {
       "type": "plain",
@@ -1366,11 +1729,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_ehsize",
       "skip": true
@@ -1378,6 +1736,14 @@
   ],
   [],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; 0x20 == the size of one program header table entry.",
@@ -1388,7 +1754,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1398,7 +1764,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -1410,11 +1776,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_phentsize",
       "skip": true
@@ -1423,12 +1784,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The beginning of the program header table. 1 == PT_LOAD, indicating",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; that the segment is to be loaded into memory.",
@@ -1443,8 +1820,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -1453,7 +1837,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -1465,11 +1849,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; ehdr.e_phnum & phdr.p_type",
       "skip": true
@@ -1478,7 +1857,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t\t\t\t\t"
+      "content": "\t"
     },
     {
       "type": "newline",
@@ -1486,14 +1865,14 @@
     },
     {
       "type": "comment",
-      "content": "; ehdr.e_shentsize",
+      "content": ";  ehdr.e_shentsize",
       "skip": true
     }
   ],
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1503,7 +1882,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -1513,11 +1892,6 @@
     {
       "type": "newline",
       "content": "↵"
-    },
-    {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
     },
     {
       "type": "comment",
@@ -1528,7 +1902,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t\t\t\t\t"
+      "content": "\t"
     },
     {
       "type": "newline",
@@ -1536,12 +1910,20 @@
     },
     {
       "type": "comment",
-      "content": "; ehdr.e_shstrndx",
+      "content": ";  ehdr.e_shstrndx",
       "skip": true
     }
   ],
   [],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; (Note that the next four bytes, in addition to containing the first",
@@ -1550,12 +1932,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; two instructions of the bracket routine, also comprise the memory",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; address of the text origin.)",
@@ -1566,7 +1964,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1576,7 +1974,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -1588,11 +1986,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; phdr.p_vaddr",
       "skip": true
@@ -1601,12 +1994,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The bracket routine emits code for the \"[\" instruction. This",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; instruction translates to a simple \"jmp near\", but the target of",
@@ -1615,6 +2024,14 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; the jump will not be known until the matching \"]\" is seen. The",
       "skip": true
@@ -1622,12 +2039,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; routine thus outputs a random target, and pushes the location of",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; the target in the code buffer onto the stack.",
@@ -1642,8 +2075,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -1652,7 +2092,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -1681,7 +2121,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1691,7 +2131,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -1706,7 +2146,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1716,7 +2156,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -1726,11 +2166,6 @@
     {
       "type": "newline",
       "content": "↵"
-    },
-    {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
     },
     {
       "type": "comment",
@@ -1741,7 +2176,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1757,7 +2192,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1767,7 +2202,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -1791,12 +2226,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; This is where the size of the executable file is stored in the",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; program header table. The compiler updates this value just before",
@@ -1805,12 +2256,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; it outputs the compiled program. This is the only field in the two",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; headers that differs between the compiler and its compiled",
@@ -1819,12 +2286,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; programs. (While the compiler is reading input, the first byte of",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; this field is also used as an input buffer.)",
@@ -1839,8 +2322,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -1849,7 +2339,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -1861,11 +2351,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; phdr.p_filesz",
       "skip": true
@@ -1874,6 +2359,14 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The size of the program in memory. This entry creates an area of",
       "skip": true
@@ -1881,12 +2374,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; bytes, arraysize in size, all initialized to zero, starting at",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; DATAORG.",
@@ -1897,7 +2406,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -1907,7 +2416,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -1937,11 +2446,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; phdr.p_memsz",
       "skip": true
@@ -1950,12 +2454,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The code chunk for the \".\" instruction. eax is set to 4 to invoke",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; the write system call. ebx, the file handle to write to, is set to",
@@ -1964,12 +2484,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; 1 for stdout. ecx points to the buffer containing the bytes to",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; output, and edx equals the number of bytes to output. (Note that",
@@ -1978,12 +2514,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; the first byte of the first instruction, which is also the least",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; significant byte of the p_flags field, encodes to 0xB3. Having the",
@@ -1992,12 +2544,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; 2-bit set marks the memory containing the compiler, and its",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; compiled programs, as writeable.)",
@@ -2012,8 +2580,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -2022,7 +2597,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2048,11 +2623,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; phdr.p_flags",
       "skip": true
@@ -2061,7 +2631,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2071,7 +2641,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2100,7 +2670,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2110,7 +2680,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -2122,11 +2692,6 @@
       "content": "↵"
     },
     {
-      "type": "space",
-      "content": "\t\t\t",
-      "skip": true
-    },
-    {
       "type": "comment",
       "content": "; phdr.p_align",
       "skip": true
@@ -2135,12 +2700,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
-      "content": ";; The epilog code chunk. After restoring the initialized registers,",
+      "content": ";; The epilog code chunk. After restoring the initialized registers",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; eax and ebx are both zero. eax is incremented to 1, so as to invoke",
@@ -2148,6 +2729,14 @@
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; the exit system call. ebx specifies the process's return value.",
@@ -2162,8 +2751,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -2178,7 +2774,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2188,7 +2784,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2203,7 +2799,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2213,7 +2809,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -2228,6 +2824,14 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The code chunks for the \">\", \"<\", \"+\", and \"-\" instructions.",
       "skip": true
@@ -2241,79 +2845,19 @@
       "wlength": 1
     },
     {
-      "type": "space",
-      "content": "\t\t"
-    },
-    {
-      "type": "plain",
-      "content": "inc",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": "\t"
-    },
-    {
-      "type": "register",
-      "content": "ecx",
-      "wlength": 1
-    },
-    {
       "type": "newline",
       "content": "↵"
     }
   ],
   [
     {
-      "type": "label",
-      "content": "decptr:",
-      "wlength": 1
-    },
-    {
       "type": "space",
-      "content": "\t\t"
-    },
-    {
-      "type": "plain",
-      "content": "dec",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": "\t"
-    },
-    {
-      "type": "register",
-      "content": "ecx",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "label",
-      "content": "incchar:",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
       "content": "inc",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": "\t"
-    },
-    {
-      "type": "plain",
-      "content": "byte",
       "wlength": 1
     },
     {
@@ -2321,18 +2865,20 @@
       "content": " "
     },
     {
-      "type": "operator",
-      "content": "[",
-      "wlength": 3
-    },
-    {
       "type": "register",
       "content": "ecx",
-      "wlength": 2
+      "wlength": 1
     },
     {
-      "type": "operator",
-      "content": "]",
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [],
+  [
+    {
+      "type": "label",
+      "content": "decptr:",
       "wlength": 1
     },
     {
@@ -2342,13 +2888,9 @@
   ],
   [
     {
-      "type": "label",
-      "content": "decchar:",
-      "wlength": 1
-    },
-    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -2357,7 +2899,44 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
+    },
+    {
+      "type": "register",
+      "content": "ecx",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [],
+  [
+    {
+      "type": "label",
+      "content": "incchar:",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
+    {
+      "type": "plain",
+      "content": "inc",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "plain",
@@ -2391,12 +2970,84 @@
   [],
   [
     {
+      "type": "label",
+      "content": "decchar:",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
+    {
+      "type": "plain",
+      "content": "dec",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "plain",
+      "content": "byte",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "[",
+      "wlength": 3
+    },
+    {
+      "type": "register",
+      "content": "ecx",
+      "wlength": 2
+    },
+    {
+      "type": "operator",
+      "content": "]",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [],
+  [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The main loop of the compiler continues here, by obtaining the next",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; character of input. This is also the code chunk for the \",\"",
@@ -2405,12 +3056,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
-      "content": ";; instruction. eax is set to 3 to invoke the read system call. ebx,",
+      "content": ";; instruction. eax is set to 3 to invoke the read system call. ebx",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; the file handle to read from, is set to 0 for stdin. ecx points to",
@@ -2419,12 +3086,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; a buffer to receive the bytes that are read, and edx equals the",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; number of bytes to read.",
@@ -2439,8 +3122,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -2449,7 +3139,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2478,7 +3168,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2488,7 +3178,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2517,7 +3207,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2527,7 +3217,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "number",
@@ -2542,12 +3232,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; If eax is zero or negative, then there is no more input, and the",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; compiler proceeds to the eof routine.",
@@ -2558,7 +3264,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2568,7 +3274,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -2597,7 +3303,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2607,7 +3313,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -2622,6 +3328,14 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; Otherwise, esi is advanced four bytes (from the epilog code chunk",
       "skip": true
@@ -2629,12 +3343,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; to the incptr code chunk), and the character read from the input is",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; stored in al, with the high bytes of eax reset to zero.",
@@ -2645,7 +3375,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2661,7 +3391,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2671,7 +3401,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2710,12 +3440,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The compiler compares the input character with \">\" and \"<\". esi is",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; advanced to the next code chunk with each failed test.",
@@ -2726,7 +3472,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2736,7 +3482,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2765,7 +3511,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2775,7 +3521,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -2790,7 +3536,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2800,7 +3546,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2815,7 +3561,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2825,7 +3571,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2854,7 +3600,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2864,7 +3610,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -2879,7 +3625,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2889,7 +3635,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2904,6 +3650,14 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The next four tests check for the characters \"+\", \",\", \"-\", and",
       "skip": true
@@ -2911,12 +3665,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
-      "content": ";; \".\", respectively. These four characters are contiguous in ASCII,",
+      "content": ";; \".\", respectively. These four characters are contiguous in ASCII",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; and so are tested for by doing successive decrements of eax.",
@@ -2927,7 +3697,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2937,7 +3707,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -2966,7 +3736,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -2976,7 +3746,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -2991,7 +3761,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3001,7 +3771,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3016,7 +3786,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3026,7 +3796,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -3041,7 +3811,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3051,7 +3821,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3066,7 +3836,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3076,7 +3846,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3091,7 +3861,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3101,7 +3871,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3116,7 +3886,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3126,7 +3896,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -3141,7 +3911,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3151,7 +3921,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3166,7 +3936,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3176,7 +3946,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -3191,12 +3961,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The remaining instructions, \"[\" and \"]\", have special routines for",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; emitting the proper code. (Note that the jump back to the main loop",
@@ -3205,6 +3991,14 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; is at the edge of the short-jump range. Routines below here",
       "skip": true
@@ -3212,12 +4006,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
-      "content": ";; therefore use this jump as a relay to return to the main loop;",
+      "content": ";; therefore use this jump as a relay to return to the main loop",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; however, in order to use it correctly, the routines must be sure",
@@ -3225,6 +4035,14 @@
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; that the zero flag is cleared at the time.)",
@@ -3235,7 +4053,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3245,7 +4063,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3292,7 +4110,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3302,7 +4120,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -3317,7 +4135,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3327,7 +4145,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3371,6 +4189,7 @@
       "content": "↵"
     }
   ],
+  [],
   [
     {
       "type": "label",
@@ -3378,8 +4197,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -3388,7 +4214,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -3403,12 +4229,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; The endbracket routine emits code for the \"]\" instruction, as well",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; as completing the code for the matching \"[\". The compiler first",
@@ -3417,12 +4259,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; emits \"cmp dh, [ecx]\" and the first two bytes of a \"jnz near\". The",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; location of the missing target in the code for the \"[\" instruction",
@@ -3431,6 +4289,14 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; is then retrieved from the stack, the correct target value is",
       "skip": true
@@ -3438,12 +4304,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; computed and stored, and then the current instruction's jmp target",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; is computed and emitted.",
@@ -3458,8 +4340,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": "\t"
+      "content": "\t",
+      "skip": true
     },
     {
       "type": "plain",
@@ -3468,7 +4357,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3497,7 +4386,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3513,7 +4402,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3523,7 +4412,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3589,7 +4478,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3599,7 +4488,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3614,7 +4503,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3624,7 +4513,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3653,7 +4542,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3663,7 +4552,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "operator",
@@ -3702,7 +4591,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3712,7 +4601,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3741,7 +4630,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3757,7 +4646,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3767,7 +4656,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -3791,12 +4680,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; This is the entry point, for both the compiler and its compiled",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; programs. The shared initialization code sets ecx to the beginning",
@@ -3805,6 +4710,14 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; of the array that is the compiled program's data area, and edx to",
       "skip": true
@@ -3812,12 +4725,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; one. (This also clears the zero flag for the relay jump below.) The",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; registers are then saved on the stack, to be restored at the end.",
@@ -3839,7 +4768,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3849,7 +4778,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3878,7 +4807,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3888,7 +4817,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -3903,7 +4832,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -3919,12 +4848,28 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; At this point, the compiler and its compiled programs diverge.",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; Although every compiled program includes all the code in this file",
@@ -3933,12 +4878,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; above this point, only the three instructions directly above are",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; actually used by both. This point is where the compiler begins",
@@ -3947,12 +4908,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; storing the generated code, so only the compiler sees the",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; instructions below. This routine first modifies ecx to contain",
@@ -3961,6 +4938,14 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; TEXTORG, which is stored on the stack, and then offsets it to point",
       "skip": true
@@ -3968,12 +4953,28 @@
   ],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; to filesize. edi is set equal to codebuf, and then the compiler",
       "skip": true
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
     {
       "type": "comment",
       "content": ";; enters the main loop.",
@@ -3995,7 +4996,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -4005,7 +5006,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -4080,7 +5081,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -4090,7 +5091,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "register",
@@ -4105,7 +5106,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -4115,7 +5116,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -4167,7 +5168,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -4177,7 +5178,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "register",
@@ -4261,7 +5262,7 @@
   [
     {
       "type": "space",
-      "content": "\t\t",
+      "content": "\t",
       "skip": true
     },
     {
@@ -4271,7 +5272,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": "  "
     },
     {
       "type": "plain",
@@ -4295,6 +5296,14 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t"
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    },
+    {
       "type": "comment",
       "content": ";; Here ends the file image.",
       "skip": true
@@ -4303,13 +5312,18 @@
   [],
   [
     {
+      "type": "space",
+      "content": "\t",
+      "skip": true
+    },
+    {
       "type": "plain",
       "content": "compilersize",
       "wlength": 1
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "plain",
@@ -4318,7 +5332,7 @@
     },
     {
       "type": "space",
-      "content": "\t"
+      "content": " "
     },
     {
       "type": "operator",

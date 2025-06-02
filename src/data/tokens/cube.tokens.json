@@ -2,26 +2,6 @@
   [
     {
       "type": "keyword",
-      "content": "import",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "plain",
-      "content": "pygame",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "keyword",
       "content": "from",
       "wlength": 1
     },
@@ -63,7 +43,7 @@
     },
     {
       "type": "plain",
-      "content": "sin",
+      "content": "pi",
       "wlength": 2
     },
     {
@@ -77,83 +57,7 @@
     },
     {
       "type": "plain",
-      "content": "pi",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "keyword",
-      "content": "from",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "plain",
-      "content": "numpy",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "keyword",
-      "content": "import",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "plain",
-      "content": "matrix",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "keyword",
-      "content": "from",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "plain",
-      "content": "time",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "keyword",
-      "content": "import",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "plain",
-      "content": "sleep",
+      "content": "sin",
       "wlength": 1
     },
     {
@@ -199,7 +103,103 @@
       "content": "↵"
     }
   ],
+  [
+    {
+      "type": "keyword",
+      "content": "from",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "plain",
+      "content": "time",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "keyword",
+      "content": "import",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "plain",
+      "content": "sleep",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
   [],
+  [
+    {
+      "type": "keyword",
+      "content": "import",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "plain",
+      "content": "pygame",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "keyword",
+      "content": "from",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "plain",
+      "content": "numpy",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "keyword",
+      "content": "import",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "plain",
+      "content": "matrix",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
   [],
   [
     {
@@ -512,7 +512,6 @@
     }
   ],
   [],
-  [],
   [
     {
       "type": "plain",
@@ -580,6 +579,16 @@
     {
       "type": "punctuation",
       "content": "(",
+      "wlength": 3
+    },
+    {
+      "type": "number",
+      "content": "50",
+      "wlength": 2
+    },
+    {
+      "type": "punctuation",
+      "content": ",",
       "wlength": 1
     },
     {
@@ -598,21 +607,7 @@
     },
     {
       "type": "space",
-      "content": "  "
-    },
-    {
-      "type": "number",
-      "content": "50",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
-      "content": ",",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": "  "
+      "content": " "
     },
     {
       "type": "number",
@@ -662,7 +657,7 @@
     },
     {
       "type": "space",
-      "content": "  "
+      "content": " "
     },
     {
       "type": "number",
@@ -676,7 +671,7 @@
     },
     {
       "type": "space",
-      "content": "  "
+      "content": " "
     },
     {
       "type": "number",
@@ -707,11 +702,7 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
+      "wlength": 3
     },
     {
       "type": "number",
@@ -744,7 +735,7 @@
     },
     {
       "type": "space",
-      "content": "  "
+      "content": " "
     },
     {
       "type": "number",
@@ -775,11 +766,7 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
+      "wlength": 3
     },
     {
       "type": "number",
@@ -793,7 +780,7 @@
     },
     {
       "type": "space",
-      "content": "  "
+      "content": " "
     },
     {
       "type": "number",
@@ -862,7 +849,7 @@
     },
     {
       "type": "space",
-      "content": "  "
+      "content": " "
     },
     {
       "type": "number",
@@ -912,84 +899,6 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "number",
-      "content": "50",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
-      "content": ",",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "operator",
-      "content": "-",
-      "wlength": 3
-    },
-    {
-      "type": "number",
-      "content": "50",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
-      "content": ",",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "operator",
-      "content": "-",
-      "wlength": 4
-    },
-    {
-      "type": "number",
-      "content": "50",
-      "wlength": 3
-    },
-    {
-      "type": "punctuation",
-      "content": ")",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
-      "content": ",",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "space",
-      "content": "    ",
-      "skip": true
-    },
-    {
-      "type": "punctuation",
-      "content": "(",
-      "wlength": 4
-    },
-    {
-      "type": "operator",
-      "content": "-",
       "wlength": 3
     },
     {
@@ -1097,7 +1006,81 @@
     },
     {
       "type": "space",
-      "content": "  "
+      "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "-",
+      "wlength": 4
+    },
+    {
+      "type": "number",
+      "content": "50",
+      "wlength": 3
+    },
+    {
+      "type": "punctuation",
+      "content": ")",
+      "wlength": 2
+    },
+    {
+      "type": "punctuation",
+      "content": ",",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "space",
+      "content": "    ",
+      "skip": true
+    },
+    {
+      "type": "punctuation",
+      "content": "(",
+      "wlength": 4
+    },
+    {
+      "type": "operator",
+      "content": "-",
+      "wlength": 3
+    },
+    {
+      "type": "number",
+      "content": "50",
+      "wlength": 2
+    },
+    {
+      "type": "punctuation",
+      "content": ",",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "-",
+      "wlength": 3
+    },
+    {
+      "type": "number",
+      "content": "50",
+      "wlength": 2
+    },
+    {
+      "type": "punctuation",
+      "content": ",",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -1258,16 +1241,11 @@
     {
       "type": "plain",
       "content": "matrix",
-      "wlength": 3
-    },
-    {
-      "type": "punctuation",
-      "content": "(",
       "wlength": 2
     },
     {
       "type": "punctuation",
-      "content": "[",
+      "content": "(",
       "wlength": 1
     },
     {
@@ -1280,6 +1258,11 @@
       "type": "space",
       "content": "        ",
       "skip": true
+    },
+    {
+      "type": "punctuation",
+      "content": "[",
+      "wlength": 4
     },
     {
       "type": "punctuation",
@@ -1330,15 +1313,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -1424,15 +1400,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -1485,21 +1454,26 @@
     {
       "type": "plain",
       "content": "cos",
-      "wlength": 5
+      "wlength": 6
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 4
+      "wlength": 5
     },
     {
       "type": "plain",
       "content": "theta",
-      "wlength": 3
+      "wlength": 4
     },
     {
       "type": "punctuation",
       "content": ")",
+      "wlength": 3
+    },
+    {
+      "type": "punctuation",
+      "content": "]",
       "wlength": 2
     },
     {
@@ -1520,11 +1494,6 @@
     },
     {
       "type": "punctuation",
-      "content": "]",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
       "content": ")",
       "wlength": 1
     },
@@ -1533,6 +1502,7 @@
       "content": "↵"
     }
   ],
+  [],
   [],
   [
     {
@@ -1592,16 +1562,11 @@
     {
       "type": "plain",
       "content": "matrix",
-      "wlength": 3
-    },
-    {
-      "type": "punctuation",
-      "content": "(",
       "wlength": 2
     },
     {
       "type": "punctuation",
-      "content": "[",
+      "content": "(",
       "wlength": 1
     },
     {
@@ -1614,6 +1579,11 @@
       "type": "space",
       "content": "        ",
       "skip": true
+    },
+    {
+      "type": "punctuation",
+      "content": "[",
+      "wlength": 7
     },
     {
       "type": "punctuation",
@@ -1699,15 +1669,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -1758,15 +1721,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -1819,21 +1775,26 @@
     {
       "type": "plain",
       "content": "cos",
-      "wlength": 5
+      "wlength": 6
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 4
+      "wlength": 5
     },
     {
       "type": "plain",
       "content": "theta",
-      "wlength": 3
+      "wlength": 4
     },
     {
       "type": "punctuation",
       "content": ")",
+      "wlength": 3
+    },
+    {
+      "type": "punctuation",
+      "content": "]",
       "wlength": 2
     },
     {
@@ -1854,11 +1815,6 @@
     },
     {
       "type": "punctuation",
-      "content": "]",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
       "content": ")",
       "wlength": 1
     },
@@ -1867,6 +1823,7 @@
       "content": "↵"
     }
   ],
+  [],
   [],
   [
     {
@@ -1926,16 +1883,11 @@
     {
       "type": "plain",
       "content": "matrix",
-      "wlength": 3
-    },
-    {
-      "type": "punctuation",
-      "content": "(",
       "wlength": 2
     },
     {
       "type": "punctuation",
-      "content": "[",
+      "content": "(",
       "wlength": 1
     },
     {
@@ -1948,6 +1900,11 @@
       "type": "space",
       "content": "        ",
       "skip": true
+    },
+    {
+      "type": "punctuation",
+      "content": "[",
+      "wlength": 7
     },
     {
       "type": "punctuation",
@@ -2033,15 +1990,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -2122,15 +2072,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -2168,6 +2111,11 @@
     {
       "type": "number",
       "content": "1",
+      "wlength": 3
+    },
+    {
+      "type": "punctuation",
+      "content": "]",
       "wlength": 2
     },
     {
@@ -2185,11 +2133,6 @@
       "type": "space",
       "content": "    ",
       "skip": true
-    },
-    {
-      "type": "punctuation",
-      "content": "]",
-      "wlength": 2
     },
     {
       "type": "punctuation",
@@ -2735,28 +2678,17 @@
     {
       "type": "plain",
       "content": "matrix",
-      "wlength": 3
+      "wlength": 10
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 2
+      "wlength": 9
     },
     {
       "type": "punctuation",
       "content": "[",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "space",
-      "content": "        ",
-      "skip": true
+      "wlength": 8
     },
     {
       "type": "punctuation",
@@ -2794,15 +2726,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -2840,15 +2765,18 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
+    },
+    {
+      "type": "punctuation",
+      "content": "[",
+      "wlength": 8
+    },
+    {
+      "type": "plain",
+      "content": "p",
+      "wlength": 7
     },
     {
       "type": "punctuation",
@@ -2856,40 +2784,19 @@
       "wlength": 6
     },
     {
-      "type": "plain",
-      "content": "p",
+      "type": "number",
+      "content": "2",
       "wlength": 5
     },
     {
       "type": "punctuation",
-      "content": "[",
+      "content": "]",
       "wlength": 4
     },
     {
-      "type": "number",
-      "content": "2",
+      "type": "punctuation",
+      "content": "]",
       "wlength": 3
-    },
-    {
-      "type": "punctuation",
-      "content": "]",
-      "wlength": 2
-    },
-    {
-      "type": "punctuation",
-      "content": "]",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "space",
-      "content": "        ",
-      "skip": true
     },
     {
       "type": "punctuation",
@@ -3192,22 +3099,30 @@
     {
       "type": "builtin",
       "content": "int",
-      "wlength": 5
+      "wlength": 3
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 4
+      "wlength": 2
     },
     {
       "type": "plain",
       "content": "WIDTH",
-      "wlength": 3
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "/",
-      "wlength": 2
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -3249,27 +3164,31 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 8
+      "wlength": 5
     },
     {
       "type": "plain",
       "content": "m",
-      "wlength": 7
+      "wlength": 4
     },
     {
       "type": "punctuation",
       "content": "[",
-      "wlength": 6
+      "wlength": 3
     },
     {
       "type": "number",
       "content": "0",
-      "wlength": 5
+      "wlength": 2
     },
     {
       "type": "punctuation",
       "content": ",",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -3293,22 +3212,26 @@
     {
       "type": "plain",
       "content": "m",
-      "wlength": 7
+      "wlength": 4
     },
     {
       "type": "punctuation",
       "content": "[",
-      "wlength": 6
+      "wlength": 3
     },
     {
       "type": "number",
       "content": "1",
-      "wlength": 5
+      "wlength": 2
     },
     {
       "type": "punctuation",
       "content": ",",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -3332,22 +3255,26 @@
     {
       "type": "plain",
       "content": "m",
-      "wlength": 8
+      "wlength": 4
     },
     {
       "type": "punctuation",
       "content": "[",
-      "wlength": 7
+      "wlength": 3
     },
     {
       "type": "number",
       "content": "2",
-      "wlength": 6
+      "wlength": 2
     },
     {
       "type": "punctuation",
       "content": ",",
-      "wlength": 5
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -3601,7 +3528,11 @@
     {
       "type": "number",
       "content": "1",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -3970,22 +3901,30 @@
     {
       "type": "plain",
       "content": "sleep",
-      "wlength": 6
+      "wlength": 3
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 5
+      "wlength": 2
     },
     {
       "type": "number",
       "content": "1",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "/",
-      "wlength": 3
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",

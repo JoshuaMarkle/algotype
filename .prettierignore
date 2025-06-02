@@ -1,0 +1,7 @@
+.github
+*.md
+node_modules
+
+.cpp
+.h
+.hpp

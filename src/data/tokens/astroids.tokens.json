@@ -11,47 +11,27 @@
     },
     {
       "type": "macro",
-      "content": "<iostream>",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "macro",
-      "content": "#include",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "macro",
-      "content": "<vector>",
-      "wlength": 1
-    },
-    {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
-      "type": "macro",
-      "content": "#include",
-      "wlength": 1
-    },
-    {
-      "type": "space",
-      "content": " "
-    },
-    {
-      "type": "macro",
       "content": "<cmath>",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "macro",
+      "content": "#include",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "macro",
+      "content": "<conio.h>",
       "wlength": 1
     },
     {
@@ -91,7 +71,27 @@
     },
     {
       "type": "macro",
-      "content": "<conio.h>",
+      "content": "<iostream>",
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "macro",
+      "content": "#include",
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
+    },
+    {
+      "type": "macro",
+      "content": "<vector>",
       "wlength": 1
     },
     {
@@ -702,6 +702,11 @@
     }
   ],
   [
+    {
+      "type": "space",
+      "content": "  ",
+      "skip": true
+    },
     {
       "type": "keyword",
       "content": "private",
@@ -1953,26 +1958,26 @@
     {
       "type": "function",
       "content": "wrapAround",
-      "wlength": 4
+      "wlength": 3
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "plain",
       "content": "Point",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
       "type": "space",
       "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "&",
+      "wlength": 3
     },
     {
       "type": "plain",
@@ -2057,8 +2062,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": " "
+      "content": "            ",
+      "skip": true
     },
     {
       "type": "plain",
@@ -2180,8 +2192,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": " "
+      "content": "            ",
+      "skip": true
     },
     {
       "type": "plain",
@@ -2285,8 +2304,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": " "
+      "content": "            ",
+      "skip": true
     },
     {
       "type": "plain",
@@ -2408,8 +2434,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": " "
+      "content": "            ",
+      "skip": true
     },
     {
       "type": "plain",
@@ -3134,6 +3167,11 @@
   [],
   [
     {
+      "type": "space",
+      "content": "  ",
+      "skip": true
+    },
+    {
       "type": "keyword",
       "content": "public",
       "wlength": 2
@@ -3566,15 +3604,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "        ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "function",
@@ -3602,15 +3633,8 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "    ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -4494,12 +4518,20 @@
     {
       "type": "number",
       "content": "2",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "/",
-      "wlength": 3
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -4669,12 +4701,20 @@
     {
       "type": "number",
       "content": "2",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "/",
-      "wlength": 3
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -4844,12 +4884,20 @@
     {
       "type": "number",
       "content": "2",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "/",
-      "wlength": 3
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -5019,12 +5067,20 @@
     {
       "type": "number",
       "content": "2",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "/",
-      "wlength": 3
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "number",
@@ -5574,21 +5630,21 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "keyword",
       "content": "auto",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
       "type": "space",
       "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "&",
+      "wlength": 2
     },
     {
       "type": "plain",
@@ -5945,21 +6001,21 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "keyword",
       "content": "auto",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
       "type": "space",
       "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "&",
+      "wlength": 2
     },
     {
       "type": "plain",
@@ -7116,21 +7172,21 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "keyword",
       "content": "auto",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
       "type": "space",
       "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "&",
+      "wlength": 2
     },
     {
       "type": "plain",
@@ -7534,21 +7590,21 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "keyword",
       "content": "auto",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
       "type": "space",
       "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "&",
+      "wlength": 2
     },
     {
       "type": "plain",
@@ -7920,21 +7976,21 @@
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "keyword",
       "content": "auto",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
       "type": "space",
       "content": " "
+    },
+    {
+      "type": "operator",
+      "content": "&",
+      "wlength": 2
     },
     {
       "type": "plain",
@@ -8280,22 +8336,30 @@
     {
       "type": "function",
       "content": "sqrt",
-      "wlength": 5
+      "wlength": 3
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 4
+      "wlength": 2
     },
     {
       "type": "plain",
       "content": "dx",
-      "wlength": 3
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "*",
-      "wlength": 2
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "plain",
@@ -8318,12 +8382,20 @@
     {
       "type": "plain",
       "content": "dy",
-      "wlength": 5
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "operator",
       "content": "*",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "plain",
@@ -8920,22 +8992,33 @@
     {
       "type": "plain",
       "content": "bullets",
-      "wlength": 12
+      "wlength": 4
     },
     {
       "type": "punctuation",
       "content": ".",
-      "wlength": 11
+      "wlength": 3
     },
     {
       "type": "function",
       "content": "erase",
-      "wlength": 10
+      "wlength": 2
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 9
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "space",
+      "content": "            ",
+      "skip": true
     },
     {
       "type": "function",
@@ -9012,39 +9095,27 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "                              ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
       "content": "[",
-      "wlength": 5
-    },
-    {
-      "type": "punctuation",
-      "content": "]",
       "wlength": 4
     },
     {
       "type": "punctuation",
-      "content": "(",
+      "content": "]",
       "wlength": 3
+    },
+    {
+      "type": "punctuation",
+      "content": "(",
+      "wlength": 2
     },
     {
       "type": "plain",
       "content": "Object",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
@@ -9052,14 +9123,23 @@
       "content": " "
     },
     {
+      "type": "operator",
+      "content": "&",
+      "wlength": 3
+    },
+    {
       "type": "plain",
       "content": "obj",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "punctuation",
       "content": ")",
-      "wlength": 2
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -9131,7 +9211,7 @@
   [
     {
       "type": "space",
-      "content": "                     ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -9183,22 +9263,33 @@
     {
       "type": "plain",
       "content": "asteroids",
-      "wlength": 12
+      "wlength": 4
     },
     {
       "type": "punctuation",
       "content": ".",
-      "wlength": 11
+      "wlength": 3
     },
     {
       "type": "function",
       "content": "erase",
-      "wlength": 10
+      "wlength": 2
     },
     {
       "type": "punctuation",
       "content": "(",
-      "wlength": 9
+      "wlength": 1
+    },
+    {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
+      "type": "space",
+      "content": "            ",
+      "skip": true
     },
     {
       "type": "function",
@@ -9275,39 +9366,27 @@
       "wlength": 1
     },
     {
-      "type": "newline",
-      "content": "↵"
-    }
-  ],
-  [
-    {
       "type": "space",
-      "content": "                                ",
-      "skip": true
+      "content": " "
     },
     {
       "type": "punctuation",
       "content": "[",
-      "wlength": 5
-    },
-    {
-      "type": "punctuation",
-      "content": "]",
       "wlength": 4
     },
     {
       "type": "punctuation",
-      "content": "(",
+      "content": "]",
       "wlength": 3
+    },
+    {
+      "type": "punctuation",
+      "content": "(",
+      "wlength": 2
     },
     {
       "type": "plain",
       "content": "Object",
-      "wlength": 2
-    },
-    {
-      "type": "operator",
-      "content": "&",
       "wlength": 1
     },
     {
@@ -9315,14 +9394,23 @@
       "content": " "
     },
     {
+      "type": "operator",
+      "content": "&",
+      "wlength": 3
+    },
+    {
       "type": "plain",
       "content": "obj",
-      "wlength": 3
+      "wlength": 2
     },
     {
       "type": "punctuation",
       "content": ")",
-      "wlength": 2
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -9394,7 +9482,7 @@
   [
     {
       "type": "space",
-      "content": "                       ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -9521,7 +9609,11 @@
     {
       "type": "keyword",
       "content": "switch",
-      "wlength": 4
+      "wlength": 1
+    },
+    {
+      "type": "space",
+      "content": " "
     },
     {
       "type": "punctuation",
@@ -9555,7 +9647,7 @@
   [
     {
       "type": "space",
-      "content": "            ",
+      "content": "        ",
       "skip": true
     },
     {
@@ -9595,7 +9687,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -9697,7 +9789,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -9799,7 +9891,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -9820,7 +9912,7 @@
   [
     {
       "type": "space",
-      "content": "            ",
+      "content": "        ",
       "skip": true
     },
     {
@@ -9860,7 +9952,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -9909,7 +10001,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -9930,7 +10022,7 @@
   [
     {
       "type": "space",
-      "content": "            ",
+      "content": "        ",
       "skip": true
     },
     {
@@ -9970,7 +10062,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -10019,7 +10111,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -10040,7 +10132,7 @@
   [
     {
       "type": "space",
-      "content": "            ",
+      "content": "        ",
       "skip": true
     },
     {
@@ -10089,7 +10181,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -10171,7 +10263,7 @@
   [
     {
       "type": "space",
-      "content": "                    ",
+      "content": "                ",
       "skip": true
     },
     {
@@ -10201,7 +10293,7 @@
   [
     {
       "type": "space",
-      "content": "                    ",
+      "content": "                ",
       "skip": true
     },
     {
@@ -10260,7 +10352,7 @@
   [
     {
       "type": "space",
-      "content": "                    ",
+      "content": "                ",
       "skip": true
     },
     {
@@ -10362,7 +10454,7 @@
   [
     {
       "type": "space",
-      "content": "                    ",
+      "content": "                ",
       "skip": true
     },
     {
@@ -10464,7 +10556,7 @@
   [
     {
       "type": "space",
-      "content": "                    ",
+      "content": "                ",
       "skip": true
     },
     {
@@ -10523,7 +10615,7 @@
   [
     {
       "type": "space",
-      "content": "                    ",
+      "content": "                ",
       "skip": true
     },
     {
@@ -10572,7 +10664,7 @@
   [
     {
       "type": "space",
-      "content": "                    ",
+      "content": "                ",
       "skip": true
     },
     {
@@ -10618,7 +10710,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -10634,7 +10726,7 @@
   [
     {
       "type": "space",
-      "content": "                ",
+      "content": "            ",
       "skip": true
     },
     {
@@ -11050,8 +11142,15 @@
       "wlength": 1
     },
     {
+      "type": "newline",
+      "content": "↵"
+    }
+  ],
+  [
+    {
       "type": "space",
-      "content": " "
+      "content": "                ",
+      "skip": true
     },
     {
       "type": "keyword",

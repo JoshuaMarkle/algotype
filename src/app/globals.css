@@ -1,80 +1,128 @@
 @import "tailwindcss";
 
 :root {
-	--background: #040404;
-	--foreground: #f4f5f6;
+  --background: #040404;
+  --foreground: #f4f5f6;
 }
 
 @theme {
-	--font-sans: var(--font-geist-sans, "Geist");
-	--font-mono: var(--font-geist-mono, "Geist Mono"), monospace;
+  --font-sans: var(--font-geist-sans, "Geist");
+  --font-mono: var(--font-geist-mono, "Geist Mono"), monospace;
 
-	/* #202226 */
-	--color-bg:                 #040404;
-	--color-bg-2:               #0f1012;
-	--color-bg-3:               #16181b;
-	--color-bg-4:               #2d3035;
-	--color-bg-5:               #434750;
-	--color-fg:                 #f4f5f6;
-	--color-fg-2:               #8a8a90;
-	--color-fg-3:               #5a5a5f;
-	--color-fg-4:               #2d3035;
+  /* #202226 */
+  --color-bg: #040404;
+  --color-bg-2: #0f1012;
+  --color-bg-3: #16181b;
+  --color-bg-4: #2d3035;
+  --color-bg-5: #434750;
+  --color-fg: #f4f5f6;
+  --color-fg-2: #8a8a90;
+  --color-fg-3: #5a5a5f;
+  --color-fg-4: #2d3035;
 
-	--color-red:				#da3633;
-	--color-green:				#00C756;
-	--color-blue:				#4971fc;
+  --color-red: #da3633;
+  --color-green: #00c756;
+  --color-blue: #4971fc;
 
-	--color-primary:            #4971fc;
-	--color-primary-2:          #315efc;
-	--color-border-primary:     #315efc;
-	--color-primary-fg:         #ffffff;
+  --color-primary: #4971fc;
+  --color-primary-2: #315efc;
+  --color-border-primary: #315efc;
+  --color-primary-fg: #ffffff;
 
-	--color-destructive:        #da3633;
-	--color-descructive-2:      #cf2926;
-	--color-border-destructive: #cf2926;
-	--color-destructive-fg:     #ffffff;
+  --color-destructive: #da3633;
+  --color-descructive-2: #cf2926;
+  --color-border-destructive: #cf2926;
+  --color-destructive-fg: #ffffff;
 
-	--color-border-subtle:      #16181b;
-	--color-border:             #2d3035;
-	--color-border-strong:      #434750;
-
+  --color-border-subtle: #16181b;
+  --color-border: #2d3035;
+  --color-border-strong: #434750;
 }
 
 html {
-	font-family: Arial, Helvetica, sans-serif;
-	background-color: var(--background);
-	color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 /* Token styling */
 .token,
 .token.token-comment,
 .token.token-prolog,
-.token.token-cdata { color: #8b949e; }
-.token.token-plain { color: var(--color-fg); }
+.token.token-cdata {
+  color: #8b949e;
+}
+
+.token.token-plain {
+  color: var(--color-fg);
+}
+
 .token.token-doctype,
 .token.token-punctuation,
-.token.token-entity { color: #c9d1d9; }
+.token.token-entity {
+  color: #c9d1d9;
+}
+
 .token.token-attr-name,
 .token.token-class-name,
 .token.token-boolean,
 .token.token-constant,
-.token.token-number { color: #79c0ff; }
-.token.token-keyword { color: #ff7b72; }
+.token.token-number {
+  color: #79c0ff;
+}
+
+.token.token-keyword {
+  color: #ff7b72;
+}
+
 .token.token-string,
 .token.token-char,
 .token.token-attr-value,
-.token.token-regex { color: #a5d6ff; }
+.token.token-regex {
+  color: #a5d6ff;
+}
+
 .token.token-function,
-.token.token-builtin { color: #d2a8ff; }
+.token.token-builtin {
+  color: #d2a8ff;
+}
+
 .token.token-tag,
-.token.token-selector { color: #7ee787; }
+.token.token-selector {
+  color: #7ee787;
+}
+
 .token.token-operator,
-.token.token-property { color: #ffab70; }
+.token.token-property {
+  color: #ffab70;
+}
+
 .token.token-variable,
-.token.token-symbol { color: #ffa657; }
-.token.token-deleted { color: #ffdcd7; background-color: rgba(248, 81, 73, 0.15); }
-.token.token-inserted { color: #aff5b4; background-color: rgba(46, 160, 67, 0.15); }
-.token.token-important { color: #ff7b72; font-weight: bold; }
-.token.token-wrong { color: #da3633; text-decoration: underline; }
-.cursor { color: var(--color-fg); background: var(--color-bg-5); }
+.token.token-symbol {
+  color: #ffa657;
+}
+
+.token.token-deleted {
+  color: #ffdcd7;
+  background-color: rgba(248, 81, 73, 0.15);
+}
+
+.token.token-inserted {
+  color: #aff5b4;
+  background-color: rgba(46, 160, 67, 0.15);
+}
+
+.token.token-important {
+  color: #ff7b72;
+  font-weight: bold;
+}
+
+.token.token-wrong {
+  color: #da3633;
+  text-decoration: underline;
+}
+
+.cursor {
+  color: var(--color-fg);
+  background: var(--color-bg-5);
+}
