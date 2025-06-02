@@ -7,11 +7,11 @@ const lessons = [
     file: "cube.py",
   },
   {
-    title: "Assembly",
+    title: "Assembly Compilier",
     description: "BrainF*ck Compilier written by Brian Raiter (1999)",
     language: "nasm",
     slug: "bfcompilier",
-    file: "bf.asm",
+    file: "bf.nasm",
   },
   {
     title: "DEBUG Python",
