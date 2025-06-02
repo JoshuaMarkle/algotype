@@ -46,11 +46,14 @@ html {
 }
 
 /* Token styling */
-.token,
+.token {
+  color: var(--color-fg-2);
+}
+
 .token.token-comment,
 .token.token-prolog,
 .token.token-cdata {
-  color: #8b949e;
+  color: var(--color-fg-3);
 }
 
 .token.token-plain {
@@ -115,6 +118,10 @@ html {
 .token.token-important {
   color: #ff7b72;
   font-weight: bold;
+}
+
+.token.token-disabled {
+  color: var(--color-fg-3);
 }
 
 .token.token-wrong {

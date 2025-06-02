@@ -46,11 +46,19 @@ export default function TypingRenderer({
 
               // Future tokens (past current word)
               if (isFuture) {
-                return (
-                  <span key={`${li}-${ti}`} className="token token-future">
-                    {token.content}
-                  </span>
-                );
+                if (tokenTypeClass === "token-comment") {
+                  return (
+                    <span key={`${li}-${ti}`} className="token token-disabled">
+                      {token.content}
+                    </span>
+                  );
+                } else {
+                  return (
+                    <span key={`${li}-${ti}`} className="token">
+                      {token.content}
+                    </span>
+                  );
+                }
               }
 
               // Current token (render each character)

@@ -187,6 +187,7 @@ export default function useTypingState(tokens, stats) {
     started,
     done,
     currToken,
+    cursorTokenIndices,
     lastWordIdx,
     textareaRef,
     handleKey,

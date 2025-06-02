@@ -10,5 +10,6 @@ AlgoType is a versatile [typing test](https://algotype.net/) **designed for prog
 
 ![Screenshot](.github/screenshot.png)
 ![Screenshot](.github/screenshot2.png)
+![Screenshot](.github/screenshot3.png)
 
 Happy coding && typing

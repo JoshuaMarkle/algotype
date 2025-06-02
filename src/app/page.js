@@ -1,11 +1,7 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import lessons from "@/data/lessons";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import LessonCard from "@/components/LessonCard";
 import { Button, PrimaryButton } from "@/components/ui/Button";
+import CodeBox from "@/components/ui/CodeBox";
 
 export default function Home() {
   return (
@@ -27,26 +23,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Code box */}
-          <div className="relative rounded-xl overflow-hidden border border-border bg-bg-2">
-            <div className="flex items-center px-4 py-2 border-b border-border bg-bg-3">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
-              </div>
-              <div className="ml-4 text-sm text-fg-2">quickSort.py</div>
-            </div>
-            <div className="p-6 overflow-auto h-[340px] font-mono text-sm">
-              <pre className="text-fg-3">
-                <code>
-                  This is some code
-                  <br />
-                  There needs to be some better code
-                </code>
-              </pre>
-            </div>
-          </div>
+          <CodeBox />
 
           <div className="flex items-center justify-center">
             <div className="flex items-center justify-center text-sm font-semibold border border-fg rounded-full my-16 px-4 h-8">

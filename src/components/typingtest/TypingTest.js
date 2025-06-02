@@ -5,6 +5,7 @@ import useTypingState from "./useTypingState";
 import useAutoScroll from "./useAutoScroll";
 import TypingRenderer from "./TypingRenderer";
 import TypingResults from "./TypingResults";
+// import TypingPanel from "@/components/StatPanel";
 import calculateStats from "./calculateStats";
 
 export default function TypingTest({ tokens }) {
@@ -83,6 +84,7 @@ export default function TypingTest({ tokens }) {
             cursorTokenIndices={cursorTokenIndices}
             lastWordIdx={lastWordIdx}
           />
+          {/*<TypingPanel started={started} done={done} stats={stats} />*/}
         </>
       ) : (
         <TypingResults

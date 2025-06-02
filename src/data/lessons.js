@@ -1,5 +1,12 @@
 const lessons = [
   {
+    title: "Quicksort",
+    description: "Quicksort",
+    language: "python",
+    slug: "quicksort",
+    file: "quick_sort.py",
+  },
+  {
     title: "Python Pygame",
     description: "3D cube renderer",
     language: "python",

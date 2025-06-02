@@ -26,7 +26,7 @@ export default function TypingResults({ started, stats, data }) {
 
   return (
     <div className="h-[70vh] flex flex-col items-center justify-center gap-8 md:mx-32">
-      <ResponsiveContainer width="100%" height={256}>
+      <ResponsiveContainer width="100%" height={192}>
         <AreaChart
           data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -75,12 +75,15 @@ export default function TypingResults({ started, stats, data }) {
           </p>
         </div>
       </div>
-      <div className="flex flex-row gap-16 text-fg-3">
-        <Text className="size-6" />
-        <RefreshCcw className="size-6" />
-        <ChevronRight className="size-6" />
-        <IconButton>
-          <Text />
+      <div className="flex flex-row gap-32 text-fg-3">
+        <IconButton className="hover:text-fg">
+          <Text className="size-6" />
+        </IconButton>
+        <IconButton className="hover:text-fg">
+          <RefreshCcw className="size-6" />
+        </IconButton>
+        <IconButton className="hover:text-fg">
+          <ChevronRight className="size-6" />
         </IconButton>
       </div>
     </div>

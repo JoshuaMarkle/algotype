@@ -31,14 +31,14 @@ export function PrimaryButton({ children, className, ...props }) {
 
 export function IconButton({ children, className, ...props }) {
   return (
-    <Button
+    <button
       className={clsx(
-        "border-none rounded-full p-0 text-fg-3 hover:text-fg",
+        "bg-bg hover:bg-bg-3 items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none p-2",
         className,
       )}
       {...props}
     >
       {children}
-    </Button>
+    </button>
   );
 }
