@@ -12,7 +12,7 @@ AlgoType.net is a versatile [typing test](https://algotype.net/) **designed for 
 ![Screenshot](.github/screenshot2.png)
 ![Screenshot](.github/screenshot3.png)
 
-# (Intended) Features
+# ✨ (Intended) Features
 
 - ⌨️ Typing System
     - Robust code token system (syntax-aware typing)
@@ -26,11 +26,21 @@ AlgoType.net is a versatile [typing test](https://algotype.net/) **designed for 
 - 👤 Account System
     - Track past tests + progress
     - Save language/theme preferences
-- And much more!
+- ➕ And much more!
 
 # 🔨 Development
 
 ## 🧱 Project Structure
+
+- Frontend is stored in `src/`
+    - Contains all react pages/components
+    - Utilities to connect to database + authentication
+- Backend is stored in `backend/`
+    - Have a sorted directory of files for each gamemode (files/algorithms/syntax)
+        - Each gamemode is sorted by language
+        - Each gamemode have build step -> generate tokens for that gamemode
+            - Tokens contain file information + code tokens
+    - Scripts to generate tokens + upload tokens to database
 
 ```python
 src                 # frontend
@@ -41,7 +51,7 @@ src                 # frontend
 │   ├── typingtest  # typing test stuff
 │   └── ui          # ui stuff
 ├── utils           # utilities
-└── lib             # libraries (or should I call this util?)
+└── lib             # libraries
     └── supabaseClient.js
 
 backend             # backend
@@ -57,16 +67,6 @@ backend             # backend
     ├── generateTokens.js
     └── uploadToSupabase.js
 ```
-
-- Frontend is stored in `src/`
-    - Contains all react pages/components
-    - Utilities to connect to database + authentication
-- Backend is stored in `backend/`
-    - Have a sorted directory of files for each gamemode (files/algorithms/syntax)
-        - Each gamemode is sorted by language
-        - Each gamemode have build step -> generate tokens for that gamemode
-            - Tokens contain file information + code tokens
-    - Scripts to generate tokens + upload tokens to database
 
 ---
 
