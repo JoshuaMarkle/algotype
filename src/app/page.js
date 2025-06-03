@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Navbar from "@/components/navbar";
-import CodeBox from "@/components/ui/CodeBox";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { KeyboardBackground } from "@/components/ui/keyboard-background";
+import CodeBox from "@/components/ui/CodeBox";
 
 export default function Home() {
   return (
@@ -42,6 +43,8 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          <KeyboardBackground />
 
           <CodeBox />
 

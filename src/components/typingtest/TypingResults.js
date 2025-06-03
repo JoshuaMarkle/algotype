@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Text, RefreshCcw, ChevronRight } from "lucide-react";
-import { IconButton } from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import calculateStats from "./calculateStats";
 
 export default function TypingResults({ started, stats, data }) {
@@ -75,16 +75,16 @@ export default function TypingResults({ started, stats, data }) {
           </p>
         </div>
       </div>
-      <div className="flex flex-row gap-32 text-fg-3">
-        <IconButton className="hover:text-fg">
-          <Text className="size-6" />
-        </IconButton>
-        <IconButton className="hover:text-fg">
-          <RefreshCcw className="size-6" />
-        </IconButton>
-        <IconButton className="hover:text-fg">
-          <ChevronRight className="size-6" />
-        </IconButton>
+      <div className="flex flex-row gap-16 text-fg-3">
+        <Button varient="ghost">
+          <Text className="size-4" />
+        </Button>
+        <Button varient="ghost">
+          <RefreshCcw className="size-4" />
+        </Button>
+        <Button varient="ghost">
+          <ChevronRight className="size-4" />
+        </Button>
       </div>
     </div>
   );

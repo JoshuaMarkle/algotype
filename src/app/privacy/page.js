@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
     <main className="font-[family-name:var(--font-geist-sans)]">
       <Navbar />
       <div className="flex justify-center p-4">
-        <div className="w-full max-w-5xl pr-0 md:pr-[30%]">
+        <div className="w-full max-w-5xl pr-0 md:pr-[20%]">
           <h1 className="text-4xl my-6">Privacy Policy</h1>
           <p className="my-4">Effective Date: May 29th, 2025</p>
           <p className="my-4">
