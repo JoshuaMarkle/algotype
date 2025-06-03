@@ -8,13 +8,6 @@
   "tokens": [
     [
       {
-        "type": "meta",
-        "content": "{\"title\":\"DEBUG Python Code\",\"description\":\"Straightforward python code to test AlgoType.net\",\"language\":\"python\",\"source\":\"https://github.com/JoshuaMarkle/algotype\",\"slug\":\"debug\",\"mode\":\"files\"}",
-        "skip": true
-      }
-    ],
-    [
-      {
         "type": "comment",
         "content": "# For loop",
         "skip": true

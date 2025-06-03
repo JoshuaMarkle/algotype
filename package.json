@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "generate:tokens": "node backend/scripts/generateTokens.js",
+    "upload:tokens": "node backend/scripts/uploadTokens.js",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -14,6 +15,7 @@
     "@supabase/supabase-js": "^2.49.9",
     "chalk": "^5.4.1",
     "clsx": "^2.1.1",
+    "dotenv": "^16.5.0",
     "geist": "^1.4.2",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",

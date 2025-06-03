@@ -58,22 +58,6 @@ for (const mode of GAMEMODES) {
         if (tokenLines.length && tokenLines.at(-1).length === 0)
           tokenLines.pop();
 
-        // Insert metadata line as the FIRST token line
-        tokenLines.unshift([
-          {
-            type: "meta",
-            content: JSON.stringify({
-              title: meta.title,
-              description: meta.description,
-              language,
-              source: meta.source || "",
-              slug: baseName,
-              mode,
-            }),
-            skip: true,
-          },
-        ]);
-
         // Wrap the tokenLines in a { tokens: [...] } structure
         const output = {
           title: meta.title,

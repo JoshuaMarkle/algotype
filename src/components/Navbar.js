@@ -56,8 +56,8 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link href="/lessons" className="hover:text-red-400 transition">
-                  Lessons
+                <Link href="/files" className="hover:text-red-400 transition">
+                  Files
                 </Link>
               </li>
               <li>

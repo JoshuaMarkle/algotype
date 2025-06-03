@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button, PrimaryButton } from "@/components/ui/Button";
 import CodeBox from "@/components/ui/CodeBox";
+import { Github } from "lucide-react";
 
 export default function Home() {
   return (
@@ -19,7 +20,9 @@ export default function Home() {
             </p>
             <div className="flex flex-row gap-4">
               <PrimaryButton>Try For Free</PrimaryButton>
-              <Button>Create Account</Button>
+              <Button>
+                <Github /> Create Account
+              </Button>
             </div>
           </div>
 

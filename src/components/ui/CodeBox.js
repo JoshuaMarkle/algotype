@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import quicksortTokens from "@/data/tokens/quicksort.tokens.json";
+import quicksortTokens from "@/data/quicksort.json";
 import TypingRenderer from "@/components/typingtest/TypingRenderer";
 import { Play, Pause, RotateCcw } from "lucide-react";
 import { IconButton } from "@/components/ui/Button";
@@ -29,7 +29,7 @@ export default function CodeBox() {
   const currentLineRef = useRef(null);
   const shouldShowCursor = true;
 
-  const tokens = quicksortTokens;
+  const tokens = quicksortTokens.tokens;
   const currToken = tokens[lineIdx]?.[tokenIdx] ?? { content: "", skip: true };
   const lastWordIdx = tokenIdx + ((currToken.wlength ?? 1) - 1);
 
