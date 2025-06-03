@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import quicksortTokens from "@/data/quicksort.json";
 import TypingRenderer from "@/components/typingtest/TypingRenderer";
 import { Play, Pause, RotateCcw } from "lucide-react";
-import { IconButton } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import calculateStats from "@/components/typingtest/calculateStats";
 
 export default function CodeBox() {
@@ -197,18 +197,20 @@ export default function CodeBox() {
           cursorTokenIndices={cursorTokenIndices}
           lastWordIdx={lastWordIdx}
         />
-        <IconButton
+        <Button
+          variant="tertiary"
+          size="icon"
           onClick={buttonClick}
-          className="absolute bottom-4 right-4 text-fg-2 bg-bg-4 hover:bg-bg-5"
+          className="absolute bottom-4 right-4 rounded-full"
         >
           {done ? (
-            <RotateCcw className="size-6" />
+            <RotateCcw className="size-4" />
           ) : playing ? (
-            <Pause className="size-6" />
+            <Pause className="size-4" />
           ) : (
-            <Play className="size-6" />
+            <Play className="size-4" />
           )}
-        </IconButton>
+        </Button>
       </div>
     </div>
   );

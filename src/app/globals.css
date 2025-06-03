@@ -1,15 +1,19 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #040404;
-  --foreground: #f4f5f6;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-bg text-fg;
+  }
 }
 
-@theme {
-  --font-sans: var(--font-geist-sans, "Geist");
-  --font-mono: var(--font-geist-mono, "Geist Mono"), monospace;
+@theme inline {
+  --font-sans: var(--font-geist-sans, "geist");
+  --font-mono: var(--font-geist-mono, "geist mono"), monospace;
 
-  /* #202226 */
   --color-bg: #040404;
   --color-bg-2: #0f1012;
   --color-bg-3: #16181b;
@@ -21,26 +25,65 @@
   --color-fg-4: #2d3035;
 
   --color-red: #da3633;
+  --color-red-2: #cf2926;
   --color-green: #00c756;
   --color-blue: #4971fc;
+  --color-blue-2: #315efc;
+
+  --border-subtle: #16181b;
+  --border: #2d3035;
+  --border-strong: #434750;
+  --radius: 0.625rem;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* UI library */
+  --color-background: #040404;
+  --color-foreground: #f4f5f6;
+  --color-card: #0f1012;
+  --color-card-foreground: #f4f5f6;
+  --color-popover: #0f1012;
+  --color-popover-foreground: #f4f5f6;
 
   --color-primary: #4971fc;
-  --color-primary-2: #315efc;
-  --color-border-primary: #315efc;
-  --color-primary-fg: #ffffff;
-
+  --color-primary-foreground: #f4f5f6;
+  --color-secondary: #16181b;
+  --color-secondary-foreground: #f4f5f6;
+  --color-tertiary: #2d3035;
+  --color-tertiary-foreground: #f4f5f6;
+  --color-muted: #0f1012;
+  --color-muted-foreground: #8a8a90;
+  --color-accent: #2d3035;
+  --color-accent-foreground: #f4f5f6;
   --color-destructive: #da3633;
-  --color-descructive-2: #cf2926;
-  --color-border-destructive: #cf2926;
-  --color-destructive-fg: #ffffff;
 
   --color-border-subtle: #16181b;
   --color-border: #2d3035;
   --color-border-strong: #434750;
+  --color-input: #2d3035;
+  --color-ring: #da3633;
+
+  --color-chart-1: #da3633;
+  --color-chart-2: #da3633;
+  --color-chart-3: #da3633;
+  --color-chart-4: #da3633;
+  --color-chart-5: #da3633;
+
+  --color-sidebar: #0f1012;
+  --color-sidebar-foreground: #f4f5f6;
+  --color-sidebar-primary: #4971fc;
+  --color-sidebar-primary-foreground: #f4f5f6;
+  --color-sidebar-accent: #4971fc;
+  --color-sidebar-accent-foreground: #f4f5f6;
+  --color-sidebar-border: #2d3035;
+  --color-sidebar-ring: #da3633;
 }
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: arial, helvetica, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -54,7 +97,7 @@ pre {
     "clig" 0;
 }
 
-/* Token styling */
+/* token styling */
 .token {
   color: var(--color-fg-2);
 }
