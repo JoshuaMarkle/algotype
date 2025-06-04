@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Text, RefreshCcw, ChevronRight } from "lucide-react";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import calculateStats from "./calculateStats";
 
 export default function TypingResults({ started, stats, data }) {

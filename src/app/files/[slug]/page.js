@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import TypingTest from "@/components/typingtest/TypingTest";
 import { notFound } from "next/navigation";
