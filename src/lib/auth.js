@@ -19,5 +19,7 @@ export async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) {
     console.error("Error during sign-out:", error.message);
+  } else {
+    window.location.reload();
   }
 }

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import Button from "@/components/ui/Button";
-import CodeBox from "@/components/ui/CodeBox";
+import CodeBox from "@/components/effects/CodeBox";
 
 export default function Home() {
   return (
@@ -18,7 +18,8 @@ export default function Home() {
               <span>For Programmers</span>
             </h1>
             <p className="text-xl text-fg-2 mt-4 mb-8 px-8 text-center">
-              Turn all the symbols and syntax into second nature
+              Turn <span className="hidden lg:inline">all the symbols and</span>{" "}
+              syntax into second nature
             </p>
             <div className="flex flex-row gap-4">
               <Button>

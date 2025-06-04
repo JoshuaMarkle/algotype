@@ -1,6 +1,10 @@
-import React from "react";
-import Link from "next/link";
+"use client";
 
+import { React, useEffect, useState } from "react";
+import Link from "next/link";
+import { supabase } from "@/lib/supabaseClient";
+
+import Skeleton from "@/components/ui/Skeleton";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,10 +12,26 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/NavigationMenu";
+import NavbarAccount from "@/components/layouts/NavbarAccount";
 
 export default function Navbar() {
+  // Immediately get user data
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+      setLoading(false);
+    };
+
+    getUser();
+  }, []);
+
+  // Render navbar
   return (
     <div className="flex flex-row justify-between px-4 py-2 border-b border-border bg-background">
       <NavigationMenu viewport={false}>
@@ -103,12 +123,16 @@ export default function Navbar() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={navigationMenuTriggerStyle()}
-            >
-              <Link href="/login">Login</Link>
-            </NavigationMenuLink>
+            {loading ? (
+              <NavbarAccount user={user} />
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Skeleton className="size-6 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[100px]" />
+                </div>
+              </div>
+            )}
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

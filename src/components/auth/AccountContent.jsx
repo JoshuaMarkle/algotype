@@ -8,7 +8,7 @@ export default function ClientAccountPanel({ user }) {
   return (
     <>
       {/* Profile */}
-      <div className="flex flex-row gap-4 justify-center align-items-center mt-12">
+      <div className="flex flex-row gap-8 justify-center items-center mt-12">
         <Avatar className="size-16 rounded-full">
           <AvatarImage
             src={user.user_metadata.avatar_url}
