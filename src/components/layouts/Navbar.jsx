@@ -123,7 +123,7 @@ export default function Navbar() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            {loading ? (
+            {!loading ? (
               <NavbarAccount user={user} />
             ) : (
               <div className="flex items-center space-x-4">

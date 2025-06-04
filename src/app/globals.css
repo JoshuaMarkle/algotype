@@ -11,7 +11,7 @@
 }
 
 :root {
-  --font-sans: var(--font-geist-sans, "geist");
+  --font-sans: var(--font-geist-sans, "geist"), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono, "geist mono"), monospace;
 }
 
@@ -32,9 +32,9 @@
   --color-red: #da3633;
   --color-red-2: #cf2926;
   --color-green: #00c756;
-  --color-cyan: #0096f5;
-  --color-blue: #4971fc;
-  --color-blue-2: #315efc;
+  --color-blue: #0096f5;
+  --color-blue-2: #4971fc;
+  --color-blue-3: #315efc;
 
   --border-subtle: #16181b;
   --border: #2d3035;
@@ -54,7 +54,7 @@
   --color-popover: #0f1012;
   --color-popover-foreground: #f4f5f6;
 
-  --color-primary: #4971fc;
+  --color-primary: #0096f5;
   --color-primary-foreground: #f4f5f6;
   --color-secondary: #16181b;
   --color-secondary-foreground: #f4f5f6;
@@ -70,19 +70,13 @@
   --color-border: #2d3035;
   --color-border-strong: #434750;
   --color-input: #2d3035;
-  --color-ring: #da3633;
-
-  --color-chart-1: #da3633;
-  --color-chart-2: #da3633;
-  --color-chart-3: #da3633;
-  --color-chart-4: #da3633;
-  --color-chart-5: #da3633;
+  --color-ring: #0096f5;
 
   --color-sidebar: #0f1012;
   --color-sidebar-foreground: #f4f5f6;
-  --color-sidebar-primary: #4971fc;
+  --color-sidebar-primary: #0096f5;
   --color-sidebar-primary-foreground: #f4f5f6;
-  --color-sidebar-accent: #4971fc;
+  --color-sidebar-accent: #0096f5;
   --color-sidebar-accent-foreground: #f4f5f6;
   --color-sidebar-border: #2d3035;
   --color-sidebar-ring: #da3633;

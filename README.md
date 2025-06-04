@@ -26,6 +26,7 @@ AlgoType.net is a versatile [typing test](https://algotype.net/) **designed for 
 - 👤 Account System
     - Track past tests + progress
     - Save language/theme preferences
+    - Secured with Supabase
 - ➕ And much more!
 
 # 🔨 Development

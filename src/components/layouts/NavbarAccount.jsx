@@ -14,7 +14,6 @@ import {
 import { logout } from "@/lib/auth";
 
 export default function NavbarAccount({ user }) {
-  console.log("user", user);
   if (!user) {
     return (
       <NavigationMenuLink asChild>
