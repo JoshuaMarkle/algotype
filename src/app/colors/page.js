@@ -1,4 +1,4 @@
-export default function Page() {
+export default function ColorsPage() {
   const colorVars = [
     "--color-bg",
     "--color-bg-2",

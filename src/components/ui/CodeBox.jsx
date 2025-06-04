@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import quicksortTokens from "@/data/quicksort.json";
-import TypingRenderer from "@/components/typingtest/TypingRenderer";
 import { Play, Pause, RotateCcw } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import calculateStats from "@/components/typingtest/calculateStats";
+
+import TypingRenderer from "@/components/typing/TypingRenderer";
+import Button from "@/components/ui/Button";
+import { calculateStats } from "@/components/typing/utils/calculateStats";
+import quicksortTokens from "@/data/quicksort.json";
 
 export default function CodeBox() {
   const [playing, setPlaying] = useState(true);
@@ -164,7 +165,7 @@ export default function CodeBox() {
     step();
 
     return () => clearTimeout(timeout);
-  }, [playing, done]);
+  }, [playing, done, tokens]);
 
   return (
     <div className="relative rounded-xl overflow-hidden border border-border bg-bg-2">

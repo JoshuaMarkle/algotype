@@ -1,24 +1,27 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Keyboard } from "@/components/ui/kbd";
 
-const ROW_COUNT = 4;
+import { Keyboard } from "@/components/ui/Kbd";
+
 const KEYBOARD_WIDTH = 720;
 const KEYBOARD_HEIGHT = 230;
 const SPEED = 20; // px/sec
 
 let idCounter = 0;
 
-export function KeyboardBackground() {
+export default function KeyboardBackground() {
   const [keyboards, setKeyboards] = useState([]);
   const rafRef = useRef();
 
+  // Generates keyboard instances based on screen width and full page height
   const calculateKeyboards = () => {
     const screenWidth = window.innerWidth;
+    const pageHeight = document.body.scrollHeight;
+    const rowCount = Math.ceil(pageHeight / KEYBOARD_HEIGHT);
     const newKeyboards = [];
 
-    for (let row = 0; row < ROW_COUNT; row++) {
+    for (let row = 0; row < rowCount; row++) {
       const direction = row % 2 === 0 ? 1 : -1;
       const keyboardsNeeded = Math.ceil(screenWidth / KEYBOARD_WIDTH) + 2;
       const y = row * KEYBOARD_HEIGHT;
@@ -81,17 +84,22 @@ export function KeyboardBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
       {keyboards.map((k) => (
-        <div
-          key={k.id}
-          className="absolute"
-          style={{
-            top: `${k.y}px`,
-            left: `${k.x}px`,
-          }}
-        >
-          <Keyboard />
-        </div>
+        <KeyboardInstance key={k.id} x={k.x} y={k.y} />
       ))}
+    </div>
+  );
+}
+
+function KeyboardInstance({ x, y }) {
+  return (
+    <div
+      className="absolute"
+      style={{
+        transform: `translate(${x}px, ${y}px)`,
+        willChange: "transform",
+      }}
+    >
+      <Keyboard />
     </div>
   );
 }

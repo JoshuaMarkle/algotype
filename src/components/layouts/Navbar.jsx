@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -12,11 +9,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/NavigationMenu";
 
 export default function Navbar() {
   return (
-    <div className="px-4 py-2 border-b border-border bg-background">
+    <div className="flex flex-row justify-between px-4 py-2 border-b border-border bg-background">
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -29,11 +26,27 @@ export default function Navbar() {
                       className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
                       href="/"
                     >
-                      <div className="mt-4 mb-2 text-lg font-medium">
+                      <div className="flex flex-row justify-start items-center gap-2 mt-4 mb-2 text-lg font-medium">
+                        <svg
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="fill-blue size-4"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M14.5858 5.29291C14.1953 5.68343 14.1953 6.3166 14.5858 6.70712L19.8787 12L14.5858 17.2929C14.1953 17.6834 14.1953 18.3166 14.5858 18.7071L15.2929 19.4142C15.6834 19.8048 16.3166 19.8048 16.7071 19.4142L23.0607 13.0607C23.6464 12.4749 23.6464 11.5251 23.0607 10.9394L16.7071 4.5858C16.3166 4.19528 15.6834 4.19528 15.2929 4.5858L14.5858 5.29291Z"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M9.41421 5.29291C9.80474 5.68343 9.80474 6.3166 9.41421 6.70712L4.12132 12L9.41421 17.2929C9.80474 17.6834 9.80474 18.3166 9.41421 18.7071L8.70711 19.4142C8.31658 19.8048 7.68342 19.8048 7.29289 19.4142L0.93934 13.0607C0.353553 12.4749 0.353553 11.5251 0.93934 10.9394L7.29289 4.5858C7.68342 4.19528 8.31658 4.19528 8.70711 4.5858L9.41421 5.29291Z"
+                          />
+                        </svg>
                         AlgoType.net
                       </div>
                       <p className="text-muted-foreground text-sm leading-tight">
-                        Typing trainer built for programmers
+                        Typing practice for programmers
                       </p>
                     </Link>
                   </NavigationMenuLink>
@@ -85,16 +98,10 @@ export default function Navbar() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={navigationMenuTriggerStyle()}
-            >
-              <Link href="/signup">Sign Up</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-
+        </NavigationMenuList>
+      </NavigationMenu>
+      <NavigationMenu>
+        <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuLink
               asChild

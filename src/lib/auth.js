@@ -1,6 +1,6 @@
 import { supabase } from "./supabaseClient";
 
-export async function signInWithGitHub() {
+export async function loginWithGitHub() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
@@ -15,7 +15,7 @@ export async function signInWithGitHub() {
   }
 }
 
-export async function signOut() {
+export async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) {
     console.error("Error during sign-out:", error.message);

@@ -1,4 +1,4 @@
-export default function calculateStats(started, stats) {
+export function calculateStats(started, stats) {
   if (!started || !stats?.current) {
     return { wpm: 0, acc: 100, time: 0, timeTillWpmDrop: Infinity };
   }

@@ -1,14 +1,14 @@
 import Link from "next/link";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { KeyboardBackground } from "@/components/ui/keyboard-background";
+
+import Navbar from "@/components/layouts/Navbar";
+import Footer from "@/components/layouts/Footer";
+import Button from "@/components/ui/Button";
 import CodeBox from "@/components/ui/CodeBox";
 
 export default function Home() {
   return (
-    <main className="font-[family-name:var(--font-geist-sans)]">
+    <main>
       <Navbar />
       <div className="flex justify-center p-4">
         <div className="w-full max-w-5xl">
@@ -43,8 +43,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
-          <KeyboardBackground />
 
           <CodeBox />
 

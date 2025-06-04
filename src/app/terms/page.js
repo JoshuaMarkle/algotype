@@ -1,9 +1,9 @@
-import Navbar from "@/components/navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layouts/Navbar";
+import Footer from "@/components/layouts/Footer";
 
-export default function Home() {
+export default function TermsPage() {
   return (
-    <main className="font-[family-name:var(--font-geist-sans)]">
+    <main>
       <Navbar />
       <div className="flex justify-center p-4">
         <div className="w-full max-w-5xl pr-0 md:pr-[20%]">

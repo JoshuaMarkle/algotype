@@ -1,24 +1,25 @@
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import Label from "@/components/ui/Label";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/components/ui/Card";
+import { cn } from "@/lib/utils";
 
 export default function SignupForm({ className, ...props }) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Sign Up</CardTitle>
+          <CardTitle className="text-2xl">Create your account</CardTitle>
           <CardDescription>
-            Enter your email below to signup for an account
+            Enter your email or use a provider to sign up
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -30,24 +31,18 @@ export default function SignupForm({ className, ...props }) {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="you@example.com"
                     required
                   />
                 </div>
                 <div className="grid gap-3">
                   <div className="flex items-center">
                     <Label htmlFor="password">Password</Label>
-                    <a
-                      href="#"
-                      className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
                   </div>
                   <Input id="password" type="password" required />
                 </div>
                 <Button type="submit" className="w-full">
-                  Login
+                  Sign Up
                 </Button>
               </div>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
@@ -66,6 +61,7 @@ export default function SignupForm({ className, ...props }) {
                   </svg>
                   Login with Github
                 </Button>
+                {/* Not ready yet
                 <Button variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
@@ -75,21 +71,25 @@ export default function SignupForm({ className, ...props }) {
                   </svg>
                   Login with Google
                 </Button>
+				*/}
               </div>
-              <div className="text-center text-sm">
+              <div className="text-center text-sm text-fg-2">
                 Already have an account?{" "}
-                <a href="/login" className="underline underline-offset-4">
+                <Link
+                  href="/login"
+                  className="underline underline-offset-4 hover:text-fg"
+                >
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </form>
         </CardContent>
       </Card>
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
+      <div className="text-muted-foreground *:[a]:hover:text-fg text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
         By clicking continue, you agree to our{" "}
-        <a href="/terms">Terms of Service</a> and{" "}
-        <a href="/privacy">Privacy Policy</a>.
+        <Link href="/terms">Terms of Service</Link> and{" "}
+        <Link href="/privacy">Privacy Policy</Link>.
       </div>
     </div>
   );

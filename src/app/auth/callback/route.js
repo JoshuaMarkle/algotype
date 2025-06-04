@@ -1,5 +1,3 @@
-// src/app/auth/callback/route.js
-
 import { NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";

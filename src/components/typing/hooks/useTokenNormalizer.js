@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-export default function useTokenNormalizer(tokens) {
+export function useTokenNormalizer(tokens) {
   return useMemo(() => {
     if (!Array.isArray(tokens)) return [];
 

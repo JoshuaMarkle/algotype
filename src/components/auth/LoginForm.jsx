@@ -1,18 +1,19 @@
 "use client";
 
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import Label from "@/components/ui/Label";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { signInWithGitHub } from "@/lib/auth";
+} from "@/components/ui/Card";
+import { loginWithGitHub } from "@/lib/auth";
+import { cn } from "@/lib/utils";
 
 export default function LoginForm({ className, ...props }) {
   return (
@@ -21,7 +22,7 @@ export default function LoginForm({ className, ...props }) {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Welcome back</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Enter your email or use a provider to login
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -33,19 +34,19 @@ export default function LoginForm({ className, ...props }) {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="you@example.com"
                     required
                   />
                 </div>
                 <div className="grid gap-3">
                   <div className="flex items-center">
                     <Label htmlFor="password">Password</Label>
-                    <a
+                    <Link
                       href="#"
                       className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
                     >
                       Forgot your password?
-                    </a>
+                    </Link>
                   </div>
                   <Input id="password" type="password" required />
                 </div>
@@ -62,7 +63,7 @@ export default function LoginForm({ className, ...props }) {
                 <Button
                   variant="outline"
                   className="w-full"
-                  onClick={signInWithGitHub}
+                  onClick={loginWithGitHub}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -73,6 +74,7 @@ export default function LoginForm({ className, ...props }) {
                   </svg>
                   Login with Github
                 </Button>
+                {/* Not ready yet
                 <Button variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
@@ -82,21 +84,25 @@ export default function LoginForm({ className, ...props }) {
                   </svg>
                   Login with Google
                 </Button>
+				*/}
               </div>
-              <div className="text-center text-sm">
+              <div className="text-center text-sm text-fg-2">
                 Don&apos;t have an account?{" "}
-                <a href="/signup" className="underline underline-offset-4">
-                  Sign up
-                </a>
+                <Link
+                  href="/signup"
+                  className="underline underline-offset-4 hover:text-fg"
+                >
+                  Sign Up
+                </Link>
               </div>
             </div>
           </form>
         </CardContent>
       </Card>
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
+      <div className="text-muted-foreground *:[a]:hover:text-fg text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
         By clicking continue, you agree to our{" "}
-        <a href="/terms">Terms of Service</a> and{" "}
-        <a href="/privacy">Privacy Policy</a>.
+        <Link href="/terms">Terms of Service</Link> and{" "}
+        <Link href="/privacy">Privacy Policy</Link>.
       </div>
     </div>
   );

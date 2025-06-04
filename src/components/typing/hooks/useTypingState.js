@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 
-export default function useTypingState(tokens, stats) {
+export function useTypingState(tokens, stats) {
   // Current line/token pair
   const [lineIdx, setLineIdx] = useState(0);
   const [tokenIdx, setTokenIdx] = useState(0);

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import calculateStats from "@/components/typingtest/calculateStats";
 import clsx from "clsx";
+
+import { calculateStats } from "@/components/typingtest/utils/calculateStats";
 
 const NAV_HEIGHT = 48;
 const GAP_BELOW_NAV = 16;

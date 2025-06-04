@@ -1,6 +1,8 @@
+import * as React from "react";
+
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
-import * as React from "react";
+
 import { cn } from "@/lib/utils";
 
 export function Keyboard() {
@@ -100,4 +102,5 @@ function Kbd({ className, variant, size, asChild = false, ...props }) {
   );
 }
 
+export default Kbd;
 export { Kbd, kbdVariants };

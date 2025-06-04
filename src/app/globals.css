@@ -10,6 +10,11 @@
   }
 }
 
+:root {
+  --font-sans: var(--font-geist-sans, "geist");
+  --font-mono: var(--font-geist-mono, "geist mono"), monospace;
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans, "geist");
   --font-mono: var(--font-geist-mono, "geist mono"), monospace;
@@ -27,6 +32,7 @@
   --color-red: #da3633;
   --color-red-2: #cf2926;
   --color-green: #00c756;
+  --color-cyan: #0096f5;
   --color-blue: #4971fc;
   --color-blue-2: #315efc;
 
@@ -83,7 +89,7 @@
 }
 
 html {
-  font-family: arial, helvetica, sans-serif;
+  font-family: var(--font-geist-sans), arial, helvetica, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
 }

@@ -1,15 +1,8 @@
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
 import { Text, RefreshCcw, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import calculateStats from "./calculateStats";
+
+import Button from "@/components/ui/Button";
+import { calculateStats } from "@/components/typing/utils/calculateStats";
 
 export default function TypingResults({ started, stats, data }) {
   const { wpm, acc, time, timeTillWpmDrop } = calculateStats(started, stats);

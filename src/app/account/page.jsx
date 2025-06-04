@@ -1,9 +1,8 @@
-// src/app/account/page.jsx
-
 import { createSupabaseServerClient } from "@/lib/supabaseServerClient";
 import { redirect } from "next/navigation";
-import Navbar from "@/components/navbar";
-import ClientAccountPanel from "./ClientAccountPanel"; // ⬅️ new client component
+
+import Navbar from "@/components/layouts/Navbar";
+import AccountContent from "@/components/auth/AccountContent";
 
 export default async function AccountPage() {
   const supabase = createSupabaseServerClient();
@@ -18,7 +17,11 @@ export default async function AccountPage() {
   return (
     <main>
       <Navbar />
-      <ClientAccountPanel user={user} />
+      <div className="flex justify-center p-4">
+        <div className="w-full max-w-5xl">
+          <AccountContent user={user} />
+        </div>
+      </div>
     </main>
   );
 }

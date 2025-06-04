@@ -1,15 +1,19 @@
-import Navbar from "@/components/navbar";
-import LoginForm from "@/components/login-form";
+import Navbar from "@/components/layouts/Navbar";
+import LoginForm from "@/components/auth/LoginForm";
+import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
-export default function Page() {
+export default function LoginPage() {
   return (
-    <div className="flex min-h-svh flex-col">
-      <Navbar />
-      <div className="flex flex-1 items-center justify-center p-6 md:p-10">
-        <div className="w-full max-w-sm">
+    <main className="relative h-screen w-screen overflow-hidden">
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <Navbar />
+      </div>
+      <KeyboardBackground />
+      <div className="absolute inset-0 flex items-center justify-center p-6 md:p-10">
+        <div className="w-full max-w-sm z-10">
           <LoginForm />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

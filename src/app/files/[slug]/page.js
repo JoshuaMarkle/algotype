@@ -1,21 +1,9 @@
+import Navbar from "@/components/layouts/Navbar";
+import Footer from "@/components/layouts/Footer";
+import TypingTest from "@/components/typing/TypingTest";
 import { supabase } from "@/lib/supabaseClient";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/Footer";
-import TypingTest from "@/components/typingtest/TypingTest";
-import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
-  const { data, error } = await supabase
-    .from("challenges")
-    .select("slug")
-    .eq("mode", "files");
-
-  if (error || !data) return [];
-
-  return data.map((row) => ({ slug: row.slug }));
-}
-
-export default async function FileChallengePage({ params }) {
+export default async function FilePage({ params }) {
   const { slug } = params;
 
   const { data: challenge, error } = await supabase

@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
-import useTypingState from "./useTypingState";
-import useAutoScroll from "./useAutoScroll";
-import TypingRenderer from "./TypingRenderer";
-import TypingResults from "./TypingResults";
-// import TypingPanel from "@/components/StatPanel";
-import calculateStats from "./calculateStats";
+import { useEffect, useRef } from "react";
+
+import TypingRenderer from "@/components/typing/TypingRenderer";
+import TypingResults from "@/components/typing/TypingResults";
+import { useTypingState } from "@/components/typing/hooks/useTypingState";
+import { useAutoScroll } from "@/components/typing/hooks/useAutoScroll";
+import { calculateStats } from "@/components/typing/utils/calculateStats";
 
 export default function TypingTest({ tokens }) {
   // Stats reference
@@ -84,7 +84,6 @@ export default function TypingTest({ tokens }) {
             cursorTokenIndices={cursorTokenIndices}
             lastWordIdx={lastWordIdx}
           />
-          {/*<TypingPanel started={started} done={done} stats={stats} />*/}
         </>
       ) : (
         <TypingResults

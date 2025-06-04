@@ -1,12 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function useAutoScroll(
-  started,
-  done,
-  currentLineRef,
-  tokenIdx,
-  typed,
-) {
+export function useAutoScroll(started, done, currentLineRef, tokenIdx, typed) {
   const scrollTargetY = useRef(0);
   const scrollRaf = useRef(null);
 
