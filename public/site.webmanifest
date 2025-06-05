@@ -1,6 +1,8 @@
 {
   "name": "AlgoType",
   "short_name": "AlgoType",
+  "description": "Typing practice for programmers",
+  "lang": "en",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -15,6 +17,7 @@
   ],
   "theme_color": "#0096f5",
   "background_color": "#040404",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
 }
-

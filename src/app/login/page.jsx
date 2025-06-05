@@ -17,3 +17,8 @@ export default function LoginPage() {
     </main>
   );
 }
+
+export const metadata = {
+  title: "Log In | AlgoType",
+  description: "Login to your account to track your progress",
+};

@@ -56,3 +56,9 @@ export default function TermsPage() {
     </main>
   );
 }
+
+export const metadata = {
+  title: "Terms of Service | AlgoType",
+  description:
+    "Review the terms and conditions for using the AlgoType website.",
+};

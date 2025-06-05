@@ -65,3 +65,8 @@ export default function PrivacyPolicyPage() {
     </main>
   );
 }
+
+export const metadata = {
+  title: "Privacy Policy | AlgoType",
+  description: "Learn how AlgoType handles your data.",
+};

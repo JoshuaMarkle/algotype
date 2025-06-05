@@ -99,3 +99,9 @@ export default function ColorsPage() {
     </main>
   );
 }
+
+export const metadata = {
+  title: "Colors | AlgoType",
+  description:
+    "AlgoType was designed to take a minimal approarch and use bold features",
+};

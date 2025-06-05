@@ -1,11 +1,34 @@
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+
+import StructuredData from "@/components/seo/StructuredData";
 import "@/app/globals.css";
 
 export const metadata = {
   title: "AlgoType | Typing Practice For Programmers",
   description:
-    "Practice typing code to program blazingly fast. AlgoType.net is designed to help programmers train their typing skills on syntax and special characters to maximize their coding speed.",
+    "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters.",
+  openGraph: {
+    url: "https://algotype.net",
+    title: "AlgoType | Typing Practice For Programmers",
+    description:
+      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters.",
+    images: [
+      {
+        url: "https://algotype.net/twitter-card.png",
+        width: 1200,
+        height: 630,
+        alt: "AlgoType Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AlgoType | Typing Practice For Programmers",
+    description:
+      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters.",
+    images: ["https://algotype.net/twitter-card.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -32,6 +55,7 @@ export default function RootLayout({ children }) {
         className={`${GeistSans.className} ${GeistSans.variable} ${GeistMono.variable} antialiased`}
       >
         {children}
+        <StructuredData />
       </body>
     </html>
   );

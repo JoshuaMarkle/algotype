@@ -34,3 +34,8 @@ export default async function FilePage({ params }) {
     </main>
   );
 }
+
+export const metadata = {
+  title: "Files | AlgoType",
+  description: "Train your typing skills on large files",
+};

@@ -8,6 +8,7 @@
     "upload:tokens": "node backend/scripts/uploadTokens.js",
     "dev": "next dev --turbopack",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -26,6 +27,7 @@
     "geist": "^1.4.2",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",
+    "next-sitemap": "^4.2.3",
     "prismjs": "^1.30.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

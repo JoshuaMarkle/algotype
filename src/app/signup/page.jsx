@@ -17,3 +17,8 @@ export default function SignUpPage() {
     </main>
   );
 }
+
+export const metadata = {
+  title: "Sign Up | AlgoType",
+  description: "Create an account to save your typing progress.",
+};

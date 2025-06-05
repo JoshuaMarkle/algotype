@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://algotype.net
+
+# Sitemaps
+Sitemap: https://algotype.net/sitemap.xml
