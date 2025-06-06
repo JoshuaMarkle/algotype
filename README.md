@@ -71,6 +71,32 @@ backend                         # backend
     └── uploadToSupabase.js     # upload tokens to db
 ```
 
+## 🚧 TODO
+
+- Create files homepage
+    - Add more files
+        - Python
+        - C++
+- Create algorithms homepage
+    - Add more Files
+- Fix the navbar 
+- Authentication
+    - Email + password authentication
+    - Verify it works in production
+    - Resolve conflicts (github + email)
+- Track stats for users
+    - Past logs
+    - Overall stats + main graph
+- Update the account page
+- Create snippets homepage
+    - Customizable system
+        - For loops
+        - Functions
+- Brainstorm pricing plans (premium)
+    - Payments (stripe?)
+    - Link premium with account
+
 ---
 
-<div align="center">Happy coding && typing</div>
+<div align="center">Happy coding <code>&&</code> typing</div>
+

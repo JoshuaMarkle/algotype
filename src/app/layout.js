@@ -7,12 +7,12 @@ import "@/app/globals.css";
 export const metadata = {
   title: "AlgoType | Typing Practice For Programmers",
   description:
-    "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters.",
+    "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters in order to achive flow and maximize productivity.",
   openGraph: {
     url: "https://algotype.net",
     title: "AlgoType | Typing Practice For Programmers",
     description:
-      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters.",
+      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters in order to achive flow and maximize productivity.",
     images: [
       {
         url: "https://algotype.net/twitter-card.png",
@@ -26,7 +26,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "AlgoType | Typing Practice For Programmers",
     description:
-      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters.",
+      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters in order to achive flow and maximize productivity.",
     images: ["https://algotype.net/twitter-card.png"],
   },
 };

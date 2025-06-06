@@ -80,12 +80,33 @@
   --color-sidebar-accent-foreground: #f4f5f6;
   --color-sidebar-border: #2d3035;
   --color-sidebar-ring: #da3633;
+
+  /* Animations */
+  --animate-fade-up: fade-up 1s ease-out forwards;
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+    }
+    33% {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 html {
   font-family: var(--font-geist-sans), arial, helvetica, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
+}
+
+::selection {
+  background-color: var(--color-blue-3, #fea5e9);
+  color: var(--color-fg, #ffffff);
 }
 
 code,

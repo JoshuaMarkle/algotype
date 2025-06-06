@@ -10,7 +10,7 @@ const SPEED = 20; // px/sec
 
 let idCounter = 0;
 
-export default function KeyboardBackground() {
+export default function KeyboardBackground({ className = "" }) {
   const [keyboards, setKeyboards] = useState([]);
   const rafRef = useRef();
 

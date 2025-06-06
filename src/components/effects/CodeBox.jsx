@@ -132,7 +132,7 @@ export default function CodeBox() {
                   setLineIdx(nextLineIdx);
                   setTokenIdx(nextTokenIdx);
                   setTyped(0);
-                  timeout = setTimeout(step, Math.random() * 200);
+                  timeout = setTimeout(step, Math.random() * 150);
                   return;
                 }
                 nextTokenIdx++;
@@ -168,7 +168,7 @@ export default function CodeBox() {
   }, [playing, done, tokens]);
 
   return (
-    <div className="relative rounded-xl overflow-hidden border border-border bg-bg-2">
+    <div className="relative rounded-sm overflow-hidden border border-border bg-bg-2">
       <div className="flex items-center text-fg-2 text-sm px-4 py-2 border-b border-border bg-bg-3">
         <div className="flex space-x-2">
           <div className="size-3 rounded-full bg-red-400" />

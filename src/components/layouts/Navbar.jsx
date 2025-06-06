@@ -33,7 +33,7 @@ export default function Navbar() {
 
   // Render navbar
   return (
-    <div className="flex flex-row justify-between px-4 py-2 border-b border-border bg-background">
+    <div className="fixed top w-full flex flex-row justify-between px-4 py-2 border-b border-border bg-background z-100">
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -50,7 +50,7 @@ export default function Navbar() {
                         <svg
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
-                          className="fill-blue size-4"
+                          className="fill-blue size-5"
                         >
                           <path
                             fillRule="evenodd"

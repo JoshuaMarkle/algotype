@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <nav className="flex justify-center px-4 py-8 mt-8 border-t border-neutral-800">
+    <nav className="flex justify-center px-4 py-8 border-t border-neutral-800 bg-bg">
       <div className="flex row justify-between w-full max-w-5xl gap-8 text-neutral-600">
         <ul className="flex row gap-8">
           <li>
