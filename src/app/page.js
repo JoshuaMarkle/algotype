@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, Rocket, Waves } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronRight,
+  Sparkles,
+  Rocket,
+  Waves,
+  Earth,
+} from "lucide-react";
 
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
@@ -14,22 +21,29 @@ import {
 
 export default function Home() {
   return (
-    <main>
+    <main className="relative">
       <Navbar className="fixed top" />
+
+      {/* Notification */}
+      <section className="absolute top-13 flex flex-row gap-2 justify-center items-center p-2 w-full bg-fg/10 hover:bg-blue-3 transition text-sm font-mono z-10 animate-fade-down opacity-0">
+        <Sparkles className="size-4" />
+        Introducing: <span className="font-semibold">3 New Gamemodes</span>
+      </section>
+
       <div className="mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
         {/* Header */}
         <section className="relative flex flex-col items-center py-64">
-          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_50%_75%,_#fff_0%,_#ddd_60%,_#555_100%)] text-center flex flex-col lg:flex-row lg:space-x-2 z-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_50%_75%,_#fff_0%,_#ddd_60%,_#555_100%)] text-center flex flex-col lg:flex-row lg:space-x-2 z-10">
             <span>Typing Practice</span> <span>For Programmers</span>
           </h1>
-          <p className="text-xl text-fg-2 mt-4 mb-8 px-8 text-center z-10">
+          <p className="text-md md:text-xl text-fg-2 mt-4 mb-8 px-8 text-center z-10">
             Turn <span className="hidden lg:inline">all the symbols and</span>{" "}
             syntax into second nature
           </p>
           <div className="flex flex-row gap-4 z-10">
             <Link href="/login" rel="noopener noreferrer">
               <Button>
-                Try For Free
+                Get Typing
                 <ArrowRight />
               </Button>
             </Link>
@@ -77,12 +91,12 @@ export default function Home() {
 
         {/* Divider */}
         <section className="relative w-full">
-          <div className="-mx-4 md:-mx-16 flex items-center justify-center border-b border-border"></div>
+          <div className="-mx-4 md:-mx-8 2xl:-mx-16 flex items-center justify-center border-b border-border"></div>
         </section>
 
         {/* Main Box */}
         <section className="-mt-35 mx-auto w-full md:max-w-[1100px] overflow-hidden relative z-20">
-          <div className="border border-border rounded-sm ring-8 m-2 mx-4 md:mx-8 ring-fg/10 bg-bg animate-fade-up">
+          <div className="border border-border rounded-sm ring-8 m-2 mx-4 md:mx-8 ring-fg/10 bg-bg animate-fade-up opacity-0">
             {/* Labels*/}
             <div className="relative grid-cols-1 content-end md:grid md:grid-cols-3 grid-border border-b divide-x-0 divide-y md:divide-x md:divide-y-0 divide-border">
               <div className="flex flex-col justify-center w-full p-4 gap-2">
@@ -103,7 +117,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col justify-center w-full p-4 gap-2">
                 <div className="flex flex-row items-center gap-2">
-                  <Waves className="size-4 text-primary" /> Expansive
+                  <Earth className="size-4 text-primary" /> Expansive
                 </div>
                 <p className="text-fg-2">
                   Train with a growing library of algorithmic and syntax
@@ -134,7 +148,7 @@ export default function Home() {
             </defs>
             <rect width="100%" height="100%" fill="url(#:r1r7:)"></rect>
           </svg>
-          <div className="-mx-4 md:-mx-16 h-4 flex items-center justify-center border-y border-border"></div>
+          <div className="-mx-4 md:-mx-8 2xl:-mx-16 h-4 flex items-center justify-center border-y border-border"></div>
         </section>
 
         {/* Learn Mode Header Badge */}

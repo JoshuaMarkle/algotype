@@ -38,18 +38,6 @@ export default function LoginForm({ className, ...props }) {
                     required
                   />
                 </div>
-                <div className="grid gap-3">
-                  <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
-                    <Link
-                      href="#"
-                      className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </Link>
-                  </div>
-                  <Input id="password" type="password" required />
-                </div>
                 <Button type="submit" className="w-full">
                   Login
                 </Button>

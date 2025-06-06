@@ -82,14 +82,22 @@
   --color-sidebar-ring: #da3633;
 
   /* Animations */
-  --animate-fade-up: fade-up 1s ease-out forwards;
+  --animate-fade-up: fade-up 0.5s ease-out forwards 250ms;
   @keyframes fade-up {
     0% {
       opacity: 0;
-    }
-    33% {
-      opacity: 0;
       transform: translateY(2rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  --animate-fade-down: fade-down 0.5s ease-out forwards 500ms;
+  @keyframes fade-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-2rem);
     }
     100% {
       opacity: 1;
@@ -102,6 +110,8 @@ html {
   font-family: var(--font-geist-sans), arial, helvetica, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
+  overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 ::selection {

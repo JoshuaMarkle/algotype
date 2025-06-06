@@ -35,12 +35,6 @@ export default function SignupForm({ className, ...props }) {
                     required
                   />
                 </div>
-                <div className="grid gap-3">
-                  <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
-                  </div>
-                  <Input id="password" type="password" required />
-                </div>
                 <Button type="submit" className="w-full">
                   Sign Up
                 </Button>
