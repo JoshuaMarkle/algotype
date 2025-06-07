@@ -1,6 +1,7 @@
 {
   "title": "Quicksort",
   "description": "Qucksort implementation in python",
+  "lines": 21,
   "language": "python",
   "source": "https://www.geeksforgeeks.org/python-program-for-quicksort/",
   "slug": "quicksort",

@@ -62,6 +62,7 @@ for (const mode of GAMEMODES) {
         const output = {
           title: meta.title,
           description: meta.description,
+          lines: tokenLines.length,
           language,
           source: meta.source || "",
           slug: baseName,

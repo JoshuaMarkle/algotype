@@ -38,8 +38,16 @@ async function uploadTokens() {
         try {
           const json = JSON.parse(await fs.readFile(fullPath, "utf8"));
 
-          const { title, description, language, source, slug, mode, tokens } =
-            json;
+          const {
+            title,
+            description,
+            lines,
+            language,
+            source,
+            slug,
+            mode,
+            tokens,
+          } = json;
 
           if (!slug || !tokens) {
             console.warn(
@@ -56,6 +64,7 @@ async function uploadTokens() {
                 slug,
                 title,
                 description,
+                lines,
                 language,
                 source,
                 mode,

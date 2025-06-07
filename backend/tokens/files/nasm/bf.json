@@ -1,6 +1,7 @@
 {
   "title": "BrainF*ck Compiler",
   "description": "Mini-compiler written in 1998",
+  "lines": 294,
   "language": "nasm",
   "source": "https://github.com/libertas/bf.asm/blob/master/bf.asm",
   "slug": "bf",

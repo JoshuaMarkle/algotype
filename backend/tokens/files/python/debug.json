@@ -1,6 +1,7 @@
 {
   "title": "DEBUG Python Code",
   "description": "Straightforward python code to test AlgoType.net",
+  "lines": 4,
   "language": "python",
   "source": "https://github.com/JoshuaMarkle/algotype",
   "slug": "debug",
