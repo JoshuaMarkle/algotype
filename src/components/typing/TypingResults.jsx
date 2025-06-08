@@ -69,13 +69,13 @@ export default function TypingResults({ started, stats, data }) {
         </div>
       </div>
       <div className="flex flex-row gap-16 text-fg-3">
-        <Button varient="ghost">
+        <Button variant="ghost">
           <Text className="size-4" />
         </Button>
-        <Button varient="ghost">
+        <Button variant="ghost">
           <RefreshCcw className="size-4" />
         </Button>
-        <Button varient="ghost">
+        <Button variant="ghost">
           <ChevronRight className="size-4" />
         </Button>
       </div>

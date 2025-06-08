@@ -1,11 +1,11 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  ChevronRight,
   Sparkles,
   Rocket,
   Waves,
   Earth,
+  Construction,
 } from "lucide-react";
 
 import Navbar from "@/components/layouts/Navbar";
@@ -128,6 +128,77 @@ export default function Home() {
             {/* Code Box*/}
             <div className="p-4">
               <CodeBox />
+            </div>
+          </div>
+        </section>
+
+        {/* Divider */}
+        <section className="relative h-4 w-full my-16">
+          <svg className="pointer-events-none absolute inset-0 size-full select-none text-primary stroke-border">
+            <defs>
+              <pattern
+                id=":r1r7:"
+                width="8"
+                height="4"
+                patternUnits="userSpaceOnUse"
+                patternTransform="rotate(45)"
+              >
+                <line x1="0" y1="0" x2="0" y2="4" strokeWidth="1.5"></line>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#:r1r7:)"></rect>
+          </svg>
+          <div className="-mx-4 md:-mx-8 2xl:-mx-16 h-4 flex items-center justify-center border-y border-border"></div>
+        </section>
+
+        {/* Gamemodes Header Badge */}
+        <section className="flex items-center justify-center mb-16">
+          <div className="flex items-center justify-center text-sm font-semibold border border-fg rounded-full px-4 h-8">
+            Gamemodes
+          </div>
+        </section>
+
+        {/* Gamemode Cards */}
+        <section className="flex justify-center items-center mx-4 md:mx-8">
+          <div className="relative flex flex-col lg:flex-row gap-8 border border-border rounded-sm ring-8 ring-fg/10 w-full md:max-w-6xl p-8">
+            <div className="space-y-4 z-10">
+              <h2 className="text-4xl font-bold">All the gamemodes</h2>
+              <p className="text-lg text-fg-2">
+                A bunch of gamemodes that will hone in on what matters...to you
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 z-10">
+              <Link
+                href="/files"
+                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
+              >
+                <div className="space-y-2">
+                  <h3 className="text-xl">Files</h3>
+                  <p className="text-fg-2">
+                    Type full implementations of real-world features & files.
+                  </p>
+                </div>
+                <ArrowRight className="size-4 ml-auto" />
+              </Link>
+              <div className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-red hover:scale-105 hover:rotate-1 transition">
+                <div className="space-y-2">
+                  <h3 className="text-xl">Algorithms</h3>
+                  <p className="text-fg-2">
+                    Practice popular algorithms and other leetcode style
+                    solutions.
+                  </p>
+                </div>
+                <Construction className="size-4 ml-auto" />
+              </div>
+              <div className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-red hover:scale-105 hover:-rotate-1 transition">
+                <div className="space-y-2">
+                  <h3 className="text-xl">Syntax Drills</h3>
+                  <p className="text-fg-2">
+                    Practice certain language features like repeated for loops
+                  </p>
+                </div>
+                <Construction className="size-4 ml-auto" />
+              </div>
             </div>
           </div>
         </section>

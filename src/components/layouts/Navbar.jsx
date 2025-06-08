@@ -3,6 +3,7 @@
 import { React, useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
+import { Construction } from "lucide-react";
 
 import Skeleton from "@/components/ui/Skeleton";
 import {
@@ -99,20 +100,20 @@ export default function Navbar() {
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="/algorithms">
-                      <div className="font-medium">Algorithms</div>
-                      <div className="text-muted-foreground">
+                    <div>
+                      <div className="text-fg-3">Algorithms</div>
+                      <div className="text-fg-3">
                         Type out popular algorithms
                       </div>
-                    </Link>
+                    </div>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="/syntax">
-                      <div className="font-medium">Snippets</div>
-                      <div className="text-muted-foreground">
+                    <div>
+                      <div className="text-fg-3">Snippets</div>
+                      <div className="text-fg-3">
                         Practice specific language features
                       </div>
-                    </Link>
+                    </div>
                   </NavigationMenuLink>
                 </li>
               </ul>

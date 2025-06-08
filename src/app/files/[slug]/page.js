@@ -25,7 +25,7 @@ export default async function FilePage({ params }) {
   return (
     <main className="font-[family-name:var(--font-geist-sans)]">
       <Navbar />
-      <div className="flex justify-center p-4">
+      <div className="flex flex-col justify-center max-w-5xl mx-auto p-4 pt-16">
         <div className="w-full max-w-5xl">
           <TypingTest tokens={challenge.tokens} />
         </div>
