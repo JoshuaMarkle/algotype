@@ -19,7 +19,7 @@ export default function TypingRenderer({
 
         return (
           <div key={`line-${li}`} className="flex flex-row">
-            <div className="text-fg-3 mr-4">{li}</div>
+            <div className="text-fg-3 w-6 mr-4">{li}</div>
             {line.map((token, ti) => {
               const showCursor = true;
               const isPast = li < lineIdx || (li === lineIdx && ti < tokenIdx);

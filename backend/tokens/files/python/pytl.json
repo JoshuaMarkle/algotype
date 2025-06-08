@@ -1,0 +1,4747 @@
+{
+  "title": "Pytl Arg Parser",
+  "description": "Command line tool that parses python files and enumerates classes/methods as a tree",
+  "lines": 90,
+  "language": "python",
+  "source": "https://github.com/ryo-ma/pytl",
+  "slug": "pytl",
+  "mode": "files",
+  "tokens": [
+    [
+      {
+        "type": "comment",
+        "content": "# Pytl",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "comment",
+        "content": "# Command line tool that parses python file, enumerates classes and methods as a tree structure.",
+        "skip": true
+      }
+    ],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ast",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "argparse",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "class",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "class-name",
+        "content": "LineText",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "builtin",
+        "content": "object",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "__init__",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "name",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "name",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "get_line_number",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "hasattr",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'lineno'",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "return",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "lineno",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "get_indent_text",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "indent_text",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "*",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "!=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "indent_text",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "+=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'|_'",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "return",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent_text",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "class",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "class-name",
+        "content": "ClassDefLineText",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "LineText",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "__init__",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "class_node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "isinstance",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "class_node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ast",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "ClassDef",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "raise",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ValueError",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "string",
+        "content": "'node",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "type",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "is",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "ClassDef.'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "builtin",
+        "content": "super",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "ClassDefLineText",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "__init__",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "class_node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "__str__",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "return",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'{}",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "{}class",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "{}'",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 9
+      },
+      {
+        "type": "builtin",
+        "content": "format",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "get_line_number",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "get_indent_text",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "name",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "class",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "class-name",
+        "content": "FunctionDefLineText",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "LineText",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "__init__",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "def_node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "isinstance",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "def_node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ast",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "FunctionDef",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "raise",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ValueError",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "string",
+        "content": "'node",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "type",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "is",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "FunctionDef.'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "builtin",
+        "content": "super",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "FunctionDefLineText",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "__init__",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "def_node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "try",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "args",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "',",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "a",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "arg",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "for",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "a",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "in",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "def_node",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "args",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "args",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "except",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "AttributeError",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            "
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      },
+      {
+        "type": "comment",
+        "content": "# Support to python2",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "args",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "',",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "a",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "builtin",
+        "content": "id",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "for",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "a",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "in",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "def_node",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "args",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "args",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "__str__",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "return",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'{}",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "{}def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "{}({})'",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 9
+      },
+      {
+        "type": "builtin",
+        "content": "format",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "get_line_number",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "get_indent_text",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "name",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "args",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "plain",
+        "content": "INDENT_NUM",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "2",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "class",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "class-name",
+        "content": "Parser",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "__init__",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "file_text",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "class_only",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "boolean",
+        "content": "False",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "def_only",
+        "wlength": 5
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 4
+      },
+      {
+        "type": "boolean",
+        "content": "False",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "text_list",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "class_only",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "class_only",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "def_only",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "def_only",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "tree",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ast",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "parse",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "file_text",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "walk",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "tree",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "walk",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 5
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 4
+      },
+      {
+        "type": "number",
+        "content": "0",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "next_indent",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "+",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "INDENT_NUM",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "isinstance",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ast",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "ClassDef",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "and",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "def_only",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 9
+      },
+      {
+        "type": "plain",
+        "content": "text_list",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "append",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "ClassDefLineText",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "elif",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "isinstance",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ast",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "FunctionDef",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "and",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "class_only",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 9
+      },
+      {
+        "type": "plain",
+        "content": "text_list",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "append",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "FunctionDefLineText",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "else",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "next_indent",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "for",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "child",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "in",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ast",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "iter_child_nodes",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "node",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "walk",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "child",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "indent",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "next_indent",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "max_line_number_length",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "return",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "len",
+        "wlength": 12
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 11
+      },
+      {
+        "type": "builtin",
+        "content": "str",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 9
+      },
+      {
+        "type": "builtin",
+        "content": "max",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "x",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "get_line_number",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "for",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "x",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "in",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "text_list",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "text_print",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "for",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "line",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "in",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "text_list",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "left_space",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "self",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "max_line_number_length",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "-",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "len",
+        "wlength": 11
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 10
+      },
+      {
+        "type": "builtin",
+        "content": "str",
+        "wlength": 9
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 8
+      },
+      {
+        "type": "plain",
+        "content": "line",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "get_line_number",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "            ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "print",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 6
+      },
+      {
+        "type": "string",
+        "content": "'{}{}'",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "builtin",
+        "content": "format",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "string",
+        "content": "'",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "*",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "left_space",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "line",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "main",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "parser",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "argparse",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "ArgumentParser",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "add_help",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "boolean",
+        "content": "True",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "parser",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "add_argument",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "string",
+        "content": "'python_file_path'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "type",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "builtin",
+        "content": "str",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "help",
+        "wlength": 3
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 2
+      },
+      {
+        "type": "string",
+        "content": "'Specify",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "target",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "python",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "file",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "path'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "parser",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "add_argument",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "string",
+        "content": "'-c'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'--class-only'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "action",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "string",
+        "content": "'store_true'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "default",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "boolean",
+        "content": "False",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "help",
+        "wlength": 3
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 2
+      },
+      {
+        "type": "string",
+        "content": "'Show",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "only",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "the",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "class",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "line'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "parser",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "add_argument",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "string",
+        "content": "'-d'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'--def-only'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "action",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "string",
+        "content": "'store_true'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "default",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "boolean",
+        "content": "False",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "help",
+        "wlength": 3
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 2
+      },
+      {
+        "type": "string",
+        "content": "'Show",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "only",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "the",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "line'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "parse_args",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "parser",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "parse_args",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "with",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "open",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "parse_args",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "python_file_path",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'r'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "as",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "f",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "Parser",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "f",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "read",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "parse_args",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "class_only",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "parse_args",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "def_only",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "text_print",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "__name__",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "==",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "'__main__'",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "main",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ]
+  ]
+}

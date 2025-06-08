@@ -12,7 +12,7 @@ export default function Home() {
         {/* Header */}
         <section className="relative flex flex-col pt-32 mx-auto w-full px-8 md:px-16">
           <h1 className="text-4xl md:text-5xl font-bold z-10">
-            Files Gamemode
+            Files Files Files
           </h1>
           <p className="text-md md:text-xl text-fg-2 mt-4 mb-8 z-10">
             Practice typing features using the language of your choice

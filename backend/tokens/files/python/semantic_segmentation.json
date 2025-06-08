@@ -1,0 +1,4486 @@
+{
+  "title": "Semantic Segmentation NN",
+  "description": "Train neural network for semantic segmentation (deep lab V3) with pytorch",
+  "lines": 102,
+  "language": "python",
+  "source": "https://github.com/sagieppel/Train-Semantic-Segmentation-Net-with-Pytorch-In-50-Lines-Of-Code",
+  "slug": "semantic_segmentation",
+  "mode": "files",
+  "tokens": [
+    [
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "cv2",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "numpy",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "as",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "np",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torchvision",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "transforms",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "as",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "from",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torchvision",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "models",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "segmentation",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "import",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "deeplabv3_resnet50",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "comment",
+        "content": "# --- Constants ---",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "LEARNING_RATE",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "1e-5",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "WIDTH",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "900",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "HEIGHT",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "900",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "BATCH_SIZE",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "3",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "plain",
+        "content": "TRAIN_FOLDER",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "\"LabPics/Simple/Train/\"",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "IMAGE_DIR",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "path",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "TRAIN_FOLDER",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "\"Image\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "FILLED_DIR",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "path",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "TRAIN_FOLDER",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "\"Semantic/16_Filled\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "VESSEL_DIR",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "path",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "TRAIN_FOLDER",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "\"Semantic/1_Vessel\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "plain",
+        "content": "IMAGE_LIST",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "listdir",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "IMAGE_DIR",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "comment",
+        "content": "# --- Image Transformations ---",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "transform_img",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "Compose",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "ToPILImage",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "Resize",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "HEIGHT",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "WIDTH",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "ToTensor",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "Normalize",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "number",
+        "content": "0.485",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0.456",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0.406",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "number",
+        "content": "0.229",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0.224",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0.225",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "plain",
+        "content": "transform_ann",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "Compose",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "ToPILImage",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "Resize",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "HEIGHT",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "WIDTH",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "interpolation",
+        "wlength": 9
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 8
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "InterpolationMode",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "NEAREST",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "T",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "ToTensor",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [],
+    [
+      {
+        "type": "comment",
+        "content": "# --- Load Random Image + Annotations ---",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "read_random_image",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "idx",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "np",
+        "wlength": 11
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 10
+      },
+      {
+        "type": "plain",
+        "content": "random",
+        "wlength": 9
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 8
+      },
+      {
+        "type": "plain",
+        "content": "randint",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 6
+      },
+      {
+        "type": "builtin",
+        "content": "len",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "IMAGE_LIST",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "image_path",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "path",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "IMAGE_DIR",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "IMAGE_LIST",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "idx",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "base_name",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "IMAGE_LIST",
+        "wlength": 9
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 8
+      },
+      {
+        "type": "plain",
+        "content": "idx",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "replace",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "string",
+        "content": "\"jpg\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "\"png\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "img",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "cv2",
+        "wlength": 9
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 8
+      },
+      {
+        "type": "plain",
+        "content": "imread",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "image_path",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 3
+      },
+      {
+        "type": "number",
+        "content": "3",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "filled",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "cv2",
+        "wlength": 12
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 11
+      },
+      {
+        "type": "plain",
+        "content": "imread",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 9
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "path",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "FILLED_DIR",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "base_name",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "vessel",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "cv2",
+        "wlength": 12
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 11
+      },
+      {
+        "type": "plain",
+        "content": "imread",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 9
+      },
+      {
+        "type": "plain",
+        "content": "os",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "path",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "join",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "VESSEL_DIR",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "base_name",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "ann_map",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "np",
+        "wlength": 12
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 11
+      },
+      {
+        "type": "plain",
+        "content": "zeros",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 9
+      },
+      {
+        "type": "plain",
+        "content": "img",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "shape",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 4
+      },
+      {
+        "type": "number",
+        "content": "2",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "dtype",
+        "wlength": 6
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "np",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "float32",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "vessel",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "is",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "boolean",
+        "content": "None",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "ann_map",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "vessel",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "==",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "1",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "1",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "filled",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "is",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "not",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "boolean",
+        "content": "None",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "ann_map",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 2
+      },
+      {
+        "type": "plain",
+        "content": "filled",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "==",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "1",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "2",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "img",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "transform_img",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "img",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "ann_map",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "transform_ann",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "ann_map",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "return",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "img",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "ann_map",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [],
+    [
+      {
+        "type": "comment",
+        "content": "# --- Load Batch ---",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "def",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "function",
+        "content": "load_batch",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "images",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "zeros",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "BATCH_SIZE",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "3",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "HEIGHT",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "WIDTH",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "annotations",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "zeros",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "BATCH_SIZE",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "HEIGHT",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "WIDTH",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "for",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "i",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "in",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "range",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "BATCH_SIZE",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "images",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "i",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "annotations",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "i",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "read_random_image",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "return",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "images",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "annotations",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [],
+    [
+      {
+        "type": "comment",
+        "content": "# --- Model and Optimizer Setup ---",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "device",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "device",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "string",
+        "content": "\"cuda\"",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "cuda",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "is_available",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "else",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string",
+        "content": "\"cpu\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "plain",
+        "content": "net",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "deeplabv3_resnet50",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "pretrained",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "boolean",
+        "content": "True",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "net",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "classifier",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 3
+      },
+      {
+        "type": "number",
+        "content": "4",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "nn",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "Conv2d",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "number",
+        "content": "256",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "3",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "kernel_size",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "number",
+        "content": "1",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "net",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "to",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "device",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "plain",
+        "content": "optimizer",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 12
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 11
+      },
+      {
+        "type": "plain",
+        "content": "optim",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 9
+      },
+      {
+        "type": "plain",
+        "content": "Adam",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "net",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "parameters",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "lr",
+        "wlength": 4
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "LEARNING_RATE",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "plain",
+        "content": "criterion",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "nn",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "CrossEntropyLoss",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "comment",
+        "content": "# --- Training Loop ---",
+        "skip": true
+      }
+    ],
+    [
+      {
+        "type": "keyword",
+        "content": "for",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "step",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "keyword",
+        "content": "in",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "builtin",
+        "content": "range",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 4
+      },
+      {
+        "type": "number",
+        "content": "10_000",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "images",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "annotations",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "load_batch",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "images",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "images",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "to",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "device",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "annotations",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "annotations",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "to",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "device",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "net",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "zero_grad",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "outputs",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "net",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "images",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 3
+      },
+      {
+        "type": "string",
+        "content": "\"out\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "loss",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "criterion",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "plain",
+        "content": "outputs",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "annotations",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "builtin",
+        "content": "long",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "loss",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "backward",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "optimizer",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "step",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "prediction",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 9
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 8
+      },
+      {
+        "type": "plain",
+        "content": "argmax",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 6
+      },
+      {
+        "type": "plain",
+        "content": "outputs",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": "[",
+        "wlength": 4
+      },
+      {
+        "type": "number",
+        "content": "0",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "]",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "dim",
+        "wlength": 16
+      },
+      {
+        "type": "operator",
+        "content": "=",
+        "wlength": 15
+      },
+      {
+        "type": "number",
+        "content": "0",
+        "wlength": 14
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 13
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 12
+      },
+      {
+        "type": "plain",
+        "content": "cpu",
+        "wlength": 11
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 9
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 8
+      },
+      {
+        "type": "plain",
+        "content": "detach",
+        "wlength": 7
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 5
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 4
+      },
+      {
+        "type": "plain",
+        "content": "numpy",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "print",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "string-interpolation",
+        "content": "f\"[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],step,[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object])",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Loss",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "=",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],loss,[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],item,[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object]\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [],
+    [
+      {
+        "type": "space",
+        "content": "    ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "if",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "plain",
+        "content": "step",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "%",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "1000",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "operator",
+        "content": "==",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "number",
+        "content": "0",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ":",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "plain",
+        "content": "torch",
+        "wlength": 10
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 9
+      },
+      {
+        "type": "plain",
+        "content": "save",
+        "wlength": 8
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 7
+      },
+      {
+        "type": "plain",
+        "content": "net",
+        "wlength": 6
+      },
+      {
+        "type": "punctuation",
+        "content": ".",
+        "wlength": 5
+      },
+      {
+        "type": "plain",
+        "content": "state_dict",
+        "wlength": 4
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ",",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "f\"[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],step,[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object].torch\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "content": "        ",
+        "skip": true
+      },
+      {
+        "type": "keyword",
+        "content": "print",
+        "wlength": 3
+      },
+      {
+        "type": "punctuation",
+        "content": "(",
+        "wlength": 2
+      },
+      {
+        "type": "string-interpolation",
+        "content": "f\"Model",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "saved:",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object],step,[object",
+        "wlength": 1
+      },
+      {
+        "type": "space",
+        "content": " "
+      },
+      {
+        "type": "string-interpolation",
+        "content": "Object].torch\"",
+        "wlength": 2
+      },
+      {
+        "type": "punctuation",
+        "content": ")",
+        "wlength": 1
+      },
+      {
+        "type": "newline",
+        "content": "↵"
+      }
+    ]
+  ]
+}

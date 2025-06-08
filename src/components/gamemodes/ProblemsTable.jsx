@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useMemo } from "react";
-import { ArrowUpDown, Settings2 } from "lucide-react";
+import { ArrowUpDown, Settings2, ExternalLink } from "lucide-react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -32,6 +33,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/DropdownMenu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function ProblemsTable() {
@@ -107,6 +113,20 @@ export default function ProblemsTable() {
       {
         accessorKey: "source",
         header: "Source",
+        cell: ({ getValue }) => {
+          const url = getValue();
+          return url ? (
+            <Link
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()} // Prevent row click
+              className="inline-flex items-center text-fg-2 hover:text-primary"
+            >
+              <ExternalLink className="size-4" />
+            </Link>
+          ) : null;
+        },
       },
     ],
     [],

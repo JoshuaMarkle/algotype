@@ -115,7 +115,7 @@ html {
 }
 
 ::selection {
-  background-color: var(--color-blue-3, #fea5e9);
+  background-color: var(--color-blue-3, #315efc);
   color: var(--color-fg, #ffffff);
 }
 
