@@ -97,7 +97,7 @@ export default function Navbar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <NavigationMenu>
+      <NavigationMenu className="[&_div.absolute]:left-auto [&_div.absolute]:right-0">
         <NavigationMenuList>
           <NavigationMenuItem>
             {!loading ? (

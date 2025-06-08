@@ -1,16 +1,12 @@
 import Link from "next/link";
+import { CircleUser, Settings, LogOut } from "lucide-react";
 
-import Button from "@/components/ui/Button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { NavigationMenuLink } from "@/components/ui/NavigationMenu";
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from "@/components/ui/DropdownMenu";
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "@/components/ui/NavigationMenu";
 import { logout } from "@/lib/auth";
 
 export default function NavbarAccount({ user }) {
@@ -23,31 +19,52 @@ export default function NavbarAccount({ user }) {
   }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="flex gap-2 items-center px-2">
-          <Avatar className="size-6">
-            <AvatarImage
-              src={user.user_metadata.avatar_url}
-              alt={user.user_metadata.full_name}
-            />
-            <AvatarFallback>{user.user_metadata.full_name?.[0]}</AvatarFallback>
-          </Avatar>
-          <span className="text-sm">{user.user_metadata.full_name}</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/account">Account</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/settings">Settings</Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <>
+      <NavigationMenuTrigger className="space-x-2">
+        <Avatar className="size-6">
+          <AvatarImage
+            src={user.user_metadata.avatar_url}
+            alt={user.user_metadata.full_name}
+          />
+          <AvatarFallback>{user.user_metadata.full_name?.[0]}</AvatarFallback>
+        </Avatar>
+      </NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <ul className="grid divide-y-1 divide-border">
+          <li className="p-2 pb-4">
+            <div>{user.user_metadata.full_name}</div>
+            <div className="text-fg-2">{user.user_metadata.email}</div>
+          </li>
+          <li className="py-2">
+            <NavigationMenuLink asChild>
+              <Link
+                href="/account"
+                className="flex flex-row items-center gap-2 font-medium "
+              >
+                <CircleUser className="size-4" /> Account
+              </Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink asChild>
+              <Link
+                href="/settings"
+                className="flex flex-row items-center gap-2 font-medium "
+              >
+                <Settings className="size-4" /> Settings
+              </Link>
+            </NavigationMenuLink>
+          </li>
+          <li className="pt-2">
+            <NavigationMenuLink asChild>
+              <div
+                onClick={logout}
+                className="flex flex-row items-center gap-2 font-medium "
+              >
+                <LogOut className="size-4" /> Logout
+              </div>
+            </NavigationMenuLink>
+          </li>
+        </ul>
+      </NavigationMenuContent>
+    </>
   );
 }
