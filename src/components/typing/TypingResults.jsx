@@ -3,6 +3,7 @@ import { Text, RefreshCcw, ChevronRight } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
+import { formatTime, cleanData } from "@/lib/utils";
 
 export default function TypingResults({ started, stats, data }) {
   const { wpm, acc, time, timeTillWpmDrop } = calculateStats(started, stats);
@@ -20,10 +21,7 @@ export default function TypingResults({ started, stats, data }) {
   return (
     <div className="h-[70vh] flex flex-col items-center justify-center gap-8 md:mx-32">
       <ResponsiveContainer width="100%" height={192}>
-        <AreaChart
-          data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-        >
+        <AreaChart data={data}>
           <defs>
             <linearGradient id="colorToBlack" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#16181b" stopOpacity={1} />
@@ -102,33 +100,3 @@ const CustomTooltip = ({ active, payload, label }) => {
   }
   return null;
 };
-
-// Format seconds into time string
-function formatTime(seconds) {
-  const hrs = Math.floor(seconds / 3600);
-  const mins = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
-
-  const paddedMins = hrs > 0 ? String(mins).padStart(2, "0") : mins;
-  const paddedSecs = mins > 0 || hrs > 0 ? String(secs).padStart(2, "0") : secs;
-
-  if (hrs > 0) return `${hrs}:${paddedMins}:${paddedSecs}`;
-  if (mins > 0) return `${mins}:${paddedSecs}`;
-  return `${secs}s`;
-}
-
-// Thin out the data to only maxPoints points
-function cleanData(data, maxPoints = 25) {
-  const total = data.length;
-  if (total <= maxPoints) return data;
-
-  const step = (total - 1) / (maxPoints - 1);
-  const result = [];
-
-  for (let i = 0; i < maxPoints; i++) {
-    const index = Math.round(i * step);
-    result.push(data[index]);
-  }
-
-  return result;
-}

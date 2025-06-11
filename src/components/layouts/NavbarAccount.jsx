@@ -33,7 +33,7 @@ export default function NavbarAccount({ user }) {
         <ul className="grid divide-y-1 divide-border">
           <li className="p-2 pb-4">
             <div>{user.user_metadata.full_name}</div>
-            <div className="text-fg-2">{user.user_metadata.email}</div>
+            <div className="text-sm text-fg-2">{user.user_metadata.email}</div>
           </li>
           <li className="py-2">
             <NavigationMenuLink asChild>

@@ -18,6 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/Accordion";
+import HashPatternSvg from "@/components/effects/HashPatternSvg";
 
 export default function Home() {
   return (
@@ -134,20 +135,7 @@ export default function Home() {
 
         {/* Divider */}
         <section className="relative h-4 w-full my-16">
-          <svg className="pointer-events-none absolute inset-0 size-full select-none text-primary stroke-border">
-            <defs>
-              <pattern
-                id=":r1r7:"
-                width="8"
-                height="4"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
-                <line x1="0" y1="0" x2="0" y2="4" strokeWidth="1.5"></line>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#:r1r7:)"></rect>
-          </svg>
+          <HashPatternSvg />
           <div className="-mx-4 md:-mx-8 2xl:-mx-16 h-4 flex items-center justify-center border-y border-border"></div>
         </section>
 
@@ -205,20 +193,7 @@ export default function Home() {
 
         {/* Divider */}
         <section className="relative h-4 w-full my-16">
-          <svg className="pointer-events-none absolute inset-0 size-full select-none text-primary stroke-border">
-            <defs>
-              <pattern
-                id=":r1r7:"
-                width="8"
-                height="4"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
-                <line x1="0" y1="0" x2="0" y2="4" strokeWidth="1.5"></line>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#:r1r7:)"></rect>
-          </svg>
+          <HashPatternSvg />
           <div className="-mx-4 md:-mx-8 2xl:-mx-16 h-4 flex items-center justify-center border-y border-border"></div>
         </section>
 
@@ -316,20 +291,7 @@ export default function Home() {
         </section>
 
         {/* Background Hash */}
-        <svg className="fixed pointer-events-none absolute inset-0 size-full select-none text-primary stroke-border -z-10">
-          <defs>
-            <pattern
-              id=":r1r7:"
-              width="6"
-              height="4"
-              patternUnits="userSpaceOnUse"
-              patternTransform="rotate(45)"
-            >
-              <line x1="0" y1="0" x2="0" y2="4" strokeWidth="1.5"></line>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#:r1r7:)"></rect>
-        </svg>
+        <HashPatternSvg className="-z-10" />
       </div>
       <Footer />
     </main>

@@ -1,6 +1,6 @@
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
-import ProblemsTable from "@/components/gamemodes/ProblemsTable";
+import ProblemsTable from "@/components/tables/ProblemsTable";
 
 export default function Home() {
   return (
