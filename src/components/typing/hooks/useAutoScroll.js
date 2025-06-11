@@ -7,31 +7,34 @@ export function useAutoScroll(started, done, currentLineRef, tokenIdx, typed) {
   useEffect(() => {
     if (!started || done) return;
 
-    const frame = requestAnimationFrame(() => {
+    const updateScrollTarget = () => {
       if (!currentLineRef.current) return;
 
       const rect = currentLineRef.current.getBoundingClientRect();
-      const middleY =
+      scrollTargetY.current =
         window.scrollY + rect.top - window.innerHeight / 2 + rect.height / 2;
-      scrollTargetY.current = middleY;
+    };
 
-      const scrollStep = () => {
-        const currentScroll = window.scrollY;
-        const diff = scrollTargetY.current - currentScroll;
-        const delta = diff * 0.15;
+    const scrollStep = () => {
+      const currentScroll = window.scrollY;
+      const diff = scrollTargetY.current - currentScroll;
+      const delta = diff * 0.15;
 
-        if (Math.abs(diff) > 1) {
-          window.scrollTo(0, currentScroll + delta);
-          scrollRaf.current = requestAnimationFrame(scrollStep);
-        } else {
-          cancelAnimationFrame(scrollRaf.current);
-        }
-      };
+      if (Math.abs(diff) > 1) {
+        window.scrollTo(0, currentScroll + delta);
+        scrollRaf.current = requestAnimationFrame(scrollStep);
+      } else {
+        cancelAnimationFrame(scrollRaf.current);
+      }
+    };
 
+    // Start the scroll animation
+    updateScrollTarget();
+    scrollRaf.current = requestAnimationFrame(scrollStep);
+
+    // Clean up when component unmounts or deps change
+    return () => {
       cancelAnimationFrame(scrollRaf.current);
-      scrollRaf.current = requestAnimationFrame(scrollStep);
-    });
-
-    return () => cancelAnimationFrame(frame);
+    };
   }, [tokenIdx, typed, started, done, currentLineRef]);
 }

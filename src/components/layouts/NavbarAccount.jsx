@@ -44,7 +44,8 @@ export default function NavbarAccount({ user }) {
                 <CircleUser className="size-4" /> Account
               </Link>
             </NavigationMenuLink>
-            <NavigationMenuLink asChild>
+            {/* Settings
+			}<NavigationMenuLink asChild>
               <Link
                 href="/settings"
                 className="flex flex-row items-center gap-2"
@@ -53,7 +54,7 @@ export default function NavbarAccount({ user }) {
               </Link>
             </NavigationMenuLink>
           </li>
-          <li className="pt-2">
+          <li className="pt-2">*/}
             <NavigationMenuLink asChild>
               <div
                 onClick={logout}

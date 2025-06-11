@@ -34,17 +34,17 @@ export default function TypingTest({ tokens, language, mode, slug }) {
   useAutoScroll(started, done, currentLineRef, tokenIdx, typed);
 
   // Prevent scrolling while typing
-  // useEffect(() => {
-  //   if (started && !done) {
-  //     document.body.style.overflow = "hidden";
-  //   } else {
-  //     document.body.style.overflow = "";
-  //   }
-  //
-  //   return () => {
-  //     document.body.style.overflow = "";
-  //   };
-  // }, [started, done]);
+  useEffect(() => {
+    if (started && !done) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [started, done]);
 
   // Auto-focus the hidden textarea
   useEffect(() => textareaRef.current?.focus(), [textareaRef]);

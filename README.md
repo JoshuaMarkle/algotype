@@ -73,21 +73,17 @@ backend                         # backend
 
 ## 🚧 TODO
 
-- Create files homepage
-    - Add more files
-        - Python
-        - C++
-- Create algorithms homepage
-    - Add more Files
-- Fix the navbar 
+- Create algorithms gamemode (homepage + some tests)
+- Add more Files + Algorithms
 - Authentication
     - Email + password authentication
     - Verify it works in production
     - Resolve conflicts (github + email)
-- Track stats for users
-    - Past logs
-    - Overall stats + main graph
-- Update the account page
+
+### Extra Stuff
+
+- Add a settings page
+- Fix the navbar UI
 - Create snippets homepage
     - Customizable system
         - For loops

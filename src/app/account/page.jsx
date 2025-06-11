@@ -49,7 +49,7 @@ export default function AccountPage() {
       )}
 
       {/* Background Hash */}
-      <HashPatternSvg className="-z-10" />
+      <HashPatternSvg className="fixed -z-10" />
       <Footer />
     </main>
   );

@@ -36,8 +36,9 @@ export default function PastTestsTable() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState("all");
+  const [total, setTotal] = useState(0);
   const [pageIndex, setPageIndex] = useState(0);
-  const pageSize = 20;
+  const pageSize = 10;
 
   // Fetch data at start and page change
   useEffect(() => {
@@ -50,7 +51,6 @@ export default function PastTestsTable() {
           page: pageIndex,
           pageSize,
         });
-        console.log("data", data);
         setTests(data);
       } catch (err) {
         console.error(err);
@@ -89,6 +89,10 @@ export default function PastTestsTable() {
   const table = useReactTable({
     data: tests,
     columns,
+    pageCount: -1,
+    state: {
+      pagination: { pageIndex, pageSize },
+    },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -98,13 +102,18 @@ export default function PastTestsTable() {
     return (
       <div>
         <div className="flex flex-row gap-4">
-          <Skeleton className="h-8 w-24 mb-4" />
-          <Skeleton className="h-8 w-24 mb-4" />
+          <Skeleton className="h-6 w-32 mb-6" />
+          <Skeleton className="h-6 w-24 mb-6" />
         </div>
         <div className="border border-border rounded-sm p-8 pb-0">
           {Array.from({ length: 8 }).map((_, i) => (
-            <Skeleton key={i} className="h-8 mb-8" />
+            <Skeleton key={i} className="h-6 mb-6" />
           ))}
+        </div>
+        <div className="flex flex-row gap-4">
+          <Skeleton className="h-6 w-32 mt-6" />
+          <Skeleton className="h-6 w-16 ml-auto mt-6" />
+          <Skeleton className="h-6 w-16 mt-6" />
         </div>
       </div>
     );
@@ -171,33 +180,39 @@ export default function PastTestsTable() {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  onClick={() => {
-                    const { slug, mode } = row.original;
-                    router.push(`/${mode}/${slug}`);
-                  }}
-                  className="cursor-pointer hover:bg-bg-3"
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="text-center">
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
+            {[...Array(pageSize)].map((_, i) => {
+              const row = table.getRowModel().rows[i];
+
+              if (row) {
+                return (
+                  <TableRow
+                    key={row.id}
+                    onClick={() => {
+                      const { slug, mode } = row.original;
+                      router.push(`/${mode}/${slug}`);
+                    }}
+                    className="cursor-pointer hover:bg-bg-3"
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                );
+              } else {
+                return (
+                  <TableRow key={`empty-${i}`} className="opacity-30">
+                    {columns.map((col) => (
+                      <TableCell key={col.accessorKey}>-</TableCell>
+                    ))}
+                  </TableRow>
+                );
+              }
+            })}
           </TableBody>
         </Table>
       </div>
@@ -205,10 +220,8 @@ export default function PastTestsTable() {
       {/* Footer */}
       <div className="flex items-center justify-between text-sm text-muted-foreground">
         <div>
-          Showing{" "}
-          {table.getRowModel().rows.length +
-            table.getState().pagination.pageIndex * 100}{" "}
-          of {tests.length} tests
+          Showing {pageIndex * pageSize + 1}–
+          {pageIndex * pageSize + tests.length} of {total || "?"} tests
         </div>
         <div className="flex gap-2">
           <Button
@@ -223,7 +236,7 @@ export default function PastTestsTable() {
             variant="outline"
             size="sm"
             onClick={() => setPageIndex((prev) => prev + 1)}
-            disabled={tests.length < pageSize} // No next page if last page has less
+            disabled={tests.length < pageSize}
           >
             Next
           </Button>

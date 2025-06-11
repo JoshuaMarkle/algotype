@@ -35,6 +35,7 @@ export default function ClientAccountPanel({ user }) {
   }, []);
 
   const stats = calculateStats(data);
+  const languageStats = groupLanguages(data);
 
   // Optional: helper to format time from seconds to "mm:ss"
   const formatTime = (seconds) => {
@@ -61,46 +62,35 @@ export default function ClientAccountPanel({ user }) {
                 <h2 className="truncate">{user.user_metadata.full_name}</h2>
                 <p className="truncate text-sm text-fg-2">{user.email}</p>
               </div>
-              <div>
+              {/*<div>
                 <p className="truncate">
                   <span className="text-sm text-fg-2">Rank</span> 1,283
                 </p>
-              </div>
+              </div>*/}
             </div>
           </div>
 
           {/* Languages */}
           <h3 className="font-medium">Languages</h3>
           <div className="space-y-2">
-            <div className="flex flex-row justify-between text-sm">
-              <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
-                Python
-              </span>
-              <p>
-                XX <span className="text-fg-2">problems solved</span>
-              </p>
-            </div>
-            <div className="flex flex-row justify-between text-sm">
-              <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
-                C++
-              </span>
-              <p>
-                XX <span className="text-fg-2">problems solved</span>
-              </p>
-            </div>
-            <div className="flex flex-row justify-between text-sm">
-              <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
-                JavaScript
-              </span>
-              <p>
-                XX <span className="text-fg-2">problems solved</span>
-              </p>
-            </div>
-            <div className="text-center">
+            {languageStats.map(({ language, count }) => (
+              <div
+                key={language}
+                className="flex flex-row justify-between text-sm capitalize"
+              >
+                <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
+                  {language}
+                </span>
+                <p>
+                  {count} <span className="text-fg-2">problems solved</span>
+                </p>
+              </div>
+            ))}
+            {/*<div className="text-center">
               <Button variant="link" className="text-fg-2 py-0">
                 Load all
               </Button>
-            </div>
+            </div>*/}
           </div>
 
           {/* Actions */}
@@ -194,6 +184,21 @@ function calculateStats(data) {
     completed: sum.completed,
     started: sum.completed, // Adjust if needed
   };
+}
+
+// Group languages together
+function groupLanguages(data) {
+  const counts = {};
+
+  for (const item of data) {
+    const lang = item.language?.toLowerCase() || "unknown";
+    counts[lang] = (counts[lang] || 0) + 1;
+  }
+
+  // Convert to array of objects to easily map in JSX
+  return Object.entries(counts)
+    .map(([language, count]) => ({ language, count }))
+    .sort((a, b) => b.count - a.count); // Sort descending
 }
 
 export const metadata = {

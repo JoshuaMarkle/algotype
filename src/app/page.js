@@ -293,7 +293,7 @@ export default function Home() {
         </section>
 
         {/* Background Hash */}
-        <HashPatternSvg className="-z-10" />
+        <HashPatternSvg className="fixed -z-10" />
       </div>
       <Footer />
     </main>
