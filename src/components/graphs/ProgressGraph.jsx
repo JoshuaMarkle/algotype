@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ComposedChart,
   Area,
@@ -6,19 +8,26 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { smoothData } from "@/lib/utils";
+import Skeleton from "@/components/ui/Skeleton";
+import { formatTime } from "@/lib/utils";
 
-export default function ProgressGraph({ data }) {
-  const sData = smoothData(data);
+export default function ProgressGraph({ data, loading }) {
+  if (loading) {
+    return <Skeleton className="w-full h-[192px]" />;
+  }
+
+  // const sData = smoothData(data);
+
   return (
     <ResponsiveContainer width="100%" height={192}>
-      <ComposedChart data={sData}>
+      <ComposedChart data={data}>
         <defs>
           <linearGradient id="colorToBlack" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#16181b" stopOpacity={1} />
             <stop offset="100%" stopColor="#040404" stopOpacity={1} />
           </linearGradient>
         </defs>
+
         <Area
           type="monotone"
           dataKey="wpm"
@@ -57,11 +66,9 @@ export default function ProgressGraph({ data }) {
   );
 }
 
-// Graph tooltip
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    const { wpm, acc, time } = payload[0].payload; // read from payload directly
-
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload?.length) {
+    const { wpm, acc, time } = payload[0].payload;
     return (
       <div className="bg-bg font-mono text-white text-sm rounded-lg shadow-lg px-4 py-2 space-y-1">
         <p>
@@ -70,7 +77,9 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p>
           acc: <span className="font-medium">{acc}%</span>
         </p>
-        {/* Optional: <p>Time: {formatTime(time)}</p> */}
+        <p>
+          time: <span className="font-medium">{formatTime(time)}</span>
+        </p>
       </div>
     );
   }

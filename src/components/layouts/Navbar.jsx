@@ -103,12 +103,7 @@ export default function Navbar() {
             {!loading ? (
               <NavbarAccount user={user} />
             ) : (
-              <div className="flex items-center space-x-4">
-                <Skeleton className="size-6 rounded-full" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-[100px]" />
-                </div>
-              </div>
+              <Skeleton className="size-6 rounded-full mr-8" />
             )}
           </NavigationMenuItem>
         </NavigationMenuList>

@@ -4,9 +4,10 @@ import { Text, RefreshCcw, ChevronRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
 import { formatTime, cleanData } from "@/lib/utils";
+import { submitTestHistory } from "@/lib/history";
 
 export default function TypingResults({ started, stats, data }) {
-  const { wpm, acc, time, timeTillWpmDrop } = calculateStats(started, stats);
+  const { wpm, acc, time } = calculateStats(started, stats);
   const formattedTime = formatTime(time);
   const correct = stats.current.correct;
   const incorrect = stats.current.incorrect;

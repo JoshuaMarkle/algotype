@@ -1,13 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useMemo } from "react";
-import { ArrowUpDown, Settings2, ExternalLink } from "lucide-react";
+import { Settings2 } from "lucide-react";
 import {
   useReactTable,
   getCoreRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   getFilteredRowModel,
   flexRender,
@@ -21,7 +19,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
-import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Skeleton from "@/components/ui/Skeleton";
 import {
@@ -30,126 +27,78 @@ import {
   DropdownMenuContent,
   DropdownMenuCheckboxItem,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
 } from "@/components/ui/DropdownMenu";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/Tooltip";
-import { supabase } from "@/lib/supabaseClient";
+import { getUserHistoryPaginated } from "@/lib/history";
 
-export default function ProblemsTable() {
+export default function PastTestsTable() {
   const router = useRouter();
-  const [problems, setProblems] = useState([]);
+  const [tests, setTests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("all");
+  const [pageIndex, setPageIndex] = useState(0);
+  const pageSize = 20;
 
-  // Fetch data
+  // Fetch data at start and page change
   useEffect(() => {
-    const fetchProblems = async () => {
-      const { data, error } = await supabase
-        .from("challenges")
-        .select("id, title, description, lines, source, language, slug, mode")
-        .eq("mode", "files")
-        .limit(1000);
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
 
-      if (error) setError(error.message);
-      else setProblems(data);
-
-      setLoading(false);
+      try {
+        const { data } = await getUserHistoryPaginated({
+          page: pageIndex,
+          pageSize,
+        });
+        console.log("data", data);
+        setTests(data);
+      } catch (err) {
+        console.error(err);
+        setError(err.message || "Something went wrong.");
+        setTests([]); // fallback
+      } finally {
+        setLoading(false);
+      }
     };
 
-    fetchProblems();
-  }, []);
-
-  const filteredProblems = useMemo(() => {
-    return problems
-      .filter((p) => {
-        if (selectedLanguage === "all") return true;
-        return p.language === selectedLanguage;
-      })
-      .filter((p) => {
-        return (
-          p.title.toLowerCase().includes(search.toLowerCase()) ||
-          p.description.toLowerCase().includes(search.toLowerCase())
-        );
-      });
-  }, [problems, selectedLanguage, search]);
+    fetchData();
+  }, [pageIndex]);
 
   const allLanguages = useMemo(() => {
-    const langs = new Set(problems.map((p) => p.language));
+    const langs = new Set(tests.map((p) => p.language));
     return ["all", ...Array.from(langs).sort()];
-  }, [problems]);
+  }, [tests]);
 
   const columns = useMemo(
     () => [
+      { accessorKey: "wpm", header: "WPM" },
+      { accessorKey: "acc", header: "Accuracy" },
+      { accessorKey: "time", header: "Time" },
+      { accessorKey: "language", header: "Language" },
+      { accessorKey: "slug", header: "Slug" },
+      { accessorKey: "mode", header: "Mode" },
       {
-        accessorKey: "title",
-        header: ({ column }) => (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Title <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        ),
-      },
-      {
-        accessorKey: "description",
-        header: "Description",
-      },
-      {
-        accessorKey: "lines",
-        header: "Lines",
-      },
-      {
-        accessorKey: "language",
-        header: "Language",
-      },
-      {
-        accessorKey: "source",
-        header: "Source",
-        cell: ({ getValue }) => {
-          const url = getValue();
-          return url ? (
-            <Link
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()} // Prevent row click
-              className="inline-flex items-center text-fg-2 hover:text-primary"
-            >
-              <ExternalLink className="size-4" />
-            </Link>
-          ) : null;
-        },
+        accessorKey: "created_at",
+        header: "Date",
+        cell: ({ getValue }) => new Date(getValue()).toLocaleString(),
       },
     ],
     [],
   );
 
   const table = useReactTable({
-    data: filteredProblems,
+    data: tests,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    initialState: {
-      pagination: { pageSize: 100, pageIndex: 0 },
-    },
   });
 
   if (loading) {
     return (
       <div>
         <div className="flex flex-row gap-4">
-          <Skeleton className="h-8 w-64 mb-4" />
-          <Skeleton className="h-8 w-24 mb-4 ml-auto" />
+          <Skeleton className="h-8 w-24 mb-4" />
           <Skeleton className="h-8 w-24 mb-4" />
         </div>
         <div className="border border-border rounded-sm p-8 pb-0">
@@ -166,15 +115,8 @@ export default function ProblemsTable() {
     <div className="space-y-4">
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4">
-        <Input
-          placeholder="Search title or description..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="max-w-sm"
-        />
-
         <DropdownMenu>
-          <DropdownMenuTrigger asChild className="ml-auto">
+          <DropdownMenuTrigger asChild>
             <Button variant="outline">Language: {selectedLanguage}</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
@@ -266,22 +208,22 @@ export default function ProblemsTable() {
           Showing{" "}
           {table.getRowModel().rows.length +
             table.getState().pagination.pageIndex * 100}{" "}
-          of {filteredProblems.length} problems
+          of {tests.length} tests
         </div>
         <div className="flex gap-2">
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={() => setPageIndex((prev) => Math.max(prev - 1, 0))}
+            disabled={pageIndex === 0}
           >
             Previous
           </Button>
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={() => setPageIndex((prev) => prev + 1)}
+            disabled={tests.length < pageSize} // No next page if last page has less
           >
             Next
           </Button>

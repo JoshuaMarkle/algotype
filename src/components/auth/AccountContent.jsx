@@ -1,22 +1,48 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import Button from "@/components/ui/Button";
 import ProgressGraph from "@/components/graphs/ProgressGraph";
+import PastTestsTable from "@/components/tables/PastTestsTable";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { logout } from "@/lib/auth";
-
-const rawData = Array.from({ length: 100 }, (_, i) => {
-  const baseWPM = 60 + i * 1; // Gradual increase from 60
-  const variation = (Math.random() - 0.5) * 120; // ±15 variation
-  const wpm = Math.round(baseWPM + variation);
-
-  const acc = parseFloat((0.85 + Math.random() * 0.14).toFixed(2)); // 0.85–0.99
-
-  return { wpm, acc };
-});
-const data = rawData.map((d, i) => ({ ...d, index: i }));
+import { getUserHistory } from "@/lib/history";
+import { formatTime } from "@/lib/utils";
 
 export default function ClientAccountPanel({ user }) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch user history on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const history = await getUserHistory();
+        const reversed = [...history].reverse(); // oldest to newest
+        const indexed = reversed.map((d, i) => ({
+          ...d,
+          index: i,
+        }));
+        setData(indexed);
+      } catch (err) {
+        console.error("Failed to fetch graph data:", err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const stats = calculateStats(data);
+
+  // Optional: helper to format time from seconds to "mm:ss"
+  const formatTime = (seconds) => {
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return `${min}:${sec.toString().padStart(2, "0")}`;
+  };
+
   return (
     <div className="min-h-screen mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
       <div className="flex flex-col lg:flex-row  gap-4 sm:gap-8 mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8">
@@ -90,45 +116,84 @@ export default function ClientAccountPanel({ user }) {
           {/* Statistics */}
           <section className="space-y-8 border border-border rounded-sm p-8">
             {/* Main Graph */}
-            <ProgressGraph data={data} />
+            <ProgressGraph data={data} loading={loading} />
 
             {/* Main Stats */}
             <div className="grid grid-cols-3 space-x-4 space-y-8 text-center font-mono text-sm sm:text-lg">
               <div>
                 <p className="text-2xl sm:text-4xl">
-                  99<span className="text-sm sm:text-lg text-fg-2">/123</span>
+                  {stats.completed}
+                  <span className="text-sm sm:text-lg text-fg-2">
+                    /{stats.started}
+                  </span>
                 </p>
                 <h4 className="text-fg-2">Solved</h4>
               </div>
               <div>
-                <p className="text-2xl sm:text-4xl">123</p>
+                <p className="text-2xl sm:text-4xl">{stats.avgWpm}</p>
                 <h4 className="text-fg-2">Avg. WPM</h4>
               </div>
               <div>
-                <p className="text-2xl sm:text-4xl">95%</p>
+                <p className="text-2xl sm:text-4xl">{stats.avgAcc}%</p>
                 <h4 className="text-fg-2">Avg. ACC</h4>
               </div>
               <div>
-                <p className="text-2xl sm:text-4xl">1234</p>
+                <p className="text-2xl sm:text-4xl">{stats.started}</p>
                 <h4 className="text-fg-2">Started</h4>
               </div>
               <div>
-                <p className="text-2xl sm:text-4xl">123</p>
+                <p className="text-2xl sm:text-4xl">{stats.completed}</p>
                 <h4 className="text-fg-2">Completed</h4>
               </div>
               <div>
-                <p className="text-2xl sm:text-4xl">12:34</p>
+                <p className="text-2xl sm:text-4xl">
+                  {formatTime(stats.totalTime)}
+                </p>
                 <h4 className="text-fg-2">Time Typing</h4>
               </div>
             </div>
           </section>
 
           {/* Past Problem Table */}
-          <section className="flex-1 space-y-8 border border-border rounded-sm p-8"></section>
+          <section className="flex-1 space-y-8 border border-border rounded-sm p-8">
+            <PastTestsTable />
+          </section>
         </div>
       </div>
     </div>
   );
+}
+
+// Calculate stats
+function calculateStats(data) {
+  if (!data.length) {
+    return {
+      avgWpm: 0,
+      avgAcc: 0,
+      totalTime: 0,
+      completed: 0,
+      started: 0, // Adjust if you have a `completed` flag later
+    };
+  }
+
+  const sum = data.reduce(
+    (acc, item) => {
+      acc.wpm += item.wpm || 0;
+      acc.acc += item.acc || 0;
+      acc.time += item.time || 0;
+      acc.completed += 1; // Assuming all entries are completed
+      return acc;
+    },
+    { wpm: 0, acc: 0, time: 0, completed: 0 },
+  );
+
+  return {
+    avgWpm: Math.round(sum.wpm / data.length),
+    avgAcc: Math.round(sum.acc / data.length),
+    totalTime: sum.time, // In seconds
+    completed: sum.completed,
+    started: sum.completed, // Adjust if needed
+  };
 }
 
 export const metadata = {

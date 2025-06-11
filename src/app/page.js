@@ -26,10 +26,12 @@ export default function Home() {
       <Navbar className="fixed top" />
 
       {/* Notification */}
-      <section className="absolute top-13 flex flex-row gap-2 justify-center items-center p-2 w-full bg-fg/10 hover:bg-blue-3 transition text-sm font-mono z-10 animate-fade-down opacity-0">
-        <Sparkles className="size-4" />
-        Introducing: <span className="font-semibold">3 New Gamemodes</span>
-      </section>
+      <Link href="https://github.com/JoshuaMarkle/algotype" target="_blank">
+        <section className="absolute top-13 flex flex-row gap-2 justify-center items-center p-2 w-full bg-fg/10 hover:bg-blue-3 transition text-sm font-mono z-10 animate-fade-down opacity-0">
+          <Sparkles className="size-4" />
+          Currently in <span className="font-semibold">Active</span> Development
+        </section>
+      </Link>
 
       <div className="mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
         {/* Header */}

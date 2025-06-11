@@ -22,12 +22,20 @@ export default async function FilePage({ params }) {
     );
   }
 
+  const mode = challenge.mode;
+  const language = challenge.language;
+
   return (
     <main className="font-[family-name:var(--font-geist-sans)]">
       <Navbar />
       <div className="flex flex-col justify-center max-w-5xl mx-auto p-4 pt-16">
         <div className="w-full max-w-5xl">
-          <TypingTest tokens={challenge.tokens} />
+          <TypingTest
+            tokens={challenge.tokens}
+            language={language}
+            mode={mode}
+            slug={slug}
+          />
         </div>
       </div>
       <Footer />

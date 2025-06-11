@@ -39,7 +39,7 @@ export default function NavbarAccount({ user }) {
             <NavigationMenuLink asChild>
               <Link
                 href="/account"
-                className="flex flex-row items-center gap-2 font-medium "
+                className="flex flex-row items-center gap-2"
               >
                 <CircleUser className="size-4" /> Account
               </Link>
@@ -47,7 +47,7 @@ export default function NavbarAccount({ user }) {
             <NavigationMenuLink asChild>
               <Link
                 href="/settings"
-                className="flex flex-row items-center gap-2 font-medium "
+                className="flex flex-row items-center gap-2"
               >
                 <Settings className="size-4" /> Settings
               </Link>
@@ -57,7 +57,7 @@ export default function NavbarAccount({ user }) {
             <NavigationMenuLink asChild>
               <div
                 onClick={logout}
-                className="flex flex-row items-center gap-2 font-medium "
+                className="flex flex-row items-center gap-2"
               >
                 <LogOut className="size-4" /> Logout
               </div>

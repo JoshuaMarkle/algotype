@@ -7,8 +7,9 @@ import TypingResults from "@/components/typing/TypingResults";
 import { useTypingState } from "@/components/typing/hooks/useTypingState";
 import { useAutoScroll } from "@/components/typing/hooks/useAutoScroll";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
+import { submitTestHistory } from "@/lib/history";
 
-export default function TypingTest({ tokens }) {
+export default function TypingTest({ tokens, language, mode, slug }) {
   // Stats reference
   const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
   let wpmOverTime = useRef([]);
@@ -33,17 +34,17 @@ export default function TypingTest({ tokens }) {
   useAutoScroll(started, done, currentLineRef, tokenIdx, typed);
 
   // Prevent scrolling while typing
-  useEffect(() => {
-    if (started && !done) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [started, done]);
+  // useEffect(() => {
+  //   if (started && !done) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "";
+  //   }
+  //
+  //   return () => {
+  //     document.body.style.overflow = "";
+  //   };
+  // }, [started, done]);
 
   // Auto-focus the hidden textarea
   useEffect(() => textareaRef.current?.focus(), [textareaRef]);
@@ -59,6 +60,14 @@ export default function TypingTest({ tokens }) {
 
     return () => clearInterval(interval);
   }, [started, done, stats]);
+
+  // Return results when done
+  useEffect(() => {
+    if (started && done) {
+      const { wpm, acc, time } = calculateStats(started, stats);
+      submitTestHistory({ wpm, acc, time, language, mode, slug });
+    }
+  }, [started, done]);
 
   return (
     <div
