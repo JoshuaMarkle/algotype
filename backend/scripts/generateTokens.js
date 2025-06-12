@@ -15,9 +15,7 @@ for (const mode of GAMEMODES) {
     const langDir = path.join(modeDir, language);
     const files = (await fs.readdir(langDir)).filter(
       (f) =>
-        !f.endsWith(".meta.json") &&
-        !f.startsWith(".") &&
-        !f.includes("tokens"),
+        !f.endsWith(".meta") && !f.startsWith(".") && !f.includes("tokens"),
     );
 
     try {
@@ -32,7 +30,7 @@ for (const mode of GAMEMODES) {
     for (const file of files) {
       const baseName = file.replace(/\.[^.]+$/, ""); // removes extension
       const filePath = path.join(langDir, file);
-      const metaPath = path.join(langDir, `${baseName}.meta.json`);
+      const metaPath = path.join(langDir, `${baseName}.meta`);
       const outputDir = path.join(
         process.cwd(),
         "backend/tokens",
@@ -41,7 +39,7 @@ for (const mode of GAMEMODES) {
       );
       const outputPath = path.join(outputDir, `${baseName}.json`);
 
-      // Ensure .meta.json exists
+      // Ensure .meta exists
       try {
         const meta = JSON.parse(await fs.readFile(metaPath, "utf8"));
         const code = await fs.readFile(filePath, "utf8");
@@ -78,11 +76,15 @@ for (const mode of GAMEMODES) {
       } catch (err) {
         if (err.code === "ENOENT") {
           console.warn(
-            `${chalk.yellow("[WARNING]")}\tSkipping:  [${mode}/${language}/${file}] missing ${file}.meta.json`,
+            `${chalk.yellow("[WARNING]")}\tSkipping:  [${mode}/${language}/${file}]\n` +
+              `\t\tMissing or unreadable metadata file: ${metaPath}\n` +
+              `\t\tExpected code file: ${filePath}`,
           );
         } else {
           console.error(
-            `${chalk.red("[ERROR]")}\tFailed: ${file} — ${err.message}`,
+            `${chalk.red("[ERROR]")}\tFailed to process: ${filePath}\n` +
+              `\t\tWith meta: ${metaPath}\n` +
+              `\t\tReason: ${err.message}`,
           );
         }
       }

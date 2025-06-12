@@ -40,6 +40,8 @@ next-env.d.ts
 
 # data
 backend/data
+backend/leetcode
+backend/tokens
 
 # misc
 BRAND.md
