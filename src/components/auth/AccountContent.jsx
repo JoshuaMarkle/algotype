@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { logout } from "@/lib/auth";
 import { getUserHistory } from "@/lib/history";
 import { formatTime } from "@/lib/utils";
+import { ArrowUp01 } from "lucide-react";
 
 export default function ClientAccountPanel({ user }) {
   const [data, setData] = useState([]);
@@ -48,18 +49,20 @@ export default function ClientAccountPanel({ user }) {
     <div className="min-h-screen mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
       <div className="flex flex-col lg:flex-row  gap-4 sm:gap-8 mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8">
         {/* Profile */}
-        <section className="flex flex-col space-y-4 border border-border rounded-sm p-8">
+        <section className="lg:max-w-[30vw] xl:max-w-[20vw] flex flex-col space-y-4 border border-border rounded-sm p-8">
           <div className="flex flex-row justify-center gap-4">
             <Avatar className="size-24 rounded-sm">
               <AvatarImage
                 src={user.user_metadata.avatar_url}
-                alt={user.user_metadata.full_name}
+                alt={user.user_metadata.username}
               />
-              <AvatarFallback>{user.user_metadata.full_name[0]}</AvatarFallback>
+              <AvatarFallback className="text-6xl rounded-sm">
+                {user.user_metadata.username[0]}
+              </AvatarFallback>
             </Avatar>
             <div className="truncate flex flex-col justify-between flex-1 text-left text-xl leading-tight">
               <div className="flex flex-col">
-                <h2 className="truncate">{user.user_metadata.full_name}</h2>
+                <h2 className="truncate">{user.user_metadata.username}</h2>
                 <p className="truncate text-sm text-fg-2">{user.email}</p>
               </div>
               {/*<div>
@@ -106,7 +109,11 @@ export default function ClientAccountPanel({ user }) {
           {/* Statistics */}
           <section className="space-y-8 border border-border rounded-sm p-8">
             {/* Main Graph */}
-            <ProgressGraph data={data} loading={loading} />
+            {data.length > 1 ? (
+              <ProgressGraph data={data} loading={loading} />
+            ) : (
+              <div />
+            )}
 
             {/* Main Stats */}
             <div className="grid grid-cols-3 space-x-4 space-y-8 text-center font-mono text-sm sm:text-lg">

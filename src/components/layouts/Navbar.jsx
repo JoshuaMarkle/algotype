@@ -76,12 +76,12 @@ export default function Navbar() {
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <div>
-                      <div className="text-fg-3">Algorithms</div>
-                      <div className="text-fg-3">
-                        Type out popular algorithms
+                    <Link href="/algorithms">
+                      <div className="font-medium">Algorithms</div>
+                      <div className="text-muted-foreground">
+                        Type out popular algorithms and leetcode solutions
                       </div>
-                    </div>
+                    </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
                     <div>

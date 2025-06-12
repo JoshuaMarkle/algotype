@@ -24,16 +24,18 @@ export default function NavbarAccount({ user }) {
         <Avatar className="size-6">
           <AvatarImage
             src={user.user_metadata.avatar_url}
-            alt={user.user_metadata.full_name}
+            alt={user.user_metadata.username}
           />
-          <AvatarFallback>{user.user_metadata.full_name?.[0]}</AvatarFallback>
+          <AvatarFallback>{user.user_metadata.username?.[0]}</AvatarFallback>
         </Avatar>
       </NavigationMenuTrigger>
       <NavigationMenuContent>
         <ul className="grid divide-y-1 divide-border">
-          <li className="p-2 pb-4">
-            <div>{user.user_metadata.full_name}</div>
-            <div className="text-sm text-fg-2">{user.user_metadata.email}</div>
+          <li className="p-2 pb-4 w-[250px]">
+            <div className="truncate">{user.user_metadata.username}</div>
+            <div className="truncate text-sm text-fg-2">
+              {user.user_metadata.email}
+            </div>
           </li>
           <li className="py-2">
             <NavigationMenuLink asChild>

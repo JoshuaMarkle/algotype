@@ -40,7 +40,7 @@ import {
 } from "@/components/ui/Tooltip";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function ProblemsTable() {
+export default function ProblemsTable({ mode }) {
   const router = useRouter();
   const [problems, setProblems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -54,7 +54,7 @@ export default function ProblemsTable() {
       const { data, error } = await supabase
         .from("challenges")
         .select("id, title, description, lines, source, language, slug, mode")
-        .eq("mode", "files")
+        .eq("mode", mode)
         .limit(1000);
 
       if (error) setError(error.message);
@@ -140,7 +140,7 @@ export default function ProblemsTable() {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     initialState: {
-      pagination: { pageSize: 100, pageIndex: 0 },
+      pagination: { pageSize: 50, pageIndex: 0 },
     },
   });
 
@@ -265,7 +265,7 @@ export default function ProblemsTable() {
         <div>
           Showing{" "}
           {table.getRowModel().rows.length +
-            table.getState().pagination.pageIndex * 100}{" "}
+            table.getState().pagination.pageIndex * 50}{" "}
           of {filteredProblems.length} problems
         </div>
         <div className="flex gap-2">

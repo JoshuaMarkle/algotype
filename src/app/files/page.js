@@ -49,7 +49,7 @@ export default function Home() {
 
         {/* Table */}
         <section className="relative flex flex-col mx-auto w-full px-8 md:px-16 py-8">
-          <ProblemsTable />
+          <ProblemsTable mode="files" />
         </section>
 
         {/* Background Hash */}
