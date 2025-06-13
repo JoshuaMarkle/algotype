@@ -1,17 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
-import Navbar from "@/components/layouts/Navbar";
 import PasswordResetForm from "@/components/auth/PasswordResetForm";
 import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
-export default function PasswordResetPage() {
+// Wrap in suspense (for some nextjs reason lol)
+export default function PasswordResetPageWrapper() {
+  return (
+    <Suspense fallback={<p className="text-center mt-12">Loading...</p>}>
+      <PasswordResetPage />
+    </Suspense>
+  );
+}
+
+export function PasswordResetPage() {
   const params = useSearchParams();
-  const router = useRouter();
   const [sessionReady, setSessionReady] = useState(false);
   const [error, setError] = useState(null);
 
@@ -33,9 +40,6 @@ export default function PasswordResetPage() {
 
   return (
     <main className="relative grid min-h-svh lg:grid-cols-2">
-      {/*<div className="fixed top-0 left-0 right-0 z-50">
-        <Navbar />
-      </div>*/}
       <KeyboardBackground />
       <div className="flex flex-col gap-4 p-6 bg-bg md:p-10 border-r border-border">
         <div className="flex justify-center gap-2 md:justify-start">

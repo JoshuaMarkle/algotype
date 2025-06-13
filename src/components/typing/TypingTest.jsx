@@ -67,7 +67,7 @@ export default function TypingTest({ tokens, language, mode, slug }) {
       const { wpm, acc, time } = calculateStats(started, stats);
       submitTestHistory({ wpm, acc, time, language, mode, slug });
     }
-  }, [started, done]);
+  }, [started, done, language, mode, slug]);
 
   return (
     <div

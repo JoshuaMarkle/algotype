@@ -64,7 +64,7 @@ export default function ProblemsTable({ mode }) {
     };
 
     fetchProblems();
-  }, []);
+  }, [mode]);
 
   const filteredProblems = useMemo(() => {
     return problems

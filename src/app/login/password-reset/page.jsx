@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import Navbar from "@/components/layouts/Navbar";
-import PasswordResetForm from "@/components/auth/PasswordResetForm";
+import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
 export default function PasswordResetPage() {
