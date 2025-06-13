@@ -25,7 +25,10 @@ export default function SignupForm({ className, ...props }) {
       await signupWithEmail(username, email, password);
       setSuccess(true);
 
-      // TODO: redirect or show success message
+      // Redirect to homepage
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     } catch (err) {
       setError(err.message);
     }
@@ -36,7 +39,10 @@ export default function SignupForm({ className, ...props }) {
       await loginWithGitHub();
       setSuccess(true);
 
-      // TODO: redirect or show success message
+      // Redirect to homepage
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     } catch (err) {
       setError(err.message);
     }
@@ -93,7 +99,7 @@ export default function SignupForm({ className, ...props }) {
               {error && <p className="text-red-500 text-sm">{error}</p>}
               {success && (
                 <p className="text-green-500 text-sm">
-                  Check your email to confirm.
+                  Successfully made your account
                 </p>
               )}
             </div>

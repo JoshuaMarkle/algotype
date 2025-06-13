@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { supabase } from "@/lib/supabaseClient";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
@@ -26,8 +27,16 @@ export default function ResetPasswordForm({ className, ...props }) {
     }
 
     try {
-      // Request to change the password to new password
+      // Change user password
+      const { data, error } = await supabase.auth.updateUser({
+        password,
+      });
       setSuccess(true);
+
+      // Redirect to homepage
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     } catch (err) {
       setError(err.message);
     }

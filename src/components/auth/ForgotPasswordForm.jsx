@@ -77,7 +77,7 @@ export default function LoginForm({ className, ...props }) {
               {error && <p className="text-red-500 text-sm">{error}</p>}
               {success && (
                 <p className="text-green-500 text-sm">
-                  Check your email to confirm.
+                  Check your email to continue.
                 </p>
               )}
             </div>

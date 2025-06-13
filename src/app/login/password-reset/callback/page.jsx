@@ -8,35 +8,29 @@ import { supabase } from "@/lib/supabaseClient";
 import PasswordResetForm from "@/components/auth/PasswordResetForm";
 import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
-// Wrap in suspense (for some nextjs reason lol)
-export default function PasswordResetPageWrapper() {
-  return (
-    <Suspense fallback={<p className="text-center mt-12">Loading...</p>}>
-      <PasswordResetPage />
-    </Suspense>
-  );
-}
-
-export function PasswordResetPage() {
-  const params = useSearchParams();
+export default function PasswordResetPage() {
   const [sessionReady, setSessionReady] = useState(false);
   const [error, setError] = useState(null);
 
+  // Check if/when Supabase signs in
   useEffect(() => {
-    const code = params.get("code");
-    if (!code) {
-      setError("Invalid password reset link.");
-      return;
-    }
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "SIGNED_IN") {
+          setSessionReady(true);
+        }
+      },
+    );
 
-    supabase.auth
-      .exchangeCodeForSession(code)
-      .then(({ error }) => {
-        if (error) throw error;
-        setSessionReady(true);
-      })
-      .catch((err) => setError(err.message));
-  }, [params]);
+    // If the session is already available (refresh case)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) setSessionReady(true);
+    });
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, []);
 
   return (
     <main className="relative grid min-h-svh lg:grid-cols-2">

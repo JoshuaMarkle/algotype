@@ -30,8 +30,11 @@ export default function LoginForm({ className, ...props }) {
     try {
       await loginWithEmail(email, password);
       setSuccess(true);
-      // Optionally redirect after login:
-      // router.push("/dashboard");
+
+      // Redirect to homepage
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     } catch (err) {
       setError(err.message);
     }
@@ -93,9 +96,7 @@ export default function LoginForm({ className, ...props }) {
               {/* Error message */}
               {error && <p className="text-red-500 text-sm">{error}</p>}
               {success && (
-                <p className="text-green-500 text-sm">
-                  Check your email to confirm.
-                </p>
+                <p className="text-green-500 text-sm">Successfully logged in</p>
               )}
             </div>
 

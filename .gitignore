@@ -43,5 +43,8 @@ backend/data
 backend/leetcode
 backend/tokens
 
+# generated
+public/sitemap*
+
 # misc
 BRAND.md
