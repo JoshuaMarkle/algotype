@@ -138,6 +138,15 @@ export async function addPasswordToUser(email, password) {
   return data;
 }
 
+export async function requestPasswordReset(email) {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/login/password-reset/callback`,
+  });
+
+  if (error) throw new Error(error.message);
+  return data;
+}
+
 // --- Helpers ---
 
 export async function getCurrentUser() {

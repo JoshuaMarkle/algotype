@@ -72,7 +72,7 @@ export default function LoginForm({ className, ...props }) {
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   <Link
-                    href="#"
+                    href="/login/password-reset"
                     className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
