@@ -6,27 +6,30 @@
 ![Static Badge](https://img.shields.io/badge/Vercel-black?style=flat-square&logo=vercel&logoColor=%23ffffff)
 ![Static Badge](https://img.shields.io/badge/Supabase-%20?style=flat-square&logo=supabase&color=%23000)
 
-AlgoType.net is a versatile [typing test](https://algotype.net/) **designed for programmers** who want to take their programming speed to the next level. It offers a minimalistic experience to practice typing symbols that don't get enough practice.
+AlgoType.net is an awesome [typing website](https://algotype.net/) <ins>designed for programmers</ins> who want to take their programming speed to the next level. It offers a minimalistic experience to practice typing symbols that don't get enough time under the fingers.
+
+The website is <ins>completely free</ins> to use and creating an account allows users to track their progress.
 
 ![Screenshot](.github/screenshot.png)
 ![Screenshot](.github/screenshot2.png)
 ![Screenshot](.github/screenshot3.png)
 
-# ✨ (Intended) Features
+# ✨ Features
 
 - ⌨️ Typing System
     - Robust code token system (syntax-aware typing)
     - Realtime stats like wpm, accuracy, and errors
-    - Minimalistic design
+    - Interactive charts and graphs
+    - Minimalistic, functional design
 - 👾 Gamemodes
-    - Files: type entire files - implementations of some large feature (larger)
-    - Algorithms: type out popular algorithms - like leetcode solutions (smaller)
-    - Syntax Drills: practice certain language features - repeated for loops (micro)
-    - Timed: 15s/30s/60s code sprints
+    - Algorithms: type out over 7000 popular algorithms (leetcode solutions)
+    - Features: type the implementations of software feature (larger files)
+    - [TODO] Syntax Drills: practice certain language features - repeated for loops (micro)
+    - [TODO] Timed: 15s/30s/60s code sprints
 - 👤 Account System
     - Track past tests + progress
-    - Save language/theme preferences
-    - Secured with Supabase
+    - [TODO] Save language/theme preferences
+    - Secured with Supabase + GitHub auth
 - ➕ And much more!
 
 ---
