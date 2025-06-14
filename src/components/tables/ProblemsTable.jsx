@@ -1,18 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState, useMemo } from "react";
-import { ArrowUpDown, Settings2, ExternalLink } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
-
 import {
   Table,
   TableBody,
@@ -30,136 +26,106 @@ import {
   DropdownMenuContent,
   DropdownMenuCheckboxItem,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
 } from "@/components/ui/DropdownMenu";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/Tooltip";
+import { Settings2 } from "lucide-react";
+import { getColumns } from "@/components/tables/utils/getColumns";
+import { useDebounce } from "@/lib/useDebounce";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function ProblemsTable({ mode }) {
+export default function GenericProblemsTable({ mode }) {
   const router = useRouter();
   const [problems, setProblems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState("all");
 
-  // Fetch data
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
+  const [selectedLanguage, setSelectedLanguage] = useState("all");
+  const [allLanguages, setAllLanguages] = useState(["all"]);
+
+  const [pageIndex, setPageIndex] = useState(0);
+  const [totalRows, setTotalRows] = useState(0);
+  const pageSize = 50;
+
+  const columns = getColumns(mode);
+
+  // Fetch data and filter/search
   useEffect(() => {
     const fetchProblems = async () => {
-      const { data, error } = await supabase
-        .from("challenges")
-        .select("id, title, description, lines, source, language, slug, mode")
-        .eq("mode", mode)
-        .limit(1000);
+      setLoading(true);
+      setError(null);
 
-      if (error) setError(error.message);
-      else setProblems(data);
+      const from = pageIndex * pageSize;
+      const to = from + pageSize - 1;
+
+      let query = supabase
+        .from("challenges")
+        .select("id, title, lines, source, language, slug, mode", {
+          count: "exact",
+        })
+        .eq("mode", mode);
+
+      if (selectedLanguage !== "all") {
+        query = query.eq("language", selectedLanguage);
+      }
+
+      if (debouncedSearch.trim()) {
+        query = query.ilike("title", `%${debouncedSearch.trim()}%`);
+      }
+
+      const { data, error, count } = await query.range(from, to);
+
+      if (error) {
+        setError(error.message);
+        setProblems([]);
+        setTotalRows(0);
+      } else {
+        setProblems(data || []);
+        setTotalRows(count || 0);
+      }
 
       setLoading(false);
     };
 
     fetchProblems();
+  }, [pageIndex, debouncedSearch, selectedLanguage, mode]);
+
+  // A filter/search will reset the page index to 0
+  useEffect(() => {
+    setPageIndex(0);
+  }, [debouncedSearch, selectedLanguage, mode]);
+
+  // Get all the languages
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      const { data, error } = await supabase
+        .from("challenges")
+        .select("language")
+        .eq("mode", mode);
+
+      if (!error && data) {
+        const langs = Array.from(new Set(data.map((d) => d.language))).sort();
+        setAllLanguages(["all", ...langs]);
+      }
+    };
+
+    fetchLanguages();
   }, [mode]);
 
-  const filteredProblems = useMemo(() => {
-    return problems
-      .filter((p) => {
-        if (selectedLanguage === "all") return true;
-        return p.language === selectedLanguage;
-      })
-      .filter((p) => {
-        return (
-          p.title.toLowerCase().includes(search.toLowerCase()) ||
-          p.description.toLowerCase().includes(search.toLowerCase())
-        );
-      });
-  }, [problems, selectedLanguage, search]);
-
-  const allLanguages = useMemo(() => {
-    const langs = new Set(problems.map((p) => p.language));
-    return ["all", ...Array.from(langs).sort()];
-  }, [problems]);
-
-  const columns = useMemo(
-    () => [
-      {
-        accessorKey: "title",
-        header: ({ column }) => (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Title <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        ),
-      },
-      {
-        accessorKey: "description",
-        header: "Description",
-      },
-      {
-        accessorKey: "lines",
-        header: "Lines",
-      },
-      {
-        accessorKey: "language",
-        header: "Language",
-      },
-      {
-        accessorKey: "source",
-        header: "Source",
-        cell: ({ getValue }) => {
-          const url = getValue();
-          return url ? (
-            <Link
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()} // Prevent row click
-              className="inline-flex items-center text-fg-2 hover:text-primary"
-            >
-              <ExternalLink className="size-4" />
-            </Link>
-          ) : null;
-        },
-      },
-    ],
-    [],
-  );
-
+  // Create the table
   const table = useReactTable({
-    data: filteredProblems,
+    data: problems,
     columns,
+    pageCount: -1,
+    state: {
+      pagination: { pageIndex, pageSize },
+    },
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    initialState: {
-      pagination: { pageSize: 50, pageIndex: 0 },
-    },
   });
 
-  if (loading) {
-    return (
-      <div>
-        <div className="flex flex-row gap-4">
-          <Skeleton className="h-8 w-64 mb-4" />
-          <Skeleton className="h-8 w-24 mb-4 ml-auto" />
-          <Skeleton className="h-8 w-24 mb-4" />
-        </div>
-        <div className="border border-border rounded-sm p-8 pb-0">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <Skeleton key={i} className="h-8 mb-8" />
-          ))}
-        </div>
-      </div>
-    );
-  }
+  // Check for errors
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
@@ -167,7 +133,7 @@ export default function ProblemsTable({ mode }) {
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4">
         <Input
-          placeholder="Search title or description..."
+          placeholder="Search for a title..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="max-w-sm"
@@ -229,7 +195,17 @@ export default function ProblemsTable({ mode }) {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.length ? (
+            {loading ? (
+              Array.from({ length: 12 }).map((_, i) => (
+                <TableRow key={i}>
+                  {columns.map((col) => (
+                    <TableCell key={col.accessorKey}>
+                      <Skeleton className="h-6 w-full" />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -265,23 +241,23 @@ export default function ProblemsTable({ mode }) {
         <div>
           Showing{" "}
           {table.getRowModel().rows.length +
-            table.getState().pagination.pageIndex * 50}{" "}
-          of {filteredProblems.length} problems
+            table.getState().pagination.pageIndex * pageSize}{" "}
+          of {totalRows} problems
         </div>
         <div className="flex gap-2">
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={() => setPageIndex((prev) => Math.max(prev - 1, 0))}
+            disabled={pageIndex === 0}
           >
             Previous
           </Button>
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={() => setPageIndex((prev) => prev + 1)}
+            disabled={problems.length < pageSize}
           >
             Next
           </Button>

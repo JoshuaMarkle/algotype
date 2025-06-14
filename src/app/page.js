@@ -154,10 +154,25 @@ export default function Home() {
             <div className="space-y-4 z-10">
               <h2 className="text-4xl font-bold">All the gamemodes</h2>
               <p className="text-lg text-fg-2">
-                A bunch of gamemodes that will hone in on what matters...to you
+                Type from a variety of different code files with over{" "}
+                <span className="underline">7000</span> different typing tests
+                available.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 z-10">
+              <Link
+                href="/algorithms"
+                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-blue hover:scale-105 hover:rotate-1 transition"
+              >
+                <div className="space-y-2">
+                  <h3 className="text-xl">Algorithms</h3>
+                  <p className="text-fg-2">
+                    Practice popular algorithms and other leetcode style
+                    solutions.
+                  </p>
+                </div>
+                <Construction className="size-4 ml-auto" />
+              </Link>
               <Link
                 href="/files"
                 className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
@@ -170,16 +185,6 @@ export default function Home() {
                 </div>
                 <ArrowRight className="size-4 ml-auto" />
               </Link>
-              <div className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-red hover:scale-105 hover:rotate-1 transition">
-                <div className="space-y-2">
-                  <h3 className="text-xl">Algorithms</h3>
-                  <p className="text-fg-2">
-                    Practice popular algorithms and other leetcode style
-                    solutions.
-                  </p>
-                </div>
-                <Construction className="size-4 ml-auto" />
-              </div>
               <div className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-red hover:scale-105 hover:-rotate-1 transition">
                 <div className="space-y-2">
                   <h3 className="text-xl">Syntax Drills</h3>

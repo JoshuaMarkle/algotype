@@ -63,7 +63,7 @@ for (const mode of GAMEMODES) {
           lines: tokenLines.length,
           language,
           source: meta.source || "",
-          slug: baseName,
+          slug: baseName + "-" + language,
           mode,
           tokens: tokenLines,
         };

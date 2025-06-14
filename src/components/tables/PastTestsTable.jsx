@@ -26,36 +26,38 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuCheckboxItem,
-  DropdownMenuItem,
 } from "@/components/ui/DropdownMenu";
-import { getUserHistoryPaginated } from "@/lib/history";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function PastTestsTable() {
   const router = useRouter();
   const [tests, setTests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedLanguage, setSelectedLanguage] = useState("all");
-  const [total, setTotal] = useState(0);
+
+  const [totalRows, setTotalRows] = useState(0);
   const [pageIndex, setPageIndex] = useState(0);
   const pageSize = 10;
 
-  // Fetch data at start and page change
+  // Fetch paginated test history
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const { data } = await getUserHistoryPaginated({
+        const { data, count } = await getUserHistoryPaginated({
           page: pageIndex,
           pageSize,
         });
+
         setTests(data);
+        setTotalRows(count || 0);
       } catch (err) {
         console.error(err);
         setError(err.message || "Something went wrong.");
-        setTests([]); // fallback
+        setTests([]);
+        setTotalRows(0);
       } finally {
         setLoading(false);
       }
@@ -63,11 +65,6 @@ export default function PastTestsTable() {
 
     fetchData();
   }, [pageIndex]);
-
-  const allLanguages = useMemo(() => {
-    const langs = new Set(tests.map((p) => p.language));
-    return ["all", ...Array.from(langs).sort()];
-  }, [tests]);
 
   const columns = useMemo(
     () => [
@@ -118,28 +115,13 @@ export default function PastTestsTable() {
       </div>
     );
   }
+
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
     <div className="space-y-4">
-      {/* Filters */}
+      {/* Column controls */}
       <div className="flex flex-wrap items-center gap-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">Language: {selectedLanguage}</Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            {allLanguages.map((lang) => (
-              <DropdownMenuItem
-                key={lang}
-                onSelect={() => setSelectedLanguage(lang)}
-              >
-                {lang}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
@@ -183,35 +165,31 @@ export default function PastTestsTable() {
             {[...Array(pageSize)].map((_, i) => {
               const row = table.getRowModel().rows[i];
 
-              if (row) {
-                return (
-                  <TableRow
-                    key={row.id}
-                    onClick={() => {
-                      const { slug, mode } = row.original;
-                      router.push(`/${mode}/${slug}`);
-                    }}
-                    className="cursor-pointer hover:bg-bg-3"
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                );
-              } else {
-                return (
-                  <TableRow key={`empty-${i}`} className="opacity-30">
-                    {columns.map((col) => (
-                      <TableCell key={col.accessorKey}>-</TableCell>
-                    ))}
-                  </TableRow>
-                );
-              }
+              return row ? (
+                <TableRow
+                  key={row.id}
+                  onClick={() => {
+                    const { slug, mode } = row.original;
+                    router.push(`/${mode}/${slug}`);
+                  }}
+                  className="cursor-pointer hover:bg-bg-3"
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ) : (
+                <TableRow key={`empty-${i}`} className="opacity-30">
+                  {columns.map((col) => (
+                    <TableCell key={col.accessorKey}>-</TableCell>
+                  ))}
+                </TableRow>
+              );
             })}
           </TableBody>
         </Table>
@@ -221,7 +199,7 @@ export default function PastTestsTable() {
       <div className="flex items-center justify-between text-sm text-muted-foreground">
         <div>
           Showing {pageIndex * pageSize + 1}–
-          {pageIndex * pageSize + tests.length} of {total || "?"} tests
+          {pageIndex * pageSize + tests.length} of {totalRows} tests
         </div>
         <div className="flex gap-2">
           <Button
@@ -244,4 +222,34 @@ export default function PastTestsTable() {
       </div>
     </div>
   );
+}
+
+// Internal helper for paginated history
+async function getUserHistoryPaginated({ page = 0, pageSize = 10 }) {
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    throw new Error("User not authenticated");
+  }
+
+  const from = page * pageSize;
+  const to = from + pageSize - 1;
+
+  const { data, error, count } = await supabase
+    .from("history")
+    .select("id, wpm, acc, time, language, mode, slug, created_at", {
+      count: "exact",
+    })
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false })
+    .range(from, to);
+
+  if (error) {
+    throw new Error("Failed to fetch paginated history: " + error.message);
+  }
+
+  return { data, count };
 }

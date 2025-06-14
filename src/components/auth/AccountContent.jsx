@@ -195,20 +195,24 @@ function calculateStats(data) {
 
 // Group languages together
 function groupLanguages(data) {
-  const counts = {};
+  const aliasMap = {
+    cpp: "C++",
+    csharp: "C#",
+    javascript: "JavaScript",
+    typescript: "TypeScript",
+  };
+
+  const counts = new Map();
 
   for (const item of data) {
-    const lang = item.language?.toLowerCase() || "unknown";
-    counts[lang] = (counts[lang] || 0) + 1;
+    const raw = (item.language || "unknown").toLowerCase();
+    const language =
+      aliasMap[raw] || raw.charAt(0).toUpperCase() + raw.slice(1);
+
+    counts.set(language, (counts.get(language) || 0) + 1);
   }
 
-  // Convert to array of objects to easily map in JSX
-  return Object.entries(counts)
+  return Array.from(counts.entries())
     .map(([language, count]) => ({ language, count }))
-    .sort((a, b) => b.count - a.count); // Sort descending
+    .sort((a, b) => b.count - a.count);
 }
-
-export const metadata = {
-  title: "Account | AlgoType",
-  description: "View stats and track your progress",
-};

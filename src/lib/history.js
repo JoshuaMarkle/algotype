@@ -81,7 +81,7 @@ export async function getUserHistory(limit = 1000) {
 }
 
 // Paginate test history for the user (for tables, infinite scroll, etc.)
-export async function getUserHistoryPaginated({ page = 0, pageSize = 10 }) {
+export async function getUserHistoryPaginated({ page = 0, pageSize = 20 }) {
   const {
     data: { user },
     error: userError,

@@ -67,19 +67,19 @@ export default function Navbar() {
               <ul className="grid w-[300px] gap-4">
                 <li>
                   <NavigationMenuLink asChild>
+                    <Link href="/algorithms">
+                      <div className="font-medium">Algorithms</div>
+                      <div className="text-muted-foreground">
+                        Type out popular algorithms and leetcode solutions
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
                     <Link href="/files">
                       <div className="font-medium">Files</div>
                       <div className="text-muted-foreground">
                         Type full implementations of real-world features &
                         software
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="/algorithms">
-                      <div className="font-medium">Algorithms</div>
-                      <div className="text-muted-foreground">
-                        Type out popular algorithms and leetcode solutions
                       </div>
                     </Link>
                   </NavigationMenuLink>

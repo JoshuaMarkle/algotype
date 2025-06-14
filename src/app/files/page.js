@@ -1,8 +1,12 @@
+import Link from "next/link";
+import { ArrowUpDown, ExternalLink } from "lucide-react";
+
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import ProblemsTable from "@/components/tables/ProblemsTable";
+import Button from "@/components/ui/Button";
 
-export default function Home() {
+export default function FilesPage() {
   return (
     <main className="relative">
       <Navbar className="fixed top" />
