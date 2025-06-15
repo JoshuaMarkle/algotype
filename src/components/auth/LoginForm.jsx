@@ -7,13 +7,6 @@ import { Eye, EyeOff } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Label from "@/components/ui/Label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card";
 import { loginWithEmail, loginWithGitHub } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
