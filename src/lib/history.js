@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -16,7 +18,8 @@ export async function submitTestHistory({
   } = await supabase.auth.getUser();
 
   if (authError || !user) {
-    console.error("User must be authenticated to submit test history.");
+    // It is okay if a user is not authenticated
+    // console.error("User must be authenticated to submit test history.");
     return { error: "Not authenticated" };
   }
 

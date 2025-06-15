@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 
 export function useTypingState(tokens, stats) {
@@ -114,14 +116,10 @@ export function useTypingState(tokens, stats) {
   const handleKey = (e) => {
     if (done) return;
     const key = e.key;
+    if (key == "Tab") return;
     if (!started) setStarted(performance.now());
 
-    if (
-      key.length === 1 ||
-      key === "Backspace" ||
-      key === "Enter" ||
-      key === "Tab"
-    )
+    if (key.length === 1 || key === "Backspace" || key === "Enter")
       e.preventDefault();
 
     const expected = currToken.content;
@@ -145,11 +143,7 @@ export function useTypingState(tokens, stats) {
     }
 
     // Space
-    if (
-      (key === " " || key === "Tab") &&
-      currToken.type === "space" &&
-      !wrong
-    ) {
+    if (key === " " && currToken.type === "space" && !wrong) {
       stats.current.correct++;
       moveForwardLine();
       return;

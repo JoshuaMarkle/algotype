@@ -3,7 +3,6 @@
 import { React, useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
-import { Construction } from "lucide-react";
 
 import Skeleton from "@/components/ui/Skeleton";
 import {
@@ -15,8 +14,9 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/NavigationMenu";
 import NavbarAccount from "@/components/layouts/NavbarAccount";
+import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 
-export default function Navbar() {
+export default function NavbarTest() {
   // Immediately get user data
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ export default function Navbar() {
 
   // Render navbar
   return (
-    <div className="fixed top-0 left-0 w-full flex flex-row justify-between px-4 py-2 border-b border-border bg-background z-100">
+    <>
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -95,10 +95,91 @@ export default function Navbar() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
+          {/* Random Button */}
+          <NavigationMenuItem>
+            <NavigationMenuLink onClick={gotoRandomTest}>
+              Random
+            </NavigationMenuLink>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      {/*<NavigationMenu className="[&_div.absolute]:left-auto [&_div.absolute]:right-0">
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">Filters</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="start">
+                <DropdownMenuLabel>Filter Options</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Gamemode</DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      {["algorithms", "files"].map((mode) => (
+                        <DropdownMenuItem
+                          key={mode}
+                          onSelect={() => updateFilter("mode", mode)}
+                        >
+                          {mode}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Language</DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      {["python", "cpp", "rust", "java", "javascript"].map(
+                        (lang) => (
+                          <DropdownMenuItem
+                            key={lang}
+                            onSelect={() => updateFilter("language", lang)}
+                          >
+                            {lang}
+                          </DropdownMenuItem>
+                        ),
+                      )}
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Lines</DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent className="w-44 p-2 space-y-2">
+                      <Input
+                        type="number"
+                        placeholder="Min"
+                        value={filters.minLength ?? ""}
+                        onChange={(e) =>
+                          updateFilter("minLength", Number(e.target.value))
+                        }
+                      />
+                      <Input
+                        type="number"
+                        placeholder="Max"
+                        value={filters.maxLength ?? ""}
+                        onChange={(e) =>
+                          updateFilter("maxLength", Number(e.target.value))
+                        }
+                      />
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>*/}
       <NavigationMenu className="[&_div.absolute]:left-auto [&_div.absolute]:right-0">
         <NavigationMenuList>
+          {/* Account */}
           <NavigationMenuItem>
             {!loading ? (
               <NavbarAccount user={user} />
@@ -108,21 +189,6 @@ export default function Navbar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-    </div>
-  );
-}
-
-function ListItem({ title, children, href, ...props }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
+    </>
   );
 }

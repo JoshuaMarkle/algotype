@@ -1,5 +1,4 @@
 import Navbar from "@/components/layouts/Navbar";
-import Footer from "@/components/layouts/Footer";
 import TypingTest from "@/components/typing/TypingTest";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -15,9 +14,11 @@ export default async function FilePage({ params }) {
 
   if (!challenge || error) {
     return (
-      <main className="p-6 text-red-500 font-mono">
+      <main className="p-8 pt-12">
         <Navbar />
-        <div className="mt-6">Challenge not found or failed to load.</div>
+        <div className="text-center text-red font-mono mt-6">
+          Challenge not found or failed to load.
+        </div>
       </main>
     );
   }
@@ -27,18 +28,14 @@ export default async function FilePage({ params }) {
 
   return (
     <main className="font-[family-name:var(--font-geist-sans)]">
-      <Navbar />
-      <div className="flex flex-col justify-center max-w-5xl mx-auto p-4 pt-16">
-        <div className="w-full max-w-5xl">
-          <TypingTest
-            tokens={challenge.tokens}
-            language={language}
-            mode={mode}
-            slug={slug}
-          />
-        </div>
+      <div className="max-w-5xl mx-auto py-16 px-4">
+        <TypingTest
+          tokens={challenge.tokens}
+          language={language}
+          mode={mode}
+          slug={slug}
+        />
       </div>
-      <Footer />
     </main>
   );
 }

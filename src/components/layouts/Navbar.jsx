@@ -3,7 +3,6 @@
 import { React, useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
-import { Construction } from "lucide-react";
 
 import Skeleton from "@/components/ui/Skeleton";
 import {
@@ -15,6 +14,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/NavigationMenu";
 import NavbarAccount from "@/components/layouts/NavbarAccount";
+import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 
 export default function Navbar() {
   // Immediately get user data
@@ -95,10 +95,18 @@ export default function Navbar() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
+          {/* Random Button */}
+          <NavigationMenuItem>
+            <NavigationMenuLink onClick={gotoRandomTest}>
+              Random
+            </NavigationMenuLink>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
       <NavigationMenu className="[&_div.absolute]:left-auto [&_div.absolute]:right-0">
         <NavigationMenuList>
+          {/* Account */}
           <NavigationMenuItem>
             {!loading ? (
               <NavbarAccount user={user} />
@@ -109,20 +117,5 @@ export default function Navbar() {
         </NavigationMenuList>
       </NavigationMenu>
     </div>
-  );
-}
-
-function ListItem({ title, children, href, ...props }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
   );
 }

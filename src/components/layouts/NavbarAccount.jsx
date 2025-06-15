@@ -20,15 +20,17 @@ export default function NavbarAccount({ user }) {
 
   return (
     <>
-      <NavigationMenuTrigger className="space-x-2">
-        <Avatar className="size-6">
-          <AvatarImage
-            src={user.user_metadata.avatar_url}
-            alt={user.user_metadata.username}
-          />
-          <AvatarFallback>{user.user_metadata.username?.[0]}</AvatarFallback>
-        </Avatar>
-      </NavigationMenuTrigger>
+      <Link href="/account">
+        <NavigationMenuTrigger className="space-x-2">
+          <Avatar className="size-6">
+            <AvatarImage
+              src={user.user_metadata.avatar_url}
+              alt={user.user_metadata.username}
+            />
+            <AvatarFallback>{user.user_metadata.username?.[0]}</AvatarFallback>
+          </Avatar>
+        </NavigationMenuTrigger>
+      </Link>
       <NavigationMenuContent>
         <ul className="grid divide-y-1 divide-border">
           <li className="p-2 pb-4 w-[250px]">
