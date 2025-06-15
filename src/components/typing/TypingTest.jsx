@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
+import NavbarTest from "@/components/layouts/NavbarTest";
 import TypingRenderer from "@/components/typing/TypingRenderer";
 import TypingResults from "@/components/typing/TypingResults";
 import { useTypingState } from "@/components/typing/hooks/useTypingState";
@@ -10,6 +11,8 @@ import { calculateStats } from "@/components/typing/utils/calculateStats";
 import { submitTestHistory } from "@/lib/history";
 
 export default function TypingTest({ tokens, language, mode, slug }) {
+  const [filters, setFilters] = useState({});
+
   // Stats reference
   const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
   let wpmOverTime = useRef([]);
@@ -74,6 +77,7 @@ export default function TypingTest({ tokens, language, mode, slug }) {
       className="relative select-none"
       onClick={() => textareaRef.current?.focus()}
     >
+      <NavbarTest filters={filters} setFilters={setFilters} />
       <textarea
         ref={textareaRef}
         onKeyDown={handleKey}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
@@ -19,6 +20,7 @@ import { cn } from "@/lib/utils";
 export default function LoginForm({ className, ...props }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [visible, setVisible] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -81,13 +83,30 @@ export default function LoginForm({ className, ...props }) {
                     Forgot your password?
                   </Link>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={visible ? "text" : "password"}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="pr-10" // space for icon
+                  />
+                  <button
+                    type="button"
+                    onMouseDown={() => setVisible(true)}
+                    onMouseUp={() => setVisible(false)}
+                    onMouseLeave={() => setVisible(false)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-fg-2 transition"
+                    aria-label="Show password"
+                  >
+                    {visible ? (
+                      <EyeOff className="size-5" />
+                    ) : (
+                      <Eye className="size-5" />
+                    )}
+                  </button>
+                </div>
               </div>
               <Button type="submit" className="w-full">
                 Login

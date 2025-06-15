@@ -18,6 +18,7 @@ export default async function FilePage({ params }) {
       <main className="p-6 text-red-500 font-mono">
         <Navbar />
         <div className="mt-6">Challenge not found or failed to load.</div>
+        <Footer />
       </main>
     );
   }
@@ -27,8 +28,7 @@ export default async function FilePage({ params }) {
 
   return (
     <main className="font-[family-name:var(--font-geist-sans)]">
-      <Navbar />
-      <div className="flex flex-col justify-center max-w-5xl mx-auto p-4 pt-16">
+      <div className="flex flex-col justify-center max-w-5xl mx-auto py-8 px-4">
         <div className="w-full max-w-5xl">
           <TypingTest
             tokens={challenge.tokens}
@@ -38,7 +38,6 @@ export default async function FilePage({ params }) {
           />
         </div>
       </div>
-      <Footer />
     </main>
   );
 }
