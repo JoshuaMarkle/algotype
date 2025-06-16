@@ -50,6 +50,13 @@ export default function RootLayout({ children }) {
         />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          async
+          defer
+          src="/analytics/script.js"
+          data-website-id="439c2381-526a-459f-9bf7-5f7e78943346"
+          data-host-url="/analytics"
+        />
       </head>
       <body
         className={`${GeistSans.className} ${GeistSans.variable} ${GeistMono.variable} antialiased`}
