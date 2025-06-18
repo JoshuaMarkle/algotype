@@ -19,6 +19,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/Accordion";
 import HashPatternSvg from "@/components/effects/HashPatternSvg";
+import RandomButton from "@/components/layouts/misc/RandomButton";
 
 export default function Home() {
   return (
@@ -44,12 +45,7 @@ export default function Home() {
             syntax into second nature
           </p>
           <div className="flex flex-row gap-4 z-10">
-            <Link href="/login" rel="noopener noreferrer">
-              <Button>
-                Get Typing
-                <ArrowRight />
-              </Button>
-            </Link>
+            <RandomButton />
             <Link
               href="https://github.com/JoshuaMarkle/algotype"
               target="_blank"
@@ -171,7 +167,7 @@ export default function Home() {
                     solutions.
                   </p>
                 </div>
-                <Construction className="size-4 ml-auto" />
+                <ArrowRight className="size-4 ml-auto" />
               </Link>
               <Link
                 href="/files"
