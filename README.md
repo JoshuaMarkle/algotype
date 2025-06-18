@@ -32,6 +32,13 @@ The website is <ins>completely free</ins> to use and creating an account allows 
     - Secured with Supabase + GitHub auth
 - ➕ And much more!
 
+# 📄 License
+
+This software is licensed under the PolyForm Shield License 1.0.0. For details, see the [LICENSE.md](LICENSE.md).
+
+> [!NOTE]
+> Currently, this code is licensed as software-available with plans to transition to a open-source licnese in the future.
+
 ---
 
 <div align="center">Happy coding <code>&&</code> typing</div>
