@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { useState, useRef } from "react";
 import { ResponsiveContainer, AreaChart, Area, Tooltip, YAxis } from "recharts";
-import { ExternalLink, RefreshCcw, ChevronRight } from "lucide-react";
+import { ExternalLink, Image, RefreshCcw, ChevronRight } from "lucide-react";
+import html2canvas from "html2canvas";
 
 import Button from "@/components/ui/Button";
 import {
@@ -27,8 +29,43 @@ export default function TypingResults({ started, ended, stats, data, source }) {
     data = cleanData(data);
   }
 
+  // Screenshot
+  const resultRef = useRef(null);
+  const [screenshotMode, setScreenshotMode] = useState(false);
+  const takeScreenshot = async () => {
+    if (!resultRef.current) return;
+
+    setScreenshotMode(true); // hide buttons + show footer
+    await new Promise((res) => setTimeout(res, 100)); // wait for DOM update
+    await document.fonts.ready;
+
+    const canvas = await html2canvas(resultRef.current, {
+      backgroundColor: null,
+      scale: 2,
+    });
+
+    canvas.toBlob(async (blob) => {
+      if (!blob) return;
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({ [blob.type]: blob }),
+        ]);
+        alert("Screenshot copied to clipboard!");
+      } catch (err) {
+        console.error("Clipboard write failed:", err);
+        alert("Failed to copy screenshot.");
+      } finally {
+        setScreenshotMode(false);
+      }
+    });
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center gap-16 mx-auto px-4 flex-1 w-full max-w-5xl">
+    <div
+      ref={resultRef}
+      className="flex flex-col items-center justify-center gap-16 mx-auto px-4 flex-1 w-full max-w-5xl bg-bg"
+    >
+      {screenshotMode ? <div className="h-8" /> : <div />}
       <ResponsiveContainer width="100%" height={192}>
         <AreaChart data={data}>
           <defs>
@@ -137,19 +174,28 @@ export default function TypingResults({ started, ended, stats, data, source }) {
           </HoverCard>
         </div>
       </div>
-      <div className="flex flex-row gap-16 text-fg-3">
-        <Link href={source} target="_blank" rel="noopener noreferrer">
-          <Button variant="ghost">
-            <ExternalLink className="size-4" />
+      {screenshotMode ? ( // Hide icons if screenshoting
+        <p className="w-full flex flex-row justify-end text-fg-3 text-md font-mono">
+          {new Date().toLocaleDateString()} | algotype.net
+        </p>
+      ) : (
+        <div className="flex flex-row gap-16 text-fg-3">
+          <Link href={source} target="_blank" rel="noopener noreferrer">
+            <Button variant="ghost">
+              <ExternalLink className="size-4" />
+            </Button>
+          </Link>
+          <Button variant="ghost" onClick={takeScreenshot}>
+            <Image className="size-4" />
           </Button>
-        </Link>
-        <Button variant="ghost" onClick={() => window.location.reload()}>
-          <RefreshCcw className="size-4" />
-        </Button>
-        <Button variant="ghost" onClick={gotoRandomTest}>
-          <ChevronRight className="size-4" />
-        </Button>
-      </div>
+          <Button variant="ghost" onClick={() => window.location.reload()}>
+            <RefreshCcw className="size-4" />
+          </Button>
+          <Button variant="ghost" onClick={gotoRandomTest}>
+            <ChevronRight className="size-4" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
