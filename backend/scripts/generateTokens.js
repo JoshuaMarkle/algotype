@@ -39,24 +39,46 @@ for (const mode of GAMEMODES) {
       );
       const outputPath = path.join(outputDir, `${baseName}.json`);
 
-      // Ensure .meta exists
       try {
         const meta = JSON.parse(await fs.readFile(metaPath, "utf8"));
         const code = await fs.readFile(filePath, "utf8");
         const lines = code.split("\n");
 
-        const tokenLines = lines.map((line) => {
-          if (line.trim() === "") return [];
+        let inBlockComment = false;
+        const tokenLines = [];
+
+        for (const line of lines) {
+          if (line.trim() === "") {
+            tokenLines.push([]);
+            continue;
+          }
+
+          const openIdx = line.indexOf("/*");
+          const closeIdx = line.indexOf("*/");
+
+          if (inBlockComment) {
+            tokenLines.push([{ type: "comment", content: line, skip: true }]);
+            if (closeIdx !== -1 && (openIdx === -1 || closeIdx > openIdx)) {
+              inBlockComment = false;
+            }
+            continue;
+          }
+
+          if (openIdx !== -1) {
+            inBlockComment = closeIdx === -1 || closeIdx < openIdx;
+            tokenLines.push([{ type: "comment", content: line, skip: true }]);
+            continue;
+          }
+
           const rawTokens = Prism.tokenize(line, Prism.languages[language]);
           const normalized = normalizeTokens(rawTokens);
           const withWlengths = addWlengths(normalized);
-          return insertNewlineToken(withWlengths);
-        });
+          tokenLines.push(insertNewlineToken(withWlengths));
+        }
 
         if (tokenLines.length && tokenLines.at(-1).length === 0)
           tokenLines.pop();
 
-        // Wrap the tokenLines in a { tokens: [...] } structure
         const output = {
           title: meta.title,
           description: meta.description,
@@ -149,6 +171,7 @@ function normalizeTokens(tokens) {
       break;
     }
   }
+
   if (firstReal !== -1) {
     for (let i = 0; i < firstReal; ++i)
       if (out[i].type === "space") out[i].skip = true;
