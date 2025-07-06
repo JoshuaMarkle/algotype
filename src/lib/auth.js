@@ -3,15 +3,19 @@ import { supabase } from "@/lib/supabaseClient";
 // --- Email/Password ---
 
 export async function signupWithEmail(username, email, password) {
-  // Check if the username is already taken (not possible right now)
-  // const { data: existingUsername, error: usernameError } = await supabase
-  //   .from("profiles")
-  //   .select("id")
-  //   .ilike("username", username) // case-insensitive uniqueness check
-  //   .maybeSingle();
+  // Check if username within constraints
+  if (username.length <= 3) throw new Error("Username is too short");
+  if (username.length > 20) throw new Error("Username is too long");
 
-  // if (usernameError) throw new Error(usernameError.message);
-  // if (existingUsername) throw new Error("Username already taken");
+  // Check if the username is already taken (not possible right now)
+  const { data: existingUsername, error: usernameError } = await supabase
+    .from("users")
+    .select("id")
+    .ilike("username", username) // case-insensitive uniqueness check
+    .maybeSingle();
+
+  if (usernameError) throw new Error(usernameError.message);
+  if (existingUsername) throw new Error("Username already taken");
 
   // Create the new user
   const { data, error } = await supabase.auth.signUp({

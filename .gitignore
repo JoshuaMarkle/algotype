@@ -7,6 +7,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+*.jar
 
 # testing
 /coverage
@@ -45,6 +46,3 @@ backend/tokens
 
 # generated
 public/sitemap*
-
-# misc
-BRAND.md

@@ -61,6 +61,7 @@ export default function Navbar() {
             </NavigationMenuLink>
           </NavigationMenuItem>
 
+          {/*
           <NavigationMenuItem>
             <NavigationMenuTrigger>Gamemodes</NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -95,11 +96,12 @@ export default function Navbar() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+          /*}
 
           {/* Random Button */}
           <NavigationMenuItem>
             <NavigationMenuLink onClick={gotoRandomTest}>
-              Random
+              Play
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

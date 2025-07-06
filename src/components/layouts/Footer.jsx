@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <nav className="flex justify-center px-4 py-8 border-t border-neutral-800 bg-bg">
+    <nav className="flex justify-center px-4 py-24 border-t border-neutral-800 bg-bg">
       <ul className="flex flex-col md:flex-row gap-8 min-w-6xl text-fg-2">
         <li className="flex-grow text-fg px-0 md:px-8 space-y-2">
-          <Link href="/" className="flex flex-row gap-2 font-semibold">
+          <Link href="/" className="flex flex-row gap-4 font-semibold">
             <svg
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ export default function Footer() {
           </Link>
           <span className="text-fg-2">The typing website for programmers</span>
         </li>
-        <li className="flex flex-col gap-2">
+        <li className="flex flex-col gap-4">
           <Link href="/algorithms" className="hover:text-blue-400 duration-100">
             Algorithms
           </Link>
@@ -34,7 +34,7 @@ export default function Footer() {
             Files
           </Link>
         </li>
-        <li className="flex flex-col gap-2">
+        <li className="flex flex-col gap-4">
           <Link href="/terms" className="hover:text-blue-400 duration-100">
             Terms of Service
           </Link>

@@ -38,7 +38,7 @@ export async function countMatchingTests(filters = {}) {
 // --- Helper functions ---
 
 // Get a single random challenge using a RPC function
-async function getRandomTest(filters = {}) {
+export async function getRandomTest(filters = {}) {
   const { minLength, maxLength, language, mode } = filters;
 
   const { data, error } = await supabase.rpc("get_random_challenge", {

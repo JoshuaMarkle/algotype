@@ -1,13 +1,19 @@
-import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
-import { Text, RefreshCcw, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { ResponsiveContainer, AreaChart, Area, Tooltip, YAxis } from "recharts";
+import { ExternalLink, RefreshCcw, ChevronRight } from "lucide-react";
 
 import Button from "@/components/ui/Button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/HoverCard";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
+import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 import { formatTime, cleanData } from "@/lib/utils";
-import { submitTestHistory } from "@/lib/history";
 
-export default function TypingResults({ started, stats, data }) {
-  const { wpm, acc, time } = calculateStats(started, stats);
+export default function TypingResults({ started, ended, stats, data, source }) {
+  const { wpm, acc, time } = calculateStats(started, ended, stats);
   const formattedTime = formatTime(time);
   const correct = stats.current.correct;
   const incorrect = stats.current.incorrect;
@@ -16,11 +22,13 @@ export default function TypingResults({ started, stats, data }) {
   const minWPM = Math.min(...data.map((d) => d.wpm));
 
   // Update + clean data
-  if (data[data.length - 1].wpm != wpm) data.push({ wpm, acc, time });
-  data = cleanData(data);
+  if (data.length > 0) {
+    if (data[data.length - 1].wpm != wpm) data.push({ wpm, acc, time });
+    data = cleanData(data);
+  }
 
   return (
-    <div className="h-[70vh] flex flex-col items-center justify-center gap-8 md:mx-32">
+    <div className="flex flex-col items-center justify-center gap-16 mx-auto px-4 flex-1 w-full max-w-5xl">
       <ResponsiveContainer width="100%" height={192}>
         <AreaChart data={data}>
           <defs>
@@ -29,6 +37,13 @@ export default function TypingResults({ started, stats, data }) {
               <stop offset="100%" stopColor="#040404" stopOpacity={1} />
             </linearGradient>
           </defs>
+          <YAxis
+            stroke="#8a8a90"
+            tick={{ fill: "#8a8a90", fontSize: 12 }}
+            axisLine={false}
+            tickLine={false}
+            width={32}
+          />
           <Area
             type="monotone"
             dataKey="wpm"
@@ -36,45 +51,102 @@ export default function TypingResults({ started, stats, data }) {
             strokeWidth={3}
             fill="url(#colorToBlack)"
             fillOpacity={1}
-            animationDuration={1500}
+            animationDuration={0}
             animationEasing="ease-in-out"
           />
           <Tooltip cursor={false} content={<CustomTooltip />} />
         </AreaChart>
       </ResponsiveContainer>
-      <div className="flex flex-col sm:flex-row gap-16 md:gap-32 font-mono">
+      <div className="flex flex-col sm:flex-row gap-16 md:gap-32 font-mono font-light">
         <div>
           <h3 className="text-6xl">{wpm > 999 ? "Inf" : wpm}</h3>
-          <p className="font-mono text-lg font-bold">
-            WPM <span className="text-green">•</span>
-            {maxWPM} <span className="text-red">•</span>
-            {minWPM}
-          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <p className="font-mono text-lg">
+                WPM <span className="text-green">•</span>
+                {maxWPM} <span className="text-red">•</span>
+                {minWPM}
+              </p>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-40">
+              <div className="flex justify-between gap-4">
+                <div className="space-y-1">
+                  <p className="text-sm">
+                    <span className="text-green">•</span> Max wpm {maxWPM}
+                  </p>
+                  <p className="text-sm">
+                    <span className="text-red">•</span> Min wpm {minWPM}
+                  </p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </div>
         <div>
           <h3 className="text-6xl">{acc}%</h3>
-          <p className="font-mono text-lg font-bold">
-            ACC <span className="text-green">•</span>
-            {correct} <span className="text-red">•</span>
-            {incorrect}
-          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <p className="font-mono text-lg">
+                ACC <span className="text-green">•</span>
+                {correct} <span className="text-red">•</span>
+                {incorrect}
+              </p>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-40">
+              <div className="flex justify-between gap-4">
+                <div className="space-y-1 text-sm">
+                  <p>
+                    <span className="text-green">•</span> Correct {correct}
+                  </p>
+                  <p>
+                    <span className="text-red">•</span> Incorrect {incorrect}
+                  </p>
+                  <p>
+                    <span className="text-yellow">•</span> Total{" "}
+                    {correct + incorrect}
+                  </p>
+                  <p className="text-fg-2">
+                    {correct} / {correct + incorrect} = {acc}%
+                  </p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </div>
         <div>
           <h3 className="text-6xl">{formattedTime}</h3>
-          <p className="font-mono text-lg font-bold">
-            TIME <span className="text-red">•</span>
-            {timeLost}
-          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <p className="font-mono text-lg">
+                TIME <span className="text-red">•</span>
+                {timeLost}
+              </p>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-40">
+              <div className="flex justify-between gap-4">
+                <div className="space-y-1 text-sm">
+                  <p>
+                    <span className="text-red">•</span> Time lost {timeLost}s
+                  </p>
+                  <p className="text-fg-2">
+                    {time} * (1 - {acc}%) = {timeLost}s
+                  </p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </div>
       </div>
       <div className="flex flex-row gap-16 text-fg-3">
-        <Button variant="ghost">
-          <Text className="size-4" />
-        </Button>
-        <Button variant="ghost">
+        <Link href={source} target="_blank" rel="noopener noreferrer">
+          <Button variant="ghost">
+            <ExternalLink className="size-4" />
+          </Button>
+        </Link>
+        <Button variant="ghost" onClick={() => window.location.reload()}>
           <RefreshCcw className="size-4" />
         </Button>
-        <Button variant="ghost">
+        <Button variant="ghost" onClick={gotoRandomTest}>
           <ChevronRight className="size-4" />
         </Button>
       </div>
@@ -95,7 +167,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p>
           acc: <span className="font-medium">{acc}%</span>
         </p>
-        {/* Optional: <p>Time: {formatTime(time)}</p> */}
+        {/* <p>Time: {formatTime(time)}</p> */}
       </div>
     );
   }

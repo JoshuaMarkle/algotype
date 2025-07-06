@@ -1,10 +1,11 @@
-export function calculateStats(started, stats) {
+export function calculateStats(started, ended, stats) {
+  console.log("called calculate stats with ", started, ended, stats);
   if (!started || !stats?.current) {
     return { wpm: 0, acc: 100, time: 0, timeTillWpmDrop: Infinity };
   }
 
-  const now = performance.now();
-  const seconds = (now - started) / 1000;
+  const end = ended ?? performance.now();
+  const seconds = (end - started) / 1000;
   const minutes = seconds / 60;
 
   const correct = stats.current.correct;

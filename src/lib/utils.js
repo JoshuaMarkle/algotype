@@ -6,6 +6,11 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+// Capitalize
+export function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Format seconds into time string
 export function formatTime(seconds) {
   const hrs = Math.floor(seconds / 3600);
@@ -54,4 +59,22 @@ export function smoothData(data, smoothing = 20) {
   }
 
   return smoothed;
+}
+
+// Translate language (natural <-> code)
+const languageMap = {
+  cpp: "C++",
+  javascript: "JavaScript",
+  typescript: "TypeScript",
+};
+const reverseLanguageMap = Object.fromEntries(
+  Object.entries(languageMap).map(([key, value]) => [value.toLowerCase(), key]),
+);
+
+export function langToNatural(language) {
+  return languageMap[language] || capitalize(language);
+}
+
+export function naturalToLang(natural) {
+  return reverseLanguageMap[natural.toLowerCase()] || natural.toLowerCase();
 }
