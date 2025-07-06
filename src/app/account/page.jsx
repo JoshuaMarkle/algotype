@@ -21,30 +21,28 @@ export default function AccountPage() {
   const [historyData, setHistoryData] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
 
+  // Get user + data on open
   useEffect(() => {
-    const getUser = async () => {
+    const load = async () => {
+      // Step 1: Get authenticated user
       const {
         data: { user },
+        error,
       } = await supabase.auth.getUser();
-      if (!user) {
-        redirect("/login");
+
+      if (error || !user) {
+        redirect("/login"); // redirect if unauthenticated
+        return;
       }
+
       setUser(user);
       setLoadingUser(false);
-    };
 
-    getUser();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
+      // Step 2: Fetch history **after** user is verified
       try {
-        const history = await getUserHistory();
-        const reversed = [...history].reverse(); // oldest to newest
-        const indexed = reversed.map((d, i) => ({
-          ...d,
-          index: i,
-        }));
+        const history = await getUserHistory(user); // pass user if needed
+        const reversed = [...history].reverse();
+        const indexed = reversed.map((d, i) => ({ ...d, index: i }));
         setHistoryData(indexed);
       } catch (err) {
         console.error("Failed to fetch graph data:", err.message);
@@ -53,7 +51,7 @@ export default function AccountPage() {
       }
     };
 
-    fetchData();
+    load();
   }, []);
 
   const stats = calculateStats(historyData);
@@ -63,100 +61,106 @@ export default function AccountPage() {
     <main>
       <Navbar />
       <div className="min-h-screen mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
-        <div className="flex flex-col lg:flex-row  gap-4 sm:gap-8 mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8">
-          {/* Profile Panel */}
-          <section className="lg:max-w-[30vw] xl:max-w-[20vw] flex flex-col space-y-4 border border-border rounded-sm p-8">
-            <div className="flex flex-row justify-center gap-4">
-              {loadingUser ? (
-                <div>
-                  <Skeleton className="size-24 rounded-sm" />
+        {user ? (
+          <div className="flex flex-col lg:flex-row  gap-4 sm:gap-8 mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8">
+            {/* Profile Panel */}
+            <section className="lg:max-w-[30vw] xl:max-w-[20vw] flex flex-col space-y-4 border border-border rounded-sm p-8">
+              <div className="flex flex-row justify-center gap-4">
+                {loadingUser ? (
+                  <div>
+                    <Skeleton className="size-24 rounded-sm" />
+                  </div>
+                ) : (
+                  <Avatar className="size-24 rounded-sm">
+                    <AvatarImage
+                      src={user.user_metadata.avatar_url}
+                      alt={user.user_metadata.username}
+                    />
+                    <AvatarFallback className="text-6xl rounded-sm">
+                      {user.user_metadata.username?.[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                )}
+                <div className="truncate flex flex-col justify-between flex-1 text-left text-xl leading-tight">
+                  <div className="flex flex-col">
+                    {loadingUser ? (
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-12" />
+                        <Skeleton className="h-4 w-32" />
+                      </div>
+                    ) : (
+                      <>
+                        <h2 className="truncate">
+                          {user.user_metadata.username}
+                        </h2>
+                        <p className="truncate text-sm text-fg-2">
+                          {user.email}
+                        </p>
+                      </>
+                    )}
+                  </div>
                 </div>
-              ) : (
-                <Avatar className="size-24 rounded-sm">
-                  <AvatarImage
-                    src={user.user_metadata.avatar_url}
-                    alt={user.user_metadata.username}
+              </div>
+
+              <h3 className="font-medium">Languages</h3>
+              <div className="space-y-2">
+                {languageStats.map(({ language, count }) => (
+                  <div
+                    key={language}
+                    className="flex flex-row justify-between text-sm capitalize"
+                  >
+                    <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
+                      {language}
+                    </span>
+                    <p>
+                      {count} <span className="text-fg-2">problems solved</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <h3 className="font-medium mt-auto">Actions</h3>
+              <div className="space-y-2">
+                <Button variant="destructive" onClick={logout}>
+                  Logout
+                </Button>
+              </div>
+            </section>
+
+            {/* Main Content */}
+            <div className="flex-1 grid grid-cols-1 gap-4 sm:gap-8">
+              <section className="space-y-8 border border-border rounded-sm p-8">
+                {historyData.length > 1 ? (
+                  <ProgressGraph data={historyData} loading={loadingHistory} />
+                ) : (
+                  <div />
+                )}
+
+                <div className="grid grid-cols-3 space-x-4 space-y-8 text-center font-mono text-sm sm:text-lg">
+                  <StatBlock
+                    label="Solved"
+                    value={stats.completed}
+                    sub={`/${stats.started}`}
                   />
-                  <AvatarFallback className="text-6xl rounded-sm">
-                    {user.user_metadata.username?.[0]}
-                  </AvatarFallback>
-                </Avatar>
-              )}
-              <div className="truncate flex flex-col justify-between flex-1 text-left text-xl leading-tight">
-                <div className="flex flex-col">
-                  {loadingUser ? (
-                    <div className="space-y-2">
-                      <Skeleton className="h-4 w-12" />
-                      <Skeleton className="h-4 w-32" />
-                    </div>
-                  ) : (
-                    <>
-                      <h2 className="truncate">
-                        {user.user_metadata.username}
-                      </h2>
-                      <p className="truncate text-sm text-fg-2">{user.email}</p>
-                    </>
-                  )}
+                  <StatBlock label="Avg. WPM" value={stats.avgWpm} />
+                  <StatBlock label="Avg. ACC" value={`${stats.avgAcc}%`} />
+                  <StatBlock label="Started" value={stats.started} />
+                  <StatBlock label="Completed" value={stats.completed} />
+                  <StatBlock
+                    label="Time Typing"
+                    value={formatTime(stats.totalTime)}
+                  />
                 </div>
-              </div>
+              </section>
+
+              <section className="flex-1 space-y-8 border border-border rounded-sm p-8">
+                <PastTestsTable />
+              </section>
             </div>
-
-            <h3 className="font-medium">Languages</h3>
-            <div className="space-y-2">
-              {languageStats.map(({ language, count }) => (
-                <div
-                  key={language}
-                  className="flex flex-row justify-between text-sm capitalize"
-                >
-                  <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
-                    {language}
-                  </span>
-                  <p>
-                    {count} <span className="text-fg-2">problems solved</span>
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <h3 className="font-medium mt-auto">Actions</h3>
-            <div className="space-y-2">
-              <Button variant="destructive" onClick={logout}>
-                Logout
-              </Button>
-            </div>
-          </section>
-
-          {/* Main Content */}
-          <div className="flex-1 grid grid-cols-1 gap-4 sm:gap-8">
-            <section className="space-y-8 border border-border rounded-sm p-8">
-              {historyData.length > 1 ? (
-                <ProgressGraph data={historyData} loading={loadingHistory} />
-              ) : (
-                <div />
-              )}
-
-              <div className="grid grid-cols-3 space-x-4 space-y-8 text-center font-mono text-sm sm:text-lg">
-                <StatBlock
-                  label="Solved"
-                  value={stats.completed}
-                  sub={`/${stats.started}`}
-                />
-                <StatBlock label="Avg. WPM" value={stats.avgWpm} />
-                <StatBlock label="Avg. ACC" value={`${stats.avgAcc}%`} />
-                <StatBlock label="Started" value={stats.started} />
-                <StatBlock label="Completed" value={stats.completed} />
-                <StatBlock
-                  label="Time Typing"
-                  value={formatTime(stats.totalTime)}
-                />
-              </div>
-            </section>
-
-            <section className="flex-1 space-y-8 border border-border rounded-sm p-8">
-              <PastTestsTable />
-            </section>
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-col lg:flex-row  gap-4 sm:gap-8 mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8"></div>
+        )}
       </div>
       <HashPatternSvg className="fixed -z-10" />
       <Footer />
