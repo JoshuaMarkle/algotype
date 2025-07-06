@@ -10,9 +10,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!supabaseUrl || !supabaseKey) {
   console.error(
-    chalk.red(
-      "[ERROR] Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env.local",
-    ),
+    `${chalk.red("[Error]")}\tMissing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env.local`,
   );
   process.exit(1);
 }
@@ -51,9 +49,7 @@ async function uploadTokens() {
 
           if (!slug || !tokens) {
             console.warn(
-              chalk.yellow(
-                `[WARNING] Missing slug or tokens in: ${file} (skipped)`,
-              ),
+              `${chalk.yellow("[WARNING]")}\tMissing slug or tokens in: ${file} (skipped)`,
             );
             continue;
           }
@@ -76,18 +72,18 @@ async function uploadTokens() {
 
           if (error) {
             console.error(
-              chalk.red(`[ERROR] Failed to upload ${file}: ${error.message}`),
+              `${chalk.red("[ERROR]")}\tSkipping: Failed to upload ${file}\n` +
+                `\t\tError Message: ${error.message}`,
             );
           } else {
             console.log(
-              chalk.green(`[SUCCESS] Uploaded: [${mode}/${language}/${slug}]`),
+              `${chalk.green("[SUCCESS]")}\tUploaded: ${mode}/${language}/${slug}`,
             );
           }
         } catch (err) {
           console.error(
-            chalk.red(
-              `[ERROR] Failed to read or upload ${file}: ${err.message}`,
-            ),
+            `${chalk.red("[ERROR]")}\tSkipping: Failed to read or upload ${file}\n` +
+              `\t\tError Message: ${err.message}`,
           );
         }
       }

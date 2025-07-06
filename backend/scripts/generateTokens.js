@@ -4,7 +4,7 @@ import chalk from "chalk";
 import Prism from "prismjs";
 import loadLanguages from "prismjs/components/index.js";
 
-const GAMEMODES = ["files", "algorithms", "syntax"];
+const GAMEMODES = ["algorithms"];
 const BASE_DIR = path.join(process.cwd(), "backend/data");
 
 for (const mode of GAMEMODES) {
@@ -73,7 +73,25 @@ for (const mode of GAMEMODES) {
           const rawTokens = Prism.tokenize(line, Prism.languages[language]);
           const normalized = normalizeTokens(rawTokens);
           const withWlengths = addWlengths(normalized);
-          tokenLines.push(insertNewlineToken(withWlengths));
+
+          // Check if line is only spaces and a comment
+          const onlyCommentLine =
+            withWlengths.filter((t) => t.type !== "space").length === 1 &&
+            withWlengths.some((t) => t.type === "comment");
+
+          if (onlyCommentLine) {
+            const updated = withWlengths
+              .map((t) => {
+                if (t.type === "space") return { ...t, skip: true };
+                if (t.type === "newline") return null;
+                return t;
+              })
+              .filter(Boolean); // Remove newline tokens
+
+            tokenLines.push(updated);
+          } else {
+            tokenLines.push(insertNewlineToken(withWlengths));
+          }
         }
 
         if (tokenLines.length && tokenLines.at(-1).length === 0)
@@ -93,20 +111,20 @@ for (const mode of GAMEMODES) {
         await fs.mkdir(outputDir, { recursive: true });
         await fs.writeFile(outputPath, JSON.stringify(output, null, 2), "utf8");
         console.log(
-          `${chalk.green("[SUCCESS]")}\tTokenized: [${mode}/${language}/${file}]`,
+          `${chalk.green("[SUCCESS]")}\tTokenized: ${mode}/${language}/${file}`,
         );
       } catch (err) {
         if (err.code === "ENOENT") {
           console.warn(
-            `${chalk.yellow("[WARNING]")}\tSkipping:  [${mode}/${language}/${file}]\n` +
-              `\t\tMissing or unreadable metadata file: ${metaPath}\n` +
+            `${chalk.yellow("[WARNING]")}\tSkipping:  ${mode}/${language}/${file}\n` +
+              `\t\tMissing metadata file: ${metaPath}\n` +
               `\t\tExpected code file: ${filePath}`,
           );
         } else {
           console.error(
-            `${chalk.red("[ERROR]")}\tFailed to process: ${filePath}\n` +
-              `\t\tWith meta: ${metaPath}\n` +
-              `\t\tReason: ${err.message}`,
+            `${chalk.red("[ERROR]")}\tFailed:    ${filePath}\n` +
+              `\t\tMetadata: ${metaPath}\n` +
+              `\t\tError Message: ${err.message}`,
           );
         }
       }
@@ -116,21 +134,20 @@ for (const mode of GAMEMODES) {
 
 console.log(chalk.blue("[COMPLETE]"));
 
-// Helper functions
+// --- Helper functions ---
 
 function normalizeTokens(tokens) {
   const out = [];
 
   for (const token of tokens) {
-    const type = typeof token === "string" ? "plain" : token.type || "plain";
-    let content =
-      typeof token === "string"
-        ? token
-        : Array.isArray(token.content)
-          ? token.content
-              .map((t) => (typeof t === "string" ? t : t.content))
-              .join("")
-          : token.content;
+    let content, type;
+    if (typeof token === "string") {
+      content = token;
+      type = "plain";
+    } else {
+      content = extractContent(token.content);
+      type = token.type || "plain";
+    }
 
     if (typeof content !== "string") continue;
 
@@ -180,6 +197,15 @@ function normalizeTokens(tokens) {
   }
 
   return out;
+}
+
+// Extract the content from the token
+function extractContent(input) {
+  if (typeof input === "string") return input;
+  if (Array.isArray(input)) return input.map(extractContent).join("");
+  if (typeof input === "object" && input !== null && "content" in input)
+    return extractContent(input.content);
+  return "";
 }
 
 function makeToken(content, baseType, isSpace) {
