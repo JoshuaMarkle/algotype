@@ -8,7 +8,8 @@ export default function PrivacyPolicyPage() {
       <div className="flex justify-center p-4 pt-16">
         <div className="w-full max-w-5xl pr-0 md:pr-[20%]">
           <h1 className="text-4xl my-6">Privacy Policy</h1>
-          <p className="my-4">Effective Date: June 1, 2025</p>
+          <p className="text-fg-2">Effective Date: June 1, 2025</p>
+          <p className="text-fg-2">Last Updated: June 7, 2025</p>
 
           <p className="my-4">
             Your privacy matters. This Privacy Policy explains what data we
@@ -19,11 +20,13 @@ export default function PrivacyPolicyPage() {
           <p className="my-4">
             If you create an account, we collect your email address, username,
             and password (stored securely via Supabase). You may also sign up
-            using GitHub authentication.
+            using GitHub or Google authentication in which authentication will
+            be handled by that provider.
           </p>
           <p className="my-4">
-            We store typing test results (e.g., WPM, accuracy, time) to help you
-            track your progress and generate graphs over time.
+            The results of typing tests (e.g., WPM, accuracy, time) are stored
+            in order to help you track your progress and generate graphs over
+            time. All collected data is viewable via the account page.
           </p>
 
           <h2 className="text-2xl my-4">How We Use This Data</h2>
@@ -40,9 +43,17 @@ export default function PrivacyPolicyPage() {
 
           <h2 className="text-2xl my-4">Analytics</h2>
           <p className="my-4">
-            We use Umami Analytics to understand general usage trends (e.g.,
-            page views, locations, device types). This data is anonymized and
-            not linked to your personal account.
+            We uses Umami Analytics, a privacy-friendly and open source
+            analytics solution, to understand general usage trends (e.g., page
+            views, locations, device types). This data is anonymized and not
+            linked to your personal account.
+          </p>
+          <p className="my-4">
+            More information can be found{" "}
+            <a href="https://umami.is/" target="_blank" className="underline">
+              here
+            </a>
+            .
           </p>
 
           <h2 className="text-2xl my-4">Third-Party Services</h2>
@@ -60,6 +71,10 @@ export default function PrivacyPolicyPage() {
               contact@algotype.net
             </a>
             .
+          </p>
+          <p>
+            We are currently in the process of developing self-service
+            download/deletion features to make this process faster and easier.
           </p>
 
           <h2 className="text-2xl my-4">Security</h2>

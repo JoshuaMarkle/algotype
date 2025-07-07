@@ -8,8 +8,8 @@ export default function TermsPage() {
       <div className="flex justify-center p-4 pt-16">
         <div className="w-full max-w-5xl pr-0 md:pr-[20%]">
           <h1 className="text-4xl my-6">Terms of Service</h1>
-          <p className="my-4">Effective Date: June 1, 2025</p>
-
+          <p className="text-fg-2">Effective Date: June 1, 2025</p>
+          <p className="text-fg-2">Last Updated: June 7, 2025</p>
           <p className="my-4">
             Welcome to <strong>AlgoType</strong>, a typing test platform for
             developers. By using this site, you agree to the terms outlined
@@ -35,9 +35,9 @@ export default function TermsPage() {
           <h2 className="text-2xl my-4">Accounts and Saved Data</h2>
           <p className="my-4">
             Users may create an account using email/password or a third-party
-            provider (e.g., GitHub). Test results like WPM, accuracy, and
-            performance history may be stored and associated with your account
-            to track your progress.
+            provider (e.g., GitHub or Google). Test results like WPM, accuracy,
+            and performance history may be stored and associated with your
+            account to track your progress.
           </p>
           <p className="my-4">
             You are responsible for maintaining the security of your account.
