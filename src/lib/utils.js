@@ -25,6 +25,13 @@ export function formatTime(seconds) {
   return `${secs}s`;
 }
 
+// Format date (joined at ...)
+export function formatIsoDate(isoString) {
+  const date = new Date(isoString);
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return date.toLocaleDateString(undefined, options);
+}
+
 // Thin out the data to only maxPoints points
 export function cleanData(data, maxPoints = 25) {
   const total = data.length;

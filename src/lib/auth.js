@@ -4,17 +4,19 @@ import { supabase } from "@/lib/supabaseClient";
 
 export async function signupWithEmail(username, email, password) {
   // Check if username within constraints
+  username = username.trim();
   if (username.length <= 3) throw new Error("Username is too short");
   if (username.length > 20) throw new Error("Username is too long");
 
-  // Check if the username is already taken (not possible right now)
-  const { data: existingUsername, error: usernameError } = await supabase
+  // Check if the username is already taken
+  const usernameLc = username.toLowerCase();
+  const { data: existingUsername, error: fetchError } = await supabase
     .from("users")
     .select("id")
-    .ilike("username", username) // case-insensitive uniqueness check
+    .ilike("username_lc", usernameLc) // case-insensitive uniqueness check
     .maybeSingle();
 
-  if (usernameError) throw new Error(usernameError.message);
+  if (fetchError) throw new Error(fetchError.message);
   if (existingUsername) throw new Error("Username already taken");
 
   // Create the new user
@@ -170,19 +172,16 @@ export async function getCurrentUser() {
   return data.user;
 }
 
-export async function getUserProfile() {
-  const { data: userData, error: userError } = await supabase.auth.getUser();
-  if (userError) throw new Error(userError.message);
+export async function getCurrentProfile() {
+  const user = await getCurrentUser();
 
-  const userId = userData.user.id;
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("username")
-    .eq("id", userId)
+    .select("*")
+    .eq("id", user.id)
     .single();
 
   if (profileError) throw new Error(profileError.message);
-
   return profile;
 }
 

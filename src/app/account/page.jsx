@@ -7,13 +7,13 @@ import Skeleton from "@/components/ui/Skeleton";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import HashPatternSvg from "@/components/effects/HashPatternSvg";
-import { supabase } from "@/lib/supabaseClient";
 import Button from "@/components/ui/Button";
 import ProgressGraph from "@/components/graphs/ProgressGraph";
 import PastTestsTable from "@/components/tables/PastTestsTable";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-import { logout } from "@/lib/auth";
 import { getUserHistory } from "@/lib/history";
+import { formatIsoDate, langToNatural } from "@/lib/utils";
+import { getCurrentProfile } from "@/lib/auth";
 
 export default function AccountPage() {
   const [user, setUser] = useState(null);
@@ -25,20 +25,17 @@ export default function AccountPage() {
   useEffect(() => {
     const load = async () => {
       // Step 1: Get authenticated user
-      const {
-        data: { user },
-        error,
-      } = await supabase.auth.getUser();
+      const profile = await getCurrentProfile();
 
-      if (error || !user) {
+      if (!profile) {
         redirect("/login"); // redirect if unauthenticated
         return;
       }
 
-      setUser(user);
+      setUser(profile);
       setLoadingUser(false);
 
-      // Step 2: Fetch history **after** user is verified
+      // Step 2: Fetch history after user is verified
       try {
         const history = await getUserHistory(user); // pass user if needed
         const reversed = [...history].reverse();
@@ -60,109 +57,111 @@ export default function AccountPage() {
   return (
     <main>
       <Navbar />
-      <div className="min-h-screen mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
+      <div className="min-h-screen mx-4 md:mx-8 bg-bg mt-16">
         {user ? (
-          <div className="flex flex-col lg:flex-row  gap-4 sm:gap-8 mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8">
-            {/* Profile Panel */}
-            <section className="lg:max-w-[30vw] xl:max-w-[20vw] flex flex-col space-y-4 border border-border rounded-sm p-8">
-              <div className="flex flex-row justify-center gap-4">
-                {loadingUser ? (
-                  <div>
-                    <Skeleton className="size-24 rounded-sm" />
-                  </div>
-                ) : (
-                  <Avatar className="size-24 rounded-sm">
-                    <AvatarImage
-                      src={user.user_metadata.avatar_url}
-                      alt={user.user_metadata.username}
-                    />
-                    <AvatarFallback className="text-6xl rounded-sm">
-                      {user.user_metadata.username?.[0]}
-                    </AvatarFallback>
-                  </Avatar>
-                )}
-                <div className="truncate flex flex-col justify-between flex-1 text-left text-xl leading-tight">
-                  <div className="flex flex-col">
-                    {loadingUser ? (
-                      <div className="space-y-2">
-                        <Skeleton className="h-4 w-12" />
-                        <Skeleton className="h-4 w-32" />
-                      </div>
-                    ) : (
-                      <>
-                        <h2 className="truncate">
-                          {user.user_metadata.username}
-                        </h2>
-                        <p className="truncate text-sm text-fg-2">
-                          {user.email}
-                        </p>
-                      </>
-                    )}
+          <div className="w-full md:max-w-7xl mx-auto pt-24 pb-16 px-4 sm:px-8 space-y-32">
+            {/* Avatar + Stats */}
+            <div className="flex flex-col lg:flex-row gap-16 lg:gap-8">
+              <section className="flex flex-col items-center lg:items-start gap-4">
+                <div className="flex flex-row justify-center gap-4">
+                  {loadingUser ? (
+                    <div>
+                      <Skeleton className="size-24 rounded-sm" />
+                    </div>
+                  ) : (
+                    <Avatar className="size-16 rounded-sm">
+                      <AvatarImage src={user.avatar_url} alt={user.username} />
+                      <AvatarFallback className="text-6xl rounded-sm">
+                        {user.username?.[0]}
+                      </AvatarFallback>
+                    </Avatar>
+                  )}
+                  <div className="truncate flex-1 flex flex-col justify-start text-left text-xl leading-tight">
+                    <div className="flex flex-col">
+                      {loadingUser ? (
+                        <div className="space-y-2">
+                          <Skeleton className="h-4 w-12" />
+                          <Skeleton className="h-4 w-32" />
+                        </div>
+                      ) : (
+                        <>
+                          <h2 className="truncate">{user.username}</h2>
+                          <p className="truncate text-sm text-fg-2">
+                            {user.email}
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <h3 className="font-medium">Languages</h3>
-              <div className="space-y-2">
-                {languageStats.map(({ language, count }) => (
-                  <div
-                    key={language}
-                    className="flex flex-row justify-between text-sm capitalize"
-                  >
-                    <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
-                      {language}
-                    </span>
-                    <p>
-                      {count} <span className="text-fg-2">problems solved</span>
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <h3 className="font-medium mt-auto">Actions</h3>
-              <div className="space-y-2">
-                <Button variant="destructive" onClick={logout}>
-                  Logout
-                </Button>
-              </div>
-            </section>
-
-            {/* Main Content */}
-            <div className="flex-1 grid grid-cols-1 gap-4 sm:gap-8">
-              <section className="space-y-8 border border-border rounded-sm p-8">
-                {historyData.length > 1 ? (
-                  <ProgressGraph data={historyData} loading={loadingHistory} />
-                ) : (
-                  <div />
-                )}
-
-                <div className="grid grid-cols-3 space-x-4 space-y-8 text-center font-mono text-sm sm:text-lg">
+                <p className="truncate hidden lg:block text-sm text-fg-2">
+                  Joined {formatIsoDate(user.created_at)}
+                </p>
+              </section>
+              <section className="flex-1">
+                <div className="grid grid-cols-3 gap-8 text-center font-mono text-sm sm:text-lg">
+                  <StatBlock label="Avg. WPM" value={stats.avgWpm} />
+                  <StatBlock label="Avg. ACC" value={`${stats.avgAcc}%`} />
+                  <StatBlock
+                    label="Time Typing"
+                    value={formatTime(stats.totalTime)}
+                  />
                   <StatBlock
                     label="Solved"
                     value={stats.completed}
                     sub={`/${stats.started}`}
                   />
-                  <StatBlock label="Avg. WPM" value={stats.avgWpm} />
-                  <StatBlock label="Avg. ACC" value={`${stats.avgAcc}%`} />
                   <StatBlock label="Started" value={stats.started} />
                   <StatBlock label="Completed" value={stats.completed} />
-                  <StatBlock
-                    label="Time Typing"
-                    value={formatTime(stats.totalTime)}
-                  />
                 </div>
               </section>
-
-              <section className="flex-1 space-y-8 border border-border rounded-sm p-8">
-                <PastTestsTable />
-              </section>
             </div>
+
+            {/* Graph */}
+            <section>
+              {historyData.length > 1 ? (
+                <ProgressGraph data={historyData} loading={loadingHistory} />
+              ) : (
+                <div />
+              )}
+            </section>
+
+            {/* Languages */}
+            <section>
+              {languageStats.length > 0 ? (
+                <div className="flex flex-col gap-4">
+                  <h3 className="font-medium">Languages</h3>
+                  <div className="space-y-2">
+                    {languageStats.map(({ language, count }) => (
+                      <div
+                        key={language}
+                        className="flex flex-row justify-between text-sm capitalize"
+                      >
+                        <span className="text-fg-2 bg-bg-2 rounded-full py-1 px-3">
+                          {langToNatural(language)}
+                        </span>
+                        <p>
+                          {count}{" "}
+                          <span className="text-fg-2">problems solved</span>
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <p>Welcome to AlgoType.net!</p>
+              )}
+            </section>
+
+            {/* History Table */}
+            <section>
+              <PastTestsTable />
+            </section>
           </div>
         ) : (
-          <div className="flex flex-col lg:flex-row  gap-4 sm:gap-8 mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8"></div>
+          <div className="mx-auto w-full md:max-w-7xl pt-24 pb-16 px-4 sm:px-8"></div>
         )}
       </div>
-      <HashPatternSvg className="fixed -z-10" />
       <Footer />
     </main>
   );
