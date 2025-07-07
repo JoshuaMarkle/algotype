@@ -61,7 +61,7 @@ export default function AccountPage() {
         {user ? (
           <div className="w-full md:max-w-7xl mx-auto pt-24 pb-16 px-4 sm:px-8 space-y-32">
             {/* Avatar + Stats */}
-            <div className="flex flex-col lg:flex-row gap-16 lg:gap-8">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-8">
               <section className="flex flex-col items-center lg:items-start gap-4">
                 <div className="flex flex-row justify-center gap-4">
                   {loadingUser ? (
@@ -127,7 +127,7 @@ export default function AccountPage() {
             </section>
 
             {/* Languages */}
-            <section>
+            {/*<section>
               {languageStats.length > 0 ? (
                 <div className="flex flex-col gap-4">
                   <h3 className="font-medium">Languages</h3>
@@ -151,7 +151,7 @@ export default function AccountPage() {
               ) : (
                 <p>Welcome to AlgoType.net!</p>
               )}
-            </section>
+            </section>*/}
 
             {/* History Table */}
             <section>

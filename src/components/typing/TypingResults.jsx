@@ -70,26 +70,31 @@ export default function TypingResults({ started, ended, stats, data, source }) {
         <AreaChart data={data}>
           <defs>
             <linearGradient id="colorToBlack" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#16181b" stopOpacity={1} />
-              <stop offset="100%" stopColor="#040404" stopOpacity={1} />
+              <stop offset="0%" stopColor="#315efc" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="#040404" stopOpacity={0.1} />
             </linearGradient>
           </defs>
           <YAxis
-            stroke="#8a8a90"
+            stroke="#16181b"
             tick={{ fill: "#8a8a90", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
             width={32}
           />
           <Area
-            type="monotone"
             dataKey="wpm"
-            stroke="#f4f5f6"
+            stroke="#0096f5"
             strokeWidth={3}
             fill="url(#colorToBlack)"
             fillOpacity={1}
             animationDuration={0}
             animationEasing="ease-in-out"
+            activeDot={{
+              r: 3,
+              stroke: "#0096f5",
+              strokeWidth: 2,
+              fill: "#0096f5",
+            }}
           />
           <Tooltip cursor={false} content={<CustomTooltip />} />
         </AreaChart>

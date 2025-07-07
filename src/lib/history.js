@@ -9,6 +9,7 @@ export async function submitTestHistory({
   acc,
   time,
   language,
+  lines,
   mode,
   slug,
 }) {
@@ -29,6 +30,7 @@ export async function submitTestHistory({
     typeof acc !== "number" ||
     typeof time !== "number" ||
     typeof language !== "string" ||
+    typeof lines !== "number" ||
     typeof mode !== "string" ||
     typeof slug !== "string"
   ) {
@@ -44,6 +46,7 @@ export async function submitTestHistory({
       acc,
       time,
       language,
+      lines,
       mode,
       slug,
       created_at: new Date().toISOString(),
@@ -71,7 +74,7 @@ export async function getUserHistory(limit = 1000) {
 
   const { data, error } = await supabase
     .from("history")
-    .select("id, wpm, acc, time, language, mode, slug, created_at")
+    .select("id, wpm, acc, time, language, lines, mode, slug, created_at")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .limit(limit);
@@ -99,7 +102,7 @@ export async function getUserHistoryPaginated({ page = 0, pageSize = 20 }) {
 
   const { data, error, count } = await supabase
     .from("history")
-    .select("id, wpm, acc, time, language, mode, slug, created_at", {
+    .select("id, wpm, acc, time, language, lines, mode, slug, created_at", {
       count: "exact",
     })
     .eq("user_id", user.id)

@@ -42,6 +42,7 @@ export default function TypingTest({ challenge, slug }) {
   const mode = challenge.mode;
   const language = challenge.language;
   const source = challenge.source;
+  const lines = challenge.lines;
 
   // Stats reference
   const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
@@ -102,7 +103,7 @@ export default function TypingTest({ challenge, slug }) {
       setEnded(now);
 
       const { wpm, acc, time } = calculateStats(started, now, stats);
-      submitTestHistory({ wpm, acc, time, language, mode, slug });
+      submitTestHistory({ wpm, acc, time, language, lines, mode, slug });
     }
   }, [started, done, ended, language, mode, slug]);
 

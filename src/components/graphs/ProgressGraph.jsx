@@ -21,7 +21,7 @@ export default function ProgressGraph({ data, loading }) {
   // const sData = smoothData(data);
 
   return (
-    <ResponsiveContainer width="100%" height={256}>
+    <ResponsiveContainer width="100%" height={374}>
       <ComposedChart data={data}>
         <defs>
           <linearGradient id="colorToBlack" x1="0" y1="0" x2="0" y2="1">
