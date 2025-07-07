@@ -47,7 +47,7 @@ export async function loginWithEmail(email, password) {
   return data;
 }
 
-// --- GitHub ---
+// --- Providers ---
 
 export async function loginWithGitHub() {
   const { data, error } = await supabase.auth.signInWithOAuth({
@@ -59,8 +59,19 @@ export async function loginWithGitHub() {
 
   if (error) {
     console.error("Error during GitHub sign-in:", error.message);
-  } else {
-    window.location.href = data.url;
+  }
+}
+
+export async function loginWithGoogle() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${window.location.origin}/auth/callback`,
+    },
+  });
+
+  if (error) {
+    console.error("Error during Google sign-in:", error.message);
   }
 }
 
