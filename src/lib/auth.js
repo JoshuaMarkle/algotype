@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import { clearHistoryCache } from "@/lib/history";
 
 // --- Email/Password ---
 
@@ -9,15 +10,8 @@ export async function signupWithEmail(username, email, password) {
   if (username.length > 20) throw new Error("Username is too long");
 
   // Check if the username is already taken
-  const usernameLc = username.toLowerCase();
-  const { data: existingUsername, error: fetchError } = await supabase
-    .from("users")
-    .select("id")
-    .ilike("username_lc", usernameLc) // case-insensitive uniqueness check
-    .maybeSingle();
-
-  if (fetchError) throw new Error(fetchError.message);
-  if (existingUsername) throw new Error("Username already taken");
+  const existing = await isUsernameFree(username);
+  if (!existing) throw new Error("Username already taken");
 
   // Create the new user
   const { data, error } = await supabase.auth.signUp({
@@ -94,6 +88,18 @@ export async function loginWithMagicLink(email) {
   return data;
 }
 
+export async function resendVerificationEmail(email) {
+  const { error } = await supabase.auth.resend({
+    type: "signup",
+    email,
+    options: {
+      emailRedirectTo: `${window.location.origin}/auth/callback`,
+    },
+  });
+
+  if (error) throw error;
+}
+
 // --- Linking Providers ---
 
 export async function linkProvider(provider) {
@@ -168,28 +174,118 @@ export async function requestPasswordReset(email) {
 
 export async function getCurrentUser() {
   const { data, error } = await supabase.auth.getUser();
-  if (error) throw new Error(error.message);
+  // if (error) throw new Error(error.message); // Ignore errors (just not logged in)
+  if (error) return null;
   return data.user;
 }
 
-export async function getCurrentProfile() {
-  const user = await getCurrentUser();
+export async function getCurrentProfile(forceRefresh = false) {
+  if (!forceRefresh) {
+    const cached = readProfileCache();
+    if (cached) return cached;
+  }
 
-  const { data: profile, error: profileError } = await supabase
-    .from("profiles")
+  // Get user (localStorage)
+  const authUser = await getCurrentUser(); // returns null if not signed in
+  if (!authUser) return null;
+
+  // Getb user profile (network)
+  const { data: row, error } = await supabase
+    .from("users")
     .select("*")
-    .eq("id", user.id)
+    .eq("id", authUser.id)
     .single();
 
-  if (profileError) throw new Error(profileError.message);
+  if (error) throw error;
+
+  // Merge and cache
+  const profile = {
+    ...row,
+    email: authUser.email,
+    avatar_url: authUser.user_metadata?.avatar_url ?? null,
+    created_at: authUser.created_at,
+  };
+
+  cacheProfile(profile);
   return profile;
+}
+
+export async function isUsernameFree(username) {
+  const { data, error } = await supabase.rpc("is_username_available", {
+    _name: username,
+  });
+
+  if (error) {
+    console.error("Error details:", error);
+    throw error;
+  }
+  return data;
+}
+
+export async function isEmailFree(email) {
+  const { data, error } = await supabase.rpc("is_email_available", {
+    _email: email,
+  });
+
+  if (error) throw error;
+  return data;
 }
 
 export async function logout() {
   const { error } = await supabase.auth.signOut();
+  if (error) console.error("Error during sign-out:", error.message);
+
+  clearHistoryCache();
+  clearProfileCache();
+  window.location.reload();
+}
+
+export async function deleteAccount() {
+  const confirmed = window.confirm(
+    "This will permanently delete your AlgoType account and all your typing history. This action cannot be undone.\n\n" +
+      "Do you want to continue?",
+  );
+  if (!confirmed) return;
+
+  // Call the RPC function (deletes current user)
+  const { error } = await supabase.rpc("delete_account");
+
   if (error) {
-    console.error("Error during sign-out:", error.message);
-  } else {
-    window.location.reload();
+    alert("Could not delete account:\n\n" + error.message);
+    return;
   }
+
+  alert("Account deleted successfully");
+  await logout();
+}
+
+// --- Cache User ---
+
+const PROFILE_KEY = "algo_profile";
+const TTL_MS = 1000 * 60 * 15; // 15-minute freshness window
+
+function cacheProfile(profile) {
+  const payload = { profile, ts: Date.now() };
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(payload));
+}
+
+function readProfileCache() {
+  const raw = localStorage.getItem(PROFILE_KEY);
+  if (!raw) return null;
+
+  try {
+    const { profile, ts } = JSON.parse(raw);
+    if (Date.now() - ts > TTL_MS) {
+      localStorage.removeItem(PROFILE_KEY);
+      return null; // stale
+    }
+    return profile; // fresh
+  } catch {
+    localStorage.removeItem(PROFILE_KEY);
+    return null;
+  }
+}
+
+export function clearProfileCache() {
+  localStorage.removeItem(PROFILE_KEY);
 }

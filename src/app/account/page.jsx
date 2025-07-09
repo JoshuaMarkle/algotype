@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import Skeleton from "@/components/ui/Skeleton";
 import Navbar from "@/components/layouts/Navbar";
@@ -21,35 +21,44 @@ export default function AccountPage() {
   const [historyData, setHistoryData] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
 
+  const router = useRouter();
+
   // Get user + data on open
   useEffect(() => {
-    const load = async () => {
-      // Step 1: Get authenticated user
+    let alive = true;
+
+    (async () => {
+      // Get authenticated user
       const profile = await getCurrentProfile();
 
+      // Redirect if unauthenticated
       if (!profile) {
-        redirect("/login"); // redirect if unauthenticated
+        router.replace("/login");
         return;
       }
 
+      if (!alive) return;
       setUser(profile);
       setLoadingUser(false);
 
-      // Step 2: Fetch history after user is verified
+      // Fetch history after user is verified
       try {
-        const history = await getUserHistory(user); // pass user if needed
+        const history = await getUserHistory(); // pass user if needed
+        if (!alive) return;
         const reversed = [...history].reverse();
         const indexed = reversed.map((d, i) => ({ ...d, index: i }));
         setHistoryData(indexed);
       } catch (err) {
         console.error("Failed to fetch graph data:", err.message);
       } finally {
-        setLoadingHistory(false);
+        if (alive) setLoadingHistory(false);
       }
-    };
+    })();
 
-    load();
-  }, []);
+    return () => {
+      alive = false;
+    };
+  }, [router]);
 
   const stats = calculateStats(historyData);
   const languageStats = groupLanguages(historyData);
@@ -61,69 +70,60 @@ export default function AccountPage() {
         {user ? (
           <div className="w-full md:max-w-7xl mx-auto pt-24 pb-16 px-4 sm:px-8 space-y-32">
             {/* Avatar + Stats */}
-            <div className="flex flex-col lg:flex-row gap-8 lg:gap-8">
-              <section className="flex flex-col items-center lg:items-start gap-4">
-                <div className="flex flex-row justify-center gap-4">
-                  {loadingUser ? (
-                    <div>
-                      <Skeleton className="size-24 rounded-sm" />
-                    </div>
-                  ) : (
-                    <Avatar className="size-16 rounded-sm">
-                      <AvatarImage src={user.avatar_url} alt={user.username} />
-                      <AvatarFallback className="text-6xl rounded-sm">
-                        {user.username?.[0]}
-                      </AvatarFallback>
-                    </Avatar>
-                  )}
-                  <div className="truncate flex-1 flex flex-col justify-start text-left text-xl leading-tight">
-                    <div className="flex flex-col">
-                      {loadingUser ? (
-                        <div className="space-y-2">
-                          <Skeleton className="h-4 w-12" />
-                          <Skeleton className="h-4 w-32" />
-                        </div>
-                      ) : (
-                        <>
-                          <h2 className="truncate">{user.username}</h2>
-                          <p className="truncate text-sm text-fg-2">
-                            {user.email}
-                          </p>
-                        </>
-                      )}
-                    </div>
+            {/*<section className="flex flex-col items-center">
+              <div className="flex flex-row justify-center gap-4">
+                {loadingUser ? (
+                  <div>
+                    <Skeleton className="size-24 rounded-sm" />
+                  </div>
+                ) : (
+                  <Avatar className="size-16 rounded-sm">
+                    <AvatarImage src={user.avatar_url} alt={user.username} />
+                    <AvatarFallback className="text-6xl rounded-sm">
+                      {user.username?.[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                )}
+                <div className="truncate flex-1 flex flex-col -mt-1 justify-start text-left text-xl leading-tight">
+                  <div className="flex flex-col">
+                    {loadingUser ? (
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-12" />
+                        <Skeleton className="h-4 w-32" />
+                      </div>
+                    ) : (
+                      <>
+                        <h2 className="truncate">{user.username}</h2>
+                        <p className="truncate text-sm text-fg-2">
+                          {formatIsoDate(user.created_at)}
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
-                <p className="truncate hidden lg:block text-sm text-fg-2">
-                  Joined {formatIsoDate(user.created_at)}
-                </p>
-              </section>
-              <section className="flex-1">
-                <div className="grid grid-cols-3 gap-8 text-center font-mono text-sm sm:text-lg">
-                  <StatBlock label="Avg. WPM" value={stats.avgWpm} />
-                  <StatBlock label="Avg. ACC" value={`${stats.avgAcc}%`} />
-                  <StatBlock
-                    label="Time Typing"
-                    value={formatTime(stats.totalTime)}
-                  />
-                  <StatBlock
-                    label="Solved"
-                    value={stats.completed}
-                    sub={`/${stats.started}`}
-                  />
-                  <StatBlock label="Started" value={stats.started} />
-                  <StatBlock label="Completed" value={stats.completed} />
-                </div>
-              </section>
-            </div>
+              </div>
+            </section>*/}
+            <section className="flex-1">
+              <div className="grid grid-cols-3 gap-8 text-center font-mono text-sm sm:text-lg">
+                <StatBlock label="Avg. WPM" value={stats.avgWpm} />
+                <StatBlock label="Avg. ACC" value={`${stats.avgAcc}%`} />
+                <StatBlock
+                  label="Time Typing"
+                  value={formatTime(stats.totalTime)}
+                />
+                {/*<StatBlock
+                  label="Solved"
+                  value={stats.completed}
+                  sub={`/${stats.started}`}
+                />
+                <StatBlock label="Started" value={stats.started} />
+                <StatBlock label="Completed" value={stats.completed} />*/}
+              </div>
+            </section>
 
             {/* Graph */}
             <section>
-              {historyData.length > 1 ? (
-                <ProgressGraph data={historyData} loading={loadingHistory} />
-              ) : (
-                <div />
-              )}
+              <ProgressGraph data={historyData} loading={loadingHistory} />
             </section>
 
             {/* Languages */}
@@ -170,7 +170,7 @@ export default function AccountPage() {
 function StatBlock({ label, value, sub }) {
   return (
     <div>
-      <p className="text-2xl sm:text-4xl">
+      <p className="text-2xl sm:text-5xl">
         {value}
         {sub && <span className="text-sm sm:text-lg text-fg-2">{sub}</span>}
       </p>

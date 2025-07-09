@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 
@@ -10,54 +10,90 @@ import Label from "@/components/ui/Label";
 import PasswordStrengthMeter, {
   evaluatePasswordStrength,
 } from "@/components/auth/PasswordStrengthMeter";
-import { signupWithEmail, loginWithGitHub } from "@/lib/auth";
+import {
+  signupWithEmail,
+  loginWithGitHub,
+  isUsernameFree,
+  isEmailFree,
+} from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 export default function SignupForm({ className, ...props }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [weak, setWeak] = useState(true);
   const [visible, setVisible] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
 
+  const [usernameTaken, setUsernameTaken] = useState(false);
+  const [emailTaken, setEmailTaken] = useState(false);
+
+  const [error, setError] = useState(null);
+
+  // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setSuccess(false);
+    setUsernameTaken(false);
+    setEmailTaken(false);
 
+    // Check password
+    setWeak(evaluatePasswordStrength(password).score < 2);
+    if (weak) {
+      setError("Password too weak");
+      return;
+    }
+
+    // Check username + email
+    const [uFree, eFree] = await Promise.all([
+      isUsernameFree(username),
+      isEmailFree(email),
+    ]);
+
+    setUsernameTaken(!uFree);
+    setEmailTaken(!eFree);
+    if (!uFree && !eFree) setError("Username & email already exist");
+    else if (!uFree) setError("Username already exists");
+    else if (!eFree) setError("Email already exists");
+    if (!uFree || !eFree) return;
+
+    // Attempt to sign up
     try {
       await signupWithEmail(username, email, password);
-      setSuccess(true);
-
-      // Redirect to homepage
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1000);
+      window.location.href = "/signup/success";
     } catch (err) {
       setError(err.message);
     }
   };
 
+  // Provider
   const handleGitHub = async () => {
     try {
       await loginWithGitHub();
-      setSuccess(true);
-
-      // Redirect to homepage
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1000);
+      window.location.href = "/account";
     } catch (err) {
       setError(err.message);
     }
   };
+
+  useEffect(() => {
+    setUsernameTaken(false);
+  }, [username]);
+
+  useEffect(() => {
+    setEmailTaken(false);
+  }, [email]);
+
+  useEffect(() => {
+    if (password === "") setWeak(false);
+    else setWeak(evaluatePasswordStrength(password).score < 2);
+  }, [password]);
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-2xl">Create your account</h1>
+        <h1 className="text-2xl font-medium">Create your account</h1>
         <h2 className="text-md text-fg-2">
           Sign up with either email or a provider
         </h2>
@@ -72,9 +108,10 @@ export default function SignupForm({ className, ...props }) {
                   id="username"
                   type="username"
                   placeholder="Username"
-                  required
                   value={username}
+                  invalid={usernameTaken}
                   onChange={(e) => setUsername(e.target.value)}
+                  required
                 />
               </div>
               <div className="grid gap-3">
@@ -83,9 +120,10 @@ export default function SignupForm({ className, ...props }) {
                   id="email"
                   type="email"
                   placeholder="you@example.com"
-                  required
                   value={email}
+                  invalid={emailTaken}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="grid gap-3">
@@ -96,6 +134,7 @@ export default function SignupForm({ className, ...props }) {
                     type={visible ? "text" : "password"}
                     required
                     value={password}
+                    aria-invalid={weak}
                     onChange={(e) => setPassword(e.target.value)}
                     className="pr-10" // space for icon
                   />
@@ -116,15 +155,21 @@ export default function SignupForm({ className, ...props }) {
                 </div>
                 <PasswordStrengthMeter password={password} />
               </div>
-              <Button type="submit" className="w-full">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={
+                  username === "" ||
+                  email === "" ||
+                  password === "" ||
+                  usernameTaken ||
+                  emailTaken ||
+                  weak
+                }
+              >
                 Sign Up
               </Button>
               {error && <p className="text-red-500 text-sm">{error}</p>}
-              {success && (
-                <p className="text-green-500 text-sm">
-                  Successfully made your account
-                </p>
-              )}
             </div>
 
             {/* Divider */}

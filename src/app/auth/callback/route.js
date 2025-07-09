@@ -29,5 +29,5 @@ export async function GET(request) {
     return NextResponse.redirect(new URL("/login?error=auth", request.url));
   }
 
-  return NextResponse.redirect(new URL("/", request.url));
+  return NextResponse.redirect(new URL("/signup/success", request.url));
 }

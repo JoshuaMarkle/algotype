@@ -15,13 +15,15 @@ import { formatTime } from "@/lib/utils";
 
 export default function ProgressGraph({ data, loading }) {
   if (loading) {
-    return <Skeleton className="w-full h-[192px]" />;
+    return <Skeleton className="w-full h-[256px]" />;
   }
+
+  if (data.length < 2) return <div />;
 
   // const sData = smoothData(data);
 
   return (
-    <ResponsiveContainer width="100%" height={374}>
+    <ResponsiveContainer width="100%" height={256}>
       <ComposedChart data={data}>
         <defs>
           <linearGradient id="colorToBlack" x1="0" y1="0" x2="0" y2="1">

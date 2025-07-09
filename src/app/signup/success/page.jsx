@@ -1,10 +1,9 @@
 import Link from "next/link";
 
 import Navbar from "@/components/layouts/Navbar";
-import LoginForm from "@/components/auth/LoginForm";
 import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
-export default function LoginPage() {
+export default function SignUpPage() {
   return (
     <main className="relative grid min-h-svh lg:grid-cols-2">
       {/*<div className="fixed top-0 left-0 right-0 z-50">
@@ -33,10 +32,20 @@ export default function LoginPage() {
             AlgoType.net
           </Link>
         </div>
-        <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
-            <LoginForm />
+        <div className="flex flex-col flex-1 items-center justify-center gap-8">
+          <div className="space-y-2 w-full max-w-xs text-center">
+            <h2 className="text-2xl font-medium">Registration Successful</h2>
+            <p className="text-md text-fg-2">
+              We&apos;ve sent a confirmation email to your inbox. Please verify
+              your email address to complete your registration and log in.
+            </p>
           </div>
+          <Link
+            href="/login"
+            className="text-sm text-fg-2 hover:text-fg underline"
+          >
+            Return to Login
+          </Link>
         </div>
       </div>
     </main>
@@ -44,6 +53,6 @@ export default function LoginPage() {
 }
 
 export const metadata = {
-  title: "AlgoType | Log In",
-  description: "Login to your account to track your progress",
+  title: "Sign Up | AlgoType",
+  description: "Create an account to save your typing progress.",
 };

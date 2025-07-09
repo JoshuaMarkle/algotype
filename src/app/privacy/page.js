@@ -8,8 +8,10 @@ export default function PrivacyPolicyPage() {
       <div className="flex justify-center p-4 pt-16">
         <div className="w-full max-w-5xl pr-0 md:pr-[20%]">
           <h1 className="text-4xl my-6">Privacy Policy</h1>
-          <p className="text-fg-2">Effective Date: June 1, 2025</p>
-          <p className="text-fg-2">Last Updated: June 7, 2025</p>
+          <div className="text-sm text-fg-2">
+            <p>Effective Date: June 1, 2025</p>
+            <p>Last Updated: June 7, 2025</p>
+          </div>
 
           <p className="my-4">
             Your privacy matters. This Privacy Policy explains what data we

@@ -84,7 +84,8 @@ function MovingKeyboard({ y, i, direction, startTime }) {
           ? (base + distance) % totalWidth
           : (base - distance + totalWidth) % totalWidth;
 
-      ref.current.style.transform = `translate(${x}px, ${y}px)`;
+      if (ref.current)
+        ref.current.style.transform = `translate(${x}px, ${y}px)`;
       animationRef.current = requestAnimationFrame(update);
     };
 

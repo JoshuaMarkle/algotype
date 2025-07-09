@@ -7,6 +7,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
 } from "@/components/ui/NavigationMenu";
+import { getCurrentProfile } from "@/lib/auth";
 import { logout } from "@/lib/auth";
 
 export default function NavbarAccount({ user }) {

@@ -1,15 +1,11 @@
 import Link from "next/link";
 
-import Navbar from "@/components/layouts/Navbar";
-import LoginForm from "@/components/auth/LoginForm";
+import ReverifyEmailForm from "@/components/auth/ReverifyEmailForm";
 import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
-export default function LoginPage() {
+export default function ReverifyEmailPage() {
   return (
     <main className="relative grid min-h-svh lg:grid-cols-2">
-      {/*<div className="fixed top-0 left-0 right-0 z-50">
-        <Navbar />
-      </div>*/}
       <KeyboardBackground />
       <div className="flex flex-col gap-4 p-6 bg-bg md:p-10 border-r border-border">
         <div className="flex justify-center gap-2 md:justify-start">
@@ -35,7 +31,7 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
-            <LoginForm />
+            <ReverifyEmailForm />
           </div>
         </div>
       </div>
@@ -44,6 +40,6 @@ export default function LoginPage() {
 }
 
 export const metadata = {
-  title: "AlgoType | Log In",
-  description: "Login to your account to track your progress",
+  title: "Reverify Email | AlgoType",
+  description: "Reset your account password",
 };

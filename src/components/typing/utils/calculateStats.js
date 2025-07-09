@@ -1,5 +1,4 @@
 export function calculateStats(started, ended, stats) {
-  console.log("called calculate stats with ", started, ended, stats);
   if (!started || !stats?.current) {
     return { wpm: 0, acc: 100, time: 0, timeTillWpmDrop: Infinity };
   }

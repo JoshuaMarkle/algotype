@@ -28,7 +28,7 @@ export default function LoginForm({ className, ...props }) {
 
       // Redirect to homepage
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/account";
       }, 1000);
     } catch (err) {
       setError(err.message);
@@ -38,6 +38,7 @@ export default function LoginForm({ className, ...props }) {
   const handleGitHub = async () => {
     try {
       await loginWithGitHub();
+      window.location.href = "/account";
     } catch (err) {
       setError(err.message);
     }
@@ -46,6 +47,7 @@ export default function LoginForm({ className, ...props }) {
   const handleGoogle = async () => {
     try {
       await loginWithGoogle();
+      window.location.href = "/account";
     } catch (err) {
       setError(err.message);
     }
@@ -66,7 +68,15 @@ export default function LoginForm({ className, ...props }) {
             <div className="grid gap-6">
               {/* Email and password */}
               <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
+                <div className="flex items-center">
+                  <Label htmlFor="email">Email</Label>
+                  <Link
+                    href="/login/password-reset"
+                    className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
+                  >
+                    Unverified?
+                  </Link>
+                </div>
                 <Input
                   id="email"
                   type="email"

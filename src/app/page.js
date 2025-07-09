@@ -36,7 +36,7 @@ export default function Home() {
       <div className="mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
         {/* Header */}
         <section className="relative flex flex-col items-center py-64">
-          <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_50%_75%,_#fff_0%,_#ddd_60%,_#555_100%)] text-center flex flex-col lg:flex-row lg:space-x-2 z-10">
+          <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_50%_75%,_#fff_0%,_#ddd_60%,_#555_100%)] text-center flex flex-col xl:flex-row xl:space-x-2 z-10">
             <span>Typing Practice</span>
             <span>For Programmers</span>
           </h1>
@@ -47,7 +47,7 @@ export default function Home() {
           <div className="flex flex-row gap-4 z-10">
             <RandomButton />
           </div>
-          <svg
+          {/*<svg
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 size-full fill-red stroke-border z-0 [mask-image:linear-gradient(to_top,_#ffffffad,_transparent)]"
           >
@@ -69,7 +69,7 @@ export default function Home() {
               strokeWidth="0"
               fill="url(#:r1r3:)"
             ></rect>
-          </svg>
+          </svg>*/}
         </section>
 
         {/* Divider */}
@@ -271,7 +271,6 @@ export default function Home() {
           </Accordion>
         </section>
         {/* Background Hash */}
-        <HashPatternSvg className="fixed -z-10" />
       </div>
       <Footer />
     </main>
