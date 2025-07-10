@@ -124,7 +124,7 @@ export async function getUserHistoryPaginated({ page = 0, pageSize = 20 }) {
 // --- Cache History ---
 // (most-recent-first ordering)
 
-const HISTORY_KEY = "algo_history";
+const HISTORY_KEY = "algotype_history";
 const HISTORY_TTL = 1000 * 60; // 60 s freshness window
 
 // Internal in-memory store

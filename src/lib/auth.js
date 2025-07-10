@@ -204,6 +204,7 @@ export async function getCurrentProfile(forceRefresh = false) {
     email: authUser.email,
     avatar_url: authUser.user_metadata?.avatar_url ?? null,
     created_at: authUser.created_at,
+    providers: authUser.app_metadata?.providers ?? null,
   };
 
   cacheProfile(profile);
@@ -261,7 +262,7 @@ export async function deleteAccount() {
 
 // --- Cache User ---
 
-const PROFILE_KEY = "algo_profile";
+const PROFILE_KEY = "algotype_profile";
 const TTL_MS = 1000 * 60 * 15; // 15-minute freshness window
 
 function cacheProfile(profile) {

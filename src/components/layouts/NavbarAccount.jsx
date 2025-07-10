@@ -6,39 +6,27 @@ import { NavigationMenuLink } from "@/components/ui/NavigationMenu";
 import {
   NavigationMenuTrigger,
   NavigationMenuContent,
+  NavigationMenuItem,
 } from "@/components/ui/NavigationMenu";
 import { getCurrentProfile } from "@/lib/auth";
 import { logout } from "@/lib/auth";
 
 export default function NavbarAccount({ user }) {
-  if (!user) {
-    return (
-      <NavigationMenuLink asChild>
-        <Link href="/login">Login</Link>
-      </NavigationMenuLink>
-    );
-  }
-
   return (
-    <>
-      <Link href="/account">
-        <NavigationMenuTrigger className="space-x-2">
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className="space-x-2">
+        <Link href="/account">
           <Avatar className="size-6">
-            <AvatarImage
-              src={user.user_metadata.avatar_url}
-              alt={user.user_metadata.username}
-            />
-            <AvatarFallback>{user.user_metadata.username?.[0]}</AvatarFallback>
+            <AvatarImage src={user.avatar_url} alt={user.username} />
+            <AvatarFallback>{user.username?.[0]}</AvatarFallback>
           </Avatar>
-        </NavigationMenuTrigger>
-      </Link>
-      <NavigationMenuContent>
-        <ul className="grid divide-y-1 divide-border">
-          <li className="p-2 pb-4 w-[250px]">
-            <div className="truncate">{user.user_metadata.username}</div>
-            <div className="truncate text-sm text-fg-2">
-              {user.user_metadata.email}
-            </div>
+        </Link>
+      </NavigationMenuTrigger>
+      <NavigationMenuContent className="right-0 left-auto origin-top-right absolute top-full translate-y-2">
+        <ul className="grid divide-y-1 divide-border w-[250px]">
+          <li className="p-2 pb-4">
+            <div className="text-fg truncate">{user.username}</div>
+            <div className="truncate text-sm text-fg-2">{user.email}</div>
           </li>
           <li className="py-2">
             <NavigationMenuLink asChild>
@@ -49,8 +37,7 @@ export default function NavbarAccount({ user }) {
                 <CircleUser className="size-4" /> Account
               </Link>
             </NavigationMenuLink>
-            {/* Settings
-			}<NavigationMenuLink asChild>
+            <NavigationMenuLink asChild>
               <Link
                 href="/settings"
                 className="flex flex-row items-center gap-2"
@@ -59,7 +46,7 @@ export default function NavbarAccount({ user }) {
               </Link>
             </NavigationMenuLink>
           </li>
-          <li className="pt-2">*/}
+          <li className="pt-2">
             <NavigationMenuLink asChild>
               <div
                 onClick={logout}
@@ -71,6 +58,6 @@ export default function NavbarAccount({ user }) {
           </li>
         </ul>
       </NavigationMenuContent>
-    </>
+    </NavigationMenuItem>
   );
 }

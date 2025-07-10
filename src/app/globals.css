@@ -15,14 +15,6 @@
 :root {
   --font-sans: var(--font-geist-sans, "geist"), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono, "geist mono"), monospace;
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 @theme inline {
@@ -63,7 +55,7 @@
   --color-foreground: #f4f5f6;
   --color-card: #0f1012;
   --color-card-foreground: #f4f5f6;
-  --color-popover: #0f1012;
+  --color-popover: #040404;
   --color-popover-foreground: #f4f5f6;
 
   --color-primary: #0096f5;
@@ -72,7 +64,7 @@
   --color-secondary-foreground: #f4f5f6;
   --color-tertiary: #2d3035;
   --color-tertiary-foreground: #f4f5f6;
-  --color-muted: #0f1012;
+  --color-muted: #16181b;
   --color-muted-foreground: #8a8a90;
   --color-accent: #2d3035;
   --color-accent-foreground: #f4f5f6;
@@ -84,14 +76,14 @@
   --color-input: #2d3035;
   --color-ring: #0096f5;
 
-  --color-sidebar: #0f1012;
-  --color-sidebar-foreground: #f4f5f6;
-  --color-sidebar-primary: #0096f5;
-  --color-sidebar-primary-foreground: #f4f5f6;
-  --color-sidebar-accent: #0096f5;
-  --color-sidebar-accent-foreground: #f4f5f6;
-  --color-sidebar-border: #2d3035;
-  --color-sidebar-ring: #da3633;
+  --color-sidebar: var(--color-bg);
+  --color-sidebar-foreground: var(--color-fg);
+  --color-sidebar-primary: var(--color-primary);
+  --color-sidebar-primary-foreground: var(--color-fg);
+  --color-sidebar-accent: var(--color-bg-3);
+  --color-sidebar-accent-foreground: var(--color-fg);
+  --color-sidebar-border: var(--color-border);
+  --color-sidebar-ring: var(--color-primary);
 
   /* Animations */
   --animate-fade-up: fade-up 0.5s ease-out forwards 250ms;
@@ -247,4 +239,12 @@ pre {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Tabels */
+
+.settings th,
+.settings td {
+  padding: 0.5rem 0;
+  vertical-align: top;
 }

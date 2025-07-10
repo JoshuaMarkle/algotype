@@ -2,10 +2,12 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <nav className="flex justify-center px-4 py-24 border-t border-neutral-800 bg-bg">
-      <ul className="flex flex-col md:flex-row gap-8 min-w-6xl text-fg-2">
-        <li className="flex-grow text-fg px-0 md:px-8 space-y-2">
-          <Link href="/" className="flex flex-row gap-4 font-semibold">
+    <footer className="border-t border-border bg-bg px-4 py-16">
+      {/* ─────────── Top section (row on md+, column on sm) ─────────── */}
+      <div className="mx-auto flex max-w-5xl flex-col gap-8 md:flex-row items-center md:items-start">
+        {/* Brand + description */}
+        <div className="flex flex-col gap-2 md:flex-1">
+          <Link href="/" className="flex items-center gap-2 font-semibold">
             <svg
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -24,26 +26,44 @@ export default function Footer() {
             </svg>{" "}
             AlgoType
           </Link>
-          <span className="text-fg-2">The typing website for programmers</span>
-        </li>
-        <li className="flex flex-col gap-4">
-          <Link href="/algorithms" className="hover:text-blue-400 duration-100">
-            Algorithms
-          </Link>
-          <Link href="/files" className="hover:text-blue-400 duration-100">
-            Files
-          </Link>
-        </li>
-        <li className="flex flex-col gap-4">
-          <Link href="/terms" className="hover:text-blue-400 duration-100">
-            Terms of Service
-          </Link>
-          <Link href="/privacy" className="hover:text-blue-400 duration-100">
-            Privacy Policy
-          </Link>
-        </li>
-        <li className="text-center">© AlgoType 2025</li>
-      </ul>
-    </nav>
+          <p className="text-fg-2">The typing website for programmers</p>
+        </div>
+
+        {/* Links: stay horizontal as a row, each group vertical */}
+        <nav className="flex flex-row flex-wrap gap-12 text-fg-2">
+          <div className="flex flex-col gap-2">
+            <Link
+              href="/algorithms"
+              className="transition-colors hover:text-blue-400"
+            >
+              Algorithms
+            </Link>
+            <Link
+              href="/files"
+              className="transition-colors hover:text-blue-400"
+            >
+              Files
+            </Link>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-blue-400"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-blue-400"
+            >
+              Privacy Policy
+            </Link>
+          </div>
+        </nav>
+      </div>
+
+      {/* ───────────── Bottom copyright (always centered) ───────────── */}
+      <p className="mt-12 text-center text-sm text-fg-2">© AlgoType 2025</p>
+    </footer>
   );
 }

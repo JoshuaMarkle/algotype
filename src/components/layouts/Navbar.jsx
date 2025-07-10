@@ -1,8 +1,8 @@
 "use client";
 
-import { React, useEffect, useState } from "react";
 import Link from "next/link";
-import { supabase } from "@/lib/supabaseClient";
+import { useEffect, useState } from "react";
+import { Keyboard, LogIn, Settings } from "lucide-react";
 
 import Skeleton from "@/components/ui/Skeleton";
 import {
@@ -15,16 +15,17 @@ import {
 } from "@/components/ui/NavigationMenu";
 import NavbarAccount from "@/components/layouts/NavbarAccount";
 import { gotoRandomTest } from "@/components/typing/utils/randomTest";
+import { getCurrentProfile } from "@/lib/auth";
+import { cn } from "@/lib/utils";
 
-export default function Navbar() {
+export default function Navbar({ className = "", ...props }) {
   // Immediately get user data
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getCurrentProfile();
       setUser(user);
       setLoading(false);
     };
@@ -34,7 +35,13 @@ export default function Navbar() {
 
   // Render navbar
   return (
-    <div className="fixed top-0 left-0 w-full flex flex-row justify-between px-4 py-2 border-b border-border bg-background z-100">
+    <div
+      {...props}
+      className={cn(
+        "fixed top-0 left-0 w-full flex flex-row justify-between px-4 py-2 border-b border-border bg-background z-100",
+        className,
+      )}
+    >
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -61,10 +68,9 @@ export default function Navbar() {
             </NavigationMenuLink>
           </NavigationMenuItem>
 
-          {/*
           <NavigationMenuItem>
             <NavigationMenuTrigger>Gamemodes</NavigationMenuTrigger>
-            <NavigationMenuContent>
+            <NavigationMenuContent className="absolute top-full translate-y-2">
               <ul className="grid w-[300px] gap-4">
                 <li>
                   <NavigationMenuLink asChild>
@@ -96,26 +102,52 @@ export default function Navbar() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          /*}
 
           {/* Random Button */}
           <NavigationMenuItem>
-            <NavigationMenuLink onClick={gotoRandomTest}>
-              Play
+            <NavigationMenuLink
+              onClick={gotoRandomTest}
+              className="flex flex-row justify-center items-center gap-2"
+            >
+              <Keyboard className="size-4" /> Play
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <NavigationMenu className="[&_div.absolute]:left-auto [&_div.absolute]:right-0">
+      <NavigationMenu viewport={false}>
         <NavigationMenuList>
           {/* Account */}
-          <NavigationMenuItem>
-            {!loading ? (
+          {!loading ? (
+            user ? (
               <NavbarAccount user={user} />
             ) : (
-              <Skeleton className="size-6 rounded-full mr-8" />
-            )}
-          </NavigationMenuItem>
+              <>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href="/login"
+                      className="flex flex-row justify-center items-center gap-2"
+                    >
+                      <LogIn className="size-4" /> Login
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href="/settings"
+                      className="flex flex-row justify-center items-center gap-2"
+                    >
+                      <Settings className="size-4" />
+                      Settings
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </>
+            )
+          ) : (
+            <Skeleton className="size-6 rounded-full mr-8" />
+          )}
         </NavigationMenuList>
       </NavigationMenu>
     </div>
