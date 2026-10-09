@@ -30,9 +30,12 @@ Update this file whenever a task starts, finishes, or is discovered.
 | X8 | Add CI (lint + test + build on PR) | done | `.github/workflows/ci.yml` |
 | X9 | Add tests for pure logic: `calculateStats` and `useTypingState` done (Vitest). Tokenizer helpers still untested: they live inside a script with top-level side effects, so they need extracting into an importable module first | in-progress | `src/components/typing/**`, `backend/scripts/generateTokens.js` |
 | X10 | Fix lint warnings: missing `alt` (lucide `Image` icon) and missing `lines` dep | done | `TypingResults.jsx:194`, `TypingTest.jsx:108` |
-| X11 | Sitemap only includes `files` mode; `/algorithms/<slug>` pages missing | todo | `next-sitemap.config.js` |
-| X12 | `/colors` internal design page is public and references undefined CSS vars | needs-decision | `src/app/colors/page.js` |
+| X11 | Sitemap had no challenge pages on Vercel (read gitignored `backend/tokens`). Now lists every challenge from Supabase at build time; private/auth pages and `/colors` excluded | done | `next-sitemap.config.js` |
+| X12 | `/colors` internal design page is public and references undefined CSS vars. Decided: keep it (branding) but `noindex` and out of the sitemap | done | `src/app/colors/page.js` |
 | X13 | Auth DB check (2026-10-09, via Supabase MCP): trigger `on_auth_user_created` → `handle_new_user()` creates the `users` row (username from `username`/`user_name` metadata, else `user`, de-duplicated with a `-xxxx` suffix); all 57 auth users have rows; RLS on `users` (select/insert own) and `history` (select/insert own) is correct. Google sign-ups get `user-xxxx` names (no `full_name` fallback) | done | Supabase `public.handle_new_user` |
+| X15 | New test results never reached the history cache (`insert` used the v1 `returning` option), so `/account` was stale for up to 60 s | done | `src/lib/history.js` |
+| X16 | Challenge pages: unknown slug returned 200, `/algorithms/<files slug>` loaded, every page had the same title. Now `notFound()`, mode-filtered, `generateMetadata` | done | `src/lib/challenges.js`, `src/app/*/[slug]/page.js` |
+| X17 | Problems table: language list capped at 1000 rows, stale responses could win, Next enabled on a full last page, sort only sorted one page, paging had no stable order | done | `src/components/tables/ProblemsTable.jsx` |
 | X14 | Settings has no UI for linking/unlinking providers (`linkProvider`/`unlinkProvider` now use `linkIdentity`/`unlinkIdentity`; needs Supabase "Manual linking" on) | todo | `src/app/settings/page.jsx`, `src/lib/auth.js` |
 
 ## Later (features from README / commented UI)
@@ -49,7 +52,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | # | Item | Status | Files |
 |---|---|---|---|
 | T1 | Remove or revive unused modules: `StatPanel.jsx` (broken import), `useTokenNormalizer.js`, `NavbarTest.jsx`, `DataTable.jsx`, `useProblemsData.js`, `LetterGlitch.jsx`, `countMatchingTests`/`applyFilters`, `smoothData` | needs-decision | see `architecture.md` |
-| T2 | Duplicate `getUserHistoryPaginated` (lib vs `PastTestsTable.jsx`, which also bypasses cache) | todo | `src/lib/history.js`, `src/components/tables/PastTestsTable.jsx` |
+| T2 | Duplicate `getUserHistoryPaginated` (lib vs `PastTestsTable.jsx`, which also bypasses cache) | done | `src/lib/history.js`, `src/components/tables/PastTestsTable.jsx` |
 | T3 | `CodeBox` duplicates the typing traversal logic from `useTypingState` | todo | `src/components/effects/CodeBox.jsx` |
 | T4 | `/algorithms` and `/files` index pages are near-identical (copy text and "Files Files Files" heading fixed 2026-10-09; the duplicated page code remains) | in-progress | `src/app/algorithms/page.js`, `src/app/files/page.js` |
 | T5 | Circular import `lib/auth.js` ↔ `lib/history.js` | todo | `src/lib/*` |
@@ -61,6 +64,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | in-progress | various |
 
 ## Done
+- 2026-10-09 — X11, X12, X15, X16, X17, T2: history cache, challenge pages, problems table, sitemap, `/colors` noindex
 - 2026-10-09 — N6, N8, X1: typing flow fixes (next-test filters, results graph, screenshot, settings toggles)
 - 2026-10-09 — N2, N3, N4, X2, X5, X6: sign-in flow fixes (PR #30)
 - 2026-10-09 — X7, X8: `.env.example`, GitHub Actions CI (lint + Vitest + build), first unit tests for `calculateStats` and `useTypingState`

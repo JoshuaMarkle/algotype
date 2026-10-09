@@ -27,7 +27,7 @@ import {
   DropdownMenuContent,
   DropdownMenuCheckboxItem,
 } from "@/components/ui/DropdownMenu";
-import { supabase } from "@/lib/supabaseClient";
+import { getUserHistoryPaginated } from "@/lib/history";
 
 export default function PastTestsTable() {
   const router = useRouter();
@@ -198,8 +198,9 @@ export default function PastTestsTable() {
       {/* Footer */}
       <div className="flex items-center justify-between text-sm text-muted-foreground">
         <div>
-          Showing {pageIndex * pageSize + 1}–
-          {pageIndex * pageSize + tests.length} of {totalRows} tests
+          {totalRows > 0
+            ? `Showing ${pageIndex * pageSize + 1}–${pageIndex * pageSize + tests.length} of ${totalRows} tests`
+            : "No tests yet"}
         </div>
         <div className="flex gap-2">
           <Button
@@ -214,7 +215,7 @@ export default function PastTestsTable() {
             variant="outline"
             size="sm"
             onClick={() => setPageIndex((prev) => prev + 1)}
-            disabled={tests.length < pageSize}
+            disabled={(pageIndex + 1) * pageSize >= totalRows}
           >
             Next
           </Button>
@@ -222,34 +223,4 @@ export default function PastTestsTable() {
       </div>
     </div>
   );
-}
-
-// Internal helper for paginated history
-async function getUserHistoryPaginated({ page = 0, pageSize = 10 }) {
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    throw new Error("User not authenticated");
-  }
-
-  const from = page * pageSize;
-  const to = from + pageSize - 1;
-
-  const { data, error, count } = await supabase
-    .from("history")
-    .select("id, wpm, acc, time, language, mode, slug, created_at", {
-      count: "exact",
-    })
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false })
-    .range(from, to);
-
-  if (error) {
-    throw new Error("Failed to fetch paginated history: " + error.message);
-  }
-
-  return { data, count };
 }
