@@ -7,7 +7,7 @@ import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 
 export default function ClientGotoButton() {
   return (
-    <Button onClick={gotoRandomTest} size="lg">
+    <Button onClick={() => gotoRandomTest()} size="lg">
       Play Now
       <ArrowRight />
     </Button>

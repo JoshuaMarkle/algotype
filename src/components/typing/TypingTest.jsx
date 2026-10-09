@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { ListFilter, CircleUser, Ruler, Languages, X } from "lucide-react";
 
@@ -34,6 +34,7 @@ import { useAutoScroll } from "@/components/typing/hooks/useAutoScroll";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
 import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 import { submitTestHistory } from "@/lib/history";
+import { DEFAULT_SETTINGS, getSettings } from "@/lib/settings";
 import { cn, capitalize, langToNatural, naturalToLang } from "@/lib/utils";
 
 export default function TypingTest({ challenge, slug }) {
@@ -107,18 +108,9 @@ export default function TypingTest({ challenge, slug }) {
     }
   }, [started, done, ended, language, lines, mode, slug]);
 
-  // Go to random test if TAB is pressed
-  useEffect(() => {
-    const handleTabKey = (e) => {
-      if (e.key === "Tab") {
-        e.preventDefault();
-        gotoRandomTest();
-      }
-    };
-
-    window.addEventListener("keydown", handleTabKey);
-    return () => window.removeEventListener("keydown", handleTabKey);
-  }, []);
+  // Appearance settings (read after mount so SSR and hydration match)
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+  useEffect(() => setSettings(getSettings()), []);
 
   // --- Filter state + handlers ---
   const [filters, setFilters] = useState(() => {
@@ -158,9 +150,24 @@ export default function TypingTest({ challenge, slug }) {
     setFilters({ language: null, minLength: null, maxLength: null });
   };
 
-  const applyFilter = () => {
-    gotoRandomTest(filters);
-  };
+  // Next test keeps the active filters and stays in the current mode
+  const gotoNextTest = useCallback(
+    () => gotoRandomTest({ ...filters, mode }),
+    [filters, mode],
+  );
+
+  // Go to the next test if TAB is pressed
+  useEffect(() => {
+    const handleTabKey = (e) => {
+      if (e.key === "Tab") {
+        e.preventDefault();
+        gotoNextTest();
+      }
+    };
+
+    window.addEventListener("keydown", handleTabKey);
+    return () => window.removeEventListener("keydown", handleTabKey);
+  }, [gotoNextTest]);
 
   const SIZE_FILTERS = {
     large: { minLength: 100, maxLength: null },
@@ -205,7 +212,7 @@ export default function TypingTest({ challenge, slug }) {
             <BreadcrumbItem>
               <button
                 className="text-sm font-medium text-muted-foreground hover:text-fg transition"
-                onClick={() => gotoRandomTest({ ...filters })}
+                onClick={gotoNextTest}
               >
                 {capitalize(mode)}
               </button>
@@ -221,7 +228,7 @@ export default function TypingTest({ challenge, slug }) {
                     "filters",
                     JSON.stringify(updatedFilters),
                   );
-                  gotoRandomTest(updatedFilters);
+                  gotoRandomTest({ ...updatedFilters, mode });
                 }}
               >
                 {langToNatural(language)}
@@ -365,7 +372,7 @@ export default function TypingTest({ challenge, slug }) {
               <DropdownMenuItem onClick={clearFilters}>
                 Clear filters
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={applyFilter}>Apply</DropdownMenuItem>
+              <DropdownMenuItem onClick={gotoNextTest}>Apply</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -395,6 +402,8 @@ export default function TypingTest({ challenge, slug }) {
           shouldShowCursor={shouldShowCursor}
           cursorTokenIndices={cursorTokenIndices}
           lastWordIdx={lastWordIdx}
+          lineNumbers={settings.line_numbers}
+          syntaxHighlighting={settings.syntax_highlighting}
         />
       </div>
       <div
@@ -409,8 +418,9 @@ export default function TypingTest({ challenge, slug }) {
           started={started}
           ended={ended}
           stats={stats}
-          data={wpmOverTime.current}
+          samples={wpmOverTime.current}
           source={source}
+          onNext={gotoNextTest}
         />
       </div>
     </div>

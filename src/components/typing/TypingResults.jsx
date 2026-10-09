@@ -16,21 +16,25 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/HoverCard";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
-import { gotoRandomTest } from "@/components/typing/utils/randomTest";
-import { formatTime, cleanData } from "@/lib/utils";
+import { buildResultsSeries } from "@/components/typing/utils/resultsSeries";
+import { formatTime } from "@/lib/utils";
 
-export default function TypingResults({ started, ended, stats, data, source }) {
+export default function TypingResults({
+  started,
+  ended,
+  stats,
+  samples,
+  source,
+  onNext,
+}) {
   const { wpm, acc, time } = calculateStats(started, ended, stats);
   const formattedTime = formatTime(time);
   const correct = stats.current.correct;
   const incorrect = stats.current.incorrect;
   const timeLost = Math.ceil(time * (1 - acc / 100));
 
-  // Update + clean data
-  if (data.length > 0) {
-    if (data[data.length - 1].wpm != wpm) data.push({ wpm, acc, time });
-    data = cleanData(data);
-  }
+  // Graph series (copy of the samples plus the final result)
+  const data = buildResultsSeries(samples, { wpm, acc, time }, ended);
 
   // Tests under 1 s have no samples, so fall back to the final WPM
   const maxWPM = data.length > 0 ? Math.max(...data.map((d) => d.wpm)) : wpm;
@@ -43,28 +47,27 @@ export default function TypingResults({ started, ended, stats, data, source }) {
     if (!resultRef.current) return;
 
     setScreenshotMode(true); // hide buttons + show footer
-    await new Promise((res) => setTimeout(res, 100)); // wait for DOM update
-    await document.fonts.ready;
+    try {
+      await new Promise((res) => setTimeout(res, 100)); // wait for DOM update
+      await document.fonts.ready;
 
-    const canvas = await html2canvas(resultRef.current, {
-      backgroundColor: null,
-      scale: 2,
-    });
+      const canvas = await html2canvas(resultRef.current, {
+        backgroundColor: null,
+        scale: 2,
+      });
+      const blob = await new Promise((res) => canvas.toBlob(res));
+      if (!blob) throw new Error("Could not render the screenshot");
 
-    canvas.toBlob(async (blob) => {
-      if (!blob) return;
-      try {
-        await navigator.clipboard.write([
-          new ClipboardItem({ [blob.type]: blob }),
-        ]);
-        alert("Screenshot copied to clipboard!");
-      } catch (err) {
-        console.error("Clipboard write failed:", err);
-        alert("Failed to copy screenshot.");
-      } finally {
-        setScreenshotMode(false);
-      }
-    });
+      await navigator.clipboard.write([
+        new ClipboardItem({ [blob.type]: blob }),
+      ]);
+      alert("Screenshot copied to clipboard!");
+    } catch (err) {
+      console.error("Screenshot failed:", err);
+      alert("Failed to copy screenshot.");
+    } finally {
+      setScreenshotMode(false);
+    }
   };
 
   return (
@@ -203,7 +206,7 @@ export default function TypingResults({ started, ended, stats, data, source }) {
           <Button variant="ghost" onClick={() => window.location.reload()}>
             <RefreshCcw className="size-4" />
           </Button>
-          <Button variant="ghost" onClick={gotoRandomTest}>
+          <Button variant="ghost" onClick={onNext}>
             <ChevronRight className="size-4" />
           </Button>
         </div>

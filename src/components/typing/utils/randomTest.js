@@ -41,12 +41,14 @@ export async function countMatchingTests(filters = {}) {
 export async function getRandomTest(filters = {}) {
   const { minLength, maxLength, language, mode } = filters;
 
-  const { data, error } = await supabase.rpc("get_random_challenge", {
-    _min_length: minLength ?? null,
-    _max_length: maxLength ?? null,
-    _language: language ?? null,
-    _mode: mode ?? null,
-  });
+  const { data, error } = await supabase
+    .rpc("get_random_challenge", {
+      _min_length: minLength ?? null,
+      _max_length: maxLength ?? null,
+      _language: language ?? null,
+      _mode: mode ?? null,
+    })
+    .select("mode, slug");
 
   if (error) {
     throw new Error("Failed to fetch random test: " + error.message);
