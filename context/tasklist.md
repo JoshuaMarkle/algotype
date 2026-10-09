@@ -25,9 +25,9 @@ Update this file whenever a task starts, finishes, or is discovered.
 | X4 | Await `params` in dynamic routes (Next 15) | todo | `src/app/algorithms/[slug]/page.js`, `src/app/files/[slug]/page.js` |
 | X5 | Login "Unverified?" link points to `/login/password-reset` instead of `/login/verify-email` `[UNVERIFIED intent]` | needs-decision | `src/components/auth/LoginForm.jsx` |
 | X6 | Profile cache (15 min) not cleared on login/account switch | todo | `src/lib/auth.js` |
-| X7 | Add `.env.example` documenting the 4 env vars | todo | new file |
-| X8 | Add CI (lint + build on PR) | todo | `.github/workflows/` (new) |
-| X9 | Add tests for pure logic: `calculateStats`, tokenizer helpers, `useTypingState` key handling | todo | `src/components/typing/**`, `backend/scripts/generateTokens.js` |
+| X7 | Add `.env.example` documenting the 4 env vars | done | `.env.example`, `.gitignore` |
+| X8 | Add CI (lint + test + build on PR) | done | `.github/workflows/ci.yml` |
+| X9 | Add tests for pure logic: `calculateStats` and `useTypingState` done (Vitest). Tokenizer helpers still untested: they live inside a script with top-level side effects, so they need extracting into an importable module first | in-progress | `src/components/typing/**`, `backend/scripts/generateTokens.js` |
 | X10 | Fix lint warnings: missing `alt` (lucide `Image` icon) and missing `lines` dep | todo | `TypingResults.jsx:194`, `TypingTest.jsx:108` |
 | X11 | Sitemap only includes `files` mode; `/algorithms/<slug>` pages missing | todo | `next-sitemap.config.js` |
 | X12 | `/colors` internal design page is public and references undefined CSS vars | needs-decision | `src/app/colors/page.js` |
@@ -58,4 +58,5 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (e.g. `getRandomTest` in `algorithms/[slug]/page.js`, `Skeleton`/`Avatar` in `account/page.jsx`) | todo | various |
 
 ## Done
+- 2026-10-09 — X7, X8: `.env.example`, GitHub Actions CI (lint + Vitest + build), first unit tests for `calculateStats` and `useTypingState`
 - 2026-10-09 — N0: bumped `next` and `eslint-config-next` 15.3.2 → 15.3.9 (PR #27)

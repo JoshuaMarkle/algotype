@@ -47,10 +47,10 @@ Versions are from `package.json` / installed `package-lock.json` (checked 2026-1
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | same | public |
 | `SUPABASE_URL` | `backend/scripts/uploadTokens.js` | read from `.env.local` |
 | `SUPABASE_SERVICE_ROLE_KEY` | `backend/scripts/uploadTokens.js` | secret, local only |
-- No `.env.example` in repo. All `.env*` files are gitignored.
+- `.env.example` lists all four vars. All other `.env*` files are gitignored.
 
 ## Tooling
 - ESLint 9 flat config extending `next/core-web-vitals` (`eslint.config.mjs`).
 - Prettier 3 (`.prettierrc`: 2 spaces, LF, uses `.editorconfig`). No npm script for it.
 - Path alias `@/*` → `src/*` (`jsconfig.json`).
-- No test framework. No CI workflows (`.github/` has only issue templates and images).
+- Tests: Vitest 3 + `@testing-library/react` + jsdom (dev deps). CI: `.github/workflows/ci.yml` (Node 22, lint → test → build).
