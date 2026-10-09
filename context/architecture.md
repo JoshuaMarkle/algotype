@@ -17,7 +17,7 @@
 │  ├─ lib/             supabaseClient, supabaseServerClient, auth, history, settings, utils, useDebounce
 │  ├─ hooks/           use-mobile.js (useIsMobile, used by ui/Sidebar)
 │  ├─ data/            quicksort.json (tokenized demo for CodeBox)
-│  └─ middleware.js    Supabase auth guard (matcher is effectively unused)
+│  └─ middleware.js    Supabase session refresh + signed-out redirect for /account
 ├─ backend/
 │  ├─ scripts/         generateTokens.js, uploadTokens.js, formatAllCode.js, fix_errors.sh, logs/
 │  └─ emails/          React Email templates for Supabase auth emails

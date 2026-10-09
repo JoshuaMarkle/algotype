@@ -1,21 +1,43 @@
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabaseServerClient";
+import { createServerClient } from "@supabase/ssr";
 
-export async function middleware(req) {
-  const res = NextResponse.next();
-  const supabase = createSupabaseServerClient();
 
+export async function middleware(request) {
+  let response = NextResponse.next({ request });
+
+  // Middleware reads/writes cookies on the request/response, not next/headers
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        getAll: () => request.cookies.getAll(),
+        setAll: (cookiesToSet) => {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value),
+          );
+          response = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options),
+          );
+        },
+      },
+    },
+  );
+
+  // Validates the session and refreshes expired tokens
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // Only /account is matched (settings also works signed out)
   if (!user) {
-    return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  return res;
+  return response;
 }
 
 export const config = {
-  matcher: ["/protected-route/:path*"],
+  matcher: ["/account/:path*"],
 };
