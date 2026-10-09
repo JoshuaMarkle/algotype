@@ -13,6 +13,7 @@ import PasswordStrengthMeter, {
 import {
   signupWithEmail,
   loginWithGitHub,
+  loginWithGoogle,
   isUsernameFree,
   isEmailFree,
 } from "@/lib/auth";
@@ -38,17 +39,24 @@ export default function SignupForm({ className, ...props }) {
     setEmailTaken(false);
 
     // Check password
-    setWeak(evaluatePasswordStrength(password).score < 2);
-    if (weak) {
+    const tooWeak = evaluatePasswordStrength(password).score < 2;
+    setWeak(tooWeak);
+    if (tooWeak) {
       setError("Password too weak");
       return;
     }
 
     // Check username + email
-    const [uFree, eFree] = await Promise.all([
-      isUsernameFree(username),
-      isEmailFree(email),
-    ]);
+    let uFree, eFree;
+    try {
+      [uFree, eFree] = await Promise.all([
+        isUsernameFree(username.trim()),
+        isEmailFree(email.trim()),
+      ]);
+    } catch (err) {
+      setError("Could not check username/email. Please try again.");
+      return;
+    }
 
     setUsernameTaken(!uFree);
     setEmailTaken(!eFree);
@@ -59,18 +67,27 @@ export default function SignupForm({ className, ...props }) {
 
     // Attempt to sign up
     try {
-      await signupWithEmail(username, email, password);
+      await signupWithEmail(username, email.trim(), password);
       window.location.href = "/signup/success";
     } catch (err) {
       setError(err.message);
     }
   };
 
-  // Provider
+  // Providers redirect back through /auth/callback to /account
   const handleGitHub = async () => {
+    setError(null);
     try {
       await loginWithGitHub();
-      window.location.href = "/account";
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleGoogle = async () => {
+    setError(null);
+    try {
+      await loginWithGoogle();
     } catch (err) {
       setError(err.message);
     }
@@ -180,6 +197,7 @@ export default function SignupForm({ className, ...props }) {
             </div>
             <div className="flex flex-col gap-4">
               <Button
+                type="button"
                 variant="outline"
                 className="w-full bg-bg-2"
                 onClick={handleGitHub}
@@ -193,7 +211,12 @@ export default function SignupForm({ className, ...props }) {
                 </svg>
                 Login with Github
               </Button>
-              <Button variant="outline" className="w-full bg-bg-2">
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full bg-bg-2"
+                onClick={handleGoogle}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path
                     d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"

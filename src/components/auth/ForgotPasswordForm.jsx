@@ -21,11 +21,13 @@ export default function LoginForm({ className, ...props }) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [magicSent, setMagicSent] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setSuccess(false);
+    setMagicSent(false);
 
     try {
       await requestPasswordReset(email);
@@ -38,9 +40,11 @@ export default function LoginForm({ className, ...props }) {
   const handleMagicLink = async () => {
     setError(null);
     setSuccess(false);
+    setMagicSent(false);
 
     try {
-      await loginWithMagicLink();
+      await loginWithMagicLink(email.trim());
+      setMagicSent(true);
     } catch (err) {
       setError(err.message);
     }
@@ -78,6 +82,11 @@ export default function LoginForm({ className, ...props }) {
               Check your email to continue.
             </p>
           )}
+          {magicSent && (
+            <p className="text-green-500 text-sm">
+              Check your email for a login link.
+            </p>
+          )}
 
           {/* Divider */}
           <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
@@ -88,7 +97,12 @@ export default function LoginForm({ className, ...props }) {
 
           {/* Login With Email */}
           <div className="flex flex-col gap-4">
-            <Button variant="outline" className="w-full bg-bg-2">
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full bg-bg-2"
+              onClick={handleMagicLink}
+            >
               <Mail />
               Login with Email
             </Button>
