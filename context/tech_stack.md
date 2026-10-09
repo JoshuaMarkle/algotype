@@ -8,7 +8,7 @@ Versions are from `package.json` / installed `package-lock.json` (checked 2026-1
 - Node.js required. Exact version not pinned (no `.nvmrc` / `engines`) `[UNVERIFIED]`. Build verified on Node 22.
 
 ## Framework / runtime
-- Next.js `15.3.2` (App Router, `src/app/`), dev uses Turbopack (`next dev --turbopack`).
+- Next.js `15.3.9` (App Router, `src/app/`), dev uses Turbopack (`next dev --turbopack`).
 - React `^19.0.0` (lockfile: 19.1.0).
 
 ## UI
@@ -32,7 +32,7 @@ Versions are from `package.json` / installed `package-lock.json` (checked 2026-1
 - Umami Cloud analytics: script tag in `src/app/layout.js` (website id `439c2381-...`), proxied via rewrites in `next.config.js` (`/analytics/script.js`, `/analytics/api/send`).
 - Email: React Email templates in `backend/emails/*.jsx` (import `@react-email/components`, which is **not** in `package.json`). Likely rendered and pasted into Supabase Auth templates; Resend as SMTP `[UNVERIFIED]`.
 - Hosting: Vercel, project `joshuamarkles-projects/algotype`. Pushes build Preview deployments (confirmed 2026-10-09). No `vercel.json`; `.vercel` gitignored.
-- Vercel refuses to deploy Next.js versions with known vulnerabilities ("Vulnerable version of Next.js detected"). 15.3.2 is blocked; see `tasklist.md` N0.
+- Vercel refuses to deploy Next.js versions with known vulnerabilities ("Vulnerable version of Next.js detected"). 15.3.2 was blocked; bumped to 15.3.9 (tasklist N0).
 - SEO: `next-sitemap` (postbuild), JSON-LD in `src/components/seo/StructuredData.jsx`, OpenGraph/Twitter metadata in `layout.js`.
 
 ## Offline content tooling (`backend/scripts/`)
