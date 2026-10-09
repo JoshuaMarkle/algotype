@@ -39,5 +39,5 @@
 - Last commit on GitHub `main`: 2025-07-09 ("Added settings page + navbar updates + user data caching"). 53 commits since 2025-06-01.
 - Owner's local checkout matched GitHub `main` at audit time (2026-10-09): no unpushed work.
 - `npm run lint` passes (2 warnings); `next build` succeeds.
-- No tests, no CI, no TypeScript.
+- Unit tests (Vitest) and GitHub Actions CI (lint + test + build) as of 2026-10-09; test coverage is still small. No TypeScript.
 - Single developer (Joshua Markle).

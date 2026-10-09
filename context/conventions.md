@@ -4,14 +4,14 @@
 | Task | Command | Notes |
 |---|---|---|
 | Install | `npm ci` | Uses `package-lock.json` (npm) |
-| Dev server | `npm run dev` | `next dev --turbopack`, http://localhost:3000. Needs `.env.local` with Supabase vars |
+| Dev server | `npm run dev` | `next dev --turbopack`, http://localhost:3000. Needs `.env.local` with Supabase vars (copy `.env.example`) |
 | Lint | `npm run lint` | `next lint` (ESLint 9, `next/core-web-vitals`). Baseline: 0 errors, 2 warnings |
 | Build | `npm run build` | `next build`, then `postbuild` runs `next-sitemap` (writes `public/sitemap*.xml`, `public/robots.txt`) |
 | Start prod | `npm run start` | After build |
 | Format | `npx prettier --write <files>` | No npm script. `.prettierignore` skips `*.md`, `.github` |
 | Tokenize content | `npm run generate:tokens` | See `skills/add_challenges.md` |
 | Upload content | `npm run upload:tokens` | Writes to Supabase. Destructive-ish: confirm first |
-| Tests | none | No test framework exists |
+| Tests | `npm test` | Vitest, runs `src/**/*.test.{js,jsx}` once. `npm run test:watch` for watch mode |
 | Deploy | push to GitHub | Vercel builds a Preview for every branch push. Production from `main` `[UNVERIFIED]` |
 
 - `next build` works without real Supabase credentials if placeholder `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set (dynamic `[slug]` pages are not prerendered).
@@ -49,7 +49,11 @@
 - Server pages fetch with the Supabase client and pass plain data to client components.
 
 ## Testing
-- No tests. Verification today = `npm run lint` + `npm run build` + manual check in the browser.
+- Vitest unit tests sit next to the code as `*.test.js` (e.g. `utils/calculateStats.test.js`, `hooks/useTypingState.test.js`). Config: `vitest.config.mjs` (Node env, `@/` alias).
+- Hook/DOM tests opt into jsdom with a `// @vitest-environment jsdom` first line and use `renderHook` from `@testing-library/react`.
+- Tests pin current behavior. When you fix a bug they encode, update the test in the same change.
+- CI: `.github/workflows/ci.yml` runs `npm ci`, lint, test, build (placeholder Supabase env) on every PR and on pushes to `main`.
+- Verification = `npm run lint` + `npm test` + `npm run build` + manual check in the browser for UI changes.
 
 ## Git
 - Single branch workflow on `main` so far; commit messages are short, capitalized, past or imperative ("Added settings page + navbar updates", "Update auth backend"). Joined changes with `+`.
