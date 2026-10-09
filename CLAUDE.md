@@ -7,7 +7,7 @@
 - Stack: Next.js 15 (App Router, JavaScript/JSX, no TypeScript) + React 19 + Tailwind CSS v4 + shadcn/ui (Radix), backed by Supabase (Postgres, Auth, RPC functions).
 - Code is tokenized offline with Prism (`backend/scripts/generateTokens.js`), uploaded to the Supabase `challenges` table, and typed token-by-token in the browser (`src/components/typing/`).
 - Accounts (email/password, GitHub, Google, magic link) store test history in the `history` table and show progress on `/account`.
-- Current status: live, mid-polish. Goal is a stable production build. No automated tests, no CI. See `context/tasklist.md`.
+- Current status: live, mid-polish. Goal is a stable production build. GitHub Actions CI runs lint, unit tests (Vitest) and build on every PR. See `context/tasklist.md`.
 
 ## Ground rule
 **Everything you should know about this project lives in `/context`. Load the relevant files before starting any task. If the answer isn't there, ask me instead of assuming.**
@@ -27,7 +27,7 @@
 ## Skills (`/skills`)
 | File | Use it when... |
 |---|---|
-| [`skills/run_checks.md`](skills/run_checks.md) | Verifying any code change (lint + production build). Required before "done". |
+| [`skills/run_checks.md`](skills/run_checks.md) | Verifying any code change (lint + unit tests + production build). Required before "done". |
 | [`skills/add_challenges.md`](skills/add_challenges.md) | Adding or regenerating typing content (format → tokenize → upload to Supabase). |
 | [`skills/add_ui_component.md`](skills/add_ui_component.md) | Adding a new shadcn/ui primitive under `src/components/ui/`. |
 
@@ -41,7 +41,7 @@
 
 ## Definition of done
 - Before starting, write down what "done" means for this task (observable behavior + files touched).
-- Verify before declaring completion: follow `skills/run_checks.md` (`npm run lint` and `npm run build` must pass with no new warnings). There is no test suite; for UI/typing changes also describe how you checked the behavior manually (or say you could not).
+- Verify before declaring completion: follow `skills/run_checks.md` (`npm run lint`, `npm test` and `npm run build` must pass with no new warnings). Unit tests cover only pure logic; for UI/typing changes also describe how you checked the behavior manually (or say you could not).
 - State clearly what was verified and what was not.
 
 ## Tools / integrations
