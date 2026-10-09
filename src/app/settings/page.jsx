@@ -11,12 +11,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/ToggleGroup";
 import { getCurrentProfile, deleteAccount } from "@/lib/auth";
 import { formatIsoDate, langToNatural } from "@/lib/utils";
-import { getSettings, setSetting } from "@/lib/settings";
+import { DEFAULT_SETTINGS, getSettings, setSetting } from "@/lib/settings";
 
 export default function SettingsPage() {
   const [tab, setTab] = useState("account");
   const [user, setUser] = useState(null);
-  const [settings, setSettings] = useState(() => getSettings());
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+
+  // Read saved settings after mount so SSR and hydration match
+  useEffect(() => setSettings(getSettings()), []);
 
   useEffect(() => {
     async function fetchUser() {
@@ -72,7 +75,7 @@ function AccountSettings({ user }) {
   const avatar_url = user.avatar_url;
 
   // Providers
-  const providers = user.providers;
+  const providers = user.providers ?? [];
   const providerEmail = providers.includes("email");
   const providerGithub = providers.includes("github");
   const providerGoogle = providers.includes("google");
@@ -151,7 +154,7 @@ function AccountSettings({ user }) {
             )}
           </tr>
           <tr>
-            <td className="text-fg-2">Created At</td>
+            <td className="text-fg-2">Google</td>
             {providerGoogle ? (
               <td>Connected</td>
             ) : (
@@ -183,45 +186,47 @@ function AppearanceSettings({ settings, onUpdate }) {
           <tr>
             <td>Show Line Numbers</td>
             <td>
-              <ToggleGroup
-                variant="outline"
-                type="single"
-                size="lg"
-                className="w-full"
-              >
-                <ToggleGroupItem value="true" aria-label="Toggle bold">
-                  true
-                </ToggleGroupItem>
-                <ToggleGroupItem value="false" aria-label="Toggle italic">
-                  false
-                </ToggleGroupItem>
-              </ToggleGroup>
+              <OnOffToggle
+                label="Show line numbers"
+                value={settings.line_numbers}
+                onChange={(v) => onUpdate("line_numbers", v)}
+              />
             </td>
           </tr>
           <tr>
             <td>Syntax Highlighting</td>
             <td>
-              <ToggleGroup
-                variant="outline"
-                type="single"
-                size="lg"
-                className="w-full"
-              >
-                <ToggleGroupItem value="off" aria-label="Toggle bold">
-                  off
-                </ToggleGroupItem>
-                <ToggleGroupItem value="char" aria-label="Toggle italic">
-                  char
-                </ToggleGroupItem>
-                <ToggleGroupItem value="token" aria-label="Toggle italic">
-                  token
-                </ToggleGroupItem>
-              </ToggleGroup>
+              <OnOffToggle
+                label="Syntax highlighting"
+                value={settings.syntax_highlighting}
+                onChange={(v) => onUpdate("syntax_highlighting", v)}
+              />
             </td>
           </tr>
         </tbody>
       </table>
     </section>
+  );
+}
+
+function OnOffToggle({ label, value, onChange }) {
+  return (
+    <ToggleGroup
+      variant="outline"
+      type="single"
+      size="lg"
+      className="w-full"
+      value={value ? "on" : "off"}
+      // Radix sends "" when the active item is clicked again; keep the value
+      onValueChange={(v) => v && onChange(v === "on")}
+    >
+      <ToggleGroupItem value="on" aria-label={`${label} on`}>
+        on
+      </ToggleGroupItem>
+      <ToggleGroupItem value="off" aria-label={`${label} off`}>
+        off
+      </ToggleGroupItem>
+    </ToggleGroup>
   );
 }
 

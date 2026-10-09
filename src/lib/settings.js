@@ -1,5 +1,5 @@
 const SETTINGS_KEY = "algotype_settings";
-const DEFAULT_SETTINGS = Object.freeze({
+export const DEFAULT_SETTINGS = Object.freeze({
   syntax_highlighting: true,
   line_numbers: true,
 });
@@ -9,6 +9,7 @@ let cache = null;
 // Read settings
 export function getSettings() {
   if (cache) return cache;
+  if (typeof window === "undefined") return DEFAULT_SETTINGS;
 
   try {
     const raw = localStorage.getItem(SETTINGS_KEY);

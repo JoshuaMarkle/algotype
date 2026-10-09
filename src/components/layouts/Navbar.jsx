@@ -106,7 +106,7 @@ export default function Navbar({ className = "", ...props }) {
           {/* Random Button */}
           <NavigationMenuItem>
             <NavigationMenuLink
-              onClick={gotoRandomTest}
+              onClick={() => gotoRandomTest()}
               className="flex flex-row justify-center items-center gap-2"
             >
               <Keyboard className="size-4" /> Play

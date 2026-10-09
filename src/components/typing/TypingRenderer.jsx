@@ -10,6 +10,8 @@ export default function TypingRenderer({
   shouldShowCursor,
   cursorTokenIndices,
   lastWordIdx,
+  lineNumbers = true,
+  syntaxHighlighting = true,
 }) {
   return (
     <pre className="whitespace-pre-wrap font-mono text-sm leading-relaxed">
@@ -20,16 +22,22 @@ export default function TypingRenderer({
         return (
           <div key={`line-${li}`} className="flex flex-row">
             {/* Line number */}
-            {li === lineIdx ? (
-              <div className="text-fg-2 w-8 text-right mr-4">{li + 1}</div>
-            ) : (
-              <div className="text-fg-3 w-8 text-right mr-4">{li + 1}</div>
+            {lineNumbers && (
+              <div
+                className={`${li === lineIdx ? "text-fg-2" : "text-fg-3"} w-8 text-right mr-4`}
+              >
+                {li + 1}
+              </div>
             )}
             {line.map((token, ti) => {
               const showCursor = true;
               const isPast = li < lineIdx || (li === lineIdx && ti < tokenIdx);
               const isFuture = !(cursorTokenIndices.has(ti) && li === lineIdx);
-              const tokenTypeClass = `token-${token.type ?? "plain"}`;
+              const tokenTypeClass = syntaxHighlighting
+                ? `token-${token.type ?? "plain"}`
+                : token.type === "comment"
+                  ? "token-comment"
+                  : "token-plain";
 
               // Hide newline if in past/future
               if (token.type === "newline" && (isPast || isFuture)) {

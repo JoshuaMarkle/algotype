@@ -13,13 +13,14 @@ Update this file whenever a task starts, finishes, or is discovered.
 | N3 | Forgot-password "Login with Email" calls `loginWithMagicLink()` with no email | done | `src/components/auth/ForgotPasswordForm.jsx` |
 | N4 | Password reset shows success even when `updateUser` returns an error | done | `src/components/auth/PasswordResetForm.jsx` |
 | N5 | Landing demo always shows 0 WPM / 100% (wrong `calculateStats` args) | done | `src/components/effects/CodeBox.jsx` |
-| N6 | Tab-to-next ignores active filters; buttons pass click event as filters | needs-decision | `TypingTest.jsx` (Tab handler), `TypingResults.jsx`, `layouts/misc/RandomButton.jsx`, `layouts/Navbar.jsx` |
+| N6 | Tab-to-next ignores active filters; buttons pass click event as filters. Decided: Tab, results "next", Apply and the mode breadcrumb keep the session filters + current mode; global Play buttons stay unfiltered | done | `TypingTest.jsx` (Tab handler), `TypingResults.jsx`, `layouts/misc/RandomButton.jsx`, `layouts/Navbar.jsx` |
+| N8 | Results graph got an extra sample on every keystroke (hidden `TypingResults` mutated the samples during render); screenshot left buttons hidden on failure | done | `TypingResults.jsx`, `utils/resultsSeries.js` |
 | N7 | Results max/min WPM show `-Infinity`/`Infinity` for tests under 1 s (empty `wpmOverTime`) | done | `src/components/typing/TypingResults.jsx` |
 
 ## Next (stability / production readiness)
 | # | Task | Status | Files |
 |---|---|---|---|
-| X1 | Settings: Appearance toggles are not wired to `lib/settings.js` or the renderer; Google provider row is labeled "Created At" | todo | `src/app/settings/page.jsx`, `src/lib/settings.js`, `TypingRenderer.jsx` |
+| X1 | Settings: Appearance toggles are not wired to `lib/settings.js` or the renderer; Google provider row is labeled "Created At". Now on/off toggles for line numbers and syntax highlighting, read by `TypingRenderer` | done | `src/app/settings/page.jsx`, `src/lib/settings.js`, `TypingRenderer.jsx` |
 | X2 | Provider link/unlink uses non-existent supabase-js APIs (`linkWithOAuth`, `getSessionFromUrl`); `/auth/link-callback` route missing | done | `src/lib/auth.js` |
 | X3 | Middleware matcher `/protected-route` matches nothing; decide on server-side protection for `/account`, `/settings` | needs-decision | `src/middleware.js` |
 | X4 | Await `params` in dynamic routes (Next 15) | done | `src/app/algorithms/[slug]/page.js`, `src/app/files/[slug]/page.js` |
@@ -60,6 +61,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | in-progress | various |
 
 ## Done
+- 2026-10-09 — N6, N8, X1: typing flow fixes (next-test filters, results graph, screenshot, settings toggles)
 - 2026-10-09 — N2, N3, N4, X2, X5, X6: sign-in flow fixes (PR #30)
 - 2026-10-09 — X7, X8: `.env.example`, GitHub Actions CI (lint + Vitest + build), first unit tests for `calculateStats` and `useTypingState`
 - 2026-10-09 — N0: bumped `next` and `eslint-config-next` 15.3.2 → 15.3.9 (PR #27)
