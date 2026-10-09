@@ -47,7 +47,7 @@
 ## Tools / integrations
 - **Supabase** (DB, Auth, RPC) — via `@supabase/ssr` / `@supabase/supabase-js`. Schema and RPC SQL are **not in this repo** `[UNVERIFIED]`; a Supabase MCP server would let agents inspect it.
 - **GitHub** — repo `JoshuaMarkle/algotype`, default branch `main`. Issue templates in `.github/ISSUE_TEMPLATE/`.
-- **Vercel** — hosting (per README badge) `[UNVERIFIED]`: no `vercel.json` in repo.
+- **Vercel** — hosting. Every branch push gets a Preview deployment (Vercel bot comments on PRs). No `vercel.json` in repo.
 - **Umami Cloud** — analytics, proxied through `next.config.js` rewrites.
 - **Resend** — SMTP for Supabase auth emails (per commit "setup resend smpt") `[UNVERIFIED]`; templates in `backend/emails/`.
 - Suggested: Supabase MCP (schema/RPC inspection), Playwright (pre-installed in cloud sessions) for typing-flow checks.

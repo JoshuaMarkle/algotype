@@ -12,7 +12,7 @@
 | Tokenize content | `npm run generate:tokens` | See `skills/add_challenges.md` |
 | Upload content | `npm run upload:tokens` | Writes to Supabase. Destructive-ish: confirm first |
 | Tests | none | No test framework exists |
-| Deploy | `[UNVERIFIED]` | README badge says Vercel; presumably auto-deploy from `main` |
+| Deploy | push to GitHub | Vercel builds a Preview for every branch push. Production from `main` `[UNVERIFIED]` |
 
 - `next build` works without real Supabase credentials if placeholder `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set (dynamic `[slug]` pages are not prerendered).
 

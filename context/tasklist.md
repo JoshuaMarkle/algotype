@@ -7,6 +7,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 ## Now (bugs that break user-facing flows)
 | # | Task | Status | Files |
 |---|---|---|---|
+| N0 | **Security / deploy blocker:** Vercel blocks deploys of Next.js 15.3.2 as vulnerable. Patch bump to `next@15.3.9` + `eslint-config-next@15.3.9` builds and lints cleanly (checked 2026-10-09) | needs-decision | `package.json`, `package-lock.json` |
 | N1 | `/files/[slug]` crashes: passes `tokens/language/mode` props but `TypingTest` expects `challenge` | todo | `src/app/files/[slug]/page.js`, `src/components/typing/TypingTest.jsx` |
 | N2 | `/auth/callback` always redirects to `/signup/success` ("check your email"), even after OAuth/magic-link login | todo | `src/app/auth/callback/route.js` |
 | N3 | Forgot-password "Login with Email" calls `loginWithMagicLink()` with no email | todo | `src/components/auth/ForgotPasswordForm.jsx` |
