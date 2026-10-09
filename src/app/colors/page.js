@@ -104,4 +104,6 @@ export const metadata = {
   title: "Colors | AlgoType",
   description:
     "AlgoType was designed to take a minimal approarch and use bold features",
+  // Internal branding page: keep it out of search results
+  robots: { index: false, follow: false },
 };

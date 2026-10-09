@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
-  getSortedRowModel,
   getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
@@ -45,12 +44,16 @@ export default function GenericProblemsTable({ mode }) {
 
   const [pageIndex, setPageIndex] = useState(0);
   const [totalRows, setTotalRows] = useState(0);
+  const [sorting, setSorting] = useState([]);
   const pageSize = 50;
 
   const columns = getColumns(mode);
 
   // Fetch data and filter/search
   useEffect(() => {
+    // Ignore responses from fetches that a newer one has replaced
+    let cancelled = false;
+
     const fetchProblems = async () => {
       setLoading(true);
       setError(null);
@@ -73,7 +76,16 @@ export default function GenericProblemsTable({ mode }) {
         query = query.ilike("title", `%${debouncedSearch.trim()}%`);
       }
 
-      const { data, error, count } = await query.range(from, to);
+      // Sort on the server so it applies across all pages
+      const sort = sorting[0];
+      query = sort
+        ? query.order(sort.id, { ascending: !sort.desc })
+        : query.order("title", { ascending: true });
+
+      const { data, error, count } = await query
+        .order("id", { ascending: true }) // stable paging on ties
+        .range(from, to);
+      if (cancelled) return;
 
       if (error) {
         setError(error.message);
@@ -88,28 +100,49 @@ export default function GenericProblemsTable({ mode }) {
     };
 
     fetchProblems();
-  }, [pageIndex, debouncedSearch, selectedLanguage, mode]);
+    return () => {
+      cancelled = true;
+    };
+  }, [pageIndex, debouncedSearch, selectedLanguage, mode, sorting]);
 
-  // A filter/search will reset the page index to 0
+  // A filter/search/sort will reset the page index to 0
   useEffect(() => {
     setPageIndex(0);
-  }, [debouncedSearch, selectedLanguage, mode]);
+  }, [debouncedSearch, selectedLanguage, mode, sorting]);
 
   // Get all the languages
   useEffect(() => {
-    const fetchLanguages = async () => {
-      const { data, error } = await supabase
-        .from("challenges")
-        .select("language")
-        .eq("mode", mode);
+    let cancelled = false;
 
-      if (!error && data) {
-        const langs = Array.from(new Set(data.map((d) => d.language))).sort();
-        setAllLanguages(["all", ...langs]);
+    // Responses are capped at 1000 rows, so step through the distinct
+    // languages one row at a time instead of reading every challenge
+    const fetchLanguages = async () => {
+      const langs = [];
+      let last = null;
+
+      for (let i = 0; i < 50; i++) {
+        let query = supabase
+          .from("challenges")
+          .select("language")
+          .eq("mode", mode)
+          .order("language", { ascending: true })
+          .limit(1);
+        if (last !== null) query = query.gt("language", last);
+
+        const { data, error } = await query;
+        if (error || !data?.length) break;
+
+        last = data[0].language;
+        langs.push(last);
       }
+
+      if (!cancelled) setAllLanguages(["all", ...langs]);
     };
 
     fetchLanguages();
+    return () => {
+      cancelled = true;
+    };
   }, [mode]);
 
   // Create the table
@@ -119,9 +152,11 @@ export default function GenericProblemsTable({ mode }) {
     pageCount: -1,
     state: {
       pagination: { pageIndex, pageSize },
+      sorting,
     },
+    manualSorting: true,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
 
@@ -257,7 +292,7 @@ export default function GenericProblemsTable({ mode }) {
             variant="outline"
             size="sm"
             onClick={() => setPageIndex((prev) => prev + 1)}
-            disabled={problems.length < pageSize}
+            disabled={(pageIndex + 1) * pageSize >= totalRows}
           >
             Next
           </Button>

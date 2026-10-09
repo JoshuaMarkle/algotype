@@ -37,8 +37,9 @@ export async function submitTestHistory({
   }
 
   // Insert into database
-  const { error, data } = await supabase.from("history").insert(
-    [
+  const { error, data } = await supabase
+    .from("history")
+    .insert([
       {
         user_id: user.id,
         wpm,
@@ -50,9 +51,8 @@ export async function submitTestHistory({
         slug,
         created_at: new Date().toISOString(),
       },
-    ],
-    { returning: "representation" },
-  );
+    ])
+    .select("id, wpm, acc, time, language, lines, mode, slug, created_at");
 
   if (error) {
     console.error("Error inserting test history:", error.message);
