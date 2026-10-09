@@ -3,16 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import Skeleton from "@/components/ui/Skeleton";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
-import HashPatternSvg from "@/components/effects/HashPatternSvg";
-import Button from "@/components/ui/Button";
 import ProgressGraph from "@/components/graphs/ProgressGraph";
 import PastTestsTable from "@/components/tables/PastTestsTable";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { getUserHistory } from "@/lib/history";
-import { formatIsoDate, langToNatural } from "@/lib/utils";
 import { getCurrentProfile } from "@/lib/auth";
 
 export default function AccountPage() {

@@ -55,15 +55,16 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T2 | Duplicate `getUserHistoryPaginated` (lib vs `PastTestsTable.jsx`, which also bypasses cache) | done | `src/lib/history.js`, `src/components/tables/PastTestsTable.jsx` |
 | T3 | `CodeBox` duplicates the typing traversal logic from `useTypingState` | todo | `src/components/effects/CodeBox.jsx` |
 | T4 | `/algorithms` and `/files` index pages are near-identical (copy text and "Files Files Files" heading fixed 2026-10-09; the duplicated page code remains) | in-progress | `src/app/algorithms/page.js`, `src/app/files/page.js` |
-| T5 | Circular import `lib/auth.js` ↔ `lib/history.js` | todo | `src/lib/*` |
+| T5 | Circular import `lib/auth.js` ↔ `lib/history.js` | done | `src/lib/*` |
 | T6 | `backend/scripts/fix_errors.sh` has an unterminated string on the last line (`bash -n` fails) | done | `backend/scripts/fix_errors.sh` |
-| T7 | `formatAllCode.js` uses cwd-relative paths (`data/algorithms`), must run from `backend/`; inconsistent with other scripts run from root | todo | `backend/scripts/formatAllCode.js` |
+| T7 | `formatAllCode.js` uses cwd-relative paths (`data/algorithms`), must run from `backend/`; inconsistent with other scripts run from root | done | `backend/scripts/formatAllCode.js` |
 | T8 | `format_errors.txt` log is committed with absolute paths from the owner's machine | needs-decision | `backend/scripts/logs/format_errors.txt` |
-| T9 | Email templates all export `AlgotypeMagicLinkEmail`; `@react-email/components` not a dependency | todo | `backend/emails/*.jsx` |
+| T9 | Email templates all export `AlgotypeMagicLinkEmail`; `@react-email/components` not a dependency | done | `backend/emails/*.jsx` |
 | T10 | Tokenizer block-comment detection is naive (`/*` in strings, code before `/*` dropped); no handling of Python docstrings | todo | `backend/scripts/generateTokens.js` |
-| T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | in-progress | various |
+| T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | done | various |
 
 ## Done
+- 2026-10-09 — T5, T7, T9, T11: removed `auth`↔`history` circular import, `formatAllCode.js` runs from any directory, email templates have their own export names + `@react-email/components` dev dependency, unused imports in `account/page.jsx`
 - 2026-10-09 — X3: server Supabase helper + `/account` middleware
 - 2026-10-09 — X11, X12, X15, X16, X17, T2: history cache, challenge pages, problems table, sitemap, `/colors` noindex
 - 2026-10-09 — N6, N8, X1: typing flow fixes (next-test filters, results graph, screenshot, settings toggles)

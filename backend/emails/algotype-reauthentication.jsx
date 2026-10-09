@@ -14,7 +14,7 @@ import * as React from "react";
 
 const baseUrl = "https://algotype.net";
 
-export default function AlgotypeMagicLinkEmail({ magicLink, userName }) {
+export default function AlgotypeReauthenticationEmail({ magicLink, userName }) {
   return (
     <Html>
       <Head />

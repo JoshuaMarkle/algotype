@@ -1,5 +1,4 @@
 import { supabase } from "@/lib/supabaseClient";
-import { getCurrentUser } from "@/lib/auth";
 
 // Validate and submit test result (when typing test finishes)
 export async function submitTestHistory({
@@ -70,7 +69,9 @@ export async function submitTestHistory({
 
 // Get recent test history for the current authenticated user
 export async function getUserHistory(limit = 1000, forceRefresh = false) {
-  const user = await getCurrentUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) throw new Error("User not authenticated");
 
   if (!forceRefresh) {
