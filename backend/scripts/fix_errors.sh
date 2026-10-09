@@ -16,4 +16,4 @@ while IFS= read -r file_path; do
   fi
 done < "$ERROR_FILE"
 
-echo "✅
+echo "✅ Done"

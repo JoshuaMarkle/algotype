@@ -105,7 +105,7 @@ export default function TypingTest({ challenge, slug }) {
       const { wpm, acc, time } = calculateStats(started, now, stats);
       submitTestHistory({ wpm, acc, time, language, lines, mode, slug });
     }
-  }, [started, done, ended, language, mode, slug]);
+  }, [started, done, ended, language, lines, mode, slug]);
 
   // Go to random test if TAB is pressed
   useEffect(() => {

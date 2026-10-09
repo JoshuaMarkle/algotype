@@ -15,7 +15,7 @@ Use before declaring any code change done. CI (`.github/workflows/ci.yml`) runs 
    ```bash
    npm run lint
    ```
-   - Expected baseline (2026-10-09): 0 errors, 2 warnings:
+   - Expected baseline (2026-10-09, after X10 fix): 0 errors, 0 warnings. The two former warnings were:
      - `src/components/typing/TypingResults.jsx` `jsx-a11y/alt-text`
      - `src/components/typing/TypingTest.jsx` `react-hooks/exhaustive-deps`
    - Pass = no errors and no **new** warnings in files you touched.
