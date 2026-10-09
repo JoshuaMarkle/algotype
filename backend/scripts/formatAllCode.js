@@ -1,12 +1,16 @@
 import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url";
 import { execFile } from "child_process";
 import { promisify } from "util";
 import pLimit from "p-limit";
 
 const exec = promisify(execFile);
-const ROOT = path.resolve("data/algorithms");
-const ERROR_LOG = path.resolve("scripts/logs/format_errors.txt");
+// Paths are relative to this script, so it runs from any working directory
+const SCRIPTS_DIR = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.join(SCRIPTS_DIR, "../data/algorithms");
+const ERROR_LOG = path.join(SCRIPTS_DIR, "logs/format_errors.txt");
+const JAVA_FORMAT_JAR = path.join(SCRIPTS_DIR, "google-java-format.jar");
 
 const EXTENSION_TO_LANGUAGE = {
   ".py": "python",
@@ -21,7 +25,7 @@ const FORMAT_COMMANDS = {
   javascript: async (file) => exec("prettier", ["--write", file]),
   cpp: async (file) => exec("clang-format", ["-i", file]),
   java: async (file) =>
-    exec("java", ["-jar", "scripts/google-java-format.jar", "--replace", file]),
+    exec("java", ["-jar", JAVA_FORMAT_JAR, "--replace", file]),
   rust: async (file) => exec("rustfmt", [file]),
 };
 

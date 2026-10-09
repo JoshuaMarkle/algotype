@@ -20,9 +20,9 @@ Scripts: `backend/scripts/formatAllCode.js`, `backend/scripts/generateTokens.js`
      { "title": "N-Queens", "description": "...", "source": "https://..." }
      ```
      Files without `.meta` are skipped. Filenames containing `tokens` or starting with `.` are ignored.
-2. (Optional) Format sources. Needs `black`, `prettier`, `clang-format`, `rustfmt`, and `backend/scripts/google-java-format.jar` on the machine. Paths are cwd-relative, so run from `backend/`:
+2. (Optional) Format sources. Needs `black`, `prettier`, `clang-format`, `rustfmt`, and `backend/scripts/google-java-format.jar` on the machine. Run from any directory:
    ```bash
-   cd backend && node scripts/formatAllCode.js && cd ..
+   node backend/scripts/formatAllCode.js
    ```
    Failures are written to `backend/scripts/logs/format_errors.txt`. Fix them by hand (`fix_errors.sh` is currently broken, see tasklist T6).
 3. Tokenize (from repo root):

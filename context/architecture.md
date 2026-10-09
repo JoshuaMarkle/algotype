@@ -49,7 +49,7 @@ Root layout: `src/app/layout.js` (fonts, metadata, Umami script, `StructuredData
 
 ### Content pipeline (offline, run by hand)
 1. Source files: `backend/data/algorithms/<prism-lang>/<Name>.<ext>` + sidecar `<Name>.meta` (JSON: `title`, `description`, `source`).
-2. Optional formatting: `backend/scripts/formatAllCode.js` (run from `backend/`), failures → `backend/scripts/logs/format_errors.txt`.
+2. Optional formatting: `backend/scripts/formatAllCode.js` (paths resolve from the script, runs from any directory), failures → `backend/scripts/logs/format_errors.txt`.
 3. `npm run generate:tokens` → `backend/scripts/generateTokens.js` → `backend/tokens/<mode>/<lang>/<Name>.json`.
 4. `npm run upload:tokens` → `backend/scripts/uploadTokens.js` → upsert into Supabase `challenges` on `slug`.
 5. `next-sitemap` (postbuild) reads `backend/tokens/files/**` to add `/files/<slug>` URLs.
