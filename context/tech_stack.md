@@ -1,0 +1,56 @@
+# Tech Stack
+
+Versions are from `package.json` / installed `package-lock.json` (checked 2026-10-09).
+
+## Languages
+- JavaScript (ES modules, `"type": "module"`), JSX. No TypeScript (`components.json` `"tsx": false`).
+- CSS via Tailwind v4 (`src/app/globals.css`).
+- Node.js required. Exact version not pinned (no `.nvmrc` / `engines`) `[UNVERIFIED]`. Build verified on Node 22.
+
+## Framework / runtime
+- Next.js `15.3.9` (App Router, `src/app/`), dev uses Turbopack (`next dev --turbopack`).
+- React `^19.0.0` (lockfile: 19.1.0).
+
+## UI
+- Tailwind CSS `^4` (4.1.8) via `@tailwindcss/postcss` (`postcss.config.js`). No `tailwind.config.js`; theme tokens are in `@theme inline` in `globals.css`.
+- `tw-animate-css`, `tailwind-animate`, `tailwind-merge`, `clsx`, `class-variance-authority`.
+- shadcn/ui, style `new-york`, base color `neutral` (`components.json`). Radix primitives: accordion, avatar, dialog, dropdown-menu, hover-card, label, navigation-menu, separator, slot, tabs, toggle, toggle-group, tooltip.
+- `cmdk` (Command), `lucide-react` icons.
+- Fonts: `geist` (GeistSans / GeistMono) in `src/app/layout.js`.
+- Charts: `recharts` 2.15.3 (`TypingResults.jsx`, `ProgressGraph.jsx`).
+- Tables: `@tanstack/react-table` 8.21.3.
+- Screenshots: `html2canvas` (`TypingResults.jsx`).
+
+## Backend / services
+- Supabase:
+  - `@supabase/supabase-js` 2.49.9, `@supabase/ssr` 0.6.1.
+  - Project URL: `https://pderwdsiwqwpnujzmvlw.supabase.co` (public, from owner 2026-10-09).
+  - Browser client: `src/lib/supabaseClient.js` (`createBrowserClient`). Also used in server components `src/app/*/[slug]/page.js`.
+  - Server client: `src/lib/supabaseServerClient.js` (cookie-based), used by `src/middleware.js`.
+  - Auth providers in code: email/password, GitHub, Google, magic link (OTP).
+  - Tables used: `challenges`, `history`, `users`. RPCs: `get_random_challenge`, `count_matching_challenges`, `is_username_available`, `is_email_available`, `delete_account`. Schema/SQL not in repo `[UNVERIFIED]`.
+- Umami Cloud analytics: script tag in `src/app/layout.js` (website id `439c2381-...`), proxied via rewrites in `next.config.js` (`/analytics/script.js`, `/analytics/api/send`).
+- Email: React Email templates in `backend/emails/*.jsx` (import `@react-email/components`, which is **not** in `package.json`). Likely rendered and pasted into Supabase Auth templates; Resend as SMTP `[UNVERIFIED]`.
+- Hosting: Vercel, project `joshuamarkles-projects/algotype`. Pushes build Preview deployments (confirmed 2026-10-09). No `vercel.json`; `.vercel` gitignored.
+- Vercel refuses to deploy Next.js versions with known vulnerabilities ("Vulnerable version of Next.js detected"). 15.3.2 was blocked; bumped to 15.3.9 (tasklist N0).
+- SEO: `next-sitemap` (postbuild), JSON-LD in `src/components/seo/StructuredData.jsx`, OpenGraph/Twitter metadata in `layout.js`.
+
+## Offline content tooling (`backend/scripts/`)
+- `prismjs` 1.30.0 (tokenizer), `chalk`, `dotenv`, `p-limit`.
+- `formatAllCode.js` shells out to external formatters: `black` (Python), `prettier` (JS), `clang-format` (C++), `google-java-format.jar` (Java, expected at `backend/scripts/google-java-format.jar`), `rustfmt` (Rust).
+- `fix_errors.sh` opens failed files in `nvim`.
+
+## Environment variables
+| Var | Used by | Notes |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | `supabaseClient.js`, `supabaseServerClient.js`, `auth/callback/route.js` | public |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | same | public |
+| `SUPABASE_URL` | `backend/scripts/uploadTokens.js` | read from `.env.local` |
+| `SUPABASE_SERVICE_ROLE_KEY` | `backend/scripts/uploadTokens.js` | secret, local only |
+- No `.env.example` in repo. All `.env*` files are gitignored.
+
+## Tooling
+- ESLint 9 flat config extending `next/core-web-vitals` (`eslint.config.mjs`).
+- Prettier 3 (`.prettierrc`: 2 spaces, LF, uses `.editorconfig`). No npm script for it.
+- Path alias `@/*` → `src/*` (`jsconfig.json`).
+- No test framework. No CI workflows (`.github/` has only issue templates and images).
