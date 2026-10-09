@@ -29,7 +29,7 @@
 `user_id`, `wpm`, `acc`, `time` (seconds), `language`, `lines`, `mode`, `slug`, `created_at`.
 
 ### `users` row
-Selected with `*` in `getCurrentProfile`; at least `id`, `username`. Created from signup metadata (`options.data.username`) by a DB trigger `[UNVERIFIED]`.
+Selected with `*` in `getCurrentProfile`; at least `id`, `username`. Created by the `on_auth_user_created` trigger on `auth.users` (`public.handle_new_user`, SECURITY DEFINER): username = metadata `username` or `user_name` (GitHub), else `user`; on a unique clash appends `-` + 4 hex chars. Verified via Supabase MCP 2026-10-09. RLS: users can select/insert their own `users` row and select/insert their own `history` rows (`history.user_id` defaults to `auth.uid()`).
 
 ## 2. Tokenizer — `backend/scripts/generateTokens.js`
 Per source line:
