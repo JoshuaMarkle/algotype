@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 
@@ -10,12 +10,29 @@ import Label from "@/components/ui/Label";
 import { loginWithEmail, loginWithGitHub, loginWithGoogle } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
+// Turn Supabase's raw sign-in errors into actionable messages
+function friendlyError(message) {
+  if (/email not confirmed/i.test(message)) {
+    return 'Please verify your email first. Use the "Unverified?" link to resend it.';
+  }
+  if (/invalid login credentials/i.test(message)) {
+    return "Incorrect email or password.";
+  }
+  return message;
+}
+
 export default function LoginForm({ className, ...props }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  // Errors passed back from /auth/callback (e.g. expired link)
+  useEffect(() => {
+    const message = new URLSearchParams(window.location.search).get("error");
+    if (message) setError(message);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,23 +48,24 @@ export default function LoginForm({ className, ...props }) {
         window.location.href = "/account";
       }, 1000);
     } catch (err) {
-      setError(err.message);
+      setError(friendlyError(err.message));
     }
   };
 
+  // The provider redirects back through /auth/callback to /account
   const handleGitHub = async () => {
+    setError(null);
     try {
       await loginWithGitHub();
-      window.location.href = "/account";
     } catch (err) {
       setError(err.message);
     }
   };
 
   const handleGoogle = async () => {
+    setError(null);
     try {
       await loginWithGoogle();
-      window.location.href = "/account";
     } catch (err) {
       setError(err.message);
     }
@@ -71,7 +89,7 @@ export default function LoginForm({ className, ...props }) {
                 <div className="flex items-center">
                   <Label htmlFor="email">Email</Label>
                   <Link
-                    href="/login/password-reset"
+                    href="/login/verify-email"
                     className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
                   >
                     Unverified?
@@ -140,6 +158,7 @@ export default function LoginForm({ className, ...props }) {
             {/* Providers */}
             <div className="flex flex-col gap-4">
               <Button
+                type="button"
                 variant="outline"
                 className="w-full bg-bg-2"
                 onClick={handleGitHub}
@@ -154,6 +173,7 @@ export default function LoginForm({ className, ...props }) {
                 Login with Github
               </Button>
               <Button
+                type="button"
                 variant="outline"
                 className="w-full bg-bg-2"
                 onClick={handleGoogle}

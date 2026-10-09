@@ -28,14 +28,15 @@ export default function ResetPasswordForm({ className, ...props }) {
 
     try {
       // Change user password
-      const { data, error } = await supabase.auth.updateUser({
+      const { error } = await supabase.auth.updateUser({
         password,
       });
+      if (error) throw error;
       setSuccess(true);
 
       // Redirect to homepage
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/account";
       }, 1000);
     } catch (err) {
       setError(err.message);
@@ -71,7 +72,7 @@ export default function ResetPasswordForm({ className, ...props }) {
               <div className="grid gap-3">
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
                 <Input
-                  id="password"
+                  id="confirmPassword"
                   type="password"
                   required
                   placeholder=""

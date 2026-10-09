@@ -16,15 +16,27 @@ export default function PasswordResetPage() {
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        if (event === "SIGNED_IN") {
+        if (
+          session &&
+          (event === "SIGNED_IN" || event === "PASSWORD_RECOVERY")
+        ) {
           setSessionReady(true);
         }
       },
     );
 
-    // If the session is already available (refresh case)
+    // getSession waits for the reset code in the URL to be exchanged, so no
+    // session here means the link was invalid, expired or opened elsewhere
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) setSessionReady(true);
+      if (session) {
+        setSessionReady(true);
+        return;
+      }
+      const params = new URLSearchParams(window.location.search);
+      setError(
+        params.get("error_description") ||
+          "This reset link is invalid or has expired. Please request a new one.",
+      );
     });
 
     return () => {
@@ -60,7 +72,15 @@ export default function PasswordResetPage() {
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
             {error ? (
-              <p className="text-red-500">{error}</p>
+              <div className="space-y-4 text-center">
+                <p className="text-red-500">{error}</p>
+                <Link
+                  href="/login/password-reset"
+                  className="text-sm text-fg-2 hover:text-fg underline"
+                >
+                  Request a new link
+                </Link>
+              </div>
             ) : !sessionReady ? (
               <p className="text-center">Loading...</p>
             ) : (

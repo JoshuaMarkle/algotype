@@ -31,6 +31,7 @@ export async function signupWithEmail(username, email, password) {
 }
 
 export async function loginWithEmail(email, password) {
+  clearUserCaches();
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -44,40 +45,42 @@ export async function loginWithEmail(email, password) {
 }
 
 // --- Providers ---
+// signInWithOAuth navigates the browser to the provider itself, so callers
+// must not redirect afterwards (that would cancel the OAuth navigation).
 
-export async function loginWithGitHub() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "github",
+async function loginWithProvider(provider) {
+  clearUserCaches();
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider,
     options: {
       redirectTo: `${window.location.origin}/auth/callback`,
     },
   });
 
   if (error) {
-    console.error("Error during GitHub sign-in:", error.message);
+    throw new Error(error.message);
   }
 }
 
-export async function loginWithGoogle() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: `${window.location.origin}/auth/callback`,
-    },
-  });
+export async function loginWithGitHub() {
+  return loginWithProvider("github");
+}
 
-  if (error) {
-    console.error("Error during Google sign-in:", error.message);
-  }
+export async function loginWithGoogle() {
+  return loginWithProvider("google");
 }
 
 // --- Magic Link ---
 
 export async function loginWithMagicLink(email) {
+  if (!email) throw new Error("Enter your email address first");
+
+  clearUserCaches();
   const { data, error } = await supabase.auth.signInWithOtp({
     email,
     options: {
       emailRedirectTo: `${window.location.origin}/auth/callback`,
+      shouldCreateUser: false,
     },
   });
 
@@ -101,12 +104,13 @@ export async function resendVerificationEmail(email) {
 }
 
 // --- Linking Providers ---
+// Requires "Manual linking" to be enabled in Supabase Auth settings.
 
 export async function linkProvider(provider) {
-  const { data, error } = await supabase.auth.linkWithOAuth({
+  const { data, error } = await supabase.auth.linkIdentity({
     provider,
     options: {
-      redirectTo: `${window.location.origin}/auth/link-callback`,
+      redirectTo: `${window.location.origin}/auth/callback?next=/settings`,
     },
   });
 
@@ -114,38 +118,26 @@ export async function linkProvider(provider) {
     throw new Error(error.message);
   }
 
-  window.location.href = data.url;
-}
-
-export async function handleProviderLinkCallback() {
-  const { data, error } = await supabase.auth.getSessionFromUrl({
-    type: "link",
-  });
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
+  clearProfileCache();
   return data;
 }
 
 export async function unlinkProvider(provider) {
-  const { data: user, error } = await supabase.auth.getUser();
+  const { data, error } = await supabase.auth.getUserIdentities();
   if (error) throw new Error(error.message);
 
-  const currentProviders = user.user_metadata?.providers || [];
-
-  if (currentProviders.length <= 1) {
+  const identities = data?.identities ?? [];
+  if (identities.length <= 1) {
     throw new Error("Cannot remove the only login method.");
   }
 
-  const updatedProviders = currentProviders.filter((p) => p !== provider);
-  const { error: updateError } = await supabase.auth.updateUser({
-    data: { providers: updatedProviders },
-  });
+  const identity = identities.find((i) => i.provider === provider);
+  if (!identity) throw new Error(`No ${provider} login is linked.`);
 
-  if (updateError) throw new Error(updateError.message);
+  const { error: unlinkError } = await supabase.auth.unlinkIdentity(identity);
+  if (unlinkError) throw new Error(unlinkError.message);
 
+  clearProfileCache();
   return true;
 }
 
@@ -180,34 +172,65 @@ export async function getCurrentUser() {
 }
 
 export async function getCurrentProfile(forceRefresh = false) {
-  if (!forceRefresh) {
-    const cached = readProfileCache();
-    if (cached) return cached;
+  // Session is read locally (no network), so it is cheap to check that the
+  // cached profile still belongs to the signed-in user
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session) {
+    clearUserCaches();
+    return null;
   }
 
-  // Get user (localStorage)
-  const authUser = await getCurrentUser(); // returns null if not signed in
-  if (!authUser) return null;
+  if (!forceRefresh) {
+    const cached = readProfileCache();
+    if (cached?.id === session.user.id) return cached;
+  }
 
-  // Getb user profile (network)
+  // Get user (network, validates the session)
+  const authUser = await getCurrentUser(); // returns null if not signed in
+  if (!authUser) {
+    clearUserCaches();
+    return null;
+  }
+
+  // A different user signed in since the caches were written
+  const cached = readProfileCache();
+  if (cached && cached.id !== authUser.id) clearUserCaches();
+
+  // Get user profile (network)
   const { data: row, error } = await supabase
     .from("users")
     .select("*")
     .eq("id", authUser.id)
-    .single();
+    .maybeSingle();
 
-  if (error) throw error;
+  if (error) console.error("Failed to load user profile:", error.message);
+  if (!row) {
+    // The users row is created by a DB trigger; fall back to auth data so the
+    // UI keeps working if that row is missing
+    console.warn("No users row for signed-in user", authUser.id);
+  }
 
   // Merge and cache
+  const meta = authUser.user_metadata ?? {};
   const profile = {
     ...row,
+    id: authUser.id,
+    username:
+      row?.username ??
+      meta.username ??
+      meta.user_name ??
+      meta.full_name ??
+      authUser.email?.split("@")[0] ??
+      null,
     email: authUser.email,
     avatar_url: authUser.user_metadata?.avatar_url ?? null,
     created_at: authUser.created_at,
     providers: authUser.app_metadata?.providers ?? null,
   };
 
-  cacheProfile(profile);
+  if (row) cacheProfile(profile);
   return profile;
 }
 
@@ -236,8 +259,7 @@ export async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) console.error("Error during sign-out:", error.message);
 
-  clearHistoryCache();
-  clearProfileCache();
+  clearUserCaches();
   window.location.reload();
 }
 
@@ -289,4 +311,9 @@ function readProfileCache() {
 
 export function clearProfileCache() {
   localStorage.removeItem(PROFILE_KEY);
+}
+
+export function clearUserCaches() {
+  clearHistoryCache();
+  clearProfileCache();
 }

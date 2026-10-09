@@ -9,9 +9,9 @@ Update this file whenever a task starts, finishes, or is discovered.
 |---|---|---|---|
 | N0 | **Security / deploy blocker:** Vercel blocks deploys of Next.js 15.3.2 as vulnerable. Patch bump to `next@15.3.9` + `eslint-config-next@15.3.9` builds and lints cleanly (checked 2026-10-09) | done | `package.json`, `package-lock.json` |
 | N1 | `/files/[slug]` crashes: passes `tokens/language/mode` props but `TypingTest` expects `challenge` | done | `src/app/files/[slug]/page.js`, `src/components/typing/TypingTest.jsx` |
-| N2 | `/auth/callback` always redirects to `/signup/success` ("check your email"), even after OAuth/magic-link login | todo | `src/app/auth/callback/route.js` |
-| N3 | Forgot-password "Login with Email" calls `loginWithMagicLink()` with no email | todo | `src/components/auth/ForgotPasswordForm.jsx` |
-| N4 | Password reset shows success even when `updateUser` returns an error | todo | `src/components/auth/PasswordResetForm.jsx` |
+| N2 | `/auth/callback` always redirects to `/signup/success` ("check your email"), even after OAuth/magic-link login | done | `src/app/auth/callback/route.js` |
+| N3 | Forgot-password "Login with Email" calls `loginWithMagicLink()` with no email | done | `src/components/auth/ForgotPasswordForm.jsx` |
+| N4 | Password reset shows success even when `updateUser` returns an error | done | `src/components/auth/PasswordResetForm.jsx` |
 | N5 | Landing demo always shows 0 WPM / 100% (wrong `calculateStats` args) | done | `src/components/effects/CodeBox.jsx` |
 | N6 | Tab-to-next ignores active filters; buttons pass click event as filters | needs-decision | `TypingTest.jsx` (Tab handler), `TypingResults.jsx`, `layouts/misc/RandomButton.jsx`, `layouts/Navbar.jsx` |
 | N7 | Results max/min WPM show `-Infinity`/`Infinity` for tests under 1 s (empty `wpmOverTime`) | done | `src/components/typing/TypingResults.jsx` |
@@ -20,17 +20,19 @@ Update this file whenever a task starts, finishes, or is discovered.
 | # | Task | Status | Files |
 |---|---|---|---|
 | X1 | Settings: Appearance toggles are not wired to `lib/settings.js` or the renderer; Google provider row is labeled "Created At" | todo | `src/app/settings/page.jsx`, `src/lib/settings.js`, `TypingRenderer.jsx` |
-| X2 | Provider link/unlink uses non-existent supabase-js APIs (`linkWithOAuth`, `getSessionFromUrl`); `/auth/link-callback` route missing | todo | `src/lib/auth.js` |
+| X2 | Provider link/unlink uses non-existent supabase-js APIs (`linkWithOAuth`, `getSessionFromUrl`); `/auth/link-callback` route missing | done | `src/lib/auth.js` |
 | X3 | Middleware matcher `/protected-route` matches nothing; decide on server-side protection for `/account`, `/settings` | needs-decision | `src/middleware.js` |
 | X4 | Await `params` in dynamic routes (Next 15) | done | `src/app/algorithms/[slug]/page.js`, `src/app/files/[slug]/page.js` |
-| X5 | Login "Unverified?" link points to `/login/password-reset` instead of `/login/verify-email` `[UNVERIFIED intent]` | needs-decision | `src/components/auth/LoginForm.jsx` |
-| X6 | Profile cache (15 min) not cleared on login/account switch | todo | `src/lib/auth.js` |
+| X5 | Login "Unverified?" link points to `/login/password-reset` instead of `/login/verify-email` `[UNVERIFIED intent]` | done | `src/components/auth/LoginForm.jsx` |
+| X6 | Profile cache (15 min) not cleared on login/account switch | done | `src/lib/auth.js` |
 | X7 | Add `.env.example` documenting the 4 env vars | done | `.env.example`, `.gitignore` |
 | X8 | Add CI (lint + test + build on PR) | done | `.github/workflows/ci.yml` |
 | X9 | Add tests for pure logic: `calculateStats` and `useTypingState` done (Vitest). Tokenizer helpers still untested: they live inside a script with top-level side effects, so they need extracting into an importable module first | in-progress | `src/components/typing/**`, `backend/scripts/generateTokens.js` |
 | X10 | Fix lint warnings: missing `alt` (lucide `Image` icon) and missing `lines` dep | done | `TypingResults.jsx:194`, `TypingTest.jsx:108` |
 | X11 | Sitemap only includes `files` mode; `/algorithms/<slug>` pages missing | todo | `next-sitemap.config.js` |
 | X12 | `/colors` internal design page is public and references undefined CSS vars | needs-decision | `src/app/colors/page.js` |
+| X13 | Auth DB check (2026-10-09, via Supabase MCP): trigger `on_auth_user_created` → `handle_new_user()` creates the `users` row (username from `username`/`user_name` metadata, else `user`, de-duplicated with a `-xxxx` suffix); all 57 auth users have rows; RLS on `users` (select/insert own) and `history` (select/insert own) is correct. Google sign-ups get `user-xxxx` names (no `full_name` fallback) | done | Supabase `public.handle_new_user` |
+| X14 | Settings has no UI for linking/unlinking providers (`linkProvider`/`unlinkProvider` now use `linkIdentity`/`unlinkIdentity`; needs Supabase "Manual linking" on) | todo | `src/app/settings/page.jsx`, `src/lib/auth.js` |
 
 ## Later (features from README / commented UI)
 | # | Task | Status | Files |
@@ -58,6 +60,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | in-progress | various |
 
 ## Done
+- 2026-10-09 — N2, N3, N4, X2, X5, X6: sign-in flow fixes (PR #30)
 - 2026-10-09 — X7, X8: `.env.example`, GitHub Actions CI (lint + Vitest + build), first unit tests for `calculateStats` and `useTypingState`
 - 2026-10-09 — N0: bumped `next` and `eslint-config-next` 15.3.2 → 15.3.9 (PR #27)
 - 2026-10-09 — N1, N5, N7, X4, X10, T6 fixed; T4 copy and part of T11 done. Lint now has 0 warnings.

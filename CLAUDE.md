@@ -45,7 +45,7 @@
 - State clearly what was verified and what was not.
 
 ## Tools / integrations
-- **Supabase** (DB, Auth, RPC) — via `@supabase/ssr` / `@supabase/supabase-js`. Schema and RPC SQL are **not in this repo** `[UNVERIFIED]`; a Supabase MCP server would let agents inspect it.
+- **Supabase** (DB, Auth, RPC) — via `@supabase/ssr` / `@supabase/supabase-js`. Reference snapshot of the schema, RLS policies, new-user trigger and RPCs: [`supabase/schema.sql`](supabase/schema.sql) (pulled 2026-10-09). The Supabase MCP connector (project `AlgoType`) can inspect the live database.
 - **GitHub** — repo `JoshuaMarkle/algotype`, default branch `main`. Issue templates in `.github/ISSUE_TEMPLATE/`.
 - **Vercel** — hosting. Every branch push gets a Preview deployment (Vercel bot comments on PRs). No `vercel.json` in repo.
 - **Umami Cloud** — analytics, proxied through `next.config.js` rewrites.

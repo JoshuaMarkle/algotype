@@ -29,7 +29,7 @@
 `user_id`, `wpm`, `acc`, `time` (seconds), `language`, `lines`, `mode`, `slug`, `created_at`.
 
 ### `users` row
-Selected with `*` in `getCurrentProfile`; at least `id`, `username`. Created from signup metadata (`options.data.username`) by a DB trigger `[UNVERIFIED]`.
+Selected with `*` in `getCurrentProfile`; at least `id`, `username`. Created by the `on_auth_user_created` trigger on `auth.users` (`public.handle_new_user`, SECURITY DEFINER): username = metadata `username` or `user_name` (GitHub), else `user`; on a unique clash appends `-` + 4 hex chars. Verified via Supabase MCP 2026-10-09. RLS: users can select/insert their own `users` row and select/insert their own `history` rows (`history.user_id` defaults to `auth.uid()`).
 
 ## 2. Tokenizer — `backend/scripts/generateTokens.js`
 Per source line:
@@ -81,11 +81,11 @@ State: `lineIdx`, `tokenIdx` (cursor token), `typed` (chars correct in current t
 
 ## 7. Auth and caching — `src/lib/auth.js`, `src/lib/history.js`, `src/lib/settings.js`
 - Sign-up checks `is_username_available` / `is_email_available` RPCs, username length 4–20.
-- `getCurrentProfile(forceRefresh)` merges `users` row + auth email/avatar/created_at/providers; caches 15 min in `localStorage.algotype_profile`. Cleared only on `logout()`.
+- `getCurrentProfile(forceRefresh)` merges `users` row + auth email/avatar/created_at/providers; caches 15 min in `localStorage.algotype_profile`; the cache is ignored if its `id` differs from the session user. Profile + history caches are cleared on logout and before every login (`clearUserCaches`). If the `users` row is missing it falls back to auth metadata for `username` and does not cache.
 - `getUserHistory` caches 60 s (memory + `localStorage.algotype_history`); `submitTestHistory` prepends the new row into the cache.
 - `deleteAccount` → RPC `delete_account` after `window.confirm`.
 - `lib/settings.js`: `algotype_settings` in localStorage (`syntax_highlighting`, `line_numbers`); not yet wired to the UI or renderer.
-- Known broken: `linkProvider` uses `supabase.auth.linkWithOAuth` and `handleProviderLinkCallback` uses `getSessionFromUrl`; neither exists in supabase-js v2.49 (v2 has `linkIdentity` / `unlinkIdentity`). `unlinkProvider` destructures `data` as the user, so it always throws. None of these are called from the UI.
+- `linkProvider` / `unlinkProvider` use `linkIdentity` / `unlinkIdentity` (link redirects to `/auth/callback?next=/settings`). Not called from the UI yet.
 - Password strength (`PasswordStrengthMeter.jsx` `evaluatePasswordStrength`): 0 <6 chars; 1 <8 chars or <3 char classes; 3 ≥12 chars and all 4 classes; else 2. Sign-up requires score ≥ 2.
 
 ## 8. Landing demo — `src/components/effects/CodeBox.jsx`
@@ -93,7 +93,6 @@ State: `lineIdx`, `tokenIdx` (cursor token), `typed` (chars correct in current t
 
 ## 9. Other gotchas
 - `src/middleware.js` matcher is `/protected-route/:path*` (no such route), so it never runs on real pages. Page protection is client-side (`account/page.jsx` redirects).
-- `/auth/callback` always redirects to `/signup/success` (a "check your email" page), including after OAuth login.
 - Next 15 dynamic `params` are read synchronously in `[slug]` pages (Next 15 expects `await params`) `[UNVERIFIED: runtime warning only]`.
 - Server components use the browser Supabase client (`createBrowserClient`) with the anon key.
 - `body.style.overflow = "hidden"` while a test runs (`TypingTest.jsx`).
