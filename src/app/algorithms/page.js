@@ -11,9 +11,10 @@ export default function Home() {
       <div className="mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border">
         {/* Header */}
         <section className="relative flex flex-col pt-32 mx-auto w-full px-8 md:px-16">
-          <h1 className="text-4xl md:text-5xl font-bold z-10">Algorithms </h1>
+          <h1 className="text-4xl md:text-5xl font-bold z-10">Algorithms</h1>
           <p className="text-md md:text-xl text-fg-2 mt-4 mb-8 z-10">
-            Practice typing features using the language of your choice
+            Practice typing LeetCode-style solutions in the language of your
+            choice
           </p>
           <svg
             aria-hidden="true"

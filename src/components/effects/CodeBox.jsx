@@ -151,7 +151,7 @@ export default function CodeBox() {
 
         updateCounterRef.current++;
         if (updateCounterRef.current % 5 === 0) {
-          const { wpm, acc } = calculateStats(startedRef.current, stats);
+          const { wpm, acc } = calculateStats(startedRef.current, null, stats);
           setWpm(wpm);
           setAcc(acc);
         }

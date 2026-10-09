@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { useState, useRef } from "react";
 import { ResponsiveContainer, AreaChart, Area, Tooltip, YAxis } from "recharts";
-import { ExternalLink, Image, RefreshCcw, ChevronRight } from "lucide-react";
+import {
+  ExternalLink,
+  Image as ImageIcon,
+  RefreshCcw,
+  ChevronRight,
+} from "lucide-react";
 import html2canvas from "html2canvas";
 
 import Button from "@/components/ui/Button";
@@ -20,14 +25,16 @@ export default function TypingResults({ started, ended, stats, data, source }) {
   const correct = stats.current.correct;
   const incorrect = stats.current.incorrect;
   const timeLost = Math.ceil(time * (1 - acc / 100));
-  const maxWPM = Math.max(...data.map((d) => d.wpm));
-  const minWPM = Math.min(...data.map((d) => d.wpm));
 
   // Update + clean data
   if (data.length > 0) {
     if (data[data.length - 1].wpm != wpm) data.push({ wpm, acc, time });
     data = cleanData(data);
   }
+
+  // Tests under 1 s have no samples, so fall back to the final WPM
+  const maxWPM = data.length > 0 ? Math.max(...data.map((d) => d.wpm)) : wpm;
+  const minWPM = data.length > 0 ? Math.min(...data.map((d) => d.wpm)) : wpm;
 
   // Screenshot
   const resultRef = useRef(null);
@@ -191,7 +198,7 @@ export default function TypingResults({ started, ended, stats, data, source }) {
             </Button>
           </Link>
           <Button variant="ghost" onClick={takeScreenshot}>
-            <Image className="size-4" />
+            <ImageIcon className="size-4" />
           </Button>
           <Button variant="ghost" onClick={() => window.location.reload()}>
             <RefreshCcw className="size-4" />

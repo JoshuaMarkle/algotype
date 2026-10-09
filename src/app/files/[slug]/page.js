@@ -3,7 +3,7 @@ import TypingTest from "@/components/typing/TypingTest";
 import { supabase } from "@/lib/supabaseClient";
 
 export default async function FilePage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const { data: challenge, error } = await supabase
     .from("challenges")
@@ -23,19 +23,9 @@ export default async function FilePage({ params }) {
     );
   }
 
-  const mode = challenge.mode;
-  const language = challenge.language;
-
   return (
-    <main className="font-[family-name:var(--font-geist-sans)]">
-      <div className="max-w-5xl mx-auto py-16 px-4">
-        <TypingTest
-          tokens={challenge.tokens}
-          language={language}
-          mode={mode}
-          slug={slug}
-        />
-      </div>
+    <main className="font-[family-name:var(--font-geist-sans)] flex flex-col min-h-screen p-0 md:p-4">
+      <TypingTest challenge={challenge} slug={slug} />
     </main>
   );
 }
