@@ -22,7 +22,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 |---|---|---|---|
 | X1 | Settings: Appearance toggles are not wired to `lib/settings.js` or the renderer; Google provider row is labeled "Created At". Now on/off toggles for line numbers and syntax highlighting, read by `TypingRenderer` | done | `src/app/settings/page.jsx`, `src/lib/settings.js`, `TypingRenderer.jsx` |
 | X2 | Provider link/unlink uses non-existent supabase-js APIs (`linkWithOAuth`, `getSessionFromUrl`); `/auth/link-callback` route missing | done | `src/lib/auth.js` |
-| X3 | Middleware matcher `/protected-route` matches nothing; decide on server-side protection for `/account`, `/settings` | needs-decision | `src/middleware.js` |
+| X3 | Middleware matcher `/protected-route` matched nothing and the server Supabase helper used sync `cookies()` + the deprecated cookie API. Now: helper awaits `cookies()` with `getAll/setAll` (also used by `/auth/callback`); middleware refreshes the session and redirects signed-out `/account` requests to `/login` (`/settings` stays public) | done | `src/middleware.js` |
 | X4 | Await `params` in dynamic routes (Next 15) | done | `src/app/algorithms/[slug]/page.js`, `src/app/files/[slug]/page.js` |
 | X5 | Login "Unverified?" link points to `/login/password-reset` instead of `/login/verify-email` `[UNVERIFIED intent]` | done | `src/components/auth/LoginForm.jsx` |
 | X6 | Profile cache (15 min) not cleared on login/account switch | done | `src/lib/auth.js` |
@@ -64,6 +64,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | in-progress | various |
 
 ## Done
+- 2026-10-09 — X3: server Supabase helper + `/account` middleware
 - 2026-10-09 — X11, X12, X15, X16, X17, T2: history cache, challenge pages, problems table, sitemap, `/colors` noindex
 - 2026-10-09 — N6, N8, X1: typing flow fixes (next-test filters, results graph, screenshot, settings toggles)
 - 2026-10-09 — N2, N3, N4, X2, X5, X6: sign-in flow fixes (PR #30)

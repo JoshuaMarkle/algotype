@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+
+import { createSupabaseServerClient } from "@/lib/supabaseServerClient";
 
 // Only allow same-origin relative paths as redirect targets
 function safeNext(next) {
@@ -29,21 +29,7 @@ export async function GET(request) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  const cookieStore = await cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    {
-      cookies: {
-        getAll: () => cookieStore.getAll(),
-        setAll: (cookiesToSet) => {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options),
-          );
-        },
-      },
-    },
-  );
+  const supabase = await createSupabaseServerClient();
 
   const { error } = await supabase.auth.exchangeCodeForSession(code);
 

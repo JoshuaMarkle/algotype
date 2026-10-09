@@ -92,7 +92,7 @@ State: `lineIdx`, `tokenIdx` (cursor token), `typed` (chars correct in current t
 - Re-implements token traversal with refs + `setTimeout` to auto-type `src/data/quicksort.json`: 40–80 ms per char, 5% chance per token of a 0–5 char typo burst, 300 ms pause then backspacing at 150–200 ms/char. Reuses `TypingRenderer`.
 
 ## 9. Other gotchas
-- `src/middleware.js` matcher is `/protected-route/:path*` (no such route), so it never runs on real pages. Page protection is client-side (`account/page.jsx` redirects).
+- `src/middleware.js` runs on `/account/*`: it refreshes the Supabase session cookies and redirects signed-out requests to `/login`. `account/page.jsx` also redirects client-side as a fallback. `/settings` is public (Appearance works signed out).
 - Next 15 dynamic `params` are read synchronously in `[slug]` pages (Next 15 expects `await params`) `[UNVERIFIED: runtime warning only]`.
 - Server components use the browser Supabase client (`createBrowserClient`) with the anon key.
 - `body.style.overflow = "hidden"` while a test runs (`TypingTest.jsx`).
