@@ -64,7 +64,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T1 | Remove or revive unused modules: `StatPanel.jsx` (broken import), `useTokenNormalizer.js`, `NavbarTest.jsx`, `DataTable.jsx`, `useProblemsData.js`, `LetterGlitch.jsx`, `countMatchingTests`/`applyFilters`, `smoothData` | needs-decision | see `architecture.md` |
 | T2 | Duplicate `getUserHistoryPaginated` (lib vs `PastTestsTable.jsx`, which also bypasses cache) | done | `src/lib/history.js`, `src/components/tables/PastTestsTable.jsx` |
 | T3 | `CodeBox` duplicates the typing traversal logic from `useTypingState` | todo | `src/components/effects/CodeBox.jsx` |
-| T4 | `/algorithms` and `/files` index pages are near-identical (copy text and "Files Files Files" heading fixed 2026-10-09; the duplicated page code remains) | in-progress | `src/app/algorithms/page.js`, `src/app/files/page.js` |
+| T4 | `/algorithms` and `/files` index pages were near-identical. Both now render `ModeIndexPage` and have their own title/description/canonical metadata | done | `src/components/layouts/ModeIndexPage.jsx`, `src/app/algorithms/page.js`, `src/app/files/page.js` |
 | T5 | Circular import `lib/auth.js` ↔ `lib/history.js` | done | `src/lib/*` |
 | T6 | `backend/scripts/fix_errors.sh` has an unterminated string on the last line (`bash -n` fails) | done | `backend/scripts/fix_errors.sh` |
 | T7 | `formatAllCode.js` uses cwd-relative paths (`data/algorithms`), must run from `backend/`; inconsistent with other scripts run from root | done | `backend/scripts/formatAllCode.js` |
