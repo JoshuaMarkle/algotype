@@ -3,6 +3,7 @@
 -- Pulled from the live project on 2026-10-09 via the Supabase MCP connector.
 -- Updated 2026-10-10 after migration `harden_functions_and_rls` (grants,
 -- search_path, RLS policies wrap auth.uid() in a subselect).
+-- Updated 2026-10-10 after migration `create_feedback_table` (/feedback form).
 -- This file documents what exists in production; it is NOT a migration and
 -- has not been run as-is. Change the database in Supabase, then update this.
 
@@ -43,13 +44,27 @@ CREATE TABLE public.history (
   created_at timestamp with time zone NOT NULL DEFAULT now()
 );
 
+-- Written by the /feedback form (src/lib/feedback.js). Insert-only over the
+-- API; read submissions in the Supabase dashboard.
+CREATE TABLE public.feedback (
+  id uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid DEFAULT auth.uid() REFERENCES auth.users (id) ON DELETE SET NULL,
+  kind text NOT NULL CHECK (kind IN ('bug', 'feature', 'review')),
+  message text NOT NULL CHECK (char_length(message) BETWEEN 10 AND 2000),
+  email text CHECK (email IS NULL OR char_length(email) <= 254),
+  page text CHECK (page IS NULL OR char_length(page) <= 200),
+  created_at timestamp with time zone NOT NULL DEFAULT now()
+);
+CREATE INDEX feedback_user_id_idx ON public.feedback USING btree (user_id);
+
 -- ---------------------------------------------------------------------------
--- Row level security (enabled on all three tables)
+-- Row level security (enabled on all tables)
 -- ---------------------------------------------------------------------------
 
 ALTER TABLE public.challenges ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.history ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.feedback ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY read ON public.challenges
   FOR SELECT TO public USING (true);
@@ -63,6 +78,13 @@ CREATE POLICY "Limit history to user's history" ON public.history
   FOR SELECT TO authenticated USING ((select auth.uid()) = user_id);
 CREATE POLICY "Enable insert for authenticated users only" ON public.history
   FOR INSERT TO authenticated WITH CHECK ((select auth.uid()) = user_id);
+
+-- No SELECT policy and no SELECT grant: nobody reads feedback over the API.
+CREATE POLICY "Anyone can send feedback" ON public.feedback
+  FOR INSERT TO anon, authenticated
+  WITH CHECK (user_id IS NULL OR user_id = (select auth.uid()));
+REVOKE ALL ON public.feedback FROM anon, authenticated;
+GRANT INSERT ON public.feedback TO anon, authenticated;
 
 -- ---------------------------------------------------------------------------
 -- New-user trigger: creates the public.users row for every sign-up
