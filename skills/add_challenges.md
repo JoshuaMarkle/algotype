@@ -11,6 +11,14 @@ Scripts: `backend/scripts/formatAllCode.js`, `backend/scripts/generateTokens.js`
 - For upload: `.env.local` at repo root with `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`.
 - Only mode `algorithms` is supported by `generateTokens.js` (`GAMEMODES = ["algorithms"]`). How `files` mode content was produced is `[UNVERIFIED]`: ask before adding files-mode content.
 
+## Importing from walkccc/LeetCode
+`backend/scripts/importWalkccc.js` fills `backend/data/algorithms/{cpp,java,python}/` from a local clone (main solution per problem, files under 5 typable lines skipped, slug and LeetCode URL derived from the title):
+```bash
+git clone --depth 1 https://github.com/walkccc/LeetCode backend/sources/walkccc   # gitignored
+npm run import:walkccc
+```
+Then continue at step 3. walkccc is MIT licensed: keep its copyright notice when redistributing.
+
 ## Steps
 1. Add source files:
    - Path: `backend/data/algorithms/<prism-language>/<Name>.<ext>`
@@ -33,7 +41,7 @@ Scripts: `backend/scripts/formatAllCode.js`, `backend/scripts/generateTokens.js`
    - Check the log: `[SUCCESS]` per file; `[WARNING]` = skipped (missing meta / unsupported language); `[ERROR]` = investigate.
 4. Spot-check one output file:
    - Indentation tokens have `skip: true`, each code line ends with a `newline` token, comments are `skip: true`.
-   - Lines with `/*` block comments are fully skipped (known limitation).
+   - Multi-line `/* */` comments are fully skipped; inline `/*arg=*/` comments are skipped tokens. Code before an unclosed `/*` is dropped (known limitation).
 5. Upload (confirm with owner first):
    ```bash
    npm run upload:tokens

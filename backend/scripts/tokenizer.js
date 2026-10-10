@@ -60,8 +60,14 @@ export function tokenizeCode(code, language) {
       continue;
     }
 
-    if (openIdx !== -1) {
-      inBlockComment = closeIdx === -1 || closeIdx < openIdx;
+    // Only a /* left open starts a skipped block. A comment closed on the
+    // same line (f(/*arg=*/1)) is left to Prism and skipped as a token
+    const opensBlock =
+      language !== "python" &&
+      openIdx !== -1 &&
+      line.lastIndexOf("/*") > line.lastIndexOf("*/");
+    if (opensBlock) {
+      inBlockComment = true;
       tokenLines.push(commentLine(line));
       continue;
     }
