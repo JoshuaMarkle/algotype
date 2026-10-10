@@ -29,42 +29,53 @@ import {
 } from "@/components/ui/DropdownMenu";
 import { getUserHistoryPaginated } from "@/lib/history";
 
-export default function PastTestsTable() {
+// history: the cached most recent results (newest first); total: number of
+// results on the account. Pages past the cached rows are fetched on demand.
+export default function PastTestsTable({
+  history = [],
+  total = 0,
+  loading: loadingHistory = false,
+}) {
   const router = useRouter();
-  const [tests, setTests] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const [totalRows, setTotalRows] = useState(0);
   const [pageIndex, setPageIndex] = useState(0);
   const pageSize = 10;
 
-  // Fetch paginated test history
+  const from = pageIndex * pageSize;
+  const cached = from + pageSize <= history.length || history.length >= total;
+
+  const [remote, setRemote] = useState({ page: null, tests: [] });
+  const [error, setError] = useState(null);
+
+  // Fetch pages that are not in the cache
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
+    setError(null);
+    if (loadingHistory || cached) return;
+    let alive = true;
 
-      try {
-        const { data, count } = await getUserHistoryPaginated({
-          page: pageIndex,
-          pageSize,
-        });
-
-        setTests(data);
-        setTotalRows(count || 0);
-      } catch (err) {
+    getUserHistoryPaginated({ page: pageIndex, pageSize })
+      .then(({ data }) => alive && setRemote({ page: pageIndex, tests: data }))
+      .catch((err) => {
         console.error(err);
-        setError(err.message || "Something went wrong.");
-        setTests([]);
-        setTotalRows(0);
-      } finally {
-        setLoading(false);
-      }
-    };
+        if (alive) setError(err.message || "Something went wrong.");
+      });
 
-    fetchData();
-  }, [pageIndex]);
+    return () => {
+      alive = false;
+    };
+  }, [pageIndex, cached, loadingHistory]);
+
+  const tests = useMemo(
+    () =>
+      cached
+        ? history.slice(from, from + pageSize)
+        : remote.page === pageIndex
+          ? remote.tests
+          : [],
+    [cached, history, from, remote, pageIndex],
+  );
+  const loading =
+    loadingHistory || (!cached && remote.page !== pageIndex && !error);
+  const totalRows = Math.max(total, history.length);
 
   const columns = useMemo(
     () => [

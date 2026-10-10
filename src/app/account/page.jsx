@@ -7,13 +7,14 @@ import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import ProgressGraph from "@/components/graphs/ProgressGraph";
 import PastTestsTable from "@/components/tables/PastTestsTable";
-import { getUserHistory } from "@/lib/history";
+import { loadUserHistory } from "@/lib/history";
 import { getCurrentProfile } from "@/lib/auth";
 
 export default function AccountPage() {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const [historyData, setHistoryData] = useState([]);
+  const [recent, setRecent] = useState({ history: [], total: 0 });
   const [loadingHistory, setLoadingHistory] = useState(true);
 
   const router = useRouter();
@@ -38,8 +39,9 @@ export default function AccountPage() {
 
       // Fetch history after user is verified
       try {
-        const history = await getUserHistory(); // pass user if needed
+        const { history, total } = await loadUserHistory();
         if (!alive) return;
+        setRecent({ history, total });
         const reversed = [...history].reverse();
         const indexed = reversed.map((d, i) => ({ ...d, index: i }));
         setHistoryData(indexed);
@@ -150,7 +152,11 @@ export default function AccountPage() {
 
             {/* History Table */}
             <section>
-              <PastTestsTable />
+              <PastTestsTable
+                history={recent.history}
+                total={recent.total}
+                loading={loadingHistory}
+              />
             </section>
           </div>
         ) : (

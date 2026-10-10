@@ -2,6 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
 import StructuredData from "@/components/seo/StructuredData";
+import PreferenceSync from "@/components/providers/PreferenceSync";
 import { SETTINGS_KEY } from "@/lib/settings";
 import { themeInitScript } from "@/lib/themes";
 import "@/app/globals.css";
@@ -69,6 +70,7 @@ export default function RootLayout({ children }) {
       >
         {children}
         <StructuredData />
+        <PreferenceSync />
       </body>
     </html>
   );
