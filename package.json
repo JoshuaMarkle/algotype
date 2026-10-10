@@ -6,6 +6,7 @@
   "scripts": {
     "generate:tokens": "node backend/scripts/generateTokens.js",
     "upload:tokens": "node backend/scripts/uploadTokens.js",
+    "import:walkccc": "node backend/scripts/importWalkccc.js",
     "dev": "next dev --turbopack",
     "build": "next build",
     "postbuild": "next-sitemap",

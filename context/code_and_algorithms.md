@@ -35,7 +35,7 @@ Selected with `*` in `getCurrentProfile`; at least `id`, `username`. Created by 
 Per source line:
 1. Empty line → `[]`.
 1b. Python only: a line whose statement starts with `"""`/`'''` (optional `r`/`u` prefix) is a docstring; it and every line up to the closing quotes become one skipped `comment` token. A triple-quoted string inside an expression (`s = """`, `"""a""" + b`) is still typed.
-2. C-style block comments: tracked by `inBlockComment` using `indexOf("/*")` / `indexOf("*/")`. Any line that opens or is inside a block comment becomes one `{type:"comment", skip:true}` token. Gotcha: a line with code **and** `/*` is skipped entirely; `/*` inside strings also triggers it.
+2. C-style block comments (not Python): a line whose last `/*` is not closed starts a block; it and every line up to the `*/` become one `{type:"comment", skip:true}` token. A comment closed on the same line (`f(/*arg=*/1)`) goes to Prism and is a skipped token inside the line. Gotcha: code before an unclosed `/*` is skipped with it; `/*` inside strings still triggers it.
 3. Otherwise `Prism.tokenize(line, Prism.languages[language])` on the single line (no cross-line context, so multi-line strings/docstrings are tokenized per line).
 4. `normalizeTokens`: flattens nested Prism tokens (`extractContent`), splits each token into runs of whitespace (`type:"space"`) and non-whitespace (keeps Prism type). Prism `comment` tokens get `skip:true`. Leading and trailing `space` tokens are marked `skip` (indentation is never typed).
 5. `addWlengths`: right-to-left scan assigning `wlength`.

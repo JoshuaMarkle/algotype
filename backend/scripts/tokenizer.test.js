@@ -73,6 +73,34 @@ describe("tokenizeCode", () => {
     const [line] = tokenizeCode('"""x"""', "javascript");
     expect(fullySkipped(line)).toBe(false);
   });
+
+  it("types code around inline /* */ comments", () => {
+    const [line] = tokenizeCode("dfs(g, /*prev=*/-1, 0);", "cpp");
+    expect(typable(line).join("")).toBe("dfs(g, -1, 0);");
+    expect(line.find((t) => t.type === "comment")).toMatchObject({
+      content: "/*prev=*/",
+      skip: true,
+    });
+  });
+
+  it("skips multi-line block comments, including one-line /** */", () => {
+    const lines = tokenizeCode(
+      "/**\n * Doc\n */\nint a;\n/** one */\nint b; /* tail\n more */\nint c;",
+      "java",
+    );
+    expect(lines.slice(0, 3).every(fullySkipped)).toBe(true);
+    expect(typable(lines[3]).join("")).toBe("int a;");
+    expect(fullySkipped(lines[4])).toBe(true);
+    // Code before a /* left open is dropped with the comment (known limit)
+    expect(fullySkipped(lines[5])).toBe(true);
+    expect(fullySkipped(lines[6])).toBe(true);
+    expect(typable(lines[7]).join("")).toBe("int c;");
+  });
+
+  it("does not treat /* in Python as a block comment", () => {
+    const [line] = tokenizeCode('glob = "*.py/*"', "python");
+    expect(fullySkipped(line)).toBe(false);
+  });
 });
 
 describe("countTypableLines", () => {
