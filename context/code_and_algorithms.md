@@ -74,7 +74,6 @@ State: `lineIdx`, `tokenIdx` (cursor token), `typed` (chars correct in current t
 - `time = round(seconds)`. `timeTillWpmDrop` is used only by the unused `StatPanel`.
 - `TypingTest` samples `{wpm, acc, time}` every 1 s into `wpmOverTime` while running.
 - `TypingResults`: appends a final point if WPM changed, thins to 25 points (`cleanData` in `lib/utils.js`), shows max/min WPM and `timeLost = ceil(time * (1 - acc/100))`. WPM > 999 shows "Inf".
-- Gotcha: `CodeBox.jsx` calls `calculateStats(startedRef.current, stats)` (missing `ended`), so the landing demo always shows 0 WPM / 100%.
 
 ## 6. Random test and filters — `src/components/typing/utils/randomTest.js`
 - `getRandomTest({minLength, maxLength, language, mode})` → Supabase RPC `get_random_challenge(_min_length, _max_length, _language, _mode)`; returns first row. Length = `lines`.
@@ -93,7 +92,7 @@ State: `lineIdx`, `tokenIdx` (cursor token), `typed` (chars correct in current t
 - Password strength (`PasswordStrengthMeter.jsx` `evaluatePasswordStrength`): 0 <6 chars; 1 <8 chars or <3 char classes; 3 ≥12 chars and all 4 classes; else 2. Sign-up requires score ≥ 2.
 
 ## 8. Landing demo — `src/components/effects/CodeBox.jsx`
-- Re-implements token traversal with refs + `setTimeout` to auto-type `src/data/quicksort.json`: 40–80 ms per char, 5% chance per token of a 0–5 char typo burst, 300 ms pause then backspacing at 150–200 ms/char. Reuses `TypingRenderer`.
+- A bot auto-types `src/data/quicksort.json` by sending fake key events (`{ key, preventDefault }`) to the real `useTypingState` hook, so skipping and finishing match a real test. 40–80 ms per key plus a short pause after each token, ~1.25% chance per key of a 1–5 char typo burst, 300 ms pause then backspacing at 150–200 ms/char. Header WPM/acc refresh every 0.5 s (frozen while paused). Restart remounts the inner `DemoRun` component. Reuses `TypingRenderer`.
 
 ## 9. Other gotchas
 - `src/middleware.js` runs on `/account/*`: it refreshes the Supabase session cookies and redirects signed-out requests to `/login`. `account/page.jsx` also redirects client-side as a fallback. `/settings` is public (Appearance works signed out).

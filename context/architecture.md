@@ -30,9 +30,9 @@ Gitignored, local-only content dirs: `backend/data`, `backend/leetcode`, `backen
 | Route | File | Type | Notes |
 |---|---|---|---|
 | `/` | `page.js` | server | Landing: hero, `RandomButton`, `CodeBox` demo, FAQ |
-| `/algorithms` | `algorithms/page.js` | server shell | `<ProblemsTable mode="algorithms" />` |
+| `/algorithms` | `algorithms/page.js` | server shell | `components/layouts/ModeIndexPage.jsx` (heading + `<ProblemsTable mode="algorithms" />`) |
 | `/algorithms/[slug]` | `algorithms/[slug]/page.js` | dynamic server | Fetches `challenges` by `slug` (no mode filter), renders `<TypingTest challenge slug />` |
-| `/files` | `files/page.js` | server shell | `<ProblemsTable mode="files" />` |
+| `/files` | `files/page.js` | server shell | `ModeIndexPage` with `mode="files"` |
 | `/files/[slug]` | `files/[slug]/page.js` | dynamic server | Fetches by `slug` + `mode='files'`; **passes wrong props to TypingTest (bug)** |
 | `/drills` | `drills/page.js` | server shell | Syntax drills picker (`components/drills/DrillPicker.jsx`): drill types, language, length; last choice in `localStorage` `algotype_drills` |
 | `/drills/[slug]` | `drills/[slug]/page.js` | dynamic server | Slug `<language>-<type>[-<type>...]` (+ `?length=short\|medium\|long`), invalid → 404. `DrillTest` generates the drill in the browser; no Supabase read |
