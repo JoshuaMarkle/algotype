@@ -40,7 +40,8 @@ Gitignored, local-only content dirs: `backend/data`, `backend/leetcode`, `backen
 | `/settings` | `settings/page.jsx` | client | Tabs: account / appearance / theme |
 | `/login` (+ `/password-reset`, `/password-reset/callback`, `/verify-email`) | `login/**` | mixed | Auth forms |
 | `/signup` (+ `/success`) | `signup/**` | mixed | Sign-up form, "check your email" page |
-| `/auth/callback` | `auth/callback/route.js` | route handler | `exchangeCodeForSession(code)` then redirect to `?next=` (relative paths only, default `/account`); errors go to `/login?error=` |
+| `/auth/callback` | `auth/callback/route.js` | route handler | `exchangeCodeForSession(code)` then redirect to `?next=` (relative paths only, default `/account`); errors go to `?next=` when given (provider linking from `/settings`), else `/login?error=` |
+| `/auth/confirm` | `auth/confirm/route.js` | route handler | Email links: `verifyOtp({ type, token_hash })` on the server, then redirect via `confirmRedirectPath` (`src/lib/authRedirects.js`); bad links go to `/login?error=` (`/login/password-reset?error=` for recovery) |
 | `/privacy`, `/terms` | `privacy/page.js`, `terms/page.js` | static | Legal text |
 | `/colors` | `colors/page.js` | static | Internal design-token preview page (publicly reachable) |
 | 404 | `not-found.jsx` | static | |

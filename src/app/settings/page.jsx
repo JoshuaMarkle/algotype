@@ -10,6 +10,7 @@ import SettingsSidebar from "@/components/layouts/SettingsSidebar";
 import ThemeSettings from "@/components/settings/ThemeSettings";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/ToggleGroup";
+import LoginMethods from "@/components/settings/LoginMethods";
 import { getCurrentProfile, deleteAccount } from "@/lib/auth";
 import { formatIsoDate, langToNatural } from "@/lib/utils";
 import { DEFAULT_SETTINGS, getSettings, setSetting } from "@/lib/settings";
@@ -84,12 +85,6 @@ function AccountSettings({ user }) {
   const created_at = user.created_at;
   const avatar_url = user.avatar_url;
 
-  // Providers
-  const providers = user.providers ?? [];
-  const providerEmail = providers.includes("email");
-  const providerGithub = providers.includes("github");
-  const providerGoogle = providers.includes("google");
-
   return (
     <section>
       {/* Avatar + Stats */}
@@ -141,38 +136,7 @@ function AccountSettings({ user }) {
           </tr>
         </tbody>
       </table>
-      <h2 className="text-2xl mt-16">Providers</h2>
-      <table className="w-full">
-        <colgroup>
-          <col className="w-64"></col>
-        </colgroup>
-        <tbody>
-          <tr>
-            <td className="text-fg-2">Email/Password</td>
-            {providerEmail ? (
-              <td>Connected</td>
-            ) : (
-              <td className="text-fg-2">Not Provided</td>
-            )}
-          </tr>
-          <tr>
-            <td className="text-fg-2">Github</td>
-            {providerGithub ? (
-              <td>Connected</td>
-            ) : (
-              <td className="text-fg-2">Not Provided</td>
-            )}
-          </tr>
-          <tr>
-            <td className="text-fg-2">Google</td>
-            {providerGoogle ? (
-              <td>Connected</td>
-            ) : (
-              <td className="text-fg-2">Not Provided</td>
-            )}
-          </tr>
-        </tbody>
-      </table>
+      <LoginMethods />
       <Button variant="destructive" onClick={deleteAccount} className="mt-16">
         Delete Account
       </Button>

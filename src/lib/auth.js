@@ -137,20 +137,61 @@ export async function unlinkProvider(provider) {
   const { error: unlinkError } = await supabase.auth.unlinkIdentity(identity);
   if (unlinkError) throw new Error(unlinkError.message);
 
+  // The session's app_metadata.providers is stale until it is refreshed
+  await supabase.auth.refreshSession();
   clearProfileCache();
   return true;
 }
 
+export async function getIdentities() {
+  const { data, error } = await supabase.auth.getUserIdentities();
+  if (error) throw new Error(error.message);
+  return data?.identities ?? [];
+}
+
 // --- Password Management ---
 
-export async function addPasswordToUser(email, password) {
-  const { data, error } = await supabase.auth.updateUser({ email, password });
+// Sets or changes the password of the signed-in user. Accounts created with
+// GitHub/Google have no "email" identity, so the has_password flag records
+// that a password was added. With "Secure password change" on, Supabase
+// rejects the change until the user enters the code from
+// sendReauthenticationCode(); callers check isReauthenticationError().
+export async function setPassword(password, nonce) {
+  const { data, error } = await supabase.auth.updateUser({
+    password,
+    ...(nonce ? { nonce } : {}),
+    data: { has_password: true },
+  });
 
   if (error) {
-    throw new Error(error.message);
+    const err = new Error(error.message);
+    err.code = error.code;
+    throw err;
   }
 
+  clearProfileCache();
   return data;
+}
+
+export function isReauthenticationError(err) {
+  return (
+    err?.code === "reauthentication_needed" ||
+    /reauthentication/i.test(err?.message ?? "")
+  );
+}
+
+export async function sendReauthenticationCode() {
+  const { error } = await supabase.auth.reauthenticate();
+  if (error) throw new Error(error.message);
+}
+
+// Email sign-ups have an "email" identity with a password; OAuth accounts only
+// have one after setPassword()
+export function userHasPassword(user, identities) {
+  return (
+    identities.some((i) => i.provider === "email") ||
+    user?.user_metadata?.has_password === true
+  );
 }
 
 export async function requestPasswordReset(email) {

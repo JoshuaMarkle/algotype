@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { supabase } from "@/lib/supabaseClient";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Label from "@/components/ui/Label";
+import { setPassword as savePassword } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 export default function ResetPasswordForm({ className, ...props }) {
@@ -27,11 +27,8 @@ export default function ResetPasswordForm({ className, ...props }) {
     }
 
     try {
-      // Change user password
-      const { error } = await supabase.auth.updateUser({
-        password,
-      });
-      if (error) throw error;
+      // Change user password (the reset link already signed the user in)
+      await savePassword(password);
       setSuccess(true);
 
       // Redirect to homepage

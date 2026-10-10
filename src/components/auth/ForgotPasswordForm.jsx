@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 
@@ -22,6 +22,12 @@ export default function LoginForm({ className, ...props }) {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [magicSent, setMagicSent] = useState(false);
+
+  // Errors passed back from an expired or invalid reset link
+  useEffect(() => {
+    const message = new URLSearchParams(window.location.search).get("error");
+    if (message) setError(message);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +85,7 @@ export default function LoginForm({ className, ...props }) {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           {success && (
             <p className="text-green-500 text-sm">
-              Check your email to continue.
+              If an account exists for that email, a reset link is on its way.
             </p>
           )}
           {magicSent && (

@@ -5,3 +5,6 @@ node_modules
 .cpp
 .h
 .hpp
+
+# generated
+backend/emails/out
