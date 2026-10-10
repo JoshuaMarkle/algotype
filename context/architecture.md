@@ -36,6 +36,8 @@ Gitignored, local-only content dirs: `backend/data`, `backend/leetcode`, `backen
 | `/files/[slug]` | `files/[slug]/page.js` | dynamic server | Fetches by `slug` + `mode='files'`; **passes wrong props to TypingTest (bug)** |
 | `/drills` | `drills/page.js` | server shell | Syntax drills picker (`components/drills/DrillPicker.jsx`): drill types, language, length; last choice in `localStorage` `algotype_drills` |
 | `/drills/[slug]` | `drills/[slug]/page.js` | dynamic server | Slug `<language>-<type>[-<type>...]` (+ `?length=short\|medium\|long`), invalid → 404. `DrillTest` generates the drill in the browser; no Supabase read |
+| `/timed` | `timed/page.js` | redirect | Redirects to `/timed/python-30` |
+| `/timed/[slug]` | `timed/[slug]/page.js` | dynamic server | Slug `<language>-<seconds>` (python/cpp/java × 15/30/60), invalid → 404. `TimedTest` generates code in the browser with the drill generator; no Supabase read |
 | `/account` | `account/page.jsx` | client | Redirects to `/login` if no profile; stats, `ProgressGraph`, `PastTestsTable` |
 | `/settings` | `settings/page.jsx` | client | Tabs: account / appearance / theme |
 | `/login` (+ `/password-reset`, `/password-reset/callback`, `/verify-email`) | `login/**` | mixed | Auth forms |
@@ -70,6 +72,11 @@ Root layout: `src/app/layout.js` (fonts, metadata, Umami script, `StructuredData
 2. `buildDrillChallenge` (`src/lib/drills/index.js`) joins `count` snippets with blank lines, tokenizes them with `src/lib/tokenizer.js` (Prism language components imported statically) and returns a challenge-shaped object (`mode: "drills"`, `slug` = drill slug, `source: ""`).
 3. `DrillTest` renders `TypingTest` with `onNext` (new drill, also Tab), `onRestart` (same drill) and `nav` (replaces breadcrumb + filters). Results go to `history` with `mode: "drills"`, so past-test links open `/drills/<slug>`.
 4. Drills never read or write the `challenges` table.
+
+### Timed mode (browser only)
+1. `buildTimedChallenge` (`src/lib/timed/index.js`) builds a drill with every drill type mixed and enough snippets for the duration, then sets `mode: "timed"` and `slug` = `<language>-<seconds>`.
+2. `TimedTest` renders `TypingTest` with `timeLimit` (seconds): a countdown shows above the code, and when it reaches 0 the test ends at exactly `started + timeLimit`, later keys are ignored, and history stores only the completed typable lines. Running out of code before the time also ends the test.
+3. Language and duration pickers are links in the breadcrumb. Tab = new code, restart = same code.
 
 ### Accounts
 - `src/lib/auth.js` wraps Supabase Auth; OAuth/magic-link/signup redirect to `/auth/callback`; password reset → `/login/password-reset/callback`.

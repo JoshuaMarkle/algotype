@@ -34,6 +34,7 @@ import { useAutoScroll } from "@/components/typing/hooks/useAutoScroll";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
 import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 import { submitTestHistory } from "@/lib/history";
+import { countTypableLines } from "@/lib/tokenizer";
 import {
   DEFAULT_SETTINGS,
   getSettings,
@@ -42,13 +43,15 @@ import {
 import { cn, capitalize, langToNatural, naturalToLang } from "@/lib/utils";
 
 // `onNext`, `onRestart` and `nav` let other modes (syntax drills) replace the
-// random-challenge navigation: `nav` replaces the breadcrumb and filters
+// random-challenge navigation: `nav` replaces the breadcrumb and filters.
+// `timeLimit` (seconds) ends the test when the time runs out (timed mode)
 export default function TypingTest({
   challenge,
   slug,
   onNext,
   onRestart,
   nav,
+  timeLimit,
 }) {
   // Extract info from challenge
   const tokens = challenge.tokens;
@@ -77,13 +80,45 @@ export default function TypingTest({
     shouldShowCursor,
   } = useTypingState(tokens, stats);
 
+  // --- Time limit ---
+  // The test is finished when the code runs out or the time does
+  const [timeUp, setTimeUp] = useState(false);
+  const [now, setNow] = useState(null);
+  const finished = done || timeUp;
+
+  useEffect(() => {
+    if (!timeLimit || !started || finished) return;
+    const end = started + timeLimit * 1000;
+
+    const interval = setInterval(() => {
+      const t = performance.now();
+      if (t >= end) setTimeUp(true);
+      else setNow(t);
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [timeLimit, started, finished]);
+
+  const remaining = timeLimit
+    ? Math.ceil(
+        started && now
+          ? Math.max(0, timeLimit - (now - started) / 1000)
+          : timeLimit,
+      )
+    : null;
+
+  // Keys after the time ran out must not count
+  const onKeyDown = (e) => {
+    if (!finished) handleKey(e);
+  };
+
   // Scrolling
   const currentLineRef = useRef(null);
-  useAutoScroll(started, done, currentLineRef, tokenIdx, typed);
+  useAutoScroll(started, finished, currentLineRef, tokenIdx, typed);
 
   // Prevent scrolling while typing
   useEffect(() => {
-    if (started && !done) {
+    if (started && !finished) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -92,14 +127,14 @@ export default function TypingTest({
     return () => {
       document.body.style.overflow = "";
     };
-  }, [started, done]);
+  }, [started, finished]);
 
   // Auto-focus the hidden textarea
   useEffect(() => textareaRef.current?.focus(), [textareaRef]);
 
   // Store wpm data every 1 seconds
   useEffect(() => {
-    if (!started || done) return;
+    if (!started || finished) return;
 
     const interval = setInterval(() => {
       const { wpm, acc, time } = calculateStats(started, null, stats); // expect ended == null
@@ -107,18 +142,42 @@ export default function TypingTest({
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [started, done, stats, ended]);
+  }, [started, finished, stats, ended]);
 
-  // Return results when done
+  // Return results when done. A timed test ends exactly at the limit and
+  // only counts the lines that were completed
   useEffect(() => {
-    if (started && done && !ended) {
-      const now = performance.now();
-      setEnded(now);
+    if (started && finished && !ended) {
+      const end = timeUp ? started + timeLimit * 1000 : performance.now();
+      setEnded(end);
 
-      const { wpm, acc, time } = calculateStats(started, now, stats);
-      submitTestHistory({ wpm, acc, time, language, lines, mode, slug });
+      const { wpm, acc, time } = calculateStats(started, end, stats);
+      const typedLines = timeUp
+        ? countTypableLines(tokens.slice(0, lineIdx))
+        : lines;
+      submitTestHistory({
+        wpm,
+        acc,
+        time,
+        language,
+        lines: typedLines,
+        mode,
+        slug,
+      });
     }
-  }, [started, done, ended, language, lines, mode, slug]);
+  }, [
+    started,
+    finished,
+    ended,
+    timeUp,
+    timeLimit,
+    tokens,
+    lineIdx,
+    language,
+    lines,
+    mode,
+    slug,
+  ]);
 
   // Appearance settings (read after mount so SSR and hydration match)
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
@@ -211,7 +270,7 @@ export default function TypingTest({
       ></div>
       <textarea
         ref={textareaRef}
-        onKeyDown={handleKey}
+        onKeyDown={onKeyDown}
         className="absolute w-0 h-0 opacity-0"
       />
 
@@ -410,11 +469,22 @@ export default function TypingTest({
       <div
         className={cn(
           "transition-opacity duration-500",
-          done
+          finished
             ? "opacity-0 pointer-events-none absolute"
             : "opacity-100 relative",
         )}
       >
+        {timeLimit && (
+          <div
+            className={cn(
+              "px-4 pb-2 font-mono text-2xl transition-colors",
+              started ? "text-primary" : "text-fg-3",
+            )}
+            aria-label="Seconds left"
+          >
+            {remaining}
+          </div>
+        )}
         <TypingRenderer
           tokens={tokens}
           lineIdx={lineIdx}
@@ -433,7 +503,7 @@ export default function TypingTest({
       <div
         className={cn(
           "flex-1 flex transition-opacity duration-500",
-          done
+          finished
             ? "opacity-100 relative"
             : "opacity-0 pointer-events-none absolute",
         )}

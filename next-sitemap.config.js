@@ -1,5 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
+// Timed tests are /timed/<language>-<seconds> (src/lib/timed). Duplicated
+// here because this config runs in plain Node without the `@/` alias
+const TIMED_PATHS = ["python", "cpp", "java"].flatMap((language) =>
+  [15, 30, 60].map((seconds) => ({ loc: `/timed/${language}-${seconds}` })),
+);
+
 // List every challenge page from Supabase (responses are capped at 1000 rows)
 async function getChallengePaths() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -33,6 +39,7 @@ export default {
   // Internal, private or one-off auth pages
   exclude: [
     "/colors",
+    "/timed", // redirects to /timed/python-30
     "/account",
     "/settings",
     "/login/password-reset*",
@@ -49,11 +56,11 @@ export default {
   },
   async additionalPaths() {
     try {
-      return await getChallengePaths();
+      return [...TIMED_PATHS, ...(await getChallengePaths())];
     } catch (err) {
       // Placeholder env (CI) or Supabase unreachable: keep the static pages
       console.warn("Sitemap: could not list challenges:", err.message);
-      return [];
+      return TIMED_PATHS;
     }
   },
 };
