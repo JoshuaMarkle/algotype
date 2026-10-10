@@ -28,7 +28,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | X6 | Profile cache (15 min) not cleared on login/account switch | done | `src/lib/auth.js` |
 | X7 | Add `.env.example` documenting the 4 env vars | done | `.env.example`, `.gitignore` |
 | X8 | Add CI (lint + test + build on PR) | done | `.github/workflows/ci.yml` |
-| X9 | Add tests for pure logic: `calculateStats` and `useTypingState` done (Vitest). Tokenizer helpers still untested: they live inside a script with top-level side effects, so they need extracting into an importable module first | in-progress | `src/components/typing/**`, `backend/scripts/generateTokens.js` |
+| X9 | Add tests for pure logic: `calculateStats`, `useTypingState` and the tokenizer (now importable from `backend/scripts/tokenizer.js`) | done | `src/components/typing/**`, `backend/scripts/tokenizer*.js` |
 | X10 | Fix lint warnings: missing `alt` (lucide `Image` icon) and missing `lines` dep | done | `TypingResults.jsx:194`, `TypingTest.jsx:108` |
 | X11 | Sitemap had no challenge pages on Vercel (read gitignored `backend/tokens`). Now lists every challenge from Supabase at build time; private/auth pages and `/colors` excluded | done | `next-sitemap.config.js` |
 | X12 | `/colors` internal design page is public and references undefined CSS vars. Decided: keep it (branding) but `noindex` and out of the sitemap | done | `src/app/colors/page.js` |
@@ -40,6 +40,8 @@ Update this file whenever a task starts, finishes, or is discovered.
 | X19 | No error boundary: a render error showed a blank page. Added `error.jsx` (retry + home) and `global-error.jsx` | done | `src/app/error.jsx`, `src/app/global-error.jsx` |
 | X20 | Polish: "achive" typo in site description, missing-challenge 404s titled "Algorithms/Files | AlgoType", footer year hardcoded to 2025 | done | `src/app/layout.js`, `src/app/*/[slug]/page.js`, `Footer.jsx` |
 | X21 | Supabase advisors (2026-10-10): applied migration `harden_functions_and_rls` with Joshua's OK. `handle_new_user` no longer callable over the API (trigger verified to still fire), `delete_account` signed-in only, `search_path` pinned on 3 functions, RLS policies use `(select auth.uid())`. Performance advisors now clean. Still open, dashboard only (Joshua): leaked-password protection, email OTP expiry under 1 h, Postgres patch upgrade. `is_username_available`/`is_email_available` stay anon-callable on purpose (sign-up form) | done | Supabase, `supabase/schema.sql` |
+| X22 | Indented comment-only lines (stored as `[indent, newline, comment]` in 13 live challenges) made the user press Space + Enter; Python docstrings had to be typed; `lines` counted blank/comment lines. Engine now skips lines with nothing to type; tokenizer skips docstrings, fully skips comment-only lines, and `lines` = typable lines | done | `useTypingState.js`, `backend/scripts/tokenizer.js`, `generateTokens.js` |
+| X23 | Re-tokenize live challenges so docstrings are skipped and `lines` is the typable count (source files are gone; rebuild source from stored tokens). Production write: needs Joshua's OK | needs-decision | Supabase `challenges` |
 | X14 | Settings has no UI for linking/unlinking providers (`linkProvider`/`unlinkProvider` now use `linkIdentity`/`unlinkIdentity`; needs Supabase "Manual linking" on) | todo | `src/app/settings/page.jsx`, `src/lib/auth.js` |
 
 ## Later (features from README / commented UI)
@@ -64,7 +66,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T7 | `formatAllCode.js` uses cwd-relative paths (`data/algorithms`), must run from `backend/`; inconsistent with other scripts run from root | done | `backend/scripts/formatAllCode.js` |
 | T8 | `format_errors.txt` log is committed with absolute paths from the owner's machine | needs-decision | `backend/scripts/logs/format_errors.txt` |
 | T9 | Email templates all export `AlgotypeMagicLinkEmail`; `@react-email/components` not a dependency | done | `backend/emails/*.jsx` |
-| T10 | Tokenizer block-comment detection is naive (`/*` in strings, code before `/*` dropped); no handling of Python docstrings | todo | `backend/scripts/generateTokens.js` |
+| T10 | Tokenizer block-comment detection is naive (`/*` in strings, code before `/*` dropped). Python docstrings handled 2026-10-10 | todo | `backend/scripts/generateTokens.js` |
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | done | various |
 
 ## Done

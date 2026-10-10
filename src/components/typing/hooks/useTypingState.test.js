@@ -201,6 +201,36 @@ describe("useTypingState", () => {
     expect(result.current.done).toBe(true);
   });
 
+  it("skips indented comment-only lines that carry an indent and newline", () => {
+    // Shape of older uploaded rows: "    # note" kept a typable indent
+    const indentedComment = [
+      { type: "space", content: "    " },
+      { type: "newline", content: "↵" },
+      { type: "comment", content: "# note", skip: true },
+    ];
+    const { result } = setup([
+      [
+        { type: "plain", content: "a", wlength: 1 },
+        { type: "newline", content: "↵" },
+      ],
+      indentedComment,
+      [{ type: "space", content: "\t" }, { type: "newline", content: "↵" }],
+      indentedComment,
+      [
+        { type: "plain", content: "b", wlength: 1 },
+        { type: "newline", content: "↵" },
+      ],
+      indentedComment,
+    ]);
+    type(result, ["a", "Enter"]);
+    expect(result.current.lineIdx).toBe(4);
+    expect(result.current.currToken.content).toBe("b");
+
+    // Trailing comment lines do not hold the test open either
+    press(result, "b");
+    expect(result.current.done).toBe(true);
+  });
+
   it("ignores keys after the test is done", () => {
     const { result, stats } = setup([
       [{ type: "plain", content: "a", wlength: 1 }],

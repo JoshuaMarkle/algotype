@@ -6,7 +6,7 @@
 ```json
 {
   "title": "...", "description": "...",
-  "lines": 42,                  // number of token lines (after trailing empty line removed)
+  "lines": 42,                  // number of typable lines (blank and comment-only lines excluded)
   "language": "python",         // Prism language id = folder name
   "source": "https://...",      // from .meta, "" if missing
   "slug": "<FileBaseName>-<language>",
@@ -31,22 +31,24 @@
 ### `users` row
 Selected with `*` in `getCurrentProfile`; at least `id`, `username`. Created by the `on_auth_user_created` trigger on `auth.users` (`public.handle_new_user`, SECURITY DEFINER): username = metadata `username` or `user_name` (GitHub), else `user`; on a unique clash appends `-` + 4 hex chars. Verified via Supabase MCP 2026-10-09. RLS: users can select/insert their own `users` row and select/insert their own `history` rows (`history.user_id` defaults to `auth.uid()`).
 
-## 2. Tokenizer — `backend/scripts/generateTokens.js`
+## 2. Tokenizer — `backend/scripts/tokenizer.js` (`tokenizeCode`, `countTypableLines`), driven by `generateTokens.js`
 Per source line:
 1. Empty line → `[]`.
+1b. Python only: a line whose statement starts with `"""`/`'''` (optional `r`/`u` prefix) is a docstring; it and every line up to the closing quotes become one skipped `comment` token. A triple-quoted string inside an expression (`s = """`, `"""a""" + b`) is still typed.
 2. C-style block comments: tracked by `inBlockComment` using `indexOf("/*")` / `indexOf("*/")`. Any line that opens or is inside a block comment becomes one `{type:"comment", skip:true}` token. Gotcha: a line with code **and** `/*` is skipped entirely; `/*` inside strings also triggers it.
 3. Otherwise `Prism.tokenize(line, Prism.languages[language])` on the single line (no cross-line context, so multi-line strings/docstrings are tokenized per line).
 4. `normalizeTokens`: flattens nested Prism tokens (`extractContent`), splits each token into runs of whitespace (`type:"space"`) and non-whitespace (keeps Prism type). Prism `comment` tokens get `skip:true`. Leading and trailing `space` tokens are marked `skip` (indentation is never typed).
 5. `addWlengths`: right-to-left scan assigning `wlength`.
-6. Comment-only line → all spaces skipped, no newline token (whole line auto-skipped).
+6. Line with nothing to type (only spaces and comments) → every token skipped, no newline token.
 7. Else `insertNewlineToken` inserts `{type:"newline", content:"↵"}` right after the last non-skip token (so a trailing inline comment comes after the newline and is skipped).
-8. Trailing empty line removed; output written with `slug = baseName + "-" + language`.
+8. Trailing empty line removed; `lines = countTypableLines(tokens)`; output written with `slug = baseName + "-" + language`.
 - Only `GAMEMODES = ["algorithms"]` is processed. Unsupported Prism languages are skipped with a warning; a missing `.meta` file skips that file.
 
 ## 3. Typing engine — `src/components/typing/hooks/useTypingState.js`
 State: `lineIdx`, `tokenIdx` (cursor token), `typed` (chars correct in current token), `wrong` (string of wrong chars), `started` (`performance.now()` of first key), `done`.
 
-- `skipUntilTypable(line, token)`: resets `typed`/`wrong`, walks forward skipping `skip` tokens until a `newline`, `space`, or non-empty token; if none left → `finish()` (`done=true`). Runs once on mount to land on the first typable token.
+- `typableLines`: per line, whether it has a non-skip, non-space, non-newline token. Lines without one are skipped whole (older rows store indented comment lines as `[indent, newline, comment]` with the indent and newline not skipped).
+- `skipUntilTypable(line, token)`: resets `typed`/`wrong`, skips non-typable lines, walks forward skipping `skip` tokens until a `newline`, `space`, or non-empty token; if none left → `finish()` (`done=true`). Runs once on mount to land on the first typable token.
 - `handleKey(e)`:
   - Ignores input if `done`; returns on `Tab` (Tab is handled globally in `TypingTest`).
   - First key of any kind (including Shift) sets `started` → starts the timer.

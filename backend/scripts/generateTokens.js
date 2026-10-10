@@ -1,8 +1,9 @@
 import fs from "fs/promises";
 import path from "path";
 import chalk from "chalk";
-import Prism from "prismjs";
 import loadLanguages from "prismjs/components/index.js";
+
+import { countTypableLines, tokenizeCode } from "./tokenizer.js";
 
 const GAMEMODES = ["algorithms"];
 const BASE_DIR = path.join(process.cwd(), "backend/data");
@@ -42,65 +43,12 @@ for (const mode of GAMEMODES) {
       try {
         const meta = JSON.parse(await fs.readFile(metaPath, "utf8"));
         const code = await fs.readFile(filePath, "utf8");
-        const lines = code.split("\n");
-
-        let inBlockComment = false;
-        const tokenLines = [];
-
-        for (const line of lines) {
-          if (line.trim() === "") {
-            tokenLines.push([]);
-            continue;
-          }
-
-          const openIdx = line.indexOf("/*");
-          const closeIdx = line.indexOf("*/");
-
-          if (inBlockComment) {
-            tokenLines.push([{ type: "comment", content: line, skip: true }]);
-            if (closeIdx !== -1 && (openIdx === -1 || closeIdx > openIdx)) {
-              inBlockComment = false;
-            }
-            continue;
-          }
-
-          if (openIdx !== -1) {
-            inBlockComment = closeIdx === -1 || closeIdx < openIdx;
-            tokenLines.push([{ type: "comment", content: line, skip: true }]);
-            continue;
-          }
-
-          const rawTokens = Prism.tokenize(line, Prism.languages[language]);
-          const normalized = normalizeTokens(rawTokens);
-          const withWlengths = addWlengths(normalized);
-
-          // Check if line is only spaces and a comment
-          const onlyCommentLine =
-            withWlengths.filter((t) => t.type !== "space").length === 1 &&
-            withWlengths.some((t) => t.type === "comment");
-
-          if (onlyCommentLine) {
-            const updated = withWlengths
-              .map((t) => {
-                if (t.type === "space") return { ...t, skip: true };
-                if (t.type === "newline") return null;
-                return t;
-              })
-              .filter(Boolean); // Remove newline tokens
-
-            tokenLines.push(updated);
-          } else {
-            tokenLines.push(insertNewlineToken(withWlengths));
-          }
-        }
-
-        if (tokenLines.length && tokenLines.at(-1).length === 0)
-          tokenLines.pop();
+        const tokenLines = tokenizeCode(code, language);
 
         const output = {
           title: meta.title,
           description: meta.description,
-          lines: tokenLines.length,
+          lines: countTypableLines(tokenLines),
           language,
           source: meta.source || "",
           slug: baseName + "-" + language,
@@ -133,111 +81,3 @@ for (const mode of GAMEMODES) {
 }
 
 console.log(chalk.blue("[COMPLETE]"));
-
-// --- Helper functions ---
-
-function normalizeTokens(tokens) {
-  const out = [];
-
-  for (const token of tokens) {
-    let content, type;
-    if (typeof token === "string") {
-      content = token;
-      type = "plain";
-    } else {
-      content = extractContent(token.content);
-      type = token.type || "plain";
-    }
-
-    if (typeof content !== "string") continue;
-
-    if (type === "comment") {
-      out.push({ type, content, skip: true });
-      continue;
-    }
-
-    let buf = "",
-      bufIsSpace = null;
-    for (const ch of content) {
-      const isSpace = /\s/.test(ch);
-      if (buf === "") {
-        buf = ch;
-        bufIsSpace = isSpace;
-      } else if (isSpace === bufIsSpace) {
-        buf += ch;
-      } else {
-        out.push(makeToken(buf, type, bufIsSpace));
-        buf = ch;
-        bufIsSpace = isSpace;
-      }
-    }
-    if (buf) out.push(makeToken(buf, type, bufIsSpace));
-  }
-
-  let firstReal = -1,
-    lastReal = -1;
-  for (let i = 0; i < out.length; i++) {
-    if (!out[i].skip && out[i].type !== "space") {
-      firstReal = i;
-      break;
-    }
-  }
-  for (let j = out.length - 1; j >= 0; j--) {
-    if (!out[j].skip && out[j].type !== "space") {
-      lastReal = j;
-      break;
-    }
-  }
-
-  if (firstReal !== -1) {
-    for (let i = 0; i < firstReal; ++i)
-      if (out[i].type === "space") out[i].skip = true;
-    for (let i = lastReal + 1; i < out.length; ++i)
-      if (out[i].type === "space") out[i].skip = true;
-  }
-
-  return out;
-}
-
-// Extract the content from the token
-function extractContent(input) {
-  if (typeof input === "string") return input;
-  if (Array.isArray(input)) return input.map(extractContent).join("");
-  if (typeof input === "object" && input !== null && "content" in input)
-    return extractContent(input.content);
-  return "";
-}
-
-function makeToken(content, baseType, isSpace) {
-  return { type: isSpace ? "space" : baseType, content };
-}
-
-function addWlengths(tokens) {
-  let count = 0;
-  for (let i = tokens.length - 1; i >= 0; i--) {
-    const t = tokens[i];
-    if (t.skip || t.type === "space") {
-      count = 0;
-    } else {
-      t.wlength = ++count;
-    }
-  }
-  return tokens;
-}
-
-function insertNewlineToken(tokens) {
-  const hasRealContent = tokens.some((t) => !t.skip);
-  if (!hasRealContent) return tokens;
-
-  let insertAt = tokens.length;
-  for (let i = tokens.length - 1; i >= 0; i--) {
-    if (!tokens[i].skip) {
-      insertAt = i + 1;
-      break;
-    }
-  }
-
-  const newlineToken = { type: "newline", content: "↵" };
-  tokens.splice(insertAt, 0, newlineToken);
-  return tokens;
-}
