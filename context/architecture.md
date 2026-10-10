@@ -34,6 +34,8 @@ Gitignored, local-only content dirs: `backend/data`, `backend/leetcode`, `backen
 | `/algorithms/[slug]` | `algorithms/[slug]/page.js` | dynamic server | Fetches `challenges` by `slug` (no mode filter), renders `<TypingTest challenge slug />` |
 | `/files` | `files/page.js` | server shell | `<ProblemsTable mode="files" />` |
 | `/files/[slug]` | `files/[slug]/page.js` | dynamic server | Fetches by `slug` + `mode='files'`; **passes wrong props to TypingTest (bug)** |
+| `/drills` | `drills/page.js` | server shell | Syntax drills picker (`components/drills/DrillPicker.jsx`): drill types, language, length; last choice in `localStorage` `algotype_drills` |
+| `/drills/[slug]` | `drills/[slug]/page.js` | dynamic server | Slug `<language>-<type>[-<type>...]` (+ `?length=short\|medium\|long`), invalid → 404. `DrillTest` generates the drill in the browser; no Supabase read |
 | `/account` | `account/page.jsx` | client | Redirects to `/login` if no profile; stats, `ProgressGraph`, `PastTestsTable` |
 | `/settings` | `settings/page.jsx` | client | Tabs: account / appearance / theme |
 | `/login` (+ `/password-reset`, `/password-reset/callback`, `/verify-email`) | `login/**` | mixed | Auth forms |
@@ -62,6 +64,12 @@ Root layout: `src/app/layout.js` (fonts, metadata, Umami script, `StructuredData
 5. On finish: `calculateStats` → `submitTestHistory` (`src/lib/history.js`) inserts into `history` if signed in → `TypingResults` shows chart + stats.
 6. Next test: `gotoRandomTest(filters)` → RPC `get_random_challenge` → `window.location.href = /<mode>/<slug>` (full page load).
 
+### Syntax drills (browser only)
+1. `src/lib/drills/templates.js` holds snippet templates per language (`python`, `cpp`, `java`) and drill type (`for`, `while`, `if`, `func`, `class`, `idiom`) with random names.
+2. `buildDrillChallenge` (`src/lib/drills/index.js`) joins `count` snippets with blank lines, tokenizes them with `src/lib/tokenizer.js` (Prism language components imported statically) and returns a challenge-shaped object (`mode: "drills"`, `slug` = drill slug, `source: ""`).
+3. `DrillTest` renders `TypingTest` with `onNext` (new drill, also Tab), `onRestart` (same drill) and `nav` (replaces breadcrumb + filters). Results go to `history` with `mode: "drills"`, so past-test links open `/drills/<slug>`.
+4. Drills never read or write the `challenges` table.
+
 ### Accounts
 - `src/lib/auth.js` wraps Supabase Auth; OAuth/magic-link/signup redirect to `/auth/callback`; password reset → `/login/password-reset/callback`.
 - Profile = `users` row + auth user fields, cached in `localStorage` (`algotype_profile`, 15 min) by `getCurrentProfile`.
@@ -72,7 +80,7 @@ Root layout: `src/app/layout.js` (fonts, metadata, Umami script, `StructuredData
 - `components/typing/*` depends on `lib/history`, `lib/utils`, `lib/supabaseClient` (via `utils/randomTest.js`), and `components/ui`.
 - `lib/auth.js` ↔ `lib/history.js` import each other (`clearHistoryCache`, `getCurrentUser`): circular import, works because only functions are used at call time.
 - `components/ui/*` are leaf primitives; only depend on `lib/utils` (`cn`) and `hooks/use-mobile`.
-- `backend/` is not imported by the app. It runs under Node only.
+- `backend/` is not imported by the app. It runs under Node only. The tokenizer core lives in `src/lib/tokenizer.js` (no Node APIs, languages must be loaded first); `backend/scripts/tokenizer.js` wraps it and loads Prism languages on demand.
 
 ## Unused / orphaned modules (verified by grep, not imported anywhere)
 - `src/components/typing/StatPanel.jsx` (also imports non-existent `@/components/typingtest/...`).

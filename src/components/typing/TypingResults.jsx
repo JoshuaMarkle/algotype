@@ -26,6 +26,7 @@ export default function TypingResults({
   samples,
   source,
   onNext,
+  onRestart = () => window.location.reload(),
 }) {
   const { wpm, acc, time } = calculateStats(started, ended, stats);
   const formattedTime = formatTime(time);
@@ -195,15 +196,17 @@ export default function TypingResults({
         </p>
       ) : (
         <div className="flex flex-row gap-16 text-fg-3">
-          <Link href={source} target="_blank" rel="noopener noreferrer">
-            <Button variant="ghost">
-              <ExternalLink className="size-4" />
-            </Button>
-          </Link>
+          {source && (
+            <Link href={source} target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost">
+                <ExternalLink className="size-4" />
+              </Button>
+            </Link>
+          )}
           <Button variant="ghost" onClick={takeScreenshot}>
             <ImageIcon className="size-4" />
           </Button>
-          <Button variant="ghost" onClick={() => window.location.reload()}>
+          <Button variant="ghost" onClick={onRestart}>
             <RefreshCcw className="size-4" />
           </Button>
           <Button variant="ghost" onClick={onNext}>

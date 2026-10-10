@@ -48,7 +48,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 ## Later (features from README / commented UI)
 | # | Task | Status | Files |
 |---|---|---|---|
-| L1 | Syntax Drills mode | todo | README, `src/app/page.js` (commented card) |
+| L1 | Syntax Drills mode (#10): `/drills` picker (for/while loops, conditionals, functions, classes, idioms × Python/C++/Java × 3/6/10 snippets) and `/drills/<lang>-<types>` typing page. Drills are generated in the browser from local templates, never from `challenges`; history rows use `mode: "drills"`. Navbar link added; the landing gamemode cards stay commented (L5) but the drills card now links to `/drills` | done | `src/lib/drills/*`, `src/lib/tokenizer.js`, `src/app/drills/**`, `src/components/drills/*`, `TypingTest.jsx`, `TypingResults.jsx`, `Navbar.jsx` |
 | L2 | Timed mode (15/30/60 s) | todo | README |
 | L3 | Save language/theme preferences to account | todo | README, `src/lib/settings.js` |
 | L4 | Themes | done (#16) | `src/lib/themes.js`, `src/app/globals.css` (Themes block), `src/app/layout.js`, `src/components/settings/ThemeSettings.jsx` |
@@ -71,6 +71,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | done | various |
 
 ## Done
+- 2026-10-10 — L1: syntax drills mode. Checked in a production build with Chromium: picker, start, Tab for a new drill, full typing run to results, invalid slug 404s.
 - 2026-10-10 — X18, X19, X20: shortcut keys, trailing-newline finish, error pages, metadata/footer polish. Smoke-tested a production build in Chromium against a mock Supabase (all pages, full typing run, Tab/next, language breadcrumb, settings toggles, 404 and error pages).
 - 2026-10-09 — T5, T7, T9, T11: removed `auth`↔`history` circular import, `formatAllCode.js` runs from any directory, email templates have their own export names + `@react-email/components` dev dependency, unused imports in `account/page.jsx`
 - 2026-10-09 — X3: server Supabase helper + `/account` middleware

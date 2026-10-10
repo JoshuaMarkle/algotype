@@ -37,7 +37,15 @@ import { submitTestHistory } from "@/lib/history";
 import { DEFAULT_SETTINGS, getSettings } from "@/lib/settings";
 import { cn, capitalize, langToNatural, naturalToLang } from "@/lib/utils";
 
-export default function TypingTest({ challenge, slug }) {
+// `onNext`, `onRestart` and `nav` let other modes (syntax drills) replace the
+// random-challenge navigation: `nav` replaces the breadcrumb and filters
+export default function TypingTest({
+  challenge,
+  slug,
+  onNext,
+  onRestart,
+  nav,
+}) {
   // Extract info from challenge
   const tokens = challenge.tokens;
   const mode = challenge.mode;
@@ -152,8 +160,8 @@ export default function TypingTest({ challenge, slug }) {
 
   // Next test keeps the active filters and stays in the current mode
   const gotoNextTest = useCallback(
-    () => gotoRandomTest({ ...filters, mode }),
-    [filters, mode],
+    () => (onNext ? onNext() : gotoRandomTest({ ...filters, mode })),
+    [onNext, filters, mode],
   );
 
   // Go to the next test if TAB is pressed
@@ -207,174 +215,183 @@ export default function TypingTest({ challenge, slug }) {
           "flex flex-row justify-between px-4 pt-4 pb-4 bg-background",
         )}
       >
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <button
-                className="text-sm font-medium text-muted-foreground hover:text-fg transition"
-                onClick={gotoNextTest}
-              >
-                {capitalize(mode)}
-              </button>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <button
-                className="text-sm font-medium text-muted-foreground hover:text-fg transition"
-                onClick={() => {
-                  const updatedFilters = { ...filters, language };
-                  setFilters(updatedFilters);
-                  sessionStorage.setItem(
-                    "filters",
-                    JSON.stringify(updatedFilters),
-                  );
-                  gotoRandomTest({ ...updatedFilters, mode });
-                }}
-              >
-                {langToNatural(language)}
-              </button>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{slug}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+        {nav ?? (
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <button
+                  className="text-sm font-medium text-muted-foreground hover:text-fg transition"
+                  onClick={gotoNextTest}
+                >
+                  {capitalize(mode)}
+                </button>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <button
+                  className="text-sm font-medium text-muted-foreground hover:text-fg transition"
+                  onClick={() => {
+                    const updatedFilters = { ...filters, language };
+                    setFilters(updatedFilters);
+                    sessionStorage.setItem(
+                      "filters",
+                      JSON.stringify(updatedFilters),
+                    );
+                    gotoRandomTest({ ...updatedFilters, mode });
+                  }}
+                >
+                  {langToNatural(language)}
+                </button>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{slug}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        )}
         <div className="flex flex-row gap-6">
           {/* Filter Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <ListFilter className="size-4 text-fg-2 hover:text-fg cursor-pointer" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-64" align="start">
-              <DropdownMenuLabel>Filters</DropdownMenuLabel>
+          {!nav && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <ListFilter className="size-4 text-fg-2 hover:text-fg cursor-pointer" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64" align="start">
+                <DropdownMenuLabel>Filters</DropdownMenuLabel>
 
-              {/* Dynamic Filter Badges */}
-              <div className="px-2 pb-1 space-x-1 space-y-1">
-                {filters.language && (
-                  <Badge
-                    variant="secondary"
-                    className="group cursor-pointer"
-                    onClick={() => handleRemoveFilter("language")}
-                  >
-                    <Languages className="size-4 group-hover:hidden" />
-                    <X className="size-4 hidden group-hover:inline" />
-                    {filters.language}
-                  </Badge>
-                )}
-                {filters.minLength && (
-                  <Badge
-                    variant="secondary"
-                    className="group cursor-pointer"
-                    onClick={() => handleRemoveFilter("minLength")}
-                  >
-                    <Ruler className="size-4 group-hover:hidden" />
-                    <X className="size-4 hidden group-hover:inline" />
-                    Min {filters.minLength}
-                  </Badge>
-                )}
-                {filters.maxLength && (
-                  <Badge
-                    variant="secondary"
-                    className="group cursor-pointer"
-                    onClick={() => handleRemoveFilter("maxLength")}
-                  >
-                    <Ruler className="size-4 group-hover:hidden" />
-                    <X className="size-4 hidden group-hover:inline" />
-                    Max {filters.maxLength}
-                  </Badge>
-                )}
-              </div>
+                {/* Dynamic Filter Badges */}
+                <div className="px-2 pb-1 space-x-1 space-y-1">
+                  {filters.language && (
+                    <Badge
+                      variant="secondary"
+                      className="group cursor-pointer"
+                      onClick={() => handleRemoveFilter("language")}
+                    >
+                      <Languages className="size-4 group-hover:hidden" />
+                      <X className="size-4 hidden group-hover:inline" />
+                      {filters.language}
+                    </Badge>
+                  )}
+                  {filters.minLength && (
+                    <Badge
+                      variant="secondary"
+                      className="group cursor-pointer"
+                      onClick={() => handleRemoveFilter("minLength")}
+                    >
+                      <Ruler className="size-4 group-hover:hidden" />
+                      <X className="size-4 hidden group-hover:inline" />
+                      Min {filters.minLength}
+                    </Badge>
+                  )}
+                  {filters.maxLength && (
+                    <Badge
+                      variant="secondary"
+                      className="group cursor-pointer"
+                      onClick={() => handleRemoveFilter("maxLength")}
+                    >
+                      <Ruler className="size-4 group-hover:hidden" />
+                      <X className="size-4 hidden group-hover:inline" />
+                      Max {filters.maxLength}
+                    </Badge>
+                  )}
+                </div>
 
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Size</DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem
-                        onClick={() => handleAddSizeFilter("large")}
-                      >
-                        Large
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() => handleAddSizeFilter("medium")}
-                      >
-                        Medium
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() => handleAddSizeFilter("small")}
-                      >
-                        Small
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger disabled className="text-fg-2">
-                          Custom
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuPortal>
-                          <DropdownMenuSubContent>
-                            <DropdownMenuLabel>Bounds</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <div className="flex flex-row gap-2">
-                              <Input
-                                placeholder="Lower"
-                                type="number"
-                                className="w-24"
-                                onChange={(e) =>
-                                  handleAddFilter(
-                                    "minLength",
-                                    Number(e.target.value),
-                                  )
-                                }
-                              />
-                              <Input
-                                placeholder="Upper"
-                                type="number"
-                                className="w-24"
-                                onChange={(e) =>
-                                  handleAddFilter(
-                                    "maxLength",
-                                    Number(e.target.value),
-                                  )
-                                }
-                              />
-                            </div>
-                          </DropdownMenuSubContent>
-                        </DropdownMenuPortal>
-                      </DropdownMenuSub>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Language</DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      {["Python", "C++", "JavaScript", "Java", "Rust"].map(
-                        (lang) => (
-                          <DropdownMenuItem
-                            key={lang}
-                            onClick={() =>
-                              handleAddFilter("language", naturalToLang(lang))
-                            }
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuSub>
+                    <DropdownMenuSubTrigger>Size</DropdownMenuSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent>
+                        <DropdownMenuItem
+                          onClick={() => handleAddSizeFilter("large")}
+                        >
+                          Large
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => handleAddSizeFilter("medium")}
+                        >
+                          Medium
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => handleAddSizeFilter("small")}
+                        >
+                          Small
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuSub>
+                          <DropdownMenuSubTrigger
+                            disabled
+                            className="text-fg-2"
                           >
-                            {lang}
-                          </DropdownMenuItem>
-                        ),
-                      )}
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-              </DropdownMenuGroup>
+                            Custom
+                          </DropdownMenuSubTrigger>
+                          <DropdownMenuPortal>
+                            <DropdownMenuSubContent>
+                              <DropdownMenuLabel>Bounds</DropdownMenuLabel>
+                              <DropdownMenuSeparator />
+                              <div className="flex flex-row gap-2">
+                                <Input
+                                  placeholder="Lower"
+                                  type="number"
+                                  className="w-24"
+                                  onChange={(e) =>
+                                    handleAddFilter(
+                                      "minLength",
+                                      Number(e.target.value),
+                                    )
+                                  }
+                                />
+                                <Input
+                                  placeholder="Upper"
+                                  type="number"
+                                  className="w-24"
+                                  onChange={(e) =>
+                                    handleAddFilter(
+                                      "maxLength",
+                                      Number(e.target.value),
+                                    )
+                                  }
+                                />
+                              </div>
+                            </DropdownMenuSubContent>
+                          </DropdownMenuPortal>
+                        </DropdownMenuSub>
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
 
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={clearFilters}>
-                Clear filters
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={gotoNextTest}>Apply</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                  <DropdownMenuSub>
+                    <DropdownMenuSubTrigger>Language</DropdownMenuSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent>
+                        {["Python", "C++", "JavaScript", "Java", "Rust"].map(
+                          (lang) => (
+                            <DropdownMenuItem
+                              key={lang}
+                              onClick={() =>
+                                handleAddFilter("language", naturalToLang(lang))
+                              }
+                            >
+                              {lang}
+                            </DropdownMenuItem>
+                          ),
+                        )}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
+                </DropdownMenuGroup>
+
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={clearFilters}>
+                  Clear filters
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={gotoNextTest}>
+                  Apply
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
 
           <Link href="/account">
             <CircleUser className="size-4 text-fg-2 hover:text-fg" />
@@ -421,6 +438,7 @@ export default function TypingTest({ challenge, slug }) {
           samples={wpmOverTime.current}
           source={source}
           onNext={gotoNextTest}
+          onRestart={onRestart}
         />
       </div>
     </div>
