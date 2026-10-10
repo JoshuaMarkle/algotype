@@ -42,10 +42,27 @@ export function useTypingState(tokens, stats) {
     setDone(true);
   }, [done]);
 
+  // Lines with something to type. A line holding only indentation, a
+  // newline and comments (older token data) is skipped as a whole
+  const typableLines = useMemo(
+    () =>
+      lines.map((line) =>
+        line.some(
+          (t) =>
+            !t.skip &&
+            t.type !== "space" &&
+            t.type !== "newline" &&
+            t.content?.length > 0,
+        ),
+      ),
+    [lines],
+  );
+
   // Is there a non-newline token to type after this position?
   const hasTypableAfter = useCallback(
     (line, token) => {
       for (let li = line; li < lines.length; li++) {
+        if (!typableLines[li]) continue;
         const start = li === line ? token + 1 : 0;
         for (let ti = start; ti < lines[li].length; ti++) {
           const t = lines[li][ti];
@@ -55,7 +72,7 @@ export function useTypingState(tokens, stats) {
       }
       return false;
     },
-    [lines],
+    [lines, typableLines],
   );
 
   // Skip to next valid token
@@ -66,7 +83,7 @@ export function useTypingState(tokens, stats) {
       let li = startLine;
       let ti = startToken;
       while (li < lines.length) {
-        while (ti < lines[li].length) {
+        while (typableLines[li] && ti < lines[li].length) {
           const token = lines[li][ti];
 
           // Skip tokens marked as skip
@@ -98,7 +115,7 @@ export function useTypingState(tokens, stats) {
       // Reached end of content
       finish();
     },
-    [lines, finish, hasTypableAfter],
+    [lines, typableLines, finish, hasTypableAfter],
   );
 
   // Skip forward at the start
