@@ -10,7 +10,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="text-4xl my-6">Privacy Policy</h1>
           <div className="text-sm text-fg-2">
             <p>Effective Date: June 1, 2025</p>
-            <p>Last Updated: June 7, 2025</p>
+            <p>Last Updated: October 10, 2026</p>
           </div>
 
           <p className="my-4">
@@ -29,6 +29,12 @@ export default function PrivacyPolicyPage() {
             The results of typing tests (e.g., WPM, accuracy, time) are stored
             in order to help you track your progress and generate graphs over
             time. All collected data is viewable via the account page.
+          </p>
+          <p className="my-4">
+            If you send feedback through the feedback page, we store your
+            message, the feedback type, the email address you choose to give
+            (optional) and, if you are signed in, your account. It is only used
+            to read and follow up on your feedback.
           </p>
 
           <h2 className="text-2xl my-4">How We Use This Data</h2>

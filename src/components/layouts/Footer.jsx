@@ -58,6 +58,12 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
+            <Link
+              href="/feedback"
+              className="transition-colors hover:text-blue-400"
+            >
+              Feedback
+            </Link>
           </div>
         </nav>
       </div>
