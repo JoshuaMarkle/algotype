@@ -1,88 +1,28 @@
-import {
-  Html,
-  Head,
-  Preview,
-  Body,
-  Container,
-  Section,
-  Text,
-  Link,
-  Img,
-  Tailwind,
-} from "@react-email/components";
 import * as React from "react";
 
-const baseUrl = "https://algotype.net";
+import EmailLayout, {
+  ActionButton,
+  Paragraph,
+  confirmLink,
+} from "./components/EmailLayout.jsx";
 
-export default function AlgotypeChangeEmail({ magicLink, userName }) {
+// Supabase template: "Change Email Address"
+export default function AlgotypeChangeEmail({
+  link = confirmLink("email_change"),
+  email = "{{ .Email }}",
+  newEmail = "{{ .NewEmail }}",
+}) {
   return (
-    <Html>
-      <Head />
-      <Preview>Change your email address</Preview>
-      <Tailwind>
-        <Body className="bg-white font-sans text-[#040404]">
-          <Container className="p-10 max-w-[512px]">
-            <Section className="mt-8 mb-16">
-              <div className="flex items-center justify-center">
-                <Img
-                  src={`${baseUrl}/logo.png`}
-                  width="28"
-                  height="28"
-                  alt="Logo"
-                  className="mr-2"
-                  style={{
-                    filter:
-                      "invert(28%) sepia(87%) saturate(2382%) hue-rotate(187deg) brightness(99%) contrast(104%)",
-                  }}
-                />
-                <Text className="text-[24px] font-semibold m-0">AlgoType</Text>
-              </div>
-            </Section>
-
-            <Text className="text-[20px] font-bold text-[#040404]">
-              Change your email
-            </Text>
-
-            <Text className="text-[14px] text-[#16181b] mb-12">
-              Tap the button confirm the update of your email from EMAIL to
-              NEW_EMAIL. This link is valid for the next 15 minutes.
-            </Text>
-
-            <Section className="text-center mb-6">
-              <Link
-                href={magicLink}
-                className="bg-[#315efc] text-white text-[14px] no-underline px-6 py-3 rounded-md inline-block"
-              >
-                Confirm Switch
-              </Link>
-            </Section>
-
-            <Text className="text-[12px] text-[#8a8a90] text-center mt-12 mb-0">
-              If you didn’t request this link, you can safely ignore this email.
-            </Text>
-
-            <div className="flex items-center justify-center">
-              <Img
-                src={`${baseUrl}/logo.png`}
-                width="16"
-                height="16"
-                alt="Logo"
-                className="mr-1"
-                style={{
-                  filter:
-                    "invert(28%) sepia(87%) saturate(2382%) hue-rotate(187deg) brightness(99%) contrast(104%)",
-                }}
-              />
-              <Text className="text-[12px] text-[#8a8a90]">
-                <Link href="https://algotype.net" className="text-[#0096f5]">
-                  AlgoType.net
-                </Link>{" "}
-                | typing practice for programmers
-              </Text>
-            </div>
-          </Container>
-        </Body>
-      </Tailwind>
-    </Html>
+    <EmailLayout
+      preview="Confirm your new AlgoType email address"
+      heading="Confirm your new email"
+    >
+      <Paragraph>
+        Tap the button below to change the email on your AlgoType account from{" "}
+        <strong>{email}</strong> to <strong>{newEmail}</strong>. The link can
+        only be used once and expires soon.
+      </Paragraph>
+      <ActionButton href={link}>Confirm email change</ActionButton>
+    </EmailLayout>
   );
 }

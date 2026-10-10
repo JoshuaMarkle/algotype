@@ -2,12 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Mail } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Label from "@/components/ui/Label";
-import { loginWithEmail, loginWithGitHub, loginWithGoogle } from "@/lib/auth";
+import {
+  loginWithEmail,
+  loginWithGitHub,
+  loginWithGoogle,
+  loginWithMagicLink,
+} from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 // Turn Supabase's raw sign-in errors into actionable messages
@@ -15,8 +20,10 @@ function friendlyError(message) {
   if (/email not confirmed/i.test(message)) {
     return 'Please verify your email first. Use the "Unverified?" link to resend it.';
   }
+  // Supabase gives the same error for a wrong password and for an account
+  // that has no password (created with GitHub/Google), so cover both
   if (/invalid login credentials/i.test(message)) {
-    return "Incorrect email or password.";
+    return "Incorrect email or password. If you signed up with GitHub or Google, log in with that provider or get a login link by email, then add a password in Settings.";
   }
   return message;
 }
@@ -27,6 +34,7 @@ export default function LoginForm({ className, ...props }) {
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [magicSent, setMagicSent] = useState(false);
 
   // Errors passed back from /auth/callback (e.g. expired link)
   useEffect(() => {
@@ -38,6 +46,7 @@ export default function LoginForm({ className, ...props }) {
     e.preventDefault();
     setError(null);
     setSuccess(false);
+    setMagicSent(false);
 
     try {
       await loginWithEmail(email, password);
@@ -49,6 +58,19 @@ export default function LoginForm({ className, ...props }) {
       }, 1000);
     } catch (err) {
       setError(friendlyError(err.message));
+    }
+  };
+
+  // Passwordless login for accounts without a password
+  const handleMagicLink = async () => {
+    setError(null);
+    setSuccess(false);
+    setMagicSent(false);
+    try {
+      await loginWithMagicLink(email.trim());
+      setMagicSent(true);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -146,6 +168,11 @@ export default function LoginForm({ className, ...props }) {
               {success && (
                 <p className="text-green-500 text-sm">Successfully logged in</p>
               )}
+              {magicSent && (
+                <p className="text-green-500 text-sm">
+                  Check your email for a login link.
+                </p>
+              )}
             </div>
 
             {/* Divider */}
@@ -157,6 +184,15 @@ export default function LoginForm({ className, ...props }) {
 
             {/* Providers */}
             <div className="flex flex-col gap-4">
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full bg-bg-2"
+                onClick={handleMagicLink}
+              >
+                <Mail />
+                Email me a login link
+              </Button>
               <Button
                 type="button"
                 variant="outline"
