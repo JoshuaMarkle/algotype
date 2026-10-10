@@ -55,7 +55,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | L4 | Themes | done (#16) | `src/lib/themes.js`, `src/app/globals.css` (Themes block), `src/app/layout.js`, `src/components/settings/ThemeSettings.jsx` |
 | L5 | Re-enable gamemode cards + account avatar/language sections (commented out) | needs-decision | `src/app/page.js`, `src/app/account/page.jsx` |
 | L6 | Move to an open-source license | needs-decision | `LICENSE.md`, README |
-| L7 | Feedback page (#23): `/feedback` form + footer link + GitHub issue links. Form needs the `feedback` table (draft in project files `features/feedback_table.sql`), not created yet | in-progress | `src/app/feedback/page.js`, `src/components/feedback/FeedbackForm.jsx`, `src/lib/feedback.js`, `Footer.jsx` |
+| L7 | Feedback page (#23): `/feedback` form + footer link + GitHub issue links, writing to the insert-only `feedback` table (created 2026-10-10, migration `create_feedback_table`) | done | `src/app/feedback/page.js`, `src/components/feedback/FeedbackForm.jsx`, `src/lib/feedback.js`, `Footer.jsx`, `supabase/schema.sql` |
 
 ## Tech debt
 | # | Item | Status | Files |
