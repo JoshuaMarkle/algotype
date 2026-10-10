@@ -8,8 +8,9 @@ const MODE = "files";
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   return getChallengeMetadata(MODE, slug, {
-    title: "Files | AlgoType",
-    description: "Train your typing skills on large files",
+    // Only used when the slug does not exist (the page then 404s)
+    title: "Challenge Not Found | AlgoType",
+    robots: { index: false },
   });
 }
 

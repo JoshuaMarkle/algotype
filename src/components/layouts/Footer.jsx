@@ -63,7 +63,7 @@ export default function Footer() {
       </div>
 
       {/* ───────────── Bottom copyright (always centered) ───────────── */}
-      <p className="mt-12 text-center text-sm text-fg-2">© AlgoType 2025</p>
+      <p className="mt-12 text-center text-sm text-fg-2">© AlgoType {new Date().getFullYear()}</p>
     </footer>
   );
 }
