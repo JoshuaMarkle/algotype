@@ -19,21 +19,19 @@
 - Results screen: WPM, accuracy, time, WPM-over-time chart, screenshot-to-clipboard (`TypingResults.jsx`).
 - Game modes:
   - `algorithms`: LeetCode-style solutions, README claims "over 7000" (`/algorithms`, `/algorithms/[slug]`).
-  - `files`: larger real-world files (`/files`, `/files/[slug]`). **Currently broken**, see `tasklist.md`.
+  - `files`: larger real-world files (`/files`, `/files/[slug]`).
+  - `drills`: syntax drills generated in the browser (`/drills`, `/drills/[slug]`).
+  - `timed`: 15/30/60 s sprints on drill-generated code (`/timed/[slug]`).
 - Random test with filters (language, size) and Tab-to-skip (`randomTest.js`, `TypingTest.jsx`).
 - Browse/search tables for each mode (`src/components/tables/ProblemsTable.jsx`).
 - Accounts: email/password, GitHub OAuth, Google OAuth, magic link, password reset, email re-verify (`src/lib/auth.js`).
 - Account page: average WPM/accuracy, total time, progress chart, paginated history (`src/app/account/page.jsx`).
-- Settings page: account info, delete account; appearance/theme tabs are placeholders (`src/app/settings/page.jsx`).
-- Landing page with animated auto-typing demo (`src/components/effects/CodeBox.jsx`) and FAQ.
+- Settings page: account info, login methods, delete account, appearance toggles, themes (`src/app/settings/page.jsx`).
+- Landing page with animated auto-typing demo (`src/components/effects/CodeBox.jsx`), gamemode cards and FAQ.
 - Privacy and Terms pages (effective June 1, 2025).
 
-## Planned (from README `[TODO]` and commented-out UI)
-- Syntax Drills mode (repeated language constructs).
-- Timed mode (15s / 30s / 60s sprints).
-- Saved language/theme preferences.
-- Themes (settings says "under development").
-- Gamemode cards on the landing page (commented out in `src/app/page.js`).
+## Planned
+- Syntax Drills (`/drills`), Timed (`/timed`), themes, preference sync and the landing gamemode cards shipped 2026-10-10; see `context/tasklist.md` for what is still open.
 
 ## Current status
 - Last commit on GitHub `main`: 2025-07-09 ("Added settings page + navbar updates + user data caching"). 53 commits since 2025-06-01.

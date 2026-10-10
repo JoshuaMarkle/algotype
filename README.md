@@ -22,14 +22,15 @@ The website is <ins>completely free</ins> to use and creating an account allows 
     - Interactive charts and graphs
     - Minimalistic, functional design
 - 👾 Gamemodes
-    - Algorithms: type out over 7000 popular algorithms (leetcode solutions)
-    - Features: type the implementations of software feature (larger files)
-    - [TODO] Syntax Drills: practice certain language features - repeated for loops (micro)
-    - [TODO] Timed: 15s/30s/60s code sprints
+    - Algorithms: type out thousands of popular algorithms (leetcode solutions)
+    - Files: type the implementations of software features (larger files)
+    - Syntax Drills: practice certain language features - repeated for loops, functions, classes (micro)
+    - Timed: 15s/30s/60s code sprints
+- 🎨 Themes for the site and syntax highlighting (Dracula, Gruvbox, Nord, Catppuccin, ...)
 - 👤 Account System
     - Track past tests + progress
-    - [TODO] Save language/theme preferences
-    - Secured with Supabase + GitHub auth
+    - Language/theme preferences saved to your account
+    - Sign in with email, GitHub or Google (Supabase auth)
 - ➕ And much more!
 
 # 📄 License
