@@ -98,6 +98,14 @@ export default function Navbar({ className = "", ...props }) {
                       </div>
                     </Link>
                   </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link href="/timed">
+                      <div className="font-medium">Timed</div>
+                      <div className="text-muted-foreground">
+                        Type as much code as you can in 15, 30 or 60 seconds
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
                 </li>
               </ul>
             </NavigationMenuContent>
