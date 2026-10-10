@@ -5,167 +5,125 @@ import { Play, Pause, RotateCcw } from "lucide-react";
 
 import TypingRenderer from "@/components/typing/TypingRenderer";
 import Button from "@/components/ui/Button";
+import { useTypingState } from "@/components/typing/hooks/useTypingState";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
 import quicksortTokens from "@/data/quicksort.json";
 
-export default function CodeBox() {
+const TOKENS = quicksortTokens.tokens;
+const WRONG_CHARS = "asdfjklqwertyuiopzxcvbnm";
+
+// Typing delays in ms
+const typeDelay = () => 40 + Math.random() * 40;
+const backspaceDelay = () => 150 + Math.random() * 50;
+const BACKSPACE_PAUSE = 300;
+const TYPO_CHANCE = 0.05 / 4; // per keystroke (~5% per token before)
+
+// A fake key event for useTypingState's handleKey
+const keyEvent = (key) => ({
+  key,
+  metaKey: false,
+  ctrlKey: false,
+  altKey: false,
+  preventDefault() {},
+});
+
+// The key the engine expects next
+function expectedKey(currToken, typed) {
+  if (currToken.type === "newline") return "Enter";
+  if (currToken.type === "space") return " ";
+  return currToken.content?.[typed] ?? null;
+}
+
+// Landing page demo: a bot types quicksort through the real typing engine
+// (useTypingState), so the demo always behaves like the real test
+function DemoRun({ onRestart }) {
   const [playing, setPlaying] = useState(true);
-  const [done, setDone] = useState(false);
-  const [lineIdx, setLineIdx] = useState(0);
-  const [tokenIdx, setTokenIdx] = useState(0);
-  const [typed, setTyped] = useState(0);
-  const [wrong, setWrong] = useState("");
-
-  const stats = useRef({ correct: 0, incorrect: 0 });
-  const startedRef = useRef(null);
-  const [wpm, setWpm] = useState(0);
-  const [acc, setAcc] = useState(100);
-  const updateCounterRef = useRef(0);
-
-  const typedRef = useRef(0);
-  const wrongRef = useRef("");
-  const tokenIdxRef = useRef(0);
-  const lineIdxRef = useRef(0);
-
+  const stats = useRef({ correct: 0, incorrect: 0, backspace: 0 });
   const currentLineRef = useRef(null);
-  const shouldShowCursor = true;
 
-  const tokens = quicksortTokens.tokens;
-  const currToken = tokens[lineIdx]?.[tokenIdx] ?? { content: "", skip: true };
-  const lastWordIdx = tokenIdx + ((currToken.wlength ?? 1) - 1);
+  const {
+    lineIdx,
+    tokenIdx,
+    typed,
+    wrong,
+    started,
+    done,
+    currToken,
+    cursorTokenIndices,
+    lastWordIdx,
+    handleKey,
+    shouldShowCursor,
+  } = useTypingState(TOKENS, stats);
 
-  const cursorTokenIndices = new Set();
-  for (let i = tokenIdx; i <= lastWordIdx; i++) {
-    cursorTokenIndices.add(i);
-  }
-
-  function buttonClick() {
-    if (done) {
-      restartTest();
-    } else {
-      setPlaying((p) => !p);
-    }
-  }
-
-  function restartTest() {
-    setPlaying(true);
-    setDone(false);
-    setLineIdx(0);
-    setTokenIdx(0);
-    setTyped(0);
-    setWrong("");
-    typedRef.current = 0;
-    wrongRef.current = "";
-    tokenIdxRef.current = 0;
-    lineIdxRef.current = 0;
-    stats.current = { correct: 0, incorrect: 0 };
-    startedRef.current = null;
-    setWpm(0);
-    setAcc(100);
-    updateCounterRef.current = 0;
-  }
+  // The timer loop reads the latest render's state and handler
+  const latest = useRef(null);
+  latest.current = { handleKey, currToken, typed, wrong };
 
   useEffect(() => {
     if (!playing || done) return;
 
-    const wrongChars = "asdfjklqwertyuiopzxcvbnm"; // Pool of wrong chars
     let timeout;
+    let typoLeft = 0;
+    let pausedBeforeBackspace = false;
 
-    const step = () => {
-      const line = tokens[lineIdxRef.current];
-      const currToken = line?.[tokenIdxRef.current] ?? {
-        content: "",
-        skip: true,
-      };
-      const expected = currToken.content;
+    const tick = () => {
+      const { handleKey, currToken, typed, wrong } = latest.current;
+      let delay;
 
-      const makeTypo = Math.random() < 0.05; // 5% chance of getting something wrong
-      const typoLength = makeTypo ? Math.floor(Math.random() * 6) : 0; // Typo length
-
-      let typoProgress = 0;
-      let backspacingStarted = false;
-
-      const typeLoop = () => {
-        if (!startedRef.current) {
-          startedRef.current = performance.now(); // First keystroke starts timer
+      if (typoLeft > 0) {
+        // Type wrong characters
+        typoLeft--;
+        handleKey(
+          keyEvent(WRONG_CHARS[Math.floor(Math.random() * WRONG_CHARS.length)]),
+        );
+        delay = typeDelay();
+      } else if (wrong.length > 0) {
+        // Pause, then backspace the typo away
+        if (!pausedBeforeBackspace) {
+          pausedBeforeBackspace = true;
+          timeout = setTimeout(tick, BACKSPACE_PAUSE);
+          return;
         }
+        handleKey(keyEvent("Backspace"));
+        delay = backspaceDelay();
+      } else {
+        pausedBeforeBackspace = false;
+        const key = expectedKey(currToken, typed);
+        if (key === null) return;
 
-        let speed;
-
-        if (typoProgress < typoLength) {
-          // Simulate typing wrong characters
-          typoProgress++;
-          const char =
-            wrongChars[Math.floor(Math.random() * wrongChars.length)];
-          wrongRef.current += char;
-          setWrong(wrongRef.current);
-          stats.current.incorrect++;
-          speed = 40 + Math.random() * 40;
-        } else if (wrongRef.current.length > 0) {
-          if (!backspacingStarted) {
-            backspacingStarted = true;
-            timeout = setTimeout(typeLoop, 300); // Pause before backspacing
-            return;
-          }
-          wrongRef.current = wrongRef.current.slice(0, -1);
-          setWrong(wrongRef.current);
-          speed = 150 + Math.random() * 50; // Slower backspace
-        } else if (typedRef.current < expected.length) {
-          // Type correct character
-          typedRef.current++;
-          setTyped(typedRef.current);
-          stats.current.correct++;
-          speed = 40 + Math.random() * 40;
-        } else {
-          // End of current token
-          const moveToNextValidToken = () => {
-            let nextTokenIdx = tokenIdxRef.current + 1;
-            let nextLineIdx = lineIdxRef.current;
-
-            while (nextLineIdx < tokens.length) {
-              const line = tokens[nextLineIdx];
-              while (nextTokenIdx < line.length) {
-                if (!line[nextTokenIdx].skip) {
-                  tokenIdxRef.current = nextTokenIdx;
-                  lineIdxRef.current = nextLineIdx;
-                  typedRef.current = 0;
-                  setLineIdx(nextLineIdx);
-                  setTokenIdx(nextTokenIdx);
-                  setTyped(0);
-                  timeout = setTimeout(step, Math.random() * 150);
-                  return;
-                }
-                nextTokenIdx++;
-              }
-              nextLineIdx++;
-              nextTokenIdx = 0;
-            }
-
-            setDone(true);
-            setPlaying(false);
-          };
-
-          moveToNextValidToken();
+        if (key.length === 1 && Math.random() < TYPO_CHANCE) {
+          typoLeft = 1 + Math.floor(Math.random() * 5);
+          timeout = setTimeout(tick, typeDelay());
           return;
         }
 
-        updateCounterRef.current++;
-        if (updateCounterRef.current % 5 === 0) {
-          const { wpm, acc } = calculateStats(startedRef.current, null, stats);
-          setWpm(wpm);
-          setAcc(acc);
+        handleKey(keyEvent(key));
+        delay = typeDelay();
+        // Short pause between words, like the old demo
+        if (typed + 1 >= (currToken.content?.length ?? 1)) {
+          delay += Math.random() * 150;
         }
+      }
 
-        timeout = setTimeout(typeLoop, speed);
-      };
-
-      typeLoop();
+      timeout = setTimeout(tick, delay);
     };
 
-    step();
-
+    timeout = setTimeout(tick, typeDelay());
     return () => clearTimeout(timeout);
-  }, [playing, done, tokens]);
+  }, [playing, done]);
+
+  // Refresh the header stats every half second (frozen while paused)
+  const [{ wpm, acc }, setLiveStats] = useState({ wpm: 0, acc: 100 });
+  useEffect(() => {
+    if (!started || !playing) return;
+    const update = () => setLiveStats(calculateStats(started, null, stats));
+    if (done) return update();
+
+    const interval = setInterval(update, 500);
+    return () => clearInterval(interval);
+  }, [started, playing, done]);
+
+  const buttonClick = () => (done ? onRestart() : setPlaying((p) => !p));
 
   return (
     <div className="relative rounded-sm overflow-hidden border border-border bg-bg-2">
@@ -187,7 +145,7 @@ export default function CodeBox() {
       </div>
       <div className="relative p-4">
         <TypingRenderer
-          tokens={tokens}
+          tokens={TOKENS}
           lineIdx={lineIdx}
           tokenIdx={tokenIdx}
           currToken={currToken}
@@ -202,6 +160,9 @@ export default function CodeBox() {
           variant="tertiary"
           size="icon"
           onClick={buttonClick}
+          aria-label={
+            done ? "Restart demo" : playing ? "Pause demo" : "Play demo"
+          }
           className="absolute bottom-4 right-4 rounded-full"
         >
           {done ? (
@@ -215,4 +176,9 @@ export default function CodeBox() {
       </div>
     </div>
   );
+}
+
+export default function CodeBox() {
+  const [run, setRun] = useState(0);
+  return <DemoRun key={run} onRestart={() => setRun((r) => r + 1)} />;
 }

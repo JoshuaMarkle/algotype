@@ -63,7 +63,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 |---|---|---|---|
 | T1 | Remove or revive unused modules: `StatPanel.jsx` (broken import), `useTokenNormalizer.js`, `NavbarTest.jsx`, `DataTable.jsx`, `useProblemsData.js`, `LetterGlitch.jsx`, `countMatchingTests`/`applyFilters`, `smoothData` | needs-decision | see `architecture.md` |
 | T2 | Duplicate `getUserHistoryPaginated` (lib vs `PastTestsTable.jsx`, which also bypasses cache) | done | `src/lib/history.js`, `src/components/tables/PastTestsTable.jsx` |
-| T3 | `CodeBox` duplicates the typing traversal logic from `useTypingState` | todo | `src/components/effects/CodeBox.jsx` |
+| T3 | `CodeBox` duplicated the typing traversal logic from `useTypingState`. The demo bot now sends fake key events to `useTypingState`, so it skips/finishes exactly like a real test | done | `src/components/effects/CodeBox.jsx` |
 | T4 | `/algorithms` and `/files` index pages were near-identical. Both now render `ModeIndexPage` and have their own title/description/canonical metadata | done | `src/components/layouts/ModeIndexPage.jsx`, `src/app/algorithms/page.js`, `src/app/files/page.js` |
 | T5 | Circular import `lib/auth.js` ↔ `lib/history.js` | done | `src/lib/*` |
 | T6 | `backend/scripts/fix_errors.sh` has an unterminated string on the last line (`bash -n` fails) | done | `backend/scripts/fix_errors.sh` |
@@ -74,6 +74,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | done | various |
 
 ## Done
+- 2026-10-10 — T3, T4, L5 (cards): landing demo on the real engine (Chromium: types to the end in ~50 s, pause/play/restart work), shared mode index page, gamemode cards.
 - 2026-10-10 — X25: focus overlay + Caps Lock badge. Checked in a production build with Chromium: overlay on blur, a key or click refocuses, Caps Lock badge on/off.
 - 2026-10-10 — L2: timed mode. Checked in a production build with Chromium: `/timed` redirect, countdown ticks after the first key, test ends at 15 s with results, keys after the end ignored, invalid slug 404s.
 - 2026-10-10 — L1: syntax drills mode. Checked in a production build with Chromium: picker, start, Tab for a new drill, full typing run to results, invalid slug 404s.
