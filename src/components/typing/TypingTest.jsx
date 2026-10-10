@@ -2,7 +2,15 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { ListFilter, CircleUser, Ruler, Languages, X } from "lucide-react";
+import {
+  ListFilter,
+  CircleUser,
+  Ruler,
+  Languages,
+  Lock,
+  MousePointerClick,
+  X,
+} from "lucide-react";
 
 import {
   Breadcrumb,
@@ -109,6 +117,7 @@ export default function TypingTest({
 
   // Keys after the time ran out must not count
   const onKeyDown = (e) => {
+    updateCapsLock(e);
     if (!finished) handleKey(e);
   };
 
@@ -129,8 +138,49 @@ export default function TypingTest({
     };
   }, [started, finished]);
 
-  // Auto-focus the hidden textarea
-  useEffect(() => textareaRef.current?.focus(), [textareaRef]);
+  // --- Focus + Caps Lock ---
+  // Keys only reach the test while the hidden textarea has focus, so show
+  // an overlay when it loses focus. Any typing key brings focus back
+  const [focused, setFocused] = useState(true);
+
+  // Auto-focus the hidden textarea (can fail, e.g. in a background tab)
+  useEffect(() => {
+    textareaRef.current?.focus();
+    setFocused(document.activeElement === textareaRef.current);
+  }, [textareaRef]);
+
+  const [capsLock, setCapsLock] = useState(false);
+  const focusInput = useCallback(
+    () => textareaRef.current?.focus(),
+    [textareaRef],
+  );
+
+  useEffect(() => {
+    if (focused || finished) return;
+
+    const handleKeyDown = (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key.length !== 1 && e.key !== "Enter") return;
+
+      // Leave keys alone while the user types into another field
+      const target = e.target;
+      if (target?.closest?.("input, textarea, select, [contenteditable]"))
+        return;
+      if (target?.closest?.("[role='menu'], [role='dialog']")) return;
+
+      e.preventDefault();
+      focusInput();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [focused, finished, focusInput]);
+
+  const updateCapsLock = (e) => {
+    if (typeof e.getModifierState === "function") {
+      setCapsLock(e.getModifierState("CapsLock"));
+    }
+  };
 
   // Store wpm data every 1 seconds
   useEffect(() => {
@@ -266,11 +316,15 @@ export default function TypingTest({
     <div className="relative select-none flex flex-col flex-1 max-w-5xl w-full mx-auto">
       <div
         className="fixed top-0 left-0 w-full h-full"
-        onClick={() => textareaRef.current?.focus()}
+        onClick={focusInput}
       ></div>
       <textarea
         ref={textareaRef}
         onKeyDown={onKeyDown}
+        onKeyUp={updateCapsLock}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        aria-label="Typing input"
         className="absolute w-0 h-0 opacity-0"
       />
 
@@ -484,6 +538,24 @@ export default function TypingTest({
           >
             {remaining}
           </div>
+        )}
+        {capsLock && focused && (
+          <div
+            role="status"
+            className="absolute right-4 top-0 z-10 flex flex-row items-center gap-2 rounded-sm bg-bg-2 border border-yellow px-2 py-1 text-sm text-yellow"
+          >
+            <Lock className="size-4" /> Caps Lock is on
+          </div>
+        )}
+        {!focused && !finished && (
+          <button
+            type="button"
+            onClick={focusInput}
+            className="absolute inset-0 z-10 flex items-center justify-center gap-2 bg-bg/60 text-fg backdrop-blur-[2px] cursor-pointer"
+          >
+            <MousePointerClick className="size-4" />
+            Click or press any key to focus
+          </button>
         )}
         <TypingRenderer
           tokens={tokens}
