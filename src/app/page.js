@@ -122,27 +122,26 @@ export default function Home() {
         </section>
 
         {/* Gamemodes Header Badge */}
-        {/*<section className="flex items-center justify-center mb-16">
+        <section className="flex items-center justify-center mb-16">
           <div className="flex items-center justify-center text-sm font-semibold border border-fg rounded-full px-4 h-8">
             Gamemodes
           </div>
-        </section>*/}
+        </section>
 
         {/* Gamemode Cards */}
-        {/*<section className="flex justify-center items-center mx-4 md:mx-8">
+        <section className="flex justify-center items-center mx-4 md:mx-8 mb-32">
           <div className="relative flex flex-col lg:flex-row gap-8 border border-border rounded-sm ring-8 ring-fg/10 w-full md:max-w-6xl p-8">
-            <div className="space-y-4 z-10">
+            <div className="space-y-4 z-10 lg:max-w-sm">
               <h2 className="text-4xl font-bold">All the gamemodes</h2>
               <p className="text-lg text-fg-2">
-                Type from a variety of different code files with over{" "}
-                <span className="underline">7000</span> different typing tests
-                available.
+                Type thousands of real solutions and files, drill the syntax you
+                trip over, or race the clock.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 z-10">
+            <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 gap-4 z-10">
               <Link
                 href="/algorithms"
-                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-blue hover:scale-105 hover:rotate-1 transition"
+                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-48 hover:border-blue hover:scale-105 hover:rotate-1 transition"
               >
                 <div className="space-y-2">
                   <h3 className="text-xl">Algorithms</h3>
@@ -155,7 +154,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/files"
-                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
+                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-48 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
               >
                 <div className="space-y-2">
                   <h3 className="text-xl">Files</h3>
@@ -167,12 +166,25 @@ export default function Home() {
               </Link>
               <Link
                 href="/drills"
-                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
+                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-48 hover:border-blue hover:scale-105 hover:rotate-1 transition"
               >
                 <div className="space-y-2">
                   <h3 className="text-xl">Syntax Drills</h3>
                   <p className="text-fg-2">
-                    Practice certain language features like repeated for loops
+                    Repeat loops, functions, classes and other language
+                    features.
+                  </p>
+                </div>
+                <ArrowRight className="size-4 ml-auto" />
+              </Link>
+              <Link
+                href="/timed"
+                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-48 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
+              >
+                <div className="space-y-2">
+                  <h3 className="text-xl">Timed</h3>
+                  <p className="text-fg-2">
+                    Type as much code as you can in 15, 30 or 60 seconds.
                   </p>
                 </div>
                 <ArrowRight className="size-4 ml-auto" />
@@ -180,7 +192,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-        */}
 
         {/* Learn Mode Header Badge */}
         <section className="flex items-center justify-center mb-16">
