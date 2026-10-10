@@ -1,6 +1,8 @@
 -- AlgoType Supabase schema (reference snapshot)
 --
 -- Pulled from the live project on 2026-10-09 via the Supabase MCP connector.
+-- Updated 2026-10-10 after migration `harden_functions_and_rls` (grants,
+-- search_path, RLS policies wrap auth.uid() in a subselect).
 -- This file documents what exists in production; it is NOT a migration and
 -- has not been run as-is. Change the database in Supabase, then update this.
 
@@ -53,14 +55,14 @@ CREATE POLICY read ON public.challenges
   FOR SELECT TO public USING (true);
 
 CREATE POLICY "Users can read their own profile" ON public.users
-  FOR SELECT TO public USING (auth.uid() = id);
+  FOR SELECT TO public USING ((select auth.uid()) = id);
 CREATE POLICY "Users can insert their own profile" ON public.users
-  FOR INSERT TO public WITH CHECK (auth.uid() = id);
+  FOR INSERT TO public WITH CHECK ((select auth.uid()) = id);
 
 CREATE POLICY "Limit history to user's history" ON public.history
-  FOR SELECT TO authenticated USING (auth.uid() = user_id);
+  FOR SELECT TO authenticated USING ((select auth.uid()) = user_id);
 CREATE POLICY "Enable insert for authenticated users only" ON public.history
-  FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
+  FOR INSERT TO authenticated WITH CHECK ((select auth.uid()) = user_id);
 
 -- ---------------------------------------------------------------------------
 -- New-user trigger: creates the public.users row for every sign-up
@@ -118,14 +120,19 @@ CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 
+-- Not callable over the API (triggers do not need EXECUTE)
+REVOKE EXECUTE ON FUNCTION public.handle_new_user() FROM public, anon, authenticated;
+
 -- ---------------------------------------------------------------------------
--- RPCs (all executable by anon and authenticated)
+-- RPCs (executable by anon and authenticated, except delete_account:
+-- authenticated only)
 -- ---------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION public.is_username_available(_name text)
  RETURNS boolean
  LANGUAGE sql
  SECURITY DEFINER
+ SET search_path TO 'public'
 AS $function$
   select not exists (
     select 1
@@ -166,6 +173,9 @@ begin
 end;
 $function$;
 
+REVOKE EXECUTE ON FUNCTION public.delete_account() FROM public, anon;
+GRANT EXECUTE ON FUNCTION public.delete_account() TO authenticated;
+
 CREATE OR REPLACE FUNCTION public.get_random_challenge(
   _min_length integer DEFAULT NULL::integer,
   _max_length integer DEFAULT NULL::integer,
@@ -173,6 +183,7 @@ CREATE OR REPLACE FUNCTION public.get_random_challenge(
   _mode text DEFAULT NULL::text)
  RETURNS SETOF challenges
  LANGUAGE plpgsql
+ SET search_path TO 'public'
 AS $function$
 begin
   return query
@@ -194,6 +205,7 @@ CREATE OR REPLACE FUNCTION public.count_matching_challenges(
   _mode text DEFAULT NULL::text)
  RETURNS integer
  LANGUAGE plpgsql
+ SET search_path TO 'public'
 AS $function$
 declare
   match_count int;
