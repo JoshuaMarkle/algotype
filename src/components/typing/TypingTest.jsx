@@ -34,7 +34,11 @@ import { useAutoScroll } from "@/components/typing/hooks/useAutoScroll";
 import { calculateStats } from "@/components/typing/utils/calculateStats";
 import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 import { submitTestHistory } from "@/lib/history";
-import { DEFAULT_SETTINGS, getSettings } from "@/lib/settings";
+import {
+  DEFAULT_SETTINGS,
+  getSettings,
+  onSettingsChange,
+} from "@/lib/settings";
 import { cn, capitalize, langToNatural, naturalToLang } from "@/lib/utils";
 
 // `onNext`, `onRestart` and `nav` let other modes (syntax drills) replace the
@@ -118,7 +122,10 @@ export default function TypingTest({
 
   // Appearance settings (read after mount so SSR and hydration match)
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
-  useEffect(() => setSettings(getSettings()), []);
+  useEffect(() => {
+    setSettings(getSettings());
+    return onSettingsChange(setSettings);
+  }, []);
 
   // --- Filter state + handlers ---
   const [filters, setFilters] = useState(() => {

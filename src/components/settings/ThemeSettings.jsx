@@ -49,7 +49,8 @@ export default function ThemeSettings({ theme, onChange }) {
       <div className="space-y-2">
         <h2 className="text-2xl">Themes</h2>
         <p className="text-fg-2">
-          Colors for the site and the code you type. Saved in this browser.
+          Colors for the site and the code you type. Saved to your account when
+          you are signed in.
         </p>
       </div>
       <div

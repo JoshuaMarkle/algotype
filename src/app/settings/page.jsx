@@ -13,7 +13,12 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/ToggleGroup";
 import LoginMethods from "@/components/settings/LoginMethods";
 import { getCurrentProfile, deleteAccount } from "@/lib/auth";
 import { formatIsoDate, langToNatural } from "@/lib/utils";
-import { DEFAULT_SETTINGS, getSettings, setSetting } from "@/lib/settings";
+import {
+  DEFAULT_SETTINGS,
+  getSettings,
+  onSettingsChange,
+  setSetting,
+} from "@/lib/settings";
 import { applyTheme } from "@/lib/themes";
 
 export default function SettingsPage() {
@@ -21,8 +26,12 @@ export default function SettingsPage() {
   const [user, setUser] = useState(null);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
-  // Read saved settings after mount so SSR and hydration match
-  useEffect(() => setSettings(getSettings()), []);
+  // Read saved settings after mount so SSR and hydration match, and follow
+  // changes synced from the account
+  useEffect(() => {
+    setSettings(getSettings());
+    return onSettingsChange(setSettings);
+  }, []);
 
   useEffect(() => {
     async function fetchUser() {
@@ -149,7 +158,10 @@ function AppearanceSettings({ settings, onUpdate }) {
     <section className="space-y-8">
       <div className="space-y-2">
         <h3 className="text-2xl">Appearance</h3>
-        <p className="text-fg-2">General changes to the typing test.</p>
+        <p className="text-fg-2">
+          General changes to the typing test. Saved to your account when you are
+          signed in.
+        </p>
       </div>
       <table className="table-fixed w-full">
         <colgroup>
