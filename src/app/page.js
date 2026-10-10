@@ -165,15 +165,18 @@ export default function Home() {
                 </div>
                 <ArrowRight className="size-4 ml-auto" />
               </Link>
-              <div className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-red hover:scale-105 hover:-rotate-1 transition">
+              <Link
+                href="/drills"
+                className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-64 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
+              >
                 <div className="space-y-2">
                   <h3 className="text-xl">Syntax Drills</h3>
                   <p className="text-fg-2">
                     Practice certain language features like repeated for loops
                   </p>
                 </div>
-                <Construction className="size-4 ml-auto" />
-              </div>
+                <ArrowRight className="size-4 ml-auto" />
+              </Link>
             </div>
           </div>
         </section>

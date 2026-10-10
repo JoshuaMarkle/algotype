@@ -91,12 +91,12 @@ export default function Navbar({ className = "", ...props }) {
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <div>
-                      <div className="text-fg-3">Snippets</div>
-                      <div className="text-fg-3">
-                        Practice specific language features
+                    <Link href="/drills">
+                      <div className="font-medium">Syntax Drills</div>
+                      <div className="text-muted-foreground">
+                        Practice loops, functions and other language features
                       </div>
-                    </div>
+                    </Link>
                   </NavigationMenuLink>
                 </li>
               </ul>

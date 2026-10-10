@@ -31,7 +31,8 @@
 ### `users` row
 Selected with `*` in `getCurrentProfile`; at least `id`, `username`. Created by the `on_auth_user_created` trigger on `auth.users` (`public.handle_new_user`, SECURITY DEFINER): username = metadata `username` or `user_name` (GitHub), else `user`; on a unique clash appends `-` + 4 hex chars. Verified via Supabase MCP 2026-10-09. RLS: users can select/insert their own `users` row and select/insert their own `history` rows (`history.user_id` defaults to `auth.uid()`).
 
-## 2. Tokenizer — `backend/scripts/tokenizer.js` (`tokenizeCode`, `countTypableLines`), driven by `generateTokens.js`
+## 2. Tokenizer — `src/lib/tokenizer.js` (`tokenizeCode`, `countTypableLines`), driven by `generateTokens.js`
+`src/lib/tokenizer.js` throws if the Prism language is not loaded; Node scripts import `backend/scripts/tokenizer.js`, which loads it with `loadLanguages` first. The browser (syntax drills, `src/lib/drills`) imports the Prism components it needs.
 Per source line:
 1. Empty line → `[]`.
 1b. Python only: a line whose statement starts with `"""`/`'''` (optional `r`/`u` prefix) is a docstring; it and every line up to the closing quotes become one skipped `comment` token. A triple-quoted string inside an expression (`s = """`, `"""a""" + b`) is still typed.
