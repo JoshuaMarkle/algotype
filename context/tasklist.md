@@ -36,6 +36,10 @@ Update this file whenever a task starts, finishes, or is discovered.
 | X15 | New test results never reached the history cache (`insert` used the v1 `returning` option), so `/account` was stale for up to 60 s | done | `src/lib/history.js` |
 | X16 | Challenge pages: unknown slug returned 200, `/algorithms/<files slug>` loaded, every page had the same title. Now `notFound()`, mode-filtered, `generateMetadata` | done | `src/lib/challenges.js`, `src/app/*/[slug]/page.js` |
 | X17 | Problems table: language list capped at 1000 rows, stale responses could win, Next enabled on a full last page, sort only sorted one page, paging had no stable order | done | `src/components/tables/ProblemsTable.jsx` |
+| X18 | Typing: Cmd/Ctrl shortcuts (Cmd+R, Ctrl+L) were swallowed and counted as typos; Shift alone started the timer; every test waited for an Enter on the trailing newline. Now shortcuts pass through (AltGr still types), only typing keys start the timer, and the last character ends the test | done | `src/components/typing/hooks/useTypingState.js` |
+| X19 | No error boundary: a render error showed a blank page. Added `error.jsx` (retry + home) and `global-error.jsx` | done | `src/app/error.jsx`, `src/app/global-error.jsx` |
+| X20 | Polish: "achive" typo in site description, missing-challenge 404s titled "Algorithms/Files | AlgoType", footer year hardcoded to 2025 | done | `src/app/layout.js`, `src/app/*/[slug]/page.js`, `Footer.jsx` |
+| X21 | Supabase advisors (2026-10-10): `delete_account`/`handle_new_user` executable by `anon`; mutable `search_path` on `get_random_challenge`, `count_matching_challenges`, `is_username_available`; RLS policies call `auth.uid()` per row. Dashboard: leaked-password protection off, email OTP expiry > 1 h, Postgres patch pending | needs-decision | Supabase (production DB), `supabase/schema.sql` |
 | X14 | Settings has no UI for linking/unlinking providers (`linkProvider`/`unlinkProvider` now use `linkIdentity`/`unlinkIdentity`; needs Supabase "Manual linking" on) | todo | `src/app/settings/page.jsx`, `src/lib/auth.js` |
 
 ## Later (features from README / commented UI)
@@ -64,6 +68,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | T11 | Unused imports (`getRandomTest` in `algorithms/[slug]/page.js` removed 2026-10-09; still `Skeleton`/`Avatar` in `account/page.jsx`) | done | various |
 
 ## Done
+- 2026-10-10 — X18, X19, X20: shortcut keys, trailing-newline finish, error pages, metadata/footer polish. Smoke-tested a production build in Chromium against a mock Supabase (all pages, full typing run, Tab/next, language breadcrumb, settings toggles, 404 and error pages).
 - 2026-10-09 — T5, T7, T9, T11: removed `auth`↔`history` circular import, `formatAllCode.js` runs from any directory, email templates have their own export names + `@react-email/components` dev dependency, unused imports in `account/page.jsx`
 - 2026-10-09 — X3: server Supabase helper + `/account` middleware
 - 2026-10-09 — X11, X12, X15, X16, X17, T2: history cache, challenge pages, problems table, sitemap, `/colors` noindex

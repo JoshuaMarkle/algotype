@@ -70,12 +70,14 @@ describe("useTypingState", () => {
     expect(stats.current.correct).toBe(2);
   });
 
-  it("starts the timer on the first key, but not on Tab", () => {
+  it("starts the timer on the first typing key, not Tab or modifiers", () => {
     const { result } = setup();
     press(result, "Tab");
+    press(result, "Shift");
+    press(result, "ArrowLeft");
     expect(result.current.started).toBeNull();
 
-    press(result, "Shift");
+    press(result, "i");
     expect(result.current.started).toEqual(expect.any(Number));
   });
 
@@ -85,6 +87,33 @@ describe("useTypingState", () => {
     expect(press(result, "Backspace").preventDefault).toHaveBeenCalled();
     expect(press(result, "Enter").preventDefault).toHaveBeenCalled();
     expect(press(result, "Shift").preventDefault).not.toHaveBeenCalled();
+  });
+
+  it("ignores Cmd/Ctrl shortcuts but accepts AltGr characters", () => {
+    const { result, stats } = setup();
+    const shortcut = { key: "r", metaKey: true, preventDefault: vi.fn() };
+    act(() => result.current.handleKey(shortcut));
+    act(() =>
+      result.current.handleKey({
+        key: "l",
+        ctrlKey: true,
+        preventDefault: vi.fn(),
+      }),
+    );
+    expect(shortcut.preventDefault).not.toHaveBeenCalled();
+    expect(result.current.started).toBeNull();
+    expect(stats.current.incorrect).toBe(0);
+
+    // AltGr arrives as Ctrl+Alt on Windows
+    act(() =>
+      result.current.handleKey({
+        key: "i",
+        ctrlKey: true,
+        altKey: true,
+        preventDefault: vi.fn(),
+      }),
+    );
+    expect(result.current.typed).toBe(1);
   });
 
   it("records wrong keys and blocks progress until they are erased", () => {
@@ -144,9 +173,32 @@ describe("useTypingState", () => {
     expect(result.current.lineIdx).toBe(2);
     expect(result.current.tokenIdx).toBe(0);
 
-    type(result, ["y", "Enter"]);
+    // The trailing newline is not typed: the last character ends the test
+    press(result, "y");
     expect(result.current.done).toBe(true);
-    expect(stats.current).toEqual({ correct: 8, incorrect: 0, backspace: 0 });
+    expect(stats.current).toEqual({ correct: 7, incorrect: 0, backspace: 0 });
+  });
+
+  it("still requires Enter on newlines before the last line", () => {
+    const { result } = setup([
+      [
+        { type: "plain", content: "a", wlength: 1 },
+        { type: "newline", content: "↵" },
+      ],
+      [],
+      [{ type: "comment", content: "# end", skip: true }],
+      [
+        { type: "plain", content: "b", wlength: 1 },
+        { type: "newline", content: "↵" },
+      ],
+      [{ type: "newline", content: "↵" }],
+    ]);
+    press(result, "a");
+    expect(result.current.done).toBe(false);
+    expect(result.current.currToken.type).toBe("newline");
+
+    type(result, ["Enter", "b"]);
+    expect(result.current.done).toBe(true);
   });
 
   it("ignores keys after the test is done", () => {

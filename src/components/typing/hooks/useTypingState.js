@@ -42,6 +42,22 @@ export function useTypingState(tokens, stats) {
     setDone(true);
   }, [done]);
 
+  // Is there a non-newline token to type after this position?
+  const hasTypableAfter = useCallback(
+    (line, token) => {
+      for (let li = line; li < lines.length; li++) {
+        const start = li === line ? token + 1 : 0;
+        for (let ti = start; ti < lines[li].length; ti++) {
+          const t = lines[li][ti];
+          if (t.skip || t.type === "newline") continue;
+          if (t.type === "space" || t.content?.length > 0) return true;
+        }
+      }
+      return false;
+    },
+    [lines],
+  );
+
   // Skip to next valid token
   const skipUntilTypable = useCallback(
     (startLine = 0, startToken = 0) => {
@@ -58,6 +74,10 @@ export function useTypingState(tokens, stats) {
             ti++;
             continue;
           }
+
+          // A trailing newline has nothing after it to type, so the
+          // test ends on the last character instead of waiting for Enter
+          if (token.type === "newline" && !hasTypableAfter(li, ti)) break;
 
           // Valid token
           if (
@@ -78,7 +98,7 @@ export function useTypingState(tokens, stats) {
       // Reached end of content
       finish();
     },
-    [lines, finish],
+    [lines, finish, hasTypableAfter],
   );
 
   // Skip forward at the start
@@ -117,10 +137,18 @@ export function useTypingState(tokens, stats) {
     if (done) return;
     const key = e.key;
     if (key == "Tab") return;
+
+    // Leave browser/OS shortcuts alone (Cmd+R, Ctrl+L, ...). Ctrl+Alt is
+    // AltGr on Windows layouts, which types characters like { and [
+    if (e.metaKey || (e.ctrlKey && !e.altKey)) return;
+
+    // Only typing keys start the timer (not Shift, arrows, ...)
+    const isTypingKey =
+      key.length === 1 || key === "Backspace" || key === "Enter";
+    if (!isTypingKey) return;
     if (!started) setStarted(performance.now());
 
-    if (key.length === 1 || key === "Backspace" || key === "Enter")
-      e.preventDefault();
+    e.preventDefault();
 
     const expected = currToken.content;
 
@@ -149,7 +177,7 @@ export function useTypingState(tokens, stats) {
       return;
     }
 
-    // Ignore other non-character keys
+    // Ignore a stray Enter
     if (key.length !== 1) return;
 
     // Correct
