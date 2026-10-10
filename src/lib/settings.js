@@ -1,7 +1,8 @@
-const SETTINGS_KEY = "algotype_settings";
+export const SETTINGS_KEY = "algotype_settings";
 export const DEFAULT_SETTINGS = Object.freeze({
   syntax_highlighting: true,
   line_numbers: true,
+  theme: "default",
 });
 
 let cache = null;

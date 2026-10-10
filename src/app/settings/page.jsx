@@ -7,11 +7,13 @@ import Footer from "@/components/layouts/Footer";
 import Button from "@/components/ui/Button";
 import { SidebarProvider } from "@/components/ui/Sidebar";
 import SettingsSidebar from "@/components/layouts/SettingsSidebar";
+import ThemeSettings from "@/components/settings/ThemeSettings";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/ToggleGroup";
 import { getCurrentProfile, deleteAccount } from "@/lib/auth";
 import { formatIsoDate, langToNatural } from "@/lib/utils";
 import { DEFAULT_SETTINGS, getSettings, setSetting } from "@/lib/settings";
+import { applyTheme } from "@/lib/themes";
 
 export default function SettingsPage() {
   const [tab, setTab] = useState("account");
@@ -55,7 +57,15 @@ export default function SettingsPage() {
                 onUpdate={updateSetting}
               />
             )}
-            {tab === "theme" && <ThemeSettings />}
+            {tab === "theme" && (
+              <ThemeSettings
+                theme={settings.theme}
+                onChange={(id) => {
+                  updateSetting("theme", id);
+                  applyTheme(id);
+                }}
+              />
+            )}
           </div>
           <Footer />
         </main>
@@ -227,19 +237,5 @@ function OnOffToggle({ label, value, onChange }) {
         off
       </ToggleGroupItem>
     </ToggleGroup>
-  );
-}
-
-function ThemeSettings() {
-  return (
-    <section className="space-y-8">
-      <div className="space-y-2">
-        <h2 className="text-2xl">Themes</h2>
-        <p className="text-fg-2">
-          Themes are currently under development. For now there is only the
-          default dark theme.
-        </p>
-      </div>
-    </section>
   );
 }

@@ -12,7 +12,7 @@ Versions are from `package.json` / installed `package-lock.json` (checked 2026-1
 - React `^19.0.0` (lockfile: 19.1.0).
 
 ## UI
-- Tailwind CSS `^4` (4.1.8) via `@tailwindcss/postcss` (`postcss.config.js`). No `tailwind.config.js`; theme tokens are in `@theme inline` in `globals.css`.
+- Tailwind CSS `^4` (4.1.8) via `@tailwindcss/postcss` (`postcss.config.js`). No `tailwind.config.js`; theme tokens are in `@theme inline` in `globals.css` and point at per-theme `--c-*` / `--syntax-*` variables (see `conventions.md` → Styling).
 - `tw-animate-css`, `tailwind-animate`, `tailwind-merge`, `clsx`, `class-variance-authority`.
 - shadcn/ui, style `new-york`, base color `neutral` (`components.json`). Radix primitives: accordion, avatar, dialog, dropdown-menu, hover-card, label, navigation-menu, separator, slot, tabs, toggle, toggle-group, tooltip.
 - `cmdk` (Command), `lucide-react` icons.
