@@ -51,7 +51,7 @@ Update this file whenever a task starts, finishes, or is discovered.
 | L1 | Syntax Drills mode | todo | README, `src/app/page.js` (commented card) |
 | L2 | Timed mode (15/30/60 s) | todo | README |
 | L3 | Save language/theme preferences to account | todo | README, `src/lib/settings.js` |
-| L4 | Themes | todo | `src/app/settings/page.jsx` (`ThemeSettings`) |
+| L4 | Themes | done (#16) | `src/lib/themes.js`, `src/app/globals.css` (Themes block), `src/app/layout.js`, `src/components/settings/ThemeSettings.jsx` |
 | L5 | Re-enable gamemode cards + account avatar/language sections (commented out) | needs-decision | `src/app/page.js`, `src/app/account/page.jsx` |
 | L6 | Move to an open-source license | needs-decision | `LICENSE.md`, README |
 

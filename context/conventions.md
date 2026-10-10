@@ -39,7 +39,8 @@
 ## Styling
 - Tailwind v4 utility classes with project tokens from `globals.css` `@theme inline`: `bg`, `bg-2..5`, `fg`, `fg-2..4`, `red`, `green`, `blue`, `blue-2/3`, `yellow`, `border`, `primary`. Prefer these over raw Tailwind palette colors.
 - Merge classes with `cn()` from `@/lib/utils`.
-- Dark theme only. Charts hardcode hex colors matching the tokens.
+- Color themes (all dark): each theme in `src/lib/themes.js` has a `[data-theme="<id>"]` block in `globals.css` setting `--c-*` (palette) and `--syntax-*` (code) variables; Tailwind color tokens point at those. Never hardcode hex colors; in charts and inline styles use `var(--c-blue)` etc. Adding a theme = one CSS block + one entry in `THEMES` (a unit test checks they match).
+- The saved theme (`theme` in `algotype_settings`) is applied to `<html data-theme>` before first paint by an inline script in `layout.js`.
 - Layout pattern for content pages: `<Navbar className="fixed top" />`, bordered container `mx-4 md:mx-8 2xl:mx-16 bg-bg border-x border-border`, `<Footer />`.
 
 ## Patterns

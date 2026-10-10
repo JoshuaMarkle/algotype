@@ -80,20 +80,20 @@ export default function TypingResults({
         <AreaChart data={data}>
           <defs>
             <linearGradient id="colorToBlack" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#315efc" stopOpacity={0.3} />
-              <stop offset="100%" stopColor="#040404" stopOpacity={0.1} />
+              <stop offset="0%" stopColor="var(--c-blue-3)" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="var(--c-bg)" stopOpacity={0.1} />
             </linearGradient>
           </defs>
           <YAxis
-            stroke="#16181b"
-            tick={{ fill: "#8a8a90", fontSize: 12 }}
+            stroke="var(--c-bg-3)"
+            tick={{ fill: "var(--c-fg-2)", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
             width={32}
           />
           <Area
             dataKey="wpm"
-            stroke="#0096f5"
+            stroke="var(--c-blue)"
             strokeWidth={3}
             fill="url(#colorToBlack)"
             fillOpacity={1}
@@ -101,9 +101,9 @@ export default function TypingResults({
             animationEasing="ease-in-out"
             activeDot={{
               r: 3,
-              stroke: "#0096f5",
+              stroke: "var(--c-blue)",
               strokeWidth: 2,
-              fill: "#0096f5",
+              fill: "var(--c-blue)",
             }}
           />
           <Tooltip cursor={false} content={<CustomTooltip />} />
@@ -221,7 +221,7 @@ const CustomTooltip = ({ active, payload, label }) => {
     const { wpm, acc, time } = payload[0].payload; // read from payload directly
 
     return (
-      <div className="bg-black font-mono text-white text-sm rounded-lg shadow-lg px-4 py-2 space-y-1">
+      <div className="bg-bg font-mono text-fg text-sm rounded-lg shadow-lg px-4 py-2 space-y-1">
         <p>
           wpm: <span className="font-medium">{wpm}</span>
         </p>

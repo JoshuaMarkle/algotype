@@ -2,6 +2,8 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
 import StructuredData from "@/components/seo/StructuredData";
+import { SETTINGS_KEY } from "@/lib/settings";
+import { themeInitScript } from "@/lib/themes";
 import "@/app/globals.css";
 
 export const metadata = {
@@ -33,8 +35,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    // The theme script sets data-theme on <html> before hydration
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: themeInitScript(SETTINGS_KEY) }}
+        />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="icon"
