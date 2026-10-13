@@ -12,7 +12,10 @@ import {
   loginWithGitHub,
   loginWithGoogle,
   loginWithMagicLink,
+  getSignInMethods,
 } from "@/lib/auth";
+import { noPasswordMessage } from "@/lib/authRedirects";
+import { PASSWORD_RESET_ENABLED } from "@/lib/features";
 import { cn } from "@/lib/utils";
 
 // Turn Supabase's raw sign-in errors into actionable messages
@@ -57,7 +60,12 @@ export default function LoginForm({ className, ...props }) {
         window.location.href = "/account";
       }, 1000);
     } catch (err) {
-      setError(friendlyError(err.message));
+      let message = friendlyError(err.message);
+      if (/invalid login credentials/i.test(err.message)) {
+        message =
+          noPasswordMessage(await getSignInMethods(email.trim())) ?? message;
+      }
+      setError(message);
     }
   };
 
@@ -127,12 +135,14 @@ export default function LoginForm({ className, ...props }) {
                 />
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <Link
-                    href="/login/password-reset"
-                    className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link>
+                  {PASSWORD_RESET_ENABLED && (
+                    <Link
+                      href="/login/password-reset"
+                      className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
+                    >
+                      Forgot your password?
+                    </Link>
+                  )}
                 </div>
                 <div className="relative">
                   <Input

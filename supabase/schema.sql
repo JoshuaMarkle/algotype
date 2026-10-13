@@ -4,6 +4,7 @@
 -- Updated 2026-10-10 after migration `harden_functions_and_rls` (grants,
 -- search_path, RLS policies wrap auth.uid() in a subselect).
 -- Updated 2026-10-10 after migration `create_feedback_table` (/feedback form).
+-- Updated 2026-10-13 after migration `get_sign_in_methods` (login form hints).
 -- This file documents what exists in production; it is NOT a migration and
 -- has not been run as-is. Change the database in Supabase, then update this.
 
@@ -175,6 +176,31 @@ AS $function$
     where lower(email) = lower(_email)
   );
 $function$;
+
+-- Sign-in methods for an email (login form explains GitHub/Google-only
+-- accounts). Null when no account uses the email.
+CREATE OR REPLACE FUNCTION public.get_sign_in_methods(_email text)
+ RETURNS jsonb
+ LANGUAGE sql
+ STABLE
+ SECURITY DEFINER
+ SET search_path TO ''
+AS $function$
+  select jsonb_build_object(
+    'providers', coalesce(
+      (select jsonb_agg(distinct i.provider)
+       from auth.identities i
+       where i.user_id = u.id),
+      '[]'::jsonb),
+    'has_password', coalesce(u.encrypted_password, '') <> ''
+  )
+  from auth.users u
+  where lower(u.email) = lower(_email)
+  limit 1;
+$function$;
+
+REVOKE EXECUTE ON FUNCTION public.get_sign_in_methods(text) FROM public;
+GRANT EXECUTE ON FUNCTION public.get_sign_in_methods(text) TO anon, authenticated;
 
 CREATE OR REPLACE FUNCTION public.delete_account()
  RETURNS void

@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 
 import { createSupabaseServerClient } from "@/lib/supabaseServerClient";
-import { safeNext } from "@/lib/authRedirects";
+import {
+  accountExistsMessage,
+  findAutoLinkedIdentity,
+  safeNext,
+} from "@/lib/authRedirects";
 
 export async function GET(request) {
   const requestUrl = new URL(request.url);
@@ -38,6 +42,32 @@ export async function GET(request) {
       "Your sign-in link is invalid or has expired. Please try again.",
     );
     return NextResponse.redirect(errorUrl);
+  }
+
+  // Sign-in flows (no `next`) must not attach a provider to an existing
+  // account; providers are linked from Settings only
+  if (!nextParam) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    const linked = findAutoLinkedIdentity(user);
+
+    if (linked) {
+      const { error: unlinkError } = await supabase.auth.unlinkIdentity(
+        linked.identity,
+      );
+      if (unlinkError) {
+        console.error("Could not undo provider link:", unlinkError.message);
+      }
+      await supabase.auth.signOut();
+
+      const errorUrl = new URL("/login", request.url);
+      errorUrl.searchParams.set(
+        "error",
+        accountExistsMessage(linked.identity.provider, linked.existing),
+      );
+      return NextResponse.redirect(errorUrl);
+    }
   }
 
   return NextResponse.redirect(new URL(next, request.url));
