@@ -21,6 +21,31 @@ describe("safeNext", () => {
     expect(safeNext("//evil.com")).toBe("/account");
     expect(safeNext("", "/login")).toBe("/login");
   });
+
+  it("rejects backslash and whitespace tricks that resolve off-site", () => {
+    expect(safeNext("/\\evil.com")).toBe("/account");
+    expect(safeNext("/\\/evil.com")).toBe("/account");
+    expect(safeNext("/\t/evil.com")).toBe("/account");
+    expect(safeNext("/\n/evil.com")).toBe("/account");
+  });
+
+  it("keeps query and hash", () => {
+    expect(safeNext("/settings?tab=account#login")).toBe(
+      "/settings?tab=account#login",
+    );
+  });
+});
+
+describe("confirmRedirectPath via /auth/callback", () => {
+  it("does not follow an off-site nested next", () => {
+    expect(
+      confirmRedirectPath(
+        "https://algotype.net/auth/callback?next=/%5Cevil.com",
+        origin,
+        "email",
+      ),
+    ).toBe("/account");
+  });
 });
 
 describe("confirmRedirectPath", () => {

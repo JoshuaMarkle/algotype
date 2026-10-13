@@ -24,6 +24,16 @@ Update this file whenever a task starts, finishes, or is discovered.
 | A2 | Email + password login to a GitHub/Google-only account names the provider to use. Needs RPC `get_sign_in_methods` (applied 2026-10-13) | done | `supabase/migrations/20261013_get_sign_in_methods.sql`, `src/lib/auth.js`, `LoginForm.jsx` |
 | A3 | Password reset turned off (no email service): link hidden, `/login/password-reset/*` redirects to `/login`. Re-enable with `PASSWORD_RESET_ENABLED` in `src/lib/features.js` | done | `src/lib/features.js`, `src/app/login/password-reset/layout.js`, `LoginForm.jsx` |
 
+## Security audit (2026-10-13, branch `security-fixes`)
+| # | Task | Status | Files |
+|---|---|---|---|
+| S1 | Open redirect: `safeNext` accepted `/\evil.com` (browsers resolve it to `https://evil.com`), reachable unauthenticated via `/auth/callback?error=x&next=/%5Cevil.com`. Now resolved against a placeholder origin and rejected if it leaves it | done | `src/lib/authRedirects.js` (+ tests) |
+| S2 | `next` 15.3.9 had ~30 advisories (critical image-optimizer RCE, middleware bypass, DoS, SSRF). Bumped to `15.5.27`; `@supabase/supabase-js` to latest 2.x; `npm audit fix` for transitive deps. Left: build-time only (Next's bundled postcss, next-sitemap → braces) | done | `package.json`, `package-lock.json` |
+| S3 | Security headers: `X-Frame-Options`, `frame-ancestors`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`. A full CSP (nonces for Next/Umami/theme script) is still to do | done | `next.config.js` |
+| S4 | Least-privilege grants (anon/authenticated had full DML on all tables; only RLS protected them), drop unused `profiles` view over `auth.users`, CHECKs on `history` + username | pending (migration written, not applied) | `supabase/migrations/20261013_harden_grants_and_checks.sql` |
+| S5 | Email enumeration: `is_email_available` and `get_sign_in_methods` are anon-callable and reveal whether an email has an account (and its providers / password) | open: needs decision | `src/lib/auth.js`, `SignUpForm.jsx`, `LoginForm.jsx` |
+| S6 | Supabase dashboard: enable leaked-password protection, OTP expiry ≤ 1 h, upgrade Postgres 15.8.1.094; CAPTCHA for anon `feedback` inserts | open (dashboard) | — |
+
 ## Next (stability / production readiness)
 | # | Task | Status | Files |
 |---|---|---|---|
