@@ -29,7 +29,8 @@ Gitignored, local-only content dirs: `backend/data`, `backend/leetcode`, `backen
 ## Routes (`src/app/`)
 | Route | File | Type | Notes |
 |---|---|---|---|
-| `/` | `page.js` | server | Landing: hero, `RandomButton`, `CodeBox` demo, FAQ |
+| `/` | `page.js` | server shell | Quick tests (Monkeytype-style): `Navbar` + `components/quick/QuickTest.jsx`, which loads a random small `algorithms` challenge in the browser and swaps in the next one in place (no navigation) |
+| `/homepage` | `homepage/page.js` | server | Landing: hero (faded grid), `RandomButton` ("Play Now" → `/`), `CodeBox` demo, FAQ |
 | `/algorithms` | `algorithms/page.js` | server shell | `components/layouts/ModeIndexPage.jsx` (heading + `<ProblemsTable mode="algorithms" />`) |
 | `/algorithms/[slug]` | `algorithms/[slug]/page.js` | dynamic server | Fetches `challenges` by `slug` (no mode filter), renders `<TypingTest challenge slug />` |
 | `/files` | `files/page.js` | server shell | `ModeIndexPage` with `mode="files"` |
@@ -65,7 +66,7 @@ Root layout: `src/app/layout.js` (fonts, metadata, Umami script, `StructuredData
 3. Hidden `<textarea>` receives keydown → `handleKey` in `useTypingState.js`.
 4. `TypingRenderer` renders lines/tokens with cursor and wrong-char overlay.
 5. On finish: `calculateStats` → `submitTestHistory` (`src/lib/history.js`) inserts into `history` if signed in → `TypingResults` shows chart + stats.
-6. Next test: `gotoRandomTest(filters)` → RPC `get_random_challenge` → `window.location.href = /<mode>/<slug>` (full page load).
+6. Next test: `gotoRandomTest(filters)` → RPC `get_random_challenge` → `window.location.href = /<mode>/<slug>` (full page load). On `/`, `QuickTest` passes `onRandom` instead: `getRandomChallenge(filters)` fetches the full row and the test is re-mounted in place; the breadcrumb slug links to the test's own page.
 
 ### Syntax drills (browser only)
 1. `src/lib/drills/templates.js` holds snippet templates per language (`python`, `cpp`, `java`) and drill type (`for`, `while`, `if`, `func`, `class`, `idiom`) with random names.

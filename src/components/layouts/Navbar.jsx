@@ -14,7 +14,6 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/NavigationMenu";
 import NavbarAccount from "@/components/layouts/NavbarAccount";
-import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 import { getCurrentProfile } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
@@ -111,13 +110,21 @@ export default function Navbar({ className = "", ...props }) {
             </NavigationMenuContent>
           </NavigationMenuItem>
 
-          {/* Random Button */}
+          {/* Play (quick tests on the home page) */}
           <NavigationMenuItem>
-            <NavigationMenuLink
-              onClick={() => gotoRandomTest()}
-              className="flex flex-row justify-center items-center gap-2"
-            >
-              <Keyboard className="size-4" /> Play
+            <NavigationMenuLink asChild>
+              <Link
+                href="/"
+                className="flex flex-row justify-center items-center gap-2"
+              >
+                <Keyboard className="size-4" /> Play
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <Link href="/homepage">About</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
