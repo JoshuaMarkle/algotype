@@ -17,6 +17,13 @@ Update this file whenever a task starts, finishes, or is discovered.
 | N8 | Results graph got an extra sample on every keystroke (hidden `TypingResults` mutated the samples during render); screenshot left buttons hidden on failure | done | `TypingResults.jsx`, `utils/resultsSeries.js` |
 | N7 | Results max/min WPM show `-Infinity`/`Infinity` for tests under 1 s (empty `wpmOverTime`) | done | `src/components/typing/TypingResults.jsx` |
 
+## Auth conflicts (2026-10-13, branch `auth-conflicts`, issue #25)
+| # | Task | Status | Files |
+|---|---|---|---|
+| A1 | GitHub/Google sign-in with an email that already has an account: Supabase auto-links it. `/auth/callback` now detects a provider identity freshly attached to an older account (sign-in flows only, not `?next=` link flows), unlinks it, signs out and shows "account already exists, log in with X then link Y in Settings". Needs Supabase "Manual linking" on (for `unlinkIdentity`) | done | `src/app/auth/callback/route.js`, `src/lib/authRedirects.js` |
+| A2 | Email + password login to a GitHub/Google-only account names the provider to use. Needs RPC `get_sign_in_methods` (falls back to the generic message until applied) | needs-decision (apply migration) | `supabase/migrations/20261013_get_sign_in_methods.sql`, `src/lib/auth.js`, `LoginForm.jsx` |
+| A3 | Password reset turned off (no email service): link hidden, `/login/password-reset/*` redirects to `/login`. Re-enable with `PASSWORD_RESET_ENABLED` in `src/lib/features.js` | done | `src/lib/features.js`, `src/app/login/password-reset/layout.js`, `LoginForm.jsx` |
+
 ## Next (stability / production readiness)
 | # | Task | Status | Files |
 |---|---|---|---|

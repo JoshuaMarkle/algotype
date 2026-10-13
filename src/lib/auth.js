@@ -30,6 +30,16 @@ export async function signupWithEmail(username, email, password) {
   return data;
 }
 
+// How an email can sign in, or null if no account uses it (or the lookup
+// failed): { providers: ["email", "github", ...], has_password }
+export async function getSignInMethods(email) {
+  const { data, error } = await supabase.rpc("get_sign_in_methods", {
+    _email: email,
+  });
+  if (error) return null;
+  return data ?? null;
+}
+
 export async function loginWithEmail(email, password) {
   clearUserCaches();
   const { data, error } = await supabase.auth.signInWithPassword({
