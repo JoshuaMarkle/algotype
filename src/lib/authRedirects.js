@@ -1,12 +1,23 @@
 // Pure helpers for choosing where auth routes send the browser. Kept free of
 // Next/Supabase imports so they can be unit tested.
 
-// Only allow same-origin relative paths as redirect targets
+// Only allow same-origin relative paths as redirect targets. Resolving
+// against a placeholder origin catches what a prefix check misses: browsers
+// read "/\evil.com" (and tab/newline variants) as "//evil.com"
+const PLACEHOLDER_ORIGIN = "http://same-origin.invalid";
+
 export function safeNext(next, fallback = "/account") {
-  if (!next || !next.startsWith("/") || next.startsWith("//")) {
+  if (!next || !next.startsWith("/")) return fallback;
+
+  let url;
+  try {
+    url = new URL(next, PLACEHOLDER_ORIGIN);
+  } catch {
     return fallback;
   }
-  return next;
+  if (url.origin !== PLACEHOLDER_ORIGIN) return fallback;
+
+  return url.pathname + url.search + url.hash;
 }
 
 // Where /auth/confirm goes after verifying an email link. `next` comes from
