@@ -67,8 +67,14 @@ export default function SignupForm({ className, ...props }) {
 
     // Attempt to sign up
     try {
-      await signupWithEmail(username, email.trim(), password);
-      window.location.href = "/signup/success";
+      // With "Confirm email" off Supabase signs the user in right away;
+      // otherwise there is no session until the emailed link is opened
+      const { session } = await signupWithEmail(
+        username,
+        email.trim(),
+        password,
+      );
+      window.location.href = session ? "/account" : "/signup/success";
     } catch (err) {
       setError(err.message);
     }
