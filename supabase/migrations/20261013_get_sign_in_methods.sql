@@ -1,7 +1,7 @@
 -- Lets the login form explain why an email + password login failed: the
 -- account may only have GitHub/Google. Returns null when no account uses the
 -- email (is_email_available already exposes that), otherwise
--- { "providers": [...], "has_password": bool }. Pending: not yet applied.
+-- { "providers": [...], "has_password": bool }. Applied 2026-10-13.
 CREATE OR REPLACE FUNCTION public.get_sign_in_methods(_email text)
  RETURNS jsonb
  LANGUAGE sql
