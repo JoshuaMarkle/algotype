@@ -53,6 +53,8 @@ import { cn, capitalize, langToNatural, naturalToLang } from "@/lib/utils";
 // `onNext`, `onRestart` and `nav` let other modes (syntax drills) replace the
 // random-challenge navigation: `nav` replaces the breadcrumb and filters.
 // `timeLimit` (seconds) ends the test when the time runs out (timed mode)
+// `onRandom(filters)` loads a random test in place instead of navigating
+// to its page (quick tests on the home page)
 export default function TypingTest({
   challenge,
   slug,
@@ -60,6 +62,7 @@ export default function TypingTest({
   onRestart,
   nav,
   timeLimit,
+  onRandom,
 }) {
   // Extract info from challenge
   const tokens = challenge.tokens;
@@ -274,10 +277,12 @@ export default function TypingTest({
     setFilters({ language: null, minLength: null, maxLength: null });
   };
 
+  const randomTest = onRandom ?? gotoRandomTest;
+
   // Next test keeps the active filters and stays in the current mode
   const gotoNextTest = useCallback(
-    () => (onNext ? onNext() : gotoRandomTest({ ...filters, mode })),
-    [onNext, filters, mode],
+    () => (onNext ? onNext() : randomTest({ ...filters, mode })),
+    [onNext, randomTest, filters, mode],
   );
 
   // Go to the next test if TAB is pressed
@@ -357,7 +362,7 @@ export default function TypingTest({
                       "filters",
                       JSON.stringify(updatedFilters),
                     );
-                    gotoRandomTest({ ...updatedFilters, mode });
+                    randomTest({ ...updatedFilters, mode });
                   }}
                 >
                   {langToNatural(language)}
@@ -365,7 +370,13 @@ export default function TypingTest({
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>{slug}</BreadcrumbPage>
+                {onRandom ? (
+                  <BreadcrumbLink asChild>
+                    <Link href={`/${mode}/${slug}`}>{slug}</Link>
+                  </BreadcrumbLink>
+                ) : (
+                  <BreadcrumbPage>{slug}</BreadcrumbPage>
+                )}
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

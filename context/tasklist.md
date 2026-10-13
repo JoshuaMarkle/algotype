@@ -24,6 +24,14 @@ Update this file whenever a task starts, finishes, or is discovered.
 | A2 | Email + password login to a GitHub/Google-only account names the provider to use. Needs RPC `get_sign_in_methods` (applied 2026-10-13) | done | `supabase/migrations/20261013_get_sign_in_methods.sql`, `src/lib/auth.js`, `LoginForm.jsx` |
 | A3 | Password reset turned off (no email service): link hidden, `/login/password-reset/*` redirects to `/login`. Re-enable with `PASSWORD_RESET_ENABLED` in `src/lib/features.js` | done | `src/lib/features.js`, `src/app/login/password-reset/layout.js`, `LoginForm.jsx` |
 
+## UI overhaul (2026-10-13, branch `ui-overhaul`)
+| # | Task | Status | Files |
+|---|---|---|---|
+| U1 | Keyboard background missing on signup/login: `html` and `body` both have a background, so `body` painted over the `-z-10` layer. Fixed with `isolate` on the auth page `<main>` | done | `src/app/signup/**`, `src/app/login/**` |
+| U2 | Landing page: restore faded grid behind the hero, plain heading color instead of the gradient fill | done | `src/app/homepage/page.js` |
+| U3 | Move landing page to `/homepage`; Navbar gets "About" link, Play/Play Now go to `/` | done | `src/app/homepage/page.js`, `layouts/Navbar.jsx`, `layouts/misc/RandomButton.jsx` |
+| U4 | `/` = quick tests: random small LeetCode solution on load, next/Tab/filters/breadcrumb load in place via `TypingTest` `onRandom` | done | `src/app/page.js`, `components/quick/QuickTest.jsx`, `TypingTest.jsx`, `utils/randomTest.js` |
+
 ## Next (stability / production readiness)
 | # | Task | Status | Files |
 |---|---|---|---|
