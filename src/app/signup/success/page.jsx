@@ -5,7 +5,7 @@ import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
 export default function SignUpPage() {
   return (
-    <main className="relative grid min-h-svh lg:grid-cols-2">
+    <main className="relative isolate grid min-h-svh lg:grid-cols-2">
       {/*<div className="fixed top-0 left-0 right-0 z-50">
         <Navbar />
       </div>*/}

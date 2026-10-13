@@ -57,6 +57,24 @@ export async function getRandomTest(filters = {}) {
   return data?.[0] || null;
 }
 
+// Get a full random challenge row (for loading tests in place)
+export async function getRandomChallenge(filters = {}) {
+  const { minLength, maxLength, language, mode } = filters;
+
+  const { data, error } = await supabase.rpc("get_random_challenge", {
+    _min_length: minLength ?? null,
+    _max_length: maxLength ?? null,
+    _language: language ?? null,
+    _mode: mode ?? null,
+  });
+
+  if (error) {
+    throw new Error("Failed to fetch random test: " + error.message);
+  }
+
+  return data?.[0] || null;
+}
+
 // Apply the filters
 function applyFilters(
   query,

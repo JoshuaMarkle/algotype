@@ -5,7 +5,7 @@ import KeyboardBackground from "@/components/effects/KeyboardBackground";
 
 export default function ReverifyEmailPage() {
   return (
-    <main className="relative grid min-h-svh lg:grid-cols-2">
+    <main className="relative isolate grid min-h-svh lg:grid-cols-2">
       <KeyboardBackground />
       <div className="flex flex-col gap-4 p-6 bg-bg md:p-10 border-r border-border">
         <div className="flex justify-center gap-2 md:justify-start">

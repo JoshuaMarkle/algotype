@@ -1,15 +1,15 @@
-"use client";
-
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import Button from "@/components/ui/Button";
-import { gotoRandomTest } from "@/components/typing/utils/randomTest";
 
-export default function ClientGotoButton() {
+export default function PlayButton() {
   return (
-    <Button onClick={() => gotoRandomTest()} size="lg">
-      Play Now
-      <ArrowRight />
+    <Button size="lg" asChild>
+      <Link href="/">
+        Play Now
+        <ArrowRight />
+      </Link>
     </Button>
   );
 }
