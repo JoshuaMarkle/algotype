@@ -15,18 +15,22 @@ import {
   getSignInMethods,
 } from "@/lib/auth";
 import { noPasswordMessage } from "@/lib/authRedirects";
-import { PASSWORD_RESET_ENABLED } from "@/lib/features";
+import { AUTH_EMAILS_ENABLED, PASSWORD_RESET_ENABLED } from "@/lib/features";
 import { cn } from "@/lib/utils";
 
 // Turn Supabase's raw sign-in errors into actionable messages
 function friendlyError(message) {
   if (/email not confirmed/i.test(message)) {
-    return 'Please verify your email first. Use the "Unverified?" link to resend it.';
+    return AUTH_EMAILS_ENABLED
+      ? 'Please verify your email first. Use the "Unverified?" link to resend it.'
+      : "This account's email was never verified. Log in with GitHub or Google if you linked one.";
   }
   // Supabase gives the same error for a wrong password and for an account
   // that has no password (created with GitHub/Google), so cover both
   if (/invalid login credentials/i.test(message)) {
-    return "Incorrect email or password. If you signed up with GitHub or Google, log in with that provider or get a login link by email, then add a password in Settings.";
+    return AUTH_EMAILS_ENABLED
+      ? "Incorrect email or password. If you signed up with GitHub or Google, log in with that provider or get a login link by email, then add a password in Settings."
+      : "Incorrect email or password. If you signed up with GitHub or Google, log in with that provider, then add a password in Settings.";
   }
   return message;
 }
@@ -118,12 +122,14 @@ export default function LoginForm({ className, ...props }) {
               <div className="grid gap-3">
                 <div className="flex items-center">
                   <Label htmlFor="email">Email</Label>
-                  <Link
-                    href="/login/verify-email"
-                    className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Unverified?
-                  </Link>
+                  {AUTH_EMAILS_ENABLED && (
+                    <Link
+                      href="/login/verify-email"
+                      className="text-fg-2 ml-auto text-sm underline-offset-4 hover:underline"
+                    >
+                      Unverified?
+                    </Link>
+                  )}
                 </div>
                 <Input
                   id="email"
@@ -194,15 +200,17 @@ export default function LoginForm({ className, ...props }) {
 
             {/* Providers */}
             <div className="flex flex-col gap-4">
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full bg-bg-2"
-                onClick={handleMagicLink}
-              >
-                <Mail />
-                Email me a login link
-              </Button>
+              {AUTH_EMAILS_ENABLED && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full bg-bg-2"
+                  onClick={handleMagicLink}
+                >
+                  <Mail />
+                  Email me a login link
+                </Button>
+              )}
               <Button
                 type="button"
                 variant="outline"

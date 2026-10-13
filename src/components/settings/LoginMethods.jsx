@@ -15,6 +15,7 @@ import {
   unlinkProvider,
   userHasPassword,
 } from "@/lib/auth";
+import { AUTH_EMAILS_ENABLED } from "@/lib/features";
 
 const PROVIDERS = [
   { id: "github", label: "GitHub" },
@@ -211,7 +212,11 @@ function PasswordForm({ email, isNew, onDone }) {
       await setPassword(password, needsCode ? code.trim() : undefined);
       await onDone();
     } catch (err) {
-      if (!needsCode && isReauthenticationError(err)) {
+      if (!AUTH_EMAILS_ENABLED && isReauthenticationError(err)) {
+        // The code would be emailed; turn off "Secure password change" in
+        // Supabase while auth emails are off
+        setError("Password changes are unavailable right now.");
+      } else if (!needsCode && isReauthenticationError(err)) {
         try {
           await sendReauthenticationCode();
           setNeedsCode(true);
