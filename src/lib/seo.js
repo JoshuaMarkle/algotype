@@ -1,6 +1,31 @@
 export const SITE_URL = "https://algotype.net";
 export const SITE_NAME = "AlgoType";
 
+// Languages with challenge content, in the order hub links are listed
+export const CHALLENGE_LANGUAGES = [
+  "python",
+  "cpp",
+  "java",
+  "javascript",
+  "rust",
+];
+
+// Some LeetCode slugs contain ?, %, # or commas ("IsGraphBipartite?-cpp"),
+// which break raw URLs ("?" starts a query string), so links are encoded
+export function challengePath(mode, slug) {
+  return `/${mode}/${encodeURIComponent(slug)}`;
+}
+
+// Route params may or may not arrive decoded; a slug with a bare "%"
+// ("25%InSortedArray") is not valid encoding, so keep it as it is then
+export function decodeSlug(slug) {
+  try {
+    return decodeURIComponent(slug);
+  } catch {
+    return slug;
+  }
+}
+
 const OG_IMAGE = {
   url: `${SITE_URL}/twitter-card.png`,
   width: 1200,

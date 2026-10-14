@@ -1,6 +1,9 @@
 import ModeIndexPage from "@/components/layouts/ModeIndexPage";
 import { pageMetadata } from "@/lib/seo";
 
+// The language links under the heading come from Supabase
+export const revalidate = 86400;
+
 export const metadata = pageMetadata({
   title: "Type Real Source Files | AlgoType",
   description:

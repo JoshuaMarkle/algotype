@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { challengeDescription, challengeTitle, pageMetadata } from "@/lib/seo";
+import {
+  challengeDescription,
+  challengePath,
+  challengeTitle,
+  decodeSlug,
+  pageMetadata,
+} from "@/lib/seo";
 
 describe("pageMetadata", () => {
   it("points canonical and og:url at the page", () => {
@@ -58,5 +64,36 @@ describe("challengeDescription", () => {
       120,
     );
     expect(text.length).toBeLessThanOrEqual(160);
+  });
+});
+
+describe("challengePath", () => {
+  it("encodes slugs that would break a URL", () => {
+    expect(challengePath("algorithms", "IsGraphBipartite?-cpp")).toBe(
+      "/algorithms/IsGraphBipartite%3F-cpp",
+    );
+    expect(challengePath("algorithms", "TwoSum-python")).toBe(
+      "/algorithms/TwoSum-python",
+    );
+  });
+});
+
+describe("decodeSlug", () => {
+  it("decodes an encoded slug and round-trips challengePath", () => {
+    for (const slug of [
+      "IsGraphBipartite?-cpp",
+      "ElementAppearingMoreThan25%InSortedArray-javascript",
+      "Pow(x,n)-java",
+      "NumberofWaystoPaintN×3Grid-java",
+    ]) {
+      const encoded = challengePath("algorithms", slug).split("/").at(-1);
+      expect(decodeSlug(encoded)).toBe(slug);
+    }
+  });
+
+  it("keeps an already decoded slug with a bare %", () => {
+    expect(decodeSlug("ElementAppearingMoreThan25%InSortedArray-js")).toBe(
+      "ElementAppearingMoreThan25%InSortedArray-js",
+    );
   });
 });

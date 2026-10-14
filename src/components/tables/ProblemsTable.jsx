@@ -30,6 +30,7 @@ import { Settings2 } from "lucide-react";
 import { getColumns } from "@/components/tables/utils/getColumns";
 import { useDebounce } from "@/lib/useDebounce";
 import { supabase } from "@/lib/supabaseClient";
+import { challengePath } from "@/lib/seo";
 
 export default function GenericProblemsTable({ mode }) {
   const router = useRouter();
@@ -246,7 +247,7 @@ export default function GenericProblemsTable({ mode }) {
                   key={row.id}
                   onClick={() => {
                     const { slug, mode } = row.original;
-                    router.push(`/${mode}/${slug}`);
+                    router.push(challengePath(mode, slug));
                   }}
                   className="cursor-pointer hover:bg-bg-3"
                 >

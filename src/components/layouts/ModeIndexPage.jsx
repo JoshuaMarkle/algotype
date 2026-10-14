@@ -1,10 +1,16 @@
+import Link from "next/link";
+
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import ProblemsTable from "@/components/tables/ProblemsTable";
+import { getModeLanguages } from "@/lib/challenges";
+import { langToNatural } from "@/lib/utils";
 
 // Shared index page for the challenge modes (/algorithms, /files): heading
 // plus the searchable problems table for that mode
-export default function ModeIndexPage({ title, description, mode }) {
+export default async function ModeIndexPage({ title, description, mode }) {
+  const languages = await getModeLanguages(mode);
+
   return (
     <main className="relative">
       <Navbar className="fixed top" />
@@ -13,9 +19,22 @@ export default function ModeIndexPage({ title, description, mode }) {
         {/* Header */}
         <section className="relative flex flex-col pt-32 mx-auto w-full px-8 md:px-16">
           <h1 className="text-4xl md:text-5xl font-bold z-10">{title}</h1>
-          <p className="text-md md:text-xl text-fg-2 mt-4 mb-8 z-10">
+          <p className="text-md md:text-xl text-fg-2 mt-4 z-10">
             {description}
           </p>
+          {/* Server-rendered links so crawlers reach every challenge page */}
+          <nav className="flex flex-row flex-wrap gap-x-4 gap-y-1 mt-4 mb-8 text-sm text-fg-3 z-10">
+            <span>Browse by language:</span>
+            {languages.map(({ language, count }) => (
+              <Link
+                key={language}
+                href={`/${mode}/language/${language}`}
+                className="hover:text-fg transition"
+              >
+                {langToNatural(language)} ({count})
+              </Link>
+            ))}
+          </nav>
           <svg
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 size-full fill-red stroke-border z-0 [mask-image:linear-gradient(to_top,_#ffffffad,_transparent)]"

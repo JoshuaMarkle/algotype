@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import { challengePath } from "@/lib/seo";
 
 // Go to a random challenge
 export async function gotoRandomTest(filters = {}) {
@@ -10,7 +11,7 @@ export async function gotoRandomTest(filters = {}) {
     }
 
     const { mode, slug } = test;
-    window.location.href = `/${mode}/${slug}`;
+    window.location.href = challengePath(mode, slug);
   } catch (err) {
     console.error("Failed to go to random test:", err.message);
     alert("Failed to load a random test.");

@@ -28,6 +28,7 @@ import {
   DropdownMenuCheckboxItem,
 } from "@/components/ui/DropdownMenu";
 import { getUserHistoryPaginated } from "@/lib/history";
+import { challengePath } from "@/lib/seo";
 
 // history: the cached most recent results (newest first); total: number of
 // results on the account. Pages past the cached rows are fetched on demand.
@@ -181,7 +182,7 @@ export default function PastTestsTable({
                   key={row.id}
                   onClick={() => {
                     const { slug, mode } = row.original;
-                    router.push(`/${mode}/${slug}`);
+                    router.push(challengePath(mode, slug));
                   }}
                   className="cursor-pointer hover:bg-bg-3"
                 >
