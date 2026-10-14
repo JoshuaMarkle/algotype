@@ -98,7 +98,8 @@ export default function Navbar({ className = "", ...props }) {
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="/timed">
+                    {/* Straight to the default test: /timed is a redirect */}
+                    <Link href="/timed/python-30">
                       <div className="font-medium">Timed</div>
                       <div className="text-muted-foreground">
                         Type as much code as you can in 15, 30 or 60 seconds

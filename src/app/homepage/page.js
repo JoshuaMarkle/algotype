@@ -186,7 +186,7 @@ export default function Home() {
                 <ArrowRight className="size-4 ml-auto" />
               </Link>
               <Link
-                href="/timed"
+                href="/timed/python-30"
                 className="flex flex-col justify-between bg-bg-2 border border-border rounded-sm p-6 h-48 hover:border-blue hover:scale-105 hover:-rotate-1 transition"
               >
                 <div className="space-y-2">
