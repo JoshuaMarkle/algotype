@@ -21,7 +21,7 @@
 ├─ backend/
 │  ├─ scripts/         generateTokens.js, uploadTokens.js, formatAllCode.js, fix_errors.sh, logs/
 │  └─ emails/          React Email templates for Supabase auth emails
-├─ public/             icons, logo, robots.txt, site.webmanifest, generated sitemap (gitignored)
+├─ public/             icons, logo, robots.txt, site.webmanifest
 └─ .github/            issue templates, README images
 ```
 Gitignored, local-only content dirs: `backend/data`, `backend/leetcode`, `backend/tokens`.
@@ -58,7 +58,7 @@ Root layout: `src/app/layout.js` (fonts, metadata, Umami script, `StructuredData
 2. Optional formatting: `backend/scripts/formatAllCode.js` (paths resolve from the script, runs from any directory), failures → `backend/scripts/logs/format_errors.txt`.
 3. `npm run generate:tokens` → `backend/scripts/generateTokens.js` → `backend/tokens/<mode>/<lang>/<Name>.json`.
 4. `npm run upload:tokens` → `backend/scripts/uploadTokens.js` → upsert into Supabase `challenges` on `slug`.
-5. `next-sitemap` (postbuild) reads `backend/tokens/files/**` to add `/files/<slug>` URLs.
+5. `src/app/sitemap.js` serves `/sitemap.xml` per request: static pages, single-type drills, timed tests, language hubs and every `challenges` row (list cached 24 h via `unstable_cache`, built in `src/lib/sitemap.js`). Challenge URLs are encoded with `challengePath()` (`src/lib/seo.js`).
 
 ### Typing a test (browser)
 1. `/algorithms/[slug]` server component selects `*` from `challenges` → `challenge` object.

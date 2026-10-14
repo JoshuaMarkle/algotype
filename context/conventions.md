@@ -6,7 +6,7 @@
 | Install | `npm ci` | Uses `package-lock.json` (npm) |
 | Dev server | `npm run dev` | `next dev --turbopack`, http://localhost:3000. Needs `.env.local` with Supabase vars (copy `.env.example`) |
 | Lint | `npm run lint` | `next lint` (ESLint 9, `next/core-web-vitals`). Baseline: 0 errors, 2 warnings |
-| Build | `npm run build` | `next build`, then `postbuild` runs `next-sitemap` (writes `public/sitemap*.xml`, `public/robots.txt`) |
+| Build | `npm run build` | `next build` (`/sitemap.xml` is a dynamic route, so the build never queries Supabase) |
 | Start prod | `npm run start` | After build |
 | Format | `npx prettier --write <files>` | No npm script. `.prettierignore` skips `*.md`, `.github` |
 | Tokenize content | `npm run generate:tokens` | See `skills/add_challenges.md` |

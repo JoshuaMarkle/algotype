@@ -33,7 +33,7 @@ Versions are from `package.json` / installed `package-lock.json` (checked 2026-1
 - Email: React Email templates in `backend/emails/*.jsx` sharing `backend/emails/components/EmailLayout.jsx` (import `@react-email/components`, a dev dependency). `npm run render:emails` bundles them with esbuild and writes static HTML to `backend/emails/out/<template>.html`, keeping Supabase's Go template variables (`{{ .TokenHash }}`, `{{ .RedirectTo }}`, `{{ .Token }}`, `{{ .Email }}`, `{{ .NewEmail }}`). Each file is pasted by hand into Supabase → Authentication → Emails → Templates (confirm → "Confirm signup", magic-link → "Magic Link", reset-password → "Reset Password", change-email → "Change Email Address", invite → "Invite user", reauthentication → "Reauthentication"). Links point at `{{ .SiteURL }}/auth/confirm?token_hash=...&type=...&next={{ .RedirectTo }}`, so the Supabase Site URL must be `https://algotype.net`. Resend is the SMTP sender (Joshua, issue #22) `[UNVERIFIED sender address]`.
 - Hosting: Vercel, project `joshuamarkles-projects/algotype`. Pushes build Preview deployments (confirmed 2026-10-09). No `vercel.json`; `.vercel` gitignored.
 - Vercel refuses to deploy Next.js versions with known vulnerabilities ("Vulnerable version of Next.js detected"). 15.3.2 was blocked; bumped to 15.3.9 (tasklist N0).
-- SEO: `next-sitemap` (postbuild), JSON-LD in `src/components/seo/StructuredData.jsx`, OpenGraph/Twitter metadata in `layout.js`.
+- SEO: `src/app/sitemap.js` (live from Supabase), static `public/robots.txt`, JSON-LD in `src/components/seo/StructuredData.jsx`, OpenGraph/Twitter metadata in `layout.js`.
 
 ## Offline content tooling (`backend/scripts/`)
 - `prismjs` 1.30.0 (tokenizer), `chalk`, `dotenv`, `p-limit`.
