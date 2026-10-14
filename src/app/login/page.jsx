@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/layouts/Navbar";
 import LoginForm from "@/components/auth/LoginForm";
 import KeyboardBackground from "@/components/effects/KeyboardBackground";
+import { pageMetadata } from "@/lib/seo";
 
 export default function LoginPage() {
   return (
@@ -43,7 +44,9 @@ export default function LoginPage() {
   );
 }
 
-export const metadata = {
-  title: "AlgoType | Log In",
-  description: "Login to your account to track your progress",
-};
+export const metadata = pageMetadata({
+  title: "Log In | AlgoType",
+  description: "Log in to your account to track your progress",
+  path: "/login",
+  noindex: true,
+});

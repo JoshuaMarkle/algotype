@@ -1,5 +1,6 @@
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
+import { pageMetadata } from "@/lib/seo";
 
 export default function TermsPage() {
   return (
@@ -87,7 +88,8 @@ export default function TermsPage() {
   );
 }
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Terms of Service | AlgoType",
   description: "Review the terms and conditions for using AlgoType.",
-};
+  path: "/terms",
+});

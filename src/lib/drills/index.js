@@ -145,6 +145,14 @@ export function generateDrillCode({
 
 // A drill in the same shape as a `challenges` row, ready for TypingTest
 export function buildDrillChallenge({ language, types, count, rng }) {
+  // Prism silently ignores a missing component import. Checked here, not at
+  // import time: drills are only built in the browser, while in the server
+  // bundle some components are not registered, so an import-time check made
+  // every /timed and /drills page answer 500
+  if (!Prism.languages[language]) {
+    throw new Error(`Prism language missing for drills: ${language}`);
+  }
+
   const code = generateDrillCode({ language, types, count, rng });
   const tokens = tokenizeCode(code, language);
   const names = DRILL_TYPES.filter((t) => types.includes(t.id)).map(
@@ -160,12 +168,4 @@ export function buildDrillChallenge({ language, types, count, rng }) {
     lines: countTypableLines(tokens),
     tokens,
   };
-}
-
-// Make sure the languages above really are loaded (Prism silently ignores
-// a missing component import)
-for (const language of DRILL_LANGUAGES) {
-  if (!Prism.languages[language]) {
-    throw new Error(`Prism language missing for drills: ${language}`);
-  }
 }

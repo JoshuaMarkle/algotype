@@ -15,6 +15,9 @@ Update this file when a task starts, finishes, or is discovered. Remove tasks on
 | S4 | Least-privilege grants (anon/authenticated have full DML on all tables; only RLS protects them), drop the unused `profiles` view over `auth.users`, CHECKs on `history` + username. Migration written, not applied: needs Joshua's OK | needs-decision | `supabase/migrations/20261013_harden_grants_and_checks.sql` |
 | S7 | Full Content-Security-Policy (nonces for Next, Umami and the theme script). Other security headers are in | todo | `next.config.js` |
 | T10 | Tokenizer block comments: code before an unclosed `/*` and `/*` inside C/Java strings are still dropped | todo | `backend/scripts/generateTokens.js` |
+| G1 | SEO: challenge pages are only linked from the sitemap (the `/algorithms` and `/files` tables load in the browser). Add server-rendered per-language hub pages (e.g. `/algorithms/python`) with paginated links, and "same problem in other languages" links on each challenge | todo | `src/app/algorithms/`, `ProblemsTable.jsx` |
+| G2 | SEO: per-language landing pages ("Python typing practice", "C++ typing test") with a short intro, the timed test and links to that language's challenges | todo | new routes |
+| G3 | SEO: per-page Open Graph images (`opengraph-image.jsx`) so shared challenge links show the problem and language | todo | `src/app/**/opengraph-image.jsx` |
 
 ## Needs a decision
 | # | Task | Files |
@@ -29,3 +32,4 @@ Update this file when a task starts, finishes, or is discovered. Remove tasks on
 - Turn on leaked-password protection, set email OTP expiry under 1 h, upgrade Postgres 15.8.1.094, add CAPTCHA for anon `feedback` inserts (from the X21 advisors check and security audit S6).
 - Confirm "Manual linking" is on (needed by A1 and Settings → Login Methods) and the new email templates are pasted in (`npm run render:emails`, see `tech_stack.md`).
 - Email logo loading from algotype.net was never checked `[UNVERIFIED]`.
+- SEO: verify algotype.net in Google Search Console (DNS TXT record) and Bing Webmaster Tools, then submit `https://algotype.net/sitemap.xml` in both.

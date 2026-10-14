@@ -372,10 +372,12 @@ export default function TypingTest({
               <BreadcrumbItem>
                 {onRandom ? (
                   <BreadcrumbLink asChild>
-                    <Link href={`/${mode}/${slug}`}>{slug}</Link>
+                    <Link href={`/${mode}/${slug}`}>
+                      {challenge.title ?? slug}
+                    </Link>
                   </BreadcrumbLink>
                 ) : (
-                  <BreadcrumbPage>{slug}</BreadcrumbPage>
+                  <BreadcrumbPage>{challenge.title ?? slug}</BreadcrumbPage>
                 )}
               </BreadcrumbItem>
             </BreadcrumbList>

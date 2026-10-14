@@ -1,13 +1,14 @@
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import DrillPicker from "@/components/drills/DrillPicker";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Syntax Drills | AlgoType",
+export const metadata = pageMetadata({
+  title: "Code Syntax Typing Drills | AlgoType",
   description:
-    "Short, repeated typing drills for loops, functions, conditionals, classes and common idioms in Python, C++ and Java",
-  alternates: { canonical: "https://algotype.net/drills" },
-};
+    "Short, repeated typing drills for loops, functions, conditionals, classes and common idioms in Python, C++ and Java.",
+  path: "/drills",
+});
 
 export default function DrillsPage() {
   return (

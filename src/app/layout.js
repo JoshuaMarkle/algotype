@@ -5,33 +5,19 @@ import StructuredData from "@/components/seo/StructuredData";
 import PreferenceSync from "@/components/providers/PreferenceSync";
 import { SETTINGS_KEY } from "@/lib/settings";
 import { themeInitScript } from "@/lib/themes";
+import { SITE_URL, pageMetadata } from "@/lib/seo";
 import "@/app/globals.css";
 
 export const metadata = {
-  title: "AlgoType | Typing Practice For Programmers",
-  description:
-    "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters in order to achieve flow and maximize productivity.",
-  openGraph: {
-    url: "https://algotype.net",
+  metadataBase: new URL(SITE_URL),
+  // Fallbacks; indexable pages set their own through pageMetadata
+  ...pageMetadata({
     title: "AlgoType | Typing Practice For Programmers",
     description:
-      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters in order to achieve flow and maximize productivity.",
-    images: [
-      {
-        url: "https://algotype.net/twitter-card.png",
-        width: 1200,
-        height: 630,
-        alt: "AlgoType Logo",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AlgoType | Typing Practice For Programmers",
-    description:
-      "AlgoType.net is designed to help programmers train their typing skills on syntax and special characters in order to achieve flow and maximize productivity.",
-    images: ["https://algotype.net/twitter-card.png"],
-  },
+      "Free typing practice for programmers. Type real code and track your WPM and accuracy.",
+    path: "/",
+  }),
+  alternates: undefined,
 };
 
 export default function RootLayout({ children }) {

@@ -1,5 +1,6 @@
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
+import { pageMetadata } from "@/lib/seo";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -114,7 +115,8 @@ export default function PrivacyPolicyPage() {
   );
 }
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy | AlgoType",
   description: "Learn how AlgoType collects and handles your data.",
-};
+  path: "/privacy",
+});
