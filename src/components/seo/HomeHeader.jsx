@@ -26,11 +26,16 @@ const MODES = [
 // browser, so the About panel is the home page's server-rendered heading and
 // copy for search engines. It sits in a collapsed <details> (still in the
 // HTML, which Google indexes) so the first screen stays just the test.
-// Escape or a click outside closes it
+// Escape or a click outside closes it. On wide screens it sits in the corner
+// on the same row as the test's breadcrumb (same padding); below 1440px the
+// centered test would overlap it, so it takes its own row
 export default function HomeHeader() {
   return (
-    <header className="relative z-60 flex flex-row items-center gap-4 px-4 pt-4">
-      <Link href="/" className="flex flex-row items-center gap-2 font-semibold">
+    <header className="relative min-[1440px]:absolute min-[1440px]:top-0 min-[1440px]:left-0 z-60 flex h-5 flex-row items-center gap-4 px-4 md:px-8 pt-4 box-content">
+      <Link
+        href="/"
+        className="flex flex-row items-center gap-2 font-semibold hover:opacity-80 transition"
+      >
         <LogoMark />
         AlgoType
       </Link>

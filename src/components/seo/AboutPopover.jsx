@@ -25,7 +25,7 @@ export default function AboutPopover({ label, children }) {
 
   return (
     <details ref={ref}>
-      <summary className="list-none cursor-pointer text-sm text-fg-3 hover:text-fg transition [&::-webkit-details-marker]:hidden">
+      <summary className="list-none cursor-pointer text-sm font-medium text-muted-foreground hover:text-fg transition [&::-webkit-details-marker]:hidden">
         {label}
       </summary>
       {children}
