@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { pageMetadata } from "@/lib/seo";
+import { challengeDescription, challengeTitle, pageMetadata } from "@/lib/seo";
 
 describe("pageMetadata", () => {
   it("points canonical and og:url at the page", () => {
@@ -31,5 +31,32 @@ describe("pageMetadata", () => {
       noindex: true,
     });
     expect(meta.robots).toEqual({ index: false, follow: true });
+  });
+});
+
+describe("challengeTitle", () => {
+  it("keeps the full title when it fits", () => {
+    expect(challengeTitle("Two Sum", "Python")).toBe(
+      "Two Sum (Python) Typing Practice | AlgoType",
+    );
+  });
+
+  it("drops words to stay within 60 characters", () => {
+    const mid = challengeTitle("Count Number of Possible Root Nodes", "C++");
+    expect(mid).toBe("Count Number of Possible Root Nodes (C++) | AlgoType");
+    const long = "Minimum Number of Operations to Make Array Continuous Again";
+    expect(challengeTitle(long, "JavaScript")).toBe(`${long} (JavaScript)`);
+  });
+});
+
+describe("challengeDescription", () => {
+  it("stays under 160 characters for a long problem name", () => {
+    const text = challengeDescription(
+      "Minimum Number of Operations to Make Array Continuous",
+      "JavaScript",
+      "LeetCode solution",
+      120,
+    );
+    expect(text.length).toBeLessThanOrEqual(160);
   });
 });
