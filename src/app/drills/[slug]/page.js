@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import DrillTest from "@/components/drills/DrillTest";
 import { DRILL_TYPES, parseDrillSlug } from "@/lib/drills";
 import { langToNatural } from "@/lib/utils";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -15,11 +16,11 @@ export async function generateMetadata({ params }) {
     .map((t) => t.name)
     .join(", ");
   const name = `${names} (${langToNatural(drill.language)})`;
-  return {
-    title: `${name} Drill | AlgoType`,
-    description: `Practice typing ${name} syntax on AlgoType`,
-    alternates: { canonical: `https://algotype.net/drills/${slug}` },
-  };
+  return pageMetadata({
+    title: `${name} Typing Drill | AlgoType`,
+    description: `Practice typing ${name} syntax with short, repeated code drills on AlgoType, typing practice for programmers.`,
+    path: `/drills/${slug}`,
+  });
 }
 
 export default async function DrillPage({ params, searchParams }) {

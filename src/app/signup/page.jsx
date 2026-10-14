@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/layouts/Navbar";
 import SignUpForm from "@/components/auth/SignUpForm";
 import KeyboardBackground from "@/components/effects/KeyboardBackground";
+import { pageMetadata } from "@/lib/seo";
 
 export default function SignUpPage() {
   return (
@@ -43,7 +44,9 @@ export default function SignUpPage() {
   );
 }
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Sign Up | AlgoType",
   description: "Create an account to save your typing progress.",
-};
+  path: "/signup",
+  noindex: true,
+});

@@ -42,6 +42,8 @@ export default {
     "/timed", // redirects to /timed/python-30
     "/account",
     "/settings",
+    "/login",
+    "/signup",
     "/login/password-reset*",
     "/login/verify-email",
     "/signup/success",

@@ -19,10 +19,14 @@ import {
 } from "@/components/ui/Accordion";
 import HashPatternSvg from "@/components/effects/HashPatternSvg";
 import RandomButton from "@/components/layouts/misc/RandomButton";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  alternates: { canonical: "https://algotype.net/homepage" },
-};
+export const metadata = pageMetadata({
+  title: "About AlgoType | Typing Practice For Programmers",
+  description:
+    "AlgoType helps programmers type code faster: practice real LeetCode solutions, full source files and syntax drills to make brackets, symbols and syntax second nature.",
+  path: "/homepage",
+});
 
 export default function Home() {
   return (

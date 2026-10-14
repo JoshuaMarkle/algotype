@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import TypingTest from "@/components/typing/TypingTest";
 import { getChallenge, getChallengeMetadata } from "@/lib/challenges";
+import { langToNatural } from "@/lib/utils";
 
 const MODE = "algorithms";
 
@@ -22,6 +23,11 @@ export default async function AlgorithmPage({ params }) {
 
   return (
     <main className="font-[family-name:var(--font-geist-sans)] flex flex-col min-h-screen p-0 md:p-4">
+      {/* The breadcrumb shows the title; this names the page for search and screen readers */}
+      <h1 className="sr-only">
+        {challenge.title} LeetCode solution in{" "}
+        {langToNatural(challenge.language)}
+      </h1>
       <TypingTest challenge={challenge} slug={slug} />
     </main>
   );

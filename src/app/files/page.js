@@ -1,11 +1,12 @@
 import ModeIndexPage from "@/components/layouts/ModeIndexPage";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Files | AlgoType",
+export const metadata = pageMetadata({
+  title: "Type Real Source Files | AlgoType",
   description:
-    "Practice typing full source files and real-world feature implementations on AlgoType",
-  alternates: { canonical: "https://algotype.net/files" },
-};
+    "Practice typing full source files and real-world feature implementations, not random words. Typing practice for programmers on AlgoType.",
+  path: "/files",
+});
 
 export default function FilesPage() {
   return (

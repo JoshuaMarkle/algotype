@@ -1,11 +1,12 @@
 import ModeIndexPage from "@/components/layouts/ModeIndexPage";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Algorithms | AlgoType",
+export const metadata = pageMetadata({
+  title: "LeetCode Typing Practice | AlgoType",
   description:
-    "Browse thousands of LeetCode-style solutions in Python, C++, Java and more, and practice typing them on AlgoType",
-  alternates: { canonical: "https://algotype.net/algorithms" },
-};
+    "Practice typing thousands of LeetCode solutions in Python, C++, Java and JavaScript. Pick a problem, type the real code and track your WPM and accuracy.",
+  path: "/algorithms",
+});
 
 export default function AlgorithmsPage() {
   return (

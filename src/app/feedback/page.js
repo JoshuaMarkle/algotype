@@ -1,6 +1,7 @@
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import FeedbackForm from "@/components/feedback/FeedbackForm";
+import { pageMetadata } from "@/lib/seo";
 
 const ISSUES_URL = "https://github.com/JoshuaMarkle/algotype/issues/new";
 
@@ -46,8 +47,9 @@ export default function FeedbackPage() {
   );
 }
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Feedback | AlgoType",
   description:
     "Report a bug, request a feature or tell us what you think of AlgoType.",
-};
+  path: "/feedback",
+});
