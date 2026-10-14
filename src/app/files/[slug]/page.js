@@ -2,12 +2,13 @@ import { notFound } from "next/navigation";
 
 import TypingTest from "@/components/typing/TypingTest";
 import { getChallenge, getChallengeMetadata } from "@/lib/challenges";
+import { decodeSlug } from "@/lib/seo";
 import { langToNatural } from "@/lib/utils";
 
 const MODE = "files";
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
+  const slug = decodeSlug((await params).slug);
   return getChallengeMetadata(MODE, slug, {
     // Only used when the slug does not exist (the page then 404s)
     title: "Challenge Not Found | AlgoType",
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function FilePage({ params }) {
-  const { slug } = await params;
+  const slug = decodeSlug((await params).slug);
 
   const challenge = await getChallenge(MODE, slug);
   if (!challenge) notFound();

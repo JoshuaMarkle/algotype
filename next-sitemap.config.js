@@ -15,21 +15,27 @@ async function getChallengePaths() {
   const supabase = createClient(url, key);
   const pageSize = 1000;
   const paths = [];
+  // Language index pages (/algorithms/language/python, ...)
+  const hubs = new Set();
 
   for (let from = 0; ; from += pageSize) {
     const { data, error } = await supabase
       .from("challenges")
-      .select("mode, slug")
+      .select("mode, slug, language")
       .order("mode", { ascending: true })
       .order("slug", { ascending: true })
       .range(from, from + pageSize - 1);
 
     if (error) throw new Error(error.message);
-    for (const { mode, slug } of data) paths.push({ loc: `/${mode}/${slug}` });
+    // Encoded: some slugs contain "?" or "%" (see challengePath in src/lib/seo)
+    for (const { mode, slug, language } of data) {
+      paths.push({ loc: `/${mode}/${encodeURIComponent(slug)}` });
+      hubs.add(`/${mode}/language/${language}`);
+    }
     if (data.length < pageSize) break;
   }
 
-  return paths;
+  return [...[...hubs].map((loc) => ({ loc })), ...paths];
 }
 
 export default {

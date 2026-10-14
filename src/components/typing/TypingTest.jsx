@@ -49,6 +49,7 @@ import {
   onSettingsChange,
 } from "@/lib/settings";
 import { cn, capitalize, langToNatural, naturalToLang } from "@/lib/utils";
+import { challengePath } from "@/lib/seo";
 
 // `onNext`, `onRestart` and `nav` let other modes (syntax drills) replace the
 // random-challenge navigation: `nav` replaces the breadcrumb and filters.
@@ -372,7 +373,7 @@ export default function TypingTest({
               <BreadcrumbItem>
                 {onRandom ? (
                   <BreadcrumbLink asChild>
-                    <Link href={`/${mode}/${slug}`}>
+                    <Link href={challengePath(mode, slug)}>
                       {challenge.title ?? slug}
                     </Link>
                   </BreadcrumbLink>
