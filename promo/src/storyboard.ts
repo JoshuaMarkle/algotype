@@ -127,7 +127,8 @@ export const storyboard = {
       title: "Every test, remembered.",
       subtitle: "See your progress from all angles.",
       hero: "Watch yourself get faster.",
-      heroBadge: "New best · 121 wpm",
+      // the results scene's 112 wpm, now the last point of the history
+      heroBadge: "New best · 112 wpm",
     },
     // Grid order (row by row). `hero` is the zoom target; `montage` lists
     // the charts shown full-size in the montage, in order. It opens on the
