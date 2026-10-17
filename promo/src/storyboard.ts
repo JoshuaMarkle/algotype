@@ -130,7 +130,9 @@ export const storyboard = {
       heroBadge: "New best · 121 wpm",
     },
     // Grid order (row by row). `hero` is the zoom target; `montage` lists
-    // the charts shown full-size in the montage, in order.
+    // the charts shown full-size in the montage, in order. It opens on the
+    // account page's own StatBlocks and PastTestsTable while cuts are long
+    // enough to read.
     grid: [
       "bests",
       "averages",
@@ -151,15 +153,15 @@ export const storyboard = {
     ],
     hero: "wpmHistory",
     montage: [
+      "averages",
       "bests",
+      "recent",
       "heatmap",
       "accuracy",
       "bigrams",
       "percentile",
       "consistency",
       "weekly",
-      "rawVsNet",
-      "slowKeys",
       "streak",
     ],
     charts: {

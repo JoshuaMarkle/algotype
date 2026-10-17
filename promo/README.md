@@ -25,7 +25,7 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
   ring and motion, from `src/app/globals.css` (there is no `docs/DESIGN.md`).
 - `src/scenes/`: one file per scene; `Promo.tsx` plays them back to back.
 - `src/components/`: kinetic headline and wordmark, chart panel and SVG
-  charts, the CodeBox editor window, the site's keyboard and keycaps, toggle
+  charts, the CodeBox editor window, the site's keyboard, toggle
   group, status badge, page backdrop and hero grid, glitch.
 - `src/data/`: the site's real `quicksort.json`, the typist, and invented
   account data for the montage.
@@ -38,11 +38,12 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
    quicksort with live wpm / acc, one typo that flashes red and is
    backspaced, and the site's keyboard lighting each key.
 3. **Results** (9.2 s): the TypingResults screen (chart, light mono numbers
-   with dot details) plus raw, consistency, errors by key and a
-   "Personal best" badge.
+   with dot details) plus raw, consistency, a "Personal best" badge, and
+   the typing scene's keyboard again with the typo's keys in red.
 4. **Control switch** (2.8 s): the settings page's toggle group zooms in,
    switches "Last test" → "All tests", and flies to the top of the next scene.
-5. **Account** (13.2 s): accelerating montage of 10 charts, burst into a 4×4
+5. **Account** (13.2 s): accelerating montage of 10 charts (opening on the
+   account page's own stat blocks and past-tests table), burst into a 4×4
    grid of 16, zoom into WPM history: "Watch yourself get faster."
 6. **End** (4.0 s): wordmark on white, a glitch built on the site's
    LetterGlitch characters, then blank white so the video loops.

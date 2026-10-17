@@ -14,10 +14,10 @@ export const PANEL = { width: 860, height: 440 } as const;
 type Size = { width: number; height: number };
 
 // The account page's StatBlock: big mono value, fg-2 label under it
-const StatBlock: React.FC<{ value: string; label: string; p: number }> = ({ value, label, p }) => (
-  <div style={{ textAlign: "center", fontFamily: font.mono, opacity: p }}>
-    <div style={{ fontSize: 76, lineHeight: 1.1, color: role.text }}>{value}</div>
-    <div style={{ fontSize: text.base, color: role.textMuted, marginTop: space(2) }}>{label}</div>
+const StatBlock: React.FC<{ value: string; label: string; p: number; width: number }> = ({ value, label, p, width }) => (
+  <div style={{ width, textAlign: "center", fontFamily: font.mono, opacity: p }}>
+    <div style={{ fontSize: 64, lineHeight: 1.1, color: role.text }}>{value}</div>
+    <div style={{ fontSize: text.sm, color: role.textMuted, marginTop: space(2) }}>{label}</div>
   </div>
 );
 
@@ -30,7 +30,7 @@ const RecentTable: React.FC<Size & { p: number }> = ({ width, p }) => {
       key={i}
       style={{
         width: width * widths[i],
-        padding: `${space(1.5)}px ${space(1)}px`,
+        padding: `${space(1)}px ${space(1)}px`,
         color: muted ? role.textMuted : role.text,
         whiteSpace: "nowrap",
         overflow: "hidden",
@@ -44,7 +44,7 @@ const RecentTable: React.FC<Size & { p: number }> = ({ width, p }) => {
       style={{
         width,
         fontFamily: font.sans,
-        fontSize: 22,
+        fontSize: 21,
         border: `${hairline}px solid ${role.border}`,
         borderRadius: radius.sm,
         overflow: "hidden",
@@ -116,10 +116,11 @@ export const renderChart = (id: ChartId, s: Size, p: number, extra?: { heroMarke
       );
     case "averages":
       return (
-        <div style={{ ...s, display: "flex", alignItems: "center", justifyContent: "space-around" }}>
-          <StatBlock value={String(Math.round(d.averages.wpm * p))} label="Avg. WPM" p={Math.min(1, p * 2)} />
-          <StatBlock value={`${Math.round(d.averages.acc * p)}%`} label="Avg. ACC" p={Math.min(1, p * 2)} />
-          <StatBlock value={d.averages.time} label="Time Typing" p={Math.min(1, p * 2)} />
+        // the site's three-column grid, with room for the wider time value
+        <div style={{ ...s, display: "flex", alignItems: "center" }}>
+          <StatBlock width={s.width * 0.27} value={String(Math.round(d.averages.wpm * p))} label="Avg. WPM" p={Math.min(1, p * 2)} />
+          <StatBlock width={s.width * 0.27} value={`${Math.round(d.averages.acc * p)}%`} label="Avg. ACC" p={Math.min(1, p * 2)} />
+          <StatBlock width={s.width * 0.46} value={d.averages.time} label="Time Typing" p={Math.min(1, p * 2)} />
         </div>
       );
     case "recent":
