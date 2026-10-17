@@ -26,8 +26,8 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
 - `src/scenes/`: one file per scene; `Promo.tsx` plays them back to back.
 - `src/components/`: kinetic headline and wordmark, chart panel and SVG
   charts, the CodeBox editor window, the homepage's gamemode card, the
-  site's keyboard, toggle group, status badge, page backdrop and hero grid,
-  glitch.
+  site's keyboard, toggle group, status badge, page backdrop, hero grid and
+  the login page's keyboard background, glitch.
 - `src/data/`: the site's real `quicksort.json`, the typist, and the
   account data for the montage (see "What's real" below).
 - `public/fonts/`: the site's Geist and Geist Mono variable fonts (OFL).
@@ -39,7 +39,8 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
    takes the homepage's hover and grows into the CodeBox demo, which types
    the site's quicksort with live wpm / acc, one typo that flashes red and
    is backspaced, and the site's keyboard lighting each key.
-3. **Results** (9.2 s): the TypingResults screen (chart, light mono numbers
+3. **Results** (9.2 s): the title over the login page's drifting
+   keyboards, then the TypingResults screen (chart, light mono numbers
    with dot details) plus raw, consistency, a "Personal best" badge, and
    the typing scene's keyboard again with the typo's keys in red.
 4. **Control switch** (2.8 s): the settings page's toggle group zooms in,

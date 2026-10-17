@@ -84,6 +84,8 @@ export const storyboard = {
     length: 9.2,
     beats: {
       titleIn: 0.2,
+      // the login page's drifting keyboards behind the title
+      keysBgIn: [0, 0.8],
       titleOut: [2.0, 2.5],
       chartDraw: [2.6, 4.0],
       statsCount: [2.9, 4.3],
