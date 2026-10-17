@@ -1,4 +1,5 @@
 import React from "react";
+import { Pause, RotateCcw } from "lucide-react";
 import { color, font, hairline, leading, radius, ring, role, space, syntax, text } from "../tokens";
 import type { Ch } from "../data/snippet";
 
@@ -21,7 +22,9 @@ const tokenColor = (type: string) =>
 // header with the three dots, file name and live wpm / acc), framed by the
 // homepage's ring, rendering code the way TypingRenderer does: line numbers,
 // typed text in syntax colours, untyped text in fg-2, wrong keys in the error
-// colour with an underline, and the current character in the accent.
+// colour with an underline, and the current character in the accent. The
+// demo's round tertiary button sits bottom-right: pause while it types,
+// restart once `done` (0 → 1 swaps the icon).
 export const CodeEditor: React.FC<{
   lines: Ch[][];
   typed: number; // keystrokes typed correctly
@@ -33,7 +36,8 @@ export const CodeEditor: React.FC<{
   fontSize?: number;
   showCursor?: boolean;
   framed?: boolean;
-}> = ({ lines, typed, wrong = 0, file, wpm = 0, acc = 100, width, fontSize = text.code, showCursor = true, framed = true }) => {
+  done?: number;
+}> = ({ lines, typed, wrong = 0, file, wpm = 0, acc = 100, width, fontSize = text.code, showCursor = true, framed = true, done = 0 }) => {
   const cursorKey = typed + wrong;
   const lineOfKey = (k: number) => {
     for (let i = 0; i < lines.length; i++) {
@@ -85,6 +89,7 @@ export const CodeEditor: React.FC<{
           </div>
         </div>
       </div>
+      <div style={{ position: "relative" }}>
       <pre
         style={{
           margin: 0,
@@ -139,6 +144,33 @@ export const CodeEditor: React.FC<{
           </div>
         ))}
       </pre>
+      {/* Button variant="tertiary" size="icon": size-9 rounded-full bg-tertiary (bg-4), size-4 icon */}
+      <div
+        style={{
+          position: "absolute",
+          right: space(4),
+          bottom: space(4),
+          width: space(9),
+          height: space(9),
+          borderRadius: "50%",
+          background: color.bg4,
+          color: role.text,
+        }}
+      >
+        {[
+          // one icon out, then the other in, so they never overlap
+          { Icon: Pause, opacity: Math.max(0, 1 - done * 2) },
+          { Icon: RotateCcw, opacity: Math.max(0, done * 2 - 1) },
+        ].map(({ Icon, opacity }, i) => (
+          <Icon
+            key={i}
+            size={space(4)}
+            strokeWidth={2}
+            style={{ position: "absolute", left: space(2.5), top: space(2.5), opacity }}
+          />
+        ))}
+      </div>
+      </div>
     </div>
   );
 };
