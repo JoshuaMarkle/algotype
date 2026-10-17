@@ -96,7 +96,7 @@ export const ResultsScene: React.FC = () => {
             <StatCounter value={copy.consistency.value} suffix="%" label="CONSISTENCY" t={statT(3)} />
           </div>
           <div style={{ ...fadeUp(keys, 48), marginTop: space(4) }}>
-            <ChartPanel title={copy.keyErrorsTitle} width={1100} height={250}>
+            <ChartPanel title={copy.keyErrorsTitle} width={Math.max(480, space(12) + errors.length * 200 + (errors.length - 1) * space(6))} height={250}>
               {() => (
                 <div style={{ display: "flex", gap: space(6), paddingTop: space(2) }}>
                   {errors.map(([k, n], i) => {

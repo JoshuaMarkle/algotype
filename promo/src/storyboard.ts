@@ -81,7 +81,8 @@ export const storyboard = {
       raw: { value: 118 },
       acc: { value: 98, correct: 217, incorrect: 3 },
       consistency: { value: 84 },
-      keyErrors: { "[": 3, "-": 2, "=": 1, ";": 1, P: 1 },
+      // the typing scene's typo: three wrong keys where "tit" was expected
+      keyErrors: { T: 2, I: 1 },
       keyErrorsTitle: "Errors by key",
       badge: "Personal best",
     },
