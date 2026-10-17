@@ -26,10 +26,14 @@ export const Backdrop: React.FC<{ rails?: number; children?: React.ReactNode; co
 );
 
 // The homepage hero's grid: 20px cells in the border colour, masked so it
-// fades out toward the top (mask-image: linear-gradient(to top, #ffffffad, transparent))
+// fades out toward the top (mask-image: linear-gradient(to top, #ffffffad, transparent)).
+// Like the homepage, it sits inside the page's border-x rails.
 export const HeroGrid: React.FC<{ opacity?: number; cell?: number }> = ({ opacity = 1, cell = page.gridCell }) => (
   <AbsoluteFill
     style={{
+      left: page.railInset,
+      right: page.railInset,
+      width: "auto",
       opacity,
       maskImage: "linear-gradient(to top, #ffffffad, transparent)",
       WebkitMaskImage: "linear-gradient(to top, #ffffffad, transparent)",
