@@ -84,9 +84,10 @@ export const recentTests = [
   { wpm: 98, acc: 97, language: "JS", slug: "debounce", mode: "drills" },
 ];
 
-// keys that went wrong most often across all tests
+// keys that went wrong most often across all tests, including the latest
+// test's T and I
 export const allTimeKeyErrors: Record<string, number> = {
-  "[": 9, "]": 6, "-": 7, "=": 5, ";": 4, "'": 3, P: 3, "9": 2, "0": 2, "\\": 2, "/": 1,
+  "[": 9, "]": 6, "-": 7, "=": 5, ";": 4, T: 4, "'": 3, P: 3, I: 3, "9": 2, "0": 2, "\\": 2, "/": 1,
 };
 
 // last 28 days, practised or not; the streak is the run at the end
