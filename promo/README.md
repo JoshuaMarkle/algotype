@@ -1,6 +1,6 @@
 # AlgoType promo video
 
-A 47.3 s, 1920×1080, 30 fps promo built with Remotion 4.0.530 (pinned:
+A 50.3 s, 1920×1080, 30 fps promo built with Remotion 4.0.530 (pinned:
 4.0.531's Studio fails with "getRenderQueue is not a function"). It lives on
 its own here: nothing in it is imported by the site, and the site's build,
 lint and tests ignore it.
@@ -25,8 +25,9 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
   ring and motion, from `src/app/globals.css` (there is no `docs/DESIGN.md`).
 - `src/scenes/`: one file per scene; `Promo.tsx` plays them back to back.
 - `src/components/`: kinetic headline and wordmark, chart panel and SVG
-  charts, the CodeBox editor window, the site's keyboard, toggle
-  group, status badge, page backdrop and hero grid, glitch.
+  charts, the CodeBox editor window, the homepage's gamemode card, the
+  site's keyboard, toggle group, status badge, page backdrop, hero grid and
+  the login page's keyboard background, glitch.
 - `src/data/`: the site's real `quicksort.json`, the typist, and the
   account data for the montage (see "What's real" below).
 - `public/fonts/`: the site's Geist and Geist Mono variable fonts (OFL).
@@ -34,10 +35,12 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
 ## Scenes
 1. **Title** (4.5 s): opens on white (the loop point), dips to black over
    the homepage's hero grid while the wordmark rises.
-2. **Typing** (13.6 s): the homepage's CodeBox demo types the site's
-   quicksort with live wpm / acc, one typo that flashes red and is
-   backspaced, and the site's keyboard lighting each key.
-3. **Results** (9.2 s): the TypingResults screen (chart, light mono numbers
+2. **Typing** (16.6 s): the homepage's four gamemode cards; Algorithms
+   takes the homepage's hover and grows into the CodeBox demo, which types
+   the site's quicksort with live wpm / acc, one typo that flashes red and
+   is backspaced, and the site's keyboard lighting each key.
+3. **Results** (9.2 s): the title over the login page's drifting
+   keyboards, then the TypingResults screen (chart, light mono numbers
    with dot details) plus raw, consistency, a "Personal best" badge, and
    the typing scene's keyboard again with the typo's keys in red.
 4. **Control switch** (2.8 s): the settings page's toggle group zooms in,
@@ -50,7 +53,8 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
 
 ## What's real
 - Real: the quicksort code and its Prism tokens, the CodeBox demo's typo
-  rhythm, the look of every site component it redraws, the Recent tests slugs and modes (from the
+  rhythm, the gamemode cards' copy, the look of every site component it
+  redraws, the Recent tests slugs and modes (from the
   `challenges` table and the drills / timed slug formats), and the typist
   distribution (all 874 tests in `history` on 2026-10-17: mean 32 wpm, sd 9).
 - Invented: the video's typist and their numbers (112 wpm, 98%, the account

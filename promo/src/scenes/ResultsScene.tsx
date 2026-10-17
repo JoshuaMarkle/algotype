@@ -1,9 +1,9 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { color, duration, ease, font, role, space, text, weight } from "../tokens";
+import { color, duration, ease, font, role, space, text, VIDEO, weight } from "../tokens";
 import { storyboard } from "../storyboard";
 import { fadeUp, mix, mixColor, progress, span } from "../time";
-import { Backdrop } from "../components/Backdrop";
+import { Backdrop, KeyboardBackground } from "../components/Backdrop";
 import { SectionTitle } from "../components/SectionTitle";
 import { LineChart } from "../components/charts";
 import { Keyboard } from "../components/Keyboard";
@@ -46,6 +46,12 @@ export const ResultsScene: React.FC = () => {
   return (
     <AbsoluteFill>
       <Backdrop />
+      {/* the title sits on the login page's drifting keyboards */}
+      <KeyboardBackground
+        clearCentre
+        t={frame / VIDEO.fps}
+        opacity={span(frame, beats.keysBgIn, ease.out) * (1 - span(frame, beats.titleOut, ease.inOut))}
+      />
       <SectionTitle title={copy.title} subtitle={copy.subtitle} start={beats.titleIn} exit={beats.titleOut} />
       <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", opacity: 1 - out }}>
         <div

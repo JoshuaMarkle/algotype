@@ -26,7 +26,7 @@ const WIDE: Record<string, number> = {
   Menu: 56,
   "\\": 64,
 };
-const ROW_WIDTH = 712; // every row adds up to this
+export const ROW_WIDTH = 712; // every row adds up to this
 const KEY_H = 38; // py-2 + text-sm line + border
 const GAP = 8;
 
@@ -49,12 +49,21 @@ export const keysFor = (ch: string): string[] => {
 // `badge` is a count in an error-red circle on the key's top-right corner
 export type KeyPaint = { fill?: string; border?: string; text?: string; badge?: string; badgeOpacity?: number };
 
+// Kbd variants: "default" (bg-2, border, fg-3 here so it reads at video
+// size) and "keyboard" (text-fg-4, border-border-subtle, no fill), the one
+// KeyboardBackground tiles behind the login and signup pages
+const VARIANTS = {
+  default: { fill: role.surface, border: role.border, text: color.fg3 },
+  keyboard: { fill: "transparent", border: role.borderSubtle, text: color.fg4 },
+} as const;
+
 export const Keyboard: React.FC<{
   unit: number;
   paint?: (label: string) => KeyPaint | undefined;
   fontSize?: number;
   badgeScale?: number;
-}> = ({ unit, paint, fontSize = 14, badgeScale = 1 }) => (
+  variant?: keyof typeof VARIANTS;
+}> = ({ unit, paint, fontSize = 14, badgeScale = 1, variant = "default" }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: GAP * unit, width: ROW_WIDTH * unit }}>
     {ROWS.map((row, r) => {
       const fixed = row.reduce<number>((s, k) => s + (k === "Space" ? 0 : WIDE[k] ?? 40), 0);
@@ -76,9 +85,9 @@ export const Keyboard: React.FC<{
                   alignItems: "center",
                   justifyContent: "center",
                   borderRadius: radius.sm * (unit / 2),
-                  background: p.fill ?? role.surface,
-                  border: `${Math.max(1, hairline * (unit / 2))}px solid ${p.border ?? role.border}`,
-                  color: p.text ?? color.fg3,
+                  background: p.fill ?? VARIANTS[variant].fill,
+                  border: `${Math.max(1, hairline * (unit / 2))}px solid ${p.border ?? VARIANTS[variant].border}`,
+                  color: p.text ?? VARIANTS[variant].text,
                   fontFamily: font.mono,
                   fontWeight: weight.medium,
                   fontSize: fontSize * unit,
