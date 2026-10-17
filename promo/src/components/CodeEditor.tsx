@@ -16,6 +16,10 @@ export const WindowDots: React.FC = () => (
 // bottom hairline, measured from a still
 export const EDITOR_HEADER_H = 77;
 
+// The whole window's height (border box) for `lines` lines of code
+export const editorHeight = (lines: number, fontSize: number) =>
+  2 * hairline + EDITOR_HEADER_H + space(5) + space(6) + lines * fontSize * leading.relaxed;
+
 const tokenColor = (type: string) =>
   ({
     keyword: syntax.keyword,

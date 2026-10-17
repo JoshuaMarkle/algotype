@@ -5,8 +5,8 @@ import { storyboard } from "../storyboard";
 import { fadeUp, mix, mixColor, progress, span } from "../time";
 import { Backdrop } from "../components/Backdrop";
 import { SectionTitle } from "../components/SectionTitle";
-import { CodeEditor, EDITOR_HEADER_H, WindowDots } from "../components/CodeEditor";
-import { Keyboard, keysFor, type KeyPaint } from "../components/Keyboard";
+import { CodeEditor, EDITOR_HEADER_H, editorHeight, WindowDots } from "../components/CodeEditor";
+import { Keyboard, keyboardHeight, keysFor, type KeyPaint } from "../components/Keyboard";
 import { cardSurface, GamemodeCardContent } from "../components/GamemodeCard";
 import { buildSnippet } from "../data/snippet";
 import { buildTypingScript } from "../data/typingScript";
@@ -20,9 +20,18 @@ const GRID = {
   x: (VIDEO.width - (2 * CARD.w + CARD.gap)) / 2,
   y: (VIDEO.height - (2 * CARD.h + CARD.gap)) / 2,
 };
-// Where the CodeBox window sits once the keyboard is under it (border box,
-// measured from a still). Re-measure if the editor or keyboard size changes.
-const EDITOR = { x: 340, y: 101, w: 1240, h: 559 };
+// The editor and keyboard, stacked and centred
+const EDITOR_W = 1240;
+const EDITOR_FONT = 30;
+const KEY_UNIT = 1.15;
+const STACK_GAP = space(8);
+// Where the CodeBox window sits in that stack (border box), so the picked
+// card can grow into it
+const EDITOR = (() => {
+  const h = editorHeight(copy.lines, EDITOR_FONT);
+  const stack = h + (copy.showKeyboard ? STACK_GAP + keyboardHeight(KEY_UNIT) : 0);
+  return { x: (VIDEO.width - EDITOR_W) / 2, y: (VIDEO.height - stack) / 2, w: EDITOR_W, h };
+})();
 
 // The four gamemode cards come in; the picked one takes the homepage's hover
 // (border-blue, scale-105, rotate-1) and grows into the editor window while
@@ -189,7 +198,7 @@ export const TypingScene: React.FC = () => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          gap: space(8),
+          gap: STACK_GAP,
           opacity: 1 - out,
           transform: `scale(${mix(1, 1.035, push)})`,
         }}
@@ -203,15 +212,15 @@ export const TypingScene: React.FC = () => {
             file={copy.file}
             wpm={wpm}
             acc={acc}
-            width={1240}
-            fontSize={30}
+            width={EDITOR_W}
+            fontSize={EDITOR_FONT}
             showCursor={t >= beats.editorIn[0]}
             done={done}
           />
         </div>
         {copy.showKeyboard && (
           <div style={fadeUp(keyboardIn)}>
-            <Keyboard unit={1.15} paint={paint} />
+            <Keyboard unit={KEY_UNIT} paint={paint} />
           </div>
         )}
       </AbsoluteFill>

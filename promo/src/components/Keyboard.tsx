@@ -29,6 +29,7 @@ const WIDE: Record<string, number> = {
 export const ROW_WIDTH = 712; // every row adds up to this
 const KEY_H = 38; // py-2 + text-sm line + border
 const GAP = 8;
+export const keyboardHeight = (unit: number) => (5 * KEY_H + 4 * GAP) * unit;
 
 const SHIFTED: Record<string, string> = {
   "!": "1", "@": "2", "#": "3", $: "4", "%": "5", "^": "6", "&": "7", "*": "8",
