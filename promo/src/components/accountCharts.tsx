@@ -139,7 +139,9 @@ export const renderChart = (id: ChartId, s: Size, p: number, extra?: { heroMarke
     case "weekly":
       return <BarChart {...s} data={d.minutesPerWeek} progress={p} accentIndex={d.minutesPerWeek.length - 1} />;
     case "percentile":
-      return <Distribution {...s} mean={60} sd={18} marker={d.best} range={[0, 160]} progress={p} />;
+      return (
+        <Distribution {...s} mean={d.allTyping.mean} sd={d.allTyping.sd} marker={d.best} range={[0, 160]} progress={p} />
+      );
     case "rawVsNet":
       return (
         <LineChart {...s} data={d.wpmHistory} secondary={d.rawHistory} progress={p} min={50} max={130} highlight={null} fillOpacity={0} />

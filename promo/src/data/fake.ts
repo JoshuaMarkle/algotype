@@ -1,4 +1,4 @@
-// Invented account data for the montage (the site has no aggregate stats
+// Account data for the montage, mostly invented (the site has no aggregate stats
 // yet). Deterministic: the same frames render the same values every time.
 import { random } from "remotion";
 import { storyboard } from "../storyboard";
@@ -104,3 +104,7 @@ export const allTimeKeyErrors: Record<string, number> = {
 // last 28 days, practised or not; the streak is the run at the end
 export const streakDays = Array.from({ length: 28 }, (_, i) => (i >= 5 ? true : random(`streak-${i}`) > 0.5));
 export const streak = 23;
+
+// Real: the WPM of every AlgoType test in the history table (874 tests,
+// queried 2026-10-17). Code typing is slow; the best real typist is at 72.
+export const allTyping = { mean: 32, sd: 9 };
