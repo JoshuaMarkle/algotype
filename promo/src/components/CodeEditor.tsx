@@ -3,6 +3,19 @@ import { Pause, RotateCcw } from "lucide-react";
 import { color, font, hairline, leading, radius, ring, role, space, syntax, text } from "../tokens";
 import type { Ch } from "../data/snippet";
 
+// The window's three dots (size-3, gap-2)
+export const WindowDots: React.FC = () => (
+  <div style={{ display: "flex", gap: space(2) }}>
+    {[color.red400, color.yellow400, color.green400].map((bg) => (
+      <div key={bg} style={{ width: space(3), height: space(3), borderRadius: "50%", background: bg }} />
+    ))}
+  </div>
+);
+
+// Height of the window's header (py-2.5 around a text-sm line) plus its
+// bottom hairline, measured from a still
+export const EDITOR_HEADER_H = 77;
+
 const tokenColor = (type: string) =>
   ({
     keyword: syntax.keyword,
@@ -46,9 +59,6 @@ export const CodeEditor: React.FC<{
     return lines.length - 1;
   };
   const currentLine = lineOfKey(typed);
-  const dot = (bg: string) => (
-    <div style={{ width: space(3), height: space(3), borderRadius: "50%", background: bg }} />
-  );
 
   return (
     <div
@@ -74,11 +84,7 @@ export const CodeEditor: React.FC<{
           color: role.textMuted,
         }}
       >
-        <div style={{ display: "flex", gap: space(2) }}>
-          {dot(color.red400)}
-          {dot(color.yellow400)}
-          {dot(color.green400)}
-        </div>
+        <WindowDots />
         <div style={{ marginLeft: space(4) }}>{file}</div>
         <div style={{ marginLeft: "auto", display: "flex", gap: space(4), fontVariantNumeric: "tabular-nums" }}>
           <div style={{ display: "flex", gap: space(2) }}>

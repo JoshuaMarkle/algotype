@@ -22,29 +22,48 @@ export const storyboard = {
     },
   },
 
-  // 2. Typing test: the homepage's CodeBox demo, typing the site's own
-  // quicksort (src/data/quicksort.json), with the site's keyboard under it.
+  // 2. Typing test: the homepage's four gamemode cards; Algorithms gets the
+  // site's hover and grows into the homepage's CodeBox demo, which types the
+  // site's own quicksort (src/data/quicksort.json) over the site's keyboard.
   typing: {
-    length: 13.6,
+    length: 16.6,
     beats: {
       titleIn: 0.2,
       titleOut: [2.0, 2.5],
-      editorIn: [2.5, 3.1],
-      keyboardIn: [2.7, 3.3],
-      typingStart: 3.5,
-      typingEnd: 12.0,
+      modesIn: 2.45,
+      modeStagger: 0.1,
+      // hold to read the four cards, then the picked one takes the
+      // homepage's hover
+      modeHover: 4.1,
+      // like a click: the card grows into the editor window while the
+      // others fade away
+      morph: [4.7, 5.5],
+      // the editor's file name, stats and code appear on the grown card
+      editorIn: [5.5, 5.8],
+      keyboardIn: [5.7, 6.3],
+      typingStart: 6.5,
+      typingEnd: 15.0,
       // gentle push-in while typing
-      cameraPush: [3.0, 12.6],
+      cameraPush: [6.0, 15.6],
       // wrong keys at this keystroke ("par|tition"), a pause, then backspaced
       // at the CodeBox demo's own rhythm
       typo: { atKey: 112, keys: "wqe", pause: 0.3, backspaceEvery: 0.17 },
       // hold 1 s after the last character, then fade
-      fadeOut: [13.0, 13.6],
+      fadeOut: [16.0, 16.6],
     },
     copy: {
       title: "Type real code.",
       // the site's CHALLENGE_LANGUAGES (src/lib/seo.js)
       subtitle: "Real solutions in Python, C++, Java, JavaScript and Rust.",
+      // the homepage's gamemode cards, word for word, in its 2×2 order
+      modes: [
+        { title: "Algorithms", description: "Practice popular algorithms and other leetcode style solutions." },
+        { title: "Files", description: "Type full implementations of real-world features & files." },
+        { title: "Syntax Drills", description: "Repeat loops, functions, classes and other language features." },
+        { title: "Timed", description: "Type as much code as you can in 15, 30 or 60 seconds." },
+      ],
+      // quicksort is an Algorithms challenge
+      modePick: 0,
       file: "quicksort.py",
       lines: 8, // the whole quick_sort function
       showKeyboard: true,
