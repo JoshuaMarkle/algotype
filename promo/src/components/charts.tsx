@@ -6,10 +6,13 @@ import { color, font, radius, role, space, text, weight } from "../tokens";
 
 type Size = { width: number; height: number };
 
+// Geist Mono draws "->", "!=" and "=>" as arrows by default; labels show
+// the characters you type, so ligatures are off
 const tickStyle = {
   fontFamily: font.mono,
   fontSize: text.xs,
   fill: role.textFaint,
+  fontVariantLigatures: "none",
 };
 
 // Round ticks on a 10 / 20 / 50 grid inside [min, max]

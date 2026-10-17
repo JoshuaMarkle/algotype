@@ -43,7 +43,8 @@ export const storyboard = {
     },
     copy: {
       title: "Type real code.",
-      subtitle: "Real solutions in Python, C++, Java and JavaScript.",
+      // the site's CHALLENGE_LANGUAGES (src/lib/seo.js)
+      subtitle: "Real solutions in Python, C++, Java, JavaScript and Rust.",
       file: "quicksort.py",
       lines: 8, // the whole quick_sort function
       showKeyboard: true,
@@ -175,7 +176,8 @@ export const storyboard = {
       slowKeys: "Slowest keys",
       bigrams: "Slowest symbol pairs",
       weekly: "Time practised per week",
-      percentile: "Faster than 96% of typists",
+      // 112 wpm is above every real AlgoType test so far (see data/fake.ts)
+      percentile: "Faster than 99% of typists",
       rawVsNet: "Raw vs net WPM",
       consistency: "Consistency",
       keys: "Errors by key",

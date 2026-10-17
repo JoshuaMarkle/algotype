@@ -23,8 +23,9 @@ const StatBlock: React.FC<{ value: string; label: string; p: number; width: numb
 
 // PastTestsTable: header in muted text, hairline rows
 const RecentTable: React.FC<Size & { p: number }> = ({ width, p }) => {
-  const cols = ["WPM", "Accuracy", "Language", "Slug", "Mode"];
-  const widths = [0.13, 0.18, 0.2, 0.29, 0.2];
+  // PastTestsTable's columns, without Date
+  const cols = ["WPM", "Accuracy", "Time", "Language", "Slug", "Mode"];
+  const widths = [0.1, 0.15, 0.1, 0.15, 0.3, 0.2];
   const cell = (c: React.ReactNode, i: number, muted = false) => (
     <div
       key={i}
@@ -62,7 +63,7 @@ const RecentTable: React.FC<Size & { p: number }> = ({ width, p }) => {
             opacity: Math.min(1, Math.max(0, p * 6 - ri)),
           }}
         >
-          {[r.wpm, `${r.acc}`, r.language, r.slug, r.mode].map((c, i) => cell(c, i))}
+          {[r.wpm, r.acc, r.time, r.language, r.slug, r.mode].map((c, i) => cell(c, i))}
         </div>
       ))}
     </div>
@@ -138,7 +139,9 @@ export const renderChart = (id: ChartId, s: Size, p: number, extra?: { heroMarke
     case "weekly":
       return <BarChart {...s} data={d.minutesPerWeek} progress={p} accentIndex={d.minutesPerWeek.length - 1} />;
     case "percentile":
-      return <Distribution {...s} mean={60} sd={18} marker={d.best} range={[0, 160]} progress={p} />;
+      return (
+        <Distribution {...s} mean={d.allTyping.mean} sd={d.allTyping.sd} marker={d.best} range={[0, 160]} progress={p} />
+      );
     case "rawVsNet":
       return (
         <LineChart {...s} data={d.wpmHistory} secondary={d.rawHistory} progress={p} min={50} max={130} highlight={null} fillOpacity={0} />

@@ -1,4 +1,4 @@
-// Invented account data for the montage (the site has no aggregate stats
+// Account data for the montage, mostly invented (the site has no aggregate stats
 // yet). Deterministic: the same frames render the same values every time.
 import { random } from "remotion";
 import { storyboard } from "../storyboard";
@@ -76,19 +76,35 @@ export const accuracyByLanguage = [
 
 export const averages = { wpm: 91, acc: 97, time: "38:12:07" };
 
+// PastTestsTable rows as the site prints them: raw history values (time in
+// seconds, lowercase language). The slugs and modes other than the video's
+// own test are real ones from the challenges table, drills and timed modes.
 export const recentTests = [
-  { wpm: best, acc: latest.acc.value, language: "Python", slug: "quicksort", mode: "algorithms" },
-  { wpm: 104, acc: 97, language: "C++", slug: "two-sum", mode: "algorithms" },
-  { wpm: 101, acc: 99, language: "Python", slug: "4sum", mode: "algorithms" },
-  { wpm: 94, acc: 95, language: "Java", slug: "rotting-oranges", mode: "algorithms" },
-  { wpm: 98, acc: 97, language: "JS", slug: "debounce", mode: "drills" },
+  {
+    wpm: best,
+    acc: latest.acc.value,
+    // 217 keystrokes at 112 wpm
+    time: Math.round((latest.acc.correct / 5 / best) * 60),
+    language: "python",
+    slug: "quicksort",
+    mode: "algorithms",
+  },
+  { wpm: 104, acc: 97, time: 41, language: "cpp", slug: "TwoSum-cpp", mode: "algorithms" },
+  { wpm: 101, acc: 99, time: 30, language: "python", slug: "python-30", mode: "timed" },
+  { wpm: 94, acc: 95, time: 58, language: "java", slug: "RottingOranges-java", mode: "algorithms" },
+  { wpm: 98, acc: 97, time: 36, language: "python", slug: "python-for-func", mode: "drills" },
 ];
 
-// keys that went wrong most often across all tests
+// keys that went wrong most often across all tests, including the latest
+// test's T and I
 export const allTimeKeyErrors: Record<string, number> = {
-  "[": 9, "]": 6, "-": 7, "=": 5, ";": 4, "'": 3, P: 3, "9": 2, "0": 2, "\\": 2, "/": 1,
+  "[": 9, "]": 6, "-": 7, "=": 5, ";": 4, T: 4, "'": 3, P: 3, I: 3, "9": 2, "0": 2, "\\": 2, "/": 1,
 };
 
 // last 28 days, practised or not; the streak is the run at the end
 export const streakDays = Array.from({ length: 28 }, (_, i) => (i >= 5 ? true : random(`streak-${i}`) > 0.5));
 export const streak = 23;
+
+// Real: the WPM of every AlgoType test in the history table (874 tests,
+// queried 2026-10-17). Code typing is slow; the best real typist is at 72.
+export const allTyping = { mean: 32, sd: 9 };
