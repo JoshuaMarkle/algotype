@@ -27,8 +27,8 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
 - `src/components/`: kinetic headline and wordmark, chart panel and SVG
   charts, the CodeBox editor window, the site's keyboard, toggle
   group, status badge, page backdrop and hero grid, glitch.
-- `src/data/`: the site's real `quicksort.json`, the typist, and invented
-  account data for the montage.
+- `src/data/`: the site's real `quicksort.json`, the typist, and the
+  account data for the montage (see "What's real" below).
 - `public/fonts/`: the site's Geist and Geist Mono variable fonts (OFL).
 
 ## Scenes
@@ -47,3 +47,12 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
    grid of 16, zoom into WPM history: "Watch yourself get faster."
 6. **End** (4.0 s): wordmark on white, a glitch built on the site's
    LetterGlitch characters, then blank white so the video loops.
+
+## What's real
+- Real: the quicksort code and its Prism tokens, the CodeBox demo's typo
+  rhythm, the look of every site component it redraws, the Recent tests slugs and modes (from the
+  `challenges` table and the drills / timed slug formats), and the typist
+  distribution (all 874 tests in `history` on 2026-10-17: mean 32 wpm, sd 9).
+- Invented: the video's typist and their numbers (112 wpm, 98%, the account
+  history, streak, heatmap, slowest keys and pairs). For scale, the best
+  real AlgoType test so far is 72 wpm.
