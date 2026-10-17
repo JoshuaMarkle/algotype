@@ -11,7 +11,7 @@ import { buildSnippet } from "../data/snippet";
 import { buildTypingScript } from "../data/typingScript";
 
 const { beats, copy, liveStats } = storyboard.typing;
-const FLASH = 0.16; // seconds a pressed key stays lit
+const FLASH = 0.1; // seconds a pressed key stays lit
 
 export const TypingScene: React.FC = () => {
   const frame = useCurrentFrame();

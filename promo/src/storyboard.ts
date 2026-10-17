@@ -107,7 +107,7 @@ export const storyboard = {
 
   // 4. Account statistics: accelerating montage → 4×4 grid → hero zoom
   account: {
-    length: 13.6,
+    length: 13.2,
     beats: {
       titleIn: 0.3,
       titleOut: [2.1, 2.6],
