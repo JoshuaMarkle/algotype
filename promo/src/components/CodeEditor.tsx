@@ -1,0 +1,144 @@
+import React from "react";
+import { color, font, hairline, leading, radius, ring, role, space, syntax, text } from "../tokens";
+import type { Ch } from "../data/snippet";
+
+const tokenColor = (type: string) =>
+  ({
+    keyword: syntax.keyword,
+    function: syntax.function,
+    builtin: syntax.function,
+    punctuation: syntax.punctuation,
+    operator: syntax.operator,
+    number: syntax.number,
+    boolean: syntax.number,
+    string: syntax.string,
+    comment: syntax.comment,
+    plain: syntax.plain,
+    space: syntax.plain,
+  })[type] ?? syntax.plain;
+
+// The homepage's CodeBox demo window (rounded-sm, border, bg-2 body, bg-3
+// header with the three dots, file name and live wpm / acc), framed by the
+// homepage's ring, rendering code the way TypingRenderer does: line numbers,
+// typed text in syntax colours, untyped text in fg-2, wrong keys in the error
+// colour with an underline, and the current character in the accent.
+export const CodeEditor: React.FC<{
+  lines: Ch[][];
+  typed: number; // keystrokes typed correctly
+  wrong?: number; // wrong keys pending after `typed`
+  file: string;
+  wpm?: number;
+  acc?: number;
+  width: number;
+  fontSize?: number;
+  showCursor?: boolean;
+  framed?: boolean;
+}> = ({ lines, typed, wrong = 0, file, wpm = 0, acc = 100, width, fontSize = text.code, showCursor = true, framed = true }) => {
+  const cursorKey = typed + wrong;
+  const lineOfKey = (k: number) => {
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].some((c) => c.key === k)) return i;
+    }
+    return lines.length - 1;
+  };
+  const currentLine = lineOfKey(typed);
+  const dot = (bg: string) => (
+    <div style={{ width: space(3), height: space(3), borderRadius: "50%", background: bg }} />
+  );
+
+  return (
+    <div
+      style={{
+        width,
+        boxSizing: "border-box",
+        background: role.surface,
+        border: `${hairline}px solid ${role.border}`,
+        borderRadius: radius.sm,
+        overflow: "hidden",
+        outline: framed ? `${ring.width}px solid ${ring.color}` : undefined,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: `${space(2.5)}px ${space(4)}px`,
+          borderBottom: `${hairline}px solid ${role.border}`,
+          background: role.surfaceMuted,
+          fontFamily: font.sans,
+          fontSize: text.sm,
+          color: role.textMuted,
+        }}
+      >
+        <div style={{ display: "flex", gap: space(2) }}>
+          {dot(color.red400)}
+          {dot(color.yellow400)}
+          {dot(color.green400)}
+        </div>
+        <div style={{ marginLeft: space(4) }}>{file}</div>
+        <div style={{ marginLeft: "auto", display: "flex", gap: space(4), fontVariantNumeric: "tabular-nums" }}>
+          <div style={{ display: "flex", gap: space(2) }}>
+            wpm <span style={{ color: role.text, minWidth: text.sm * 1.8 }}>{wpm}</span>
+          </div>
+          <div style={{ display: "flex", gap: space(2) }}>
+            acc <span style={{ color: role.text }}>{acc}%</span>
+          </div>
+        </div>
+      </div>
+      <pre
+        style={{
+          margin: 0,
+          padding: `${space(5)}px ${space(4)}px ${space(6)}px`,
+          fontFamily: font.mono,
+          fontSize,
+          lineHeight: leading.relaxed,
+          fontVariantLigatures: "none",
+          whiteSpace: "pre",
+        }}
+      >
+        {lines.map((line, li) => (
+          <div key={li} style={{ display: "flex" }}>
+            <div
+              style={{
+                width: fontSize * 1.8,
+                marginRight: fontSize * 1.1,
+                textAlign: "right",
+                color: li === currentLine ? role.textMuted : role.textFaint,
+              }}
+            >
+              {li + 1}
+            </div>
+            <div style={{ minHeight: fontSize * leading.relaxed }}>
+              {line.map((c, ci) => {
+                const k = c.key;
+                const isCursor = showCursor && k === cursorKey;
+                const isTyped = k === null || k < typed;
+                const isWrong = k !== null && k >= typed && k < typed + wrong;
+                // TypingRenderer hides the newline mark unless the cursor is on it
+                if (c.newline && !isCursor && !isWrong) return null;
+                const style: React.CSSProperties = {
+                  color: isWrong ? role.error : isTyped ? tokenColor(c.type) : syntax.untyped,
+                };
+                if (isWrong) {
+                  style.textDecoration = "underline";
+                  style.textDecorationThickness = 3;
+                  style.textUnderlineOffset = 6;
+                }
+                if (isCursor) {
+                  style.background = role.accent;
+                  style.color = role.text;
+                  style.borderRadius = 3;
+                }
+                return (
+                  <span key={ci} style={style}>
+                    {c.ch}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </pre>
+    </div>
+  );
+};
