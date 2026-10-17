@@ -1,6 +1,6 @@
 # AlgoType promo video
 
-A 47.7 s, 1920×1080, 30 fps promo built with Remotion 4.0.530 (pinned:
+A 47.3 s, 1920×1080, 30 fps promo built with Remotion 4.0.530 (pinned:
 4.0.531's Studio fails with "getRenderQueue is not a function"). It lives on
 its own here: nothing in it is imported by the site, and the site's build,
 lint and tests ignore it.
@@ -42,7 +42,7 @@ or cloud box set `REMOTION_BROWSER` to a Chromium headless shell and
    "Personal best" badge.
 4. **Control switch** (2.8 s): the settings page's toggle group zooms in,
    switches "Last test" → "All tests", and flies to the top of the next scene.
-5. **Account** (13.6 s): accelerating montage of 10 charts, burst into a 4×4
+5. **Account** (13.2 s): accelerating montage of 10 charts, burst into a 4×4
    grid of 16, zoom into WPM history: "Watch yourself get faster."
 6. **End** (4.0 s): wordmark on white, a glitch built on the site's
    LetterGlitch characters, then blank white so the video loops.
