@@ -76,12 +76,23 @@ export const accuracyByLanguage = [
 
 export const averages = { wpm: 91, acc: 97, time: "38:12:07" };
 
+// PastTestsTable rows as the site prints them: raw history values (time in
+// seconds, lowercase language). The slugs and modes other than the video's
+// own test are real ones from the challenges table, drills and timed modes.
 export const recentTests = [
-  { wpm: best, acc: latest.acc.value, language: "Python", slug: "quicksort", mode: "algorithms" },
-  { wpm: 104, acc: 97, language: "C++", slug: "two-sum", mode: "algorithms" },
-  { wpm: 101, acc: 99, language: "Python", slug: "4sum", mode: "algorithms" },
-  { wpm: 94, acc: 95, language: "Java", slug: "rotting-oranges", mode: "algorithms" },
-  { wpm: 98, acc: 97, language: "JS", slug: "debounce", mode: "drills" },
+  {
+    wpm: best,
+    acc: latest.acc.value,
+    // 217 keystrokes at 112 wpm
+    time: Math.round((latest.acc.correct / 5 / best) * 60),
+    language: "python",
+    slug: "quicksort",
+    mode: "algorithms",
+  },
+  { wpm: 104, acc: 97, time: 41, language: "cpp", slug: "TwoSum-cpp", mode: "algorithms" },
+  { wpm: 101, acc: 99, time: 30, language: "python", slug: "python-30", mode: "timed" },
+  { wpm: 94, acc: 95, time: 58, language: "java", slug: "RottingOranges-java", mode: "algorithms" },
+  { wpm: 98, acc: 97, time: 36, language: "python", slug: "python-for-func", mode: "drills" },
 ];
 
 // keys that went wrong most often across all tests, including the latest
