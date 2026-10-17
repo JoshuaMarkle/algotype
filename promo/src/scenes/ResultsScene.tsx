@@ -1,20 +1,25 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { color, duration, ease, font, role, space, text } from "../tokens";
+import { color, duration, ease, font, role, space, text, weight } from "../tokens";
 import { storyboard } from "../storyboard";
 import { fadeUp, mix, mixColor, progress, span } from "../time";
 import { Backdrop } from "../components/Backdrop";
 import { SectionTitle } from "../components/SectionTitle";
 import { LineChart } from "../components/charts";
-import { ChartPanel } from "../components/ChartPanel";
-import { Kbd } from "../components/Keyboard";
+import { Keyboard } from "../components/Keyboard";
 import { StatusBadge } from "../components/StatusBadge";
 import { StatCounter } from "../components/StatCounter";
 
 const { beats, copy, series } = storyboard.results;
 
 const WIDTH = 1500;
-const CHART_H = 250;
+const CHART_H = 220;
+// the typing scene's keyboard, a little larger so the error keys read
+const KEY_UNIT = 1.55;
+// While the keyboard arrives the camera pulls back a little and the stack
+// rises from "chart + numbers centred" to "everything centred"
+const PULL_BACK = 0.9;
+const LIFT = 243;
 
 export const ResultsScene: React.FC = () => {
   const frame = useCurrentFrame();
@@ -26,11 +31,17 @@ export const ResultsScene: React.FC = () => {
   const keys = span(frame, beats.keyErrorsIn, ease.out);
   // the stack makes room for the keyboard with a calm camera move
   const lift = span(frame, [beats.keyErrorsIn[0] - 0.2, beats.keyErrorsIn[1]], ease.inOut);
+  // each error key settles in turn, tinted by how often it went wrong
+  const errorKey = (k: string) => {
+    const keys = Object.keys(copy.keyErrors);
+    const i = keys.indexOf(k);
+    return span(frame, [beats.keyErrorsIn[0] + 0.25 + i * 0.12, beats.keyErrorsIn[1] + 0.1 + i * 0.12], ease.out);
+  };
   const badge = progress(frame, beats.badgeIn, duration.base, ease.out);
   const out = span(frame, beats.fadeOut, ease.inOut);
 
-  const errors = Object.entries(copy.keyErrors);
-  const maxErr = Math.max(...errors.map(([, n]) => n));
+  const errors: Record<string, number> = copy.keyErrors;
+  const maxErr = Math.max(...Object.values(errors));
 
   return (
     <AbsoluteFill>
@@ -44,7 +55,7 @@ export const ResultsScene: React.FC = () => {
             flexDirection: "column",
             alignItems: "center",
             gap: space(8),
-            transform: `translateY(${mix(150, 0, lift)}px)`,
+            transform: `translateY(${mix(LIFT, -14, lift)}px) scale(${mix(1, PULL_BACK, lift)})`,
           }}
         >
           <div style={{ opacity: chartIn }}>
@@ -95,34 +106,35 @@ export const ResultsScene: React.FC = () => {
             />
             <StatCounter value={copy.consistency.value} suffix="%" label="CONSISTENCY" t={statT(3)} />
           </div>
-          <div style={{ ...fadeUp(keys, 48), marginTop: space(4) }}>
-            <ChartPanel title={copy.keyErrorsTitle} width={Math.max(480, space(12) + errors.length * 200 + (errors.length - 1) * space(6))} height={250}>
-              {() => (
-                <div style={{ display: "flex", gap: space(6), paddingTop: space(2) }}>
-                  {errors.map(([k, n], i) => {
-                    // each key settles in turn, tinted by how often it went wrong
-                    const ki = span(frame, [beats.keyErrorsIn[0] + 0.15 + i * 0.08, beats.keyErrorsIn[1] + i * 0.08], ease.out);
-                    const share = n / maxErr;
-                    return (
-                      <div key={k} style={{ display: "flex", alignItems: "center", gap: space(3) }}>
-                        <Kbd label={k} tint={ki * (0.4 + 0.6 * share)} />
-                        <span
-                          style={{
-                            fontFamily: font.mono,
-                            fontSize: text.lg,
-                            color: role.error,
-                            opacity: ki,
-                            minWidth: text.lg * 1.4,
-                          }}
-                        >
-                          {Math.round(n * ki)}×
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </ChartPanel>
+          <div style={{ ...fadeUp(keys, 48), marginTop: space(2) }}>
+            <div
+              style={{
+                fontFamily: font.sans,
+                fontSize: text.base,
+                fontWeight: weight.medium,
+                color: role.text,
+                marginBottom: space(3),
+              }}
+            >
+              {copy.keyErrorsTitle}
+            </div>
+            <Keyboard
+              unit={KEY_UNIT}
+              fontSize={15}
+              badgeScale={1.5}
+              paint={(k) => {
+                const n = errors[k];
+                if (!n) return undefined;
+                const t = errorKey(k) * (0.45 + 0.55 * (n / maxErr));
+                return {
+                  fill: mixColor(role.surface, role.error, t * 0.45),
+                  border: mixColor(role.border, role.error, t),
+                  text: role.text,
+                  badge: String(n),
+                  badgeOpacity: errorKey(k),
+                };
+              }}
+            />
           </div>
         </div>
       </AbsoluteFill>

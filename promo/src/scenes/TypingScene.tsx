@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { ease, role, space, VIDEO } from "../tokens";
+import { color, ease, role, space, VIDEO } from "../tokens";
 import { storyboard } from "../storyboard";
 import { fadeUp, mix, mixColor, span } from "../time";
 import { Backdrop } from "../components/Backdrop";
@@ -47,7 +47,7 @@ export const TypingScene: React.FC = () => {
     return {
       fill: mixColor(role.surface, hue, strength),
       border: mixColor(role.border, hue, strength),
-      text: mixColor("#5a5a5f", role.text, strength),
+      text: mixColor(color.fg3, role.text, strength),
     };
   };
 
@@ -55,6 +55,8 @@ export const TypingScene: React.FC = () => {
   const keyboardIn = span(frame, beats.keyboardIn, ease.out);
   const push = span(frame, beats.cameraPush, ease.inOut);
   const out = span(frame, beats.fadeOut, ease.inOut);
+  // the demo's pause button turns into restart once the last key lands
+  const done = span(frame, [beats.typingEnd + 0.15, beats.typingEnd + 0.45], ease.inOut);
 
   return (
     <AbsoluteFill>
@@ -81,6 +83,7 @@ export const TypingScene: React.FC = () => {
             width={1240}
             fontSize={30}
             showCursor={t >= beats.editorIn[0]}
+            done={done}
           />
         </div>
         {copy.showKeyboard && (

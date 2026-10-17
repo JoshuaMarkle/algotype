@@ -2,7 +2,7 @@
 // of ProgressGraph / TypingResults: blue line, faint fill, quiet mono ticks).
 // `progress` (0 → 1) draws each chart in from the left or from the base.
 import React from "react";
-import { color, font, radius, role, text, weight } from "../tokens";
+import { color, font, radius, role, space, text, weight } from "../tokens";
 
 type Size = { width: number; height: number };
 
@@ -247,7 +247,8 @@ export const HBarChart: React.FC<
     unit?: string;
   }
 > = ({ width, height, data, progress = 1, accentIndex = null, barColor = color.bg4, unit = "" }) => {
-  const labelW = 96;
+  // room for the longest label in the mono face (0.6em per glyph) plus a gap
+  const labelW = Math.max(64, Math.max(...data.map((d) => d.label.length)) * text.sm * 0.6 + space(3));
   const valueW = 96;
   const rowH = height / data.length;
   const bh = Math.min(rowH * 0.5, 28);

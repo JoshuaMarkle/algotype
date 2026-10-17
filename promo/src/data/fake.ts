@@ -1,14 +1,21 @@
 // Invented account data for the montage (the site has no aggregate stats
 // yet). Deterministic: the same frames render the same values every time.
 import { random } from "remotion";
+import { storyboard } from "../storyboard";
 
 const noise = (seed: string, i: number) => random(`${seed}-${i}`) - 0.5;
 
-// 40 tests climbing from the mid-60s; the latest one is the record (121)
+// The test the video just typed (112 wpm, 98%, quicksort) is the latest one
+// and the personal best, so the account story matches the results scene.
+const latest = storyboard.results.copy;
+export const best = latest.wpm.value;
+
+// 40 tests climbing from the low 60s into the low 100s; the latest one jumps
+// to the record
 export const wpmHistory = Array.from({ length: 40 }, (_, i) => {
-  if (i === 39) return 121;
+  if (i === 39) return best;
   const t = i / 39;
-  return Math.min(117, Math.round(64 + 48 * (1 - Math.exp(-2.4 * t)) + noise("wpm", i) * 10));
+  return Math.min(best - 6, Math.round(62 + 42 * (1 - Math.exp(-2.4 * t)) + noise("wpm", i) * 10));
 });
 
 export const rawHistory = wpmHistory.map((v, i) => Math.round(v + 5 + random(`raw-${i}`) * 6));
@@ -26,11 +33,11 @@ export const heatmapData = Array.from({ length: 20 }, (_, w) =>
 );
 
 export const bestsByLanguage = [
-  { label: "Python", value: 121 },
-  { label: "JS", value: 112 },
-  { label: "C++", value: 104 },
-  { label: "Java", value: 98 },
-  { label: "Rust", value: 87 },
+  { label: "Python", value: best },
+  { label: "JS", value: 106 },
+  { label: "C++", value: 101 },
+  { label: "Java", value: 94 },
+  { label: "Rust", value: 83 },
 ];
 
 export const slowestPairs = [
@@ -67,14 +74,14 @@ export const accuracyByLanguage = [
   { label: "Rust", value: 93 },
 ];
 
-export const averages = { wpm: 104, acc: 97, time: "38:12:07" };
+export const averages = { wpm: 91, acc: 97, time: "38:12:07" };
 
 export const recentTests = [
-  { wpm: 121, acc: 98, language: "Python", slug: "quicksort", mode: "files" },
-  { wpm: 109, acc: 97, language: "C++", slug: "two-sum", mode: "algorithms" },
-  { wpm: 114, acc: 99, language: "Python", slug: "4sum", mode: "algorithms" },
-  { wpm: 98, acc: 95, language: "Java", slug: "rotting-oranges", mode: "algorithms" },
-  { wpm: 106, acc: 97, language: "JS", slug: "debounce", mode: "drills" },
+  { wpm: best, acc: latest.acc.value, language: "Python", slug: "quicksort", mode: "algorithms" },
+  { wpm: 104, acc: 97, language: "C++", slug: "two-sum", mode: "algorithms" },
+  { wpm: 101, acc: 99, language: "Python", slug: "4sum", mode: "algorithms" },
+  { wpm: 94, acc: 95, language: "Java", slug: "rotting-oranges", mode: "algorithms" },
+  { wpm: 98, acc: 97, language: "JS", slug: "debounce", mode: "drills" },
 ];
 
 // keys that went wrong most often across all tests

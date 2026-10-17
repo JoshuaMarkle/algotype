@@ -1,6 +1,5 @@
 import React from "react";
 import { color, font, hairline, radius, role, weight } from "../tokens";
-import { mixColor } from "../time";
 
 // The site's <Keyboard /> (src/components/ui/Kbd.jsx): the same rows and key
 // widths, drawn with the Kbd "default" variant (bg-2, border, rounded-sm)
@@ -47,13 +46,15 @@ export const keysFor = (ch: string): string[] => {
   return [ch.toUpperCase()];
 };
 
-export type KeyPaint = { fill?: string; border?: string; text?: string; badge?: string };
+// `badge` is a count in an error-red circle on the key's top-right corner
+export type KeyPaint = { fill?: string; border?: string; text?: string; badge?: string; badgeOpacity?: number };
 
 export const Keyboard: React.FC<{
   unit: number;
   paint?: (label: string) => KeyPaint | undefined;
   fontSize?: number;
-}> = ({ unit, paint, fontSize = 14 }) => (
+  badgeScale?: number;
+}> = ({ unit, paint, fontSize = 14, badgeScale = 1 }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: GAP * unit, width: ROW_WIDTH * unit }}>
     {ROWS.map((row, r) => {
       const fixed = row.reduce<number>((s, k) => s + (k === "Space" ? 0 : WIDE[k] ?? 40), 0);
@@ -88,19 +89,20 @@ export const Keyboard: React.FC<{
                   <span
                     style={{
                       position: "absolute",
-                      top: -10 * unit,
-                      right: -8 * unit,
-                      minWidth: 18 * unit,
-                      height: 18 * unit,
-                      padding: `0 ${4 * unit}px`,
+                      top: -10 * unit * badgeScale,
+                      right: -8 * unit * badgeScale,
+                      minWidth: 18 * unit * badgeScale,
+                      height: 18 * unit * badgeScale,
+                      padding: `0 ${4 * unit * badgeScale}px`,
                       boxSizing: "border-box",
-                      borderRadius: 9 * unit,
+                      borderRadius: 9 * unit * badgeScale,
                       background: role.error,
                       color: role.text,
-                      fontSize: 11 * unit,
+                      fontSize: 11 * unit * badgeScale,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      opacity: p.badgeOpacity ?? 1,
                     }}
                   >
                     {p.badge}
@@ -112,35 +114,5 @@ export const Keyboard: React.FC<{
         </div>
       );
     })}
-  </div>
-);
-
-// A single keycap (Kbd "default" variant: bg-2, border, rounded-sm, mono),
-// sized for the frame. `tint` 0 → 1 colours it with the error colour.
-export const Kbd: React.FC<{ label: string; size?: number; tint?: number; tintColor?: string }> = ({
-  label,
-  size = 84,
-  tint = 0,
-  tintColor = role.error,
-}) => (
-  <div
-    style={{
-      minWidth: size,
-      height: size,
-      padding: `0 ${size * 0.2}px`,
-      boxSizing: "border-box",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: radius.sm,
-      background: mixColor(role.surfaceMuted, tintColor, tint * 0.35),
-      border: `${hairline}px solid ${mixColor(role.border, tintColor, tint)}`,
-      color: role.text,
-      fontFamily: font.mono,
-      fontWeight: weight.medium,
-      fontSize: size * 0.42,
-    }}
-  >
-    {label}
   </div>
 );
