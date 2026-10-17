@@ -2,23 +2,25 @@ import React from "react";
 import { Composition, Folder } from "remotion";
 import "./fonts";
 import { VIDEO } from "./tokens";
+import { sceneOrder, storyboard } from "./storyboard";
 import { sec } from "./time";
-import { KitCharts, KitEditor, KitHeadline, KitStats } from "./Kit";
+import { Promo, promoFrames } from "./Promo";
+import { scenes } from "./scenes";
+const sceneId = (name: string) => `Scene-${name[0].toUpperCase()}${name.slice(1)}`;
 
-const kit = { KitHeadline, KitCharts, KitEditor, KitStats };
+const common = { fps: VIDEO.fps, width: VIDEO.width, height: VIDEO.height };
 
 export const Root: React.FC = () => (
   <>
-    <Folder name="Kit">
-      {Object.entries(kit).map(([id, C]) => (
+    <Composition id="Promo" component={Promo} durationInFrames={promoFrames} {...common} />
+    <Folder name="Scenes">
+      {sceneOrder.map((name) => (
         <Composition
-          key={id}
-          id={id}
-          component={C}
-          durationInFrames={sec(3)}
-          fps={VIDEO.fps}
-          width={VIDEO.width}
-          height={VIDEO.height}
+          key={name}
+          id={sceneId(name)}
+          component={scenes[name]}
+          durationInFrames={sec(storyboard[name].length)}
+          {...common}
         />
       ))}
     </Folder>

@@ -1,83 +1,94 @@
 import React from "react";
-import {
-  font,
-  hairline,
-  leading,
-  radius,
-  role,
-  space,
-  syntax,
-  text,
-  weight,
-} from "../tokens";
+import { color, font, hairline, leading, radius, ring, role, space, syntax, text } from "../tokens";
 import type { Ch } from "../data/snippet";
 
 const tokenColor = (type: string) =>
-  (syntax as Record<string, string>)[type] ??
-  (type === "builtin" ? syntax.function : type === "boolean" ? syntax.number : syntax.plain);
+  ({
+    keyword: syntax.keyword,
+    function: syntax.function,
+    builtin: syntax.function,
+    punctuation: syntax.punctuation,
+    operator: syntax.operator,
+    number: syntax.number,
+    boolean: syntax.number,
+    string: syntax.string,
+    comment: syntax.comment,
+    plain: syntax.plain,
+    space: syntax.plain,
+  })[type] ?? syntax.plain;
 
-const Chevron: React.FC<{ size: number }> = ({ size }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={role.textMuted} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-    <path d="m9 18 6-6-6-6" />
-  </svg>
-);
-
-// The test page in a window: breadcrumb bar on top (as on the site), then the
-// TypingRenderer look: line numbers, typed text in syntax colours, untyped
-// text in fg-2, wrong keys in the error colour with an underline, and the
-// current character marked with the accent.
+// The homepage's CodeBox demo window (rounded-sm, border, bg-2 body, bg-3
+// header with the three dots, file name and live wpm / acc), framed by the
+// homepage's ring, rendering code the way TypingRenderer does: line numbers,
+// typed text in syntax colours, untyped text in fg-2, wrong keys in the error
+// colour with an underline, and the current character in the accent.
 export const CodeEditor: React.FC<{
   lines: Ch[][];
   typed: number; // keystrokes typed correctly
-  wrong?: string; // wrong keys pending after `typed`
-  breadcrumb: readonly string[];
+  wrong?: number; // wrong keys pending after `typed`
+  file: string;
+  wpm?: number;
+  acc?: number;
   width: number;
   fontSize?: number;
   showCursor?: boolean;
-  header?: React.ReactNode; // right side of the bar (live stats)
-}> = ({ lines, typed, wrong = "", breadcrumb, width, fontSize = text.code, showCursor = true, header }) => {
-  const cursorKey = typed + wrong.length;
-  const lineOf = (k: number) => lines.findIndex((l) => l.some((c) => c.key === k));
-  const currentLine = Math.max(0, lineOf(Math.min(cursorKey, typed)));
-  const barPadX = space(6);
+  framed?: boolean;
+}> = ({ lines, typed, wrong = 0, file, wpm = 0, acc = 100, width, fontSize = text.code, showCursor = true, framed = true }) => {
+  const cursorKey = typed + wrong;
+  const lineOfKey = (k: number) => {
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].some((c) => c.key === k)) return i;
+    }
+    return lines.length - 1;
+  };
+  const currentLine = lineOfKey(typed);
+  const dot = (bg: string) => (
+    <div style={{ width: space(3), height: space(3), borderRadius: "50%", background: bg }} />
+  );
 
   return (
     <div
       style={{
         width,
-        background: role.canvas,
+        boxSizing: "border-box",
+        background: role.surface,
         border: `${hairline}px solid ${role.border}`,
-        borderRadius: radius.xl,
+        borderRadius: radius.sm,
         overflow: "hidden",
+        outline: framed ? `${ring.width}px solid ${ring.color}` : undefined,
       }}
     >
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
-          padding: `${space(4)}px ${barPadX}px`,
+          padding: `${space(2.5)}px ${space(4)}px`,
           borderBottom: `${hairline}px solid ${role.border}`,
+          background: role.surfaceMuted,
           fontFamily: font.sans,
-          fontWeight: weight.medium,
           fontSize: text.sm,
           color: role.textMuted,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: space(2) }}>
-          {breadcrumb.map((b, i) => (
-            <React.Fragment key={b}>
-              {i > 0 && <Chevron size={text.sm} />}
-              <span style={{ color: i === breadcrumb.length - 1 ? role.text : role.textMuted }}>{b}</span>
-            </React.Fragment>
-          ))}
+        <div style={{ display: "flex", gap: space(2) }}>
+          {dot(color.red400)}
+          {dot(color.yellow400)}
+          {dot(color.green400)}
         </div>
-        {header}
+        <div style={{ marginLeft: space(4) }}>{file}</div>
+        <div style={{ marginLeft: "auto", display: "flex", gap: space(4), fontVariantNumeric: "tabular-nums" }}>
+          <div style={{ display: "flex", gap: space(2) }}>
+            wpm <span style={{ color: role.text, minWidth: text.sm * 1.8 }}>{wpm}</span>
+          </div>
+          <div style={{ display: "flex", gap: space(2) }}>
+            acc <span style={{ color: role.text }}>{acc}%</span>
+          </div>
+        </div>
       </div>
       <pre
         style={{
           margin: 0,
-          padding: `${space(8)}px ${barPadX}px ${space(10)}px`,
+          padding: `${space(5)}px ${space(4)}px ${space(6)}px`,
           fontFamily: font.mono,
           fontSize,
           lineHeight: leading.relaxed,
@@ -89,7 +100,7 @@ export const CodeEditor: React.FC<{
           <div key={li} style={{ display: "flex" }}>
             <div
               style={{
-                width: fontSize * 1.6,
+                width: fontSize * 1.8,
                 marginRight: fontSize * 1.1,
                 textAlign: "right",
                 color: li === currentLine ? role.textMuted : role.textFaint,
@@ -97,12 +108,13 @@ export const CodeEditor: React.FC<{
             >
               {li + 1}
             </div>
-            <div>
+            <div style={{ minHeight: fontSize * leading.relaxed }}>
               {line.map((c, ci) => {
                 const k = c.key;
                 const isCursor = showCursor && k === cursorKey;
-                const isTyped = k === null ? (line.find((x) => x.key !== null)?.key ?? 0) <= typed : k < typed;
-                const isWrong = k !== null && k >= typed && k < typed + wrong.length;
+                const isTyped = k === null || k < typed;
+                const isWrong = k !== null && k >= typed && k < typed + wrong;
+                // TypingRenderer hides the newline mark unless the cursor is on it
                 if (c.newline && !isCursor && !isWrong) return null;
                 const style: React.CSSProperties = {
                   color: isWrong ? role.error : isTyped ? tokenColor(c.type) : syntax.untyped,
@@ -117,7 +129,6 @@ export const CodeEditor: React.FC<{
                   style.color = role.text;
                   style.borderRadius = 3;
                 }
-                if (c.newline) style.color = isCursor ? role.text : style.color;
                 return (
                   <span key={ci} style={style}>
                     {c.ch}

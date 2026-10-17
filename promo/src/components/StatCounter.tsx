@@ -1,46 +1,42 @@
 import React from "react";
 import { font, role, space, text, weight } from "../tokens";
+import { fadeUp } from "../time";
 
-// A results number the way TypingResults shows it: big light mono value,
-// mono label under it. `progress` counts the value up from zero.
+// One results number as TypingResults draws it: text-6xl light mono, then a
+// text-lg mono label with green / red dot details
 export const StatCounter: React.FC<{
   value: number;
-  label: string;
-  progress?: number;
   suffix?: string;
-  accent?: boolean;
-  size?: number;
-  opacity?: number;
-}> = ({ value, label, progress = 1, suffix = "", accent = false, size = text["6xl"], opacity = 1 }) => (
-  <div style={{ display: "flex", flexDirection: "column", gap: space(1), opacity }}>
+  label: string;
+  dots?: [number, number];
+  t: number;
+  valueColor?: string;
+  badge?: React.ReactNode;
+}> = ({ value, suffix = "", label, dots, t, valueColor = role.text, badge }) => (
+  <div style={{ position: "relative", fontFamily: font.mono, ...fadeUp(Math.min(1, t * 3), 24) }}>
     <div
       style={{
-        fontFamily: font.mono,
+        fontSize: text["6xl"],
         fontWeight: weight.light,
-        fontSize: size,
         lineHeight: 1,
-        color: accent ? role.accent : role.text,
+        color: valueColor,
         fontVariantNumeric: "tabular-nums",
       }}
     >
-      {Math.round(value * progress)}
+      {Math.round(value * t)}
       {suffix}
     </div>
-    <div
-      style={{
-        fontFamily: font.mono,
-        fontWeight: weight.regular,
-        fontSize: text.lg,
-        color: role.textMuted,
-        letterSpacing: "0.02em",
-      }}
-    >
+    <div style={{ fontSize: text.lg, marginTop: space(2), color: role.text, whiteSpace: "nowrap" }}>
       {label}
+      {dots && (
+        <>
+          {" "}
+          <span style={{ color: role.correct }}>•</span>
+          {Math.round(dots[0] * t)} <span style={{ color: role.error }}>•</span>
+          {Math.round(dots[1] * t)}
+        </>
+      )}
     </div>
+    {badge}
   </div>
-);
-
-// The results row: stats spread with the site's gap-32
-export const StatRow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div style={{ display: "flex", gap: space(32), alignItems: "flex-start" }}>{children}</div>
 );

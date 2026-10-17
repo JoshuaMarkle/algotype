@@ -1,5 +1,5 @@
 import React from "react";
-import { font, role, text, weight } from "../tokens";
+import { role } from "../tokens";
 
 // The site's mark: the two chevrons from public/logo.svg and the navbar
 export const LogoMark: React.FC<{ size: number; color?: string }> = ({
@@ -18,29 +18,4 @@ export const LogoMark: React.FC<{ size: number; color?: string }> = ({
       d="M9.41421 5.29291C9.80474 5.68343 9.80474 6.3166 9.41421 6.70712L4.12132 12L9.41421 17.2929C9.80474 17.6834 9.80474 18.3166 9.41421 18.7071L8.70711 19.4142C8.31658 19.8048 7.68342 19.8048 7.29289 19.4142L0.93934 13.0607C0.353553 12.4749 0.353553 11.5251 0.93934 10.9394L7.29289 4.5858C7.68342 4.19528 8.31658 4.19528 8.70711 4.5858L9.41421 5.29291Z"
     />
   </svg>
-);
-
-// Mark + name, laid out like the navbar link (gap-2, semibold)
-export const Wordmark: React.FC<{
-  size?: number;
-  color?: string;
-  markColor?: string;
-  name?: string;
-}> = ({ size = text.wordmark, color = role.text, markColor, name = "AlgoType" }) => (
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      gap: size * 0.3,
-      fontFamily: font.sans,
-      fontWeight: weight.semibold,
-      fontSize: size,
-      letterSpacing: "-0.03em",
-      color,
-      lineHeight: 1,
-    }}
-  >
-    <LogoMark size={size * 1.05} color={markColor} />
-    <span>{name}</span>
-  </div>
 );

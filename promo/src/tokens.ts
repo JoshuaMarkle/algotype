@@ -36,6 +36,10 @@ export const color = {
   blue3: "#315efc",
   yellow: "#ffb347",
   white: "#ffffff",
+  // Tailwind v4 palette colours the site uses directly
+  red400: "#ff6467",
+  yellow400: "#fdc700",
+  green400: "#05df72",
 } as const;
 
 // Roles. The accent is the brand's single "look here" colour (--color-primary).
@@ -132,6 +136,18 @@ export const radius = {
 
 // Hairline borders: the site's 1px border, scaled
 export const hairline = px(1);
+
+// The homepage's framed boxes: border + `ring-8 ring-fg/10`
+export const ring = {
+  width: px(8),
+  color: "rgba(244, 245, 246, 0.10)",
+} as const;
+
+// The homepage's border-x page rails (md:mx-8) and hero grid (20px cells)
+export const page = {
+  railInset: px(32),
+  gridCell: px(20),
+} as const;
 
 // --- Motion ---
 // Calm and precise: ease-out for entrances, ease-in-out for camera moves and
